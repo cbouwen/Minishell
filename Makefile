@@ -1,7 +1,7 @@
 NAME = Minishell
 
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -g -fsanitize=address
+CFLAGS = -Wall -Werror -Wextra -g -lreadline -fsanitize=address
 
 SRC = main.c env_parser.c utils.c env_utils.c tester.c
 SRC_DIR = ./src/
