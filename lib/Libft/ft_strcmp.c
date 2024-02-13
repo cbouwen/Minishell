@@ -1,24 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/13 16:16:53 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/02/13 16:48:36 by cbouwen          ###   ########.fr       */
+/*   Created: 2023/04/04 12:17:19 by cbouwen           #+#    #+#             */
+/*   Updated: 2024/02/13 15:55:53 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
+#include "libft.h"
 
-int	main(int argc, char **argv, char *envp[])
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	t_environment	*env;
+	size_t			i;
+	unsigned char	*t1;
+	unsigned char	*t2;
 
-	(void)argc;
-	(void)argv;
-	env = env_parser(envp);
-	tester(env);
-	free_env(env);
+	t1 = (unsigned char *)s1;
+	t2 = (unsigned char *)s2;
+	i = 0;
+	while (t1[i] != '\0' || t2[i] != '\0')
+	{
+		if (t1[i] != t2[i])
+			return (t1[i] - t2[i]);
+		i++;
+	}
+	return (0);
 }

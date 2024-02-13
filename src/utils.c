@@ -1,24 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/13 16:16:53 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/02/13 16:48:36 by cbouwen          ###   ########.fr       */
+/*   Created: 2024/02/13 13:23:58 by cbouwen           #+#    #+#             */
+/*   Updated: 2024/02/13 14:07:26 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-int	main(int argc, char **argv, char *envp[])
+int	ft_error(char *str)
 {
-	t_environment	*env;
-
-	(void)argc;
-	(void)argv;
-	env = env_parser(envp);
-	tester(env);
-	free_env(env);
+	ft_printf("%s", str);
+	return (0);
 }

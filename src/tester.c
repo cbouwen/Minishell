@@ -1,24 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   tester.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/13 16:16:53 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/02/13 16:48:36 by cbouwen          ###   ########.fr       */
+/*   Created: 2024/02/13 16:47:47 by cbouwen           #+#    #+#             */
+/*   Updated: 2024/02/13 16:52:45 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-int	main(int argc, char **argv, char *envp[])
+void	tester(t_environment *envp)
 {
-	t_environment	*env;
-
-	(void)argc;
-	(void)argv;
-	env = env_parser(envp);
-	tester(env);
-	free_env(env);
+	while (envp)
+	{
+		printf("%s=%s\n", envp->name, envp->value);
+		envp = envp->next;
+	}
 }
