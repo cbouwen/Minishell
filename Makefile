@@ -3,7 +3,7 @@ NAME = Minishell
 CC = cc
 CFLAGS = -Wall -Werror -Wextra -g -fsanitize=address
 
-SRC = main.c env_parser.c utils.c env_utils.c tester.c
+SRC = main.c env_parser.c utils.c env_utils.c
 SRC_DIR = ./src/
 SRC_FILES = $(addprefix $(SRC_DIR), $(SRC))
 

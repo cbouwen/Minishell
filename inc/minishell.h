@@ -6,7 +6,7 @@
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:41:07 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/02/13 16:49:25 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/02/13 17:27:15 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,5 @@ t_environment				*env_parser(char *envp[]);
 void						free_env_node(t_environment *env);
 void						free_env(t_environment *env);
 t_environment				*get_env_node(t_environment *head, char *name);
-
-//tester
-void						tester(t_environment *envp);
-
 
 #endif
