@@ -1,19 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/13 13:23:58 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/02/13 14:07:26 by cbouwen          ###   ########.fr       */
+/*   Created: 2024/02/15 15:16:09 by cbouwen           #+#    #+#             */
+/*   Updated: 2024/02/15 16:56:49 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/minishell.h"
+#ifndef UTILS_H
+# define UTILS_H
 
-int	ft_error(char *str)
-{
-	ft_printf("%s", str);
-	return (0);
-}
+#include "minishell.h"
+
+void	free_tokens(t_token *token);
+int		ft_error(char *str);
+
+# endif

@@ -1,39 +1,39 @@
-NAME = Minishell
+NAME = minishell
 
 CC = cc
 CFLAGS = -Wall -Werror -Wextra -g -lreadline -fsanitize=address
 
-SRC = main.c env_parser.c utils.c env_utils.c tester.c
-SRC_DIR = ./src/
-SRC_FILES = $(addprefix $(SRC_DIR), $(SRC))
 
+#ALL SOURCE FILES
+
+SRC_DIR = ./src/
+SRC_MAIN = main.c env_parser.c env_utils.c tester.c
+SRC_FILES = $(addprefix $(SRC_DIR), $(SRC_MAIN))
+UTILS_SRC = $(addprefix $(SRC_DIR)utils/, error_msg.c free.c)
+TOKENIZER_SRC = $(addprefix $(SRC_DIR)tokenizer/, tokenizer.c token_splitter.c)
+
+SRC = $(SRC_FILES) $(UTILS_SRC) $(TOKENIZER_SRC)
+
+
+#LIBFT Files
 
 LIBFT_DIR = ./lib/Libft/
 LIBFT_LIB = $(LIBFT_DIR)libft.a
 LIBFT_INC = -I $(LIBFT_DIR)
 
-PRINTF_DIR = ./lib/Printf/
-PRINTF_LIB = $(PRINTF_DIR)printf.a
-PRINTF_INC = -I $(PRINTF_DIR)
-
 all : $(NAME)
 
-$(NAME) : $(LIBFT_LIB) $(PRINTF_LIB) $(SRC_FILES)
-	$(CC) $(CFLAGS) $(SRC_FILES) $(LIBFT_LIB) $(PRINTF_LIB) -o $(NAME)
+$(NAME) : $(LIBFT_LIB)
+	$(CC) $(CFLAGS) $(SRC) $(LIBFT_LIB) -o $(NAME)
 
 $(LIBFT_LIB):
 	make -C $(LIBFT_DIR)
 
-$(PRINTF_LIB):
-	make -C $(PRINTF_DIR)
-
 clean : 
 	make clean -C $(LIBFT_DIR)
-	make clean -C $(PRINTF_DIR)
 
 fclean : clean
 	make fclean -C $(LIBFT_DIR)
-	make fclean -C $(PRINTF_DIR)
 	rm -f $(NAME)
 
 re : fclean all
