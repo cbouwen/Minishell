@@ -6,7 +6,7 @@
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 17:49:29 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/02/15 17:57:32 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/02/19 13:17:09 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	free_token(t_token *token)
 	if (token->str)
 		free(token->str);
 	free(token);
-	*token = NULL;
 }
 
 void	free_tokens(t_token *token)
