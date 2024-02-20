@@ -11,8 +11,9 @@ SRC_MAIN = main.c env_parser.c env_utils.c tester.c
 SRC_FILES = $(addprefix $(SRC_DIR), $(SRC_MAIN))
 UTILS_SRC = $(addprefix $(SRC_DIR)utils/, error_msg.c free.c)
 TOKENIZER_SRC = $(addprefix $(SRC_DIR)tokenizer/, tokenizer.c token_splitter.c)
+LEXER_SRC = $(addprefix $(SRC_DIR)lexer/, lexer.c syntax_check.c)
 
-SRC = $(SRC_FILES) $(UTILS_SRC) $(TOKENIZER_SRC)
+SRC = $(SRC_FILES) $(UTILS_SRC) $(TOKENIZER_SRC) $(LEXER_SRC)
 
 
 #LIBFT Files
