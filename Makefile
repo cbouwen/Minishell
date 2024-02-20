@@ -23,7 +23,7 @@ LIBFT_INC = -I $(LIBFT_DIR)
 
 all : $(NAME)
 
-$(NAME) : $(LIBFT_LIB)
+$(NAME) : $(LIBFT_LIB) $(SRC)
 	$(CC) $(CFLAGS) $(SRC) $(LIBFT_LIB) -o $(NAME)
 
 $(LIBFT_LIB):

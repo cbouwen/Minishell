@@ -5,99 +5,79 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/05 12:28:38 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/02/15 16:25:21 by cbouwen          ###   ########.fr       */
+/*   Created: 2024/02/20 11:23:28 by cbouwen           #+#    #+#             */
+/*   Updated: 2024/02/20 14:40:41 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-char	**ft_free(char **s2, int count)
+int	handle_redirect(char *input, size_t j, char c)
 {
-	int	i;
+	size_t	i;
 
-	i = 0;
-	while (i < count)
-	{
-		free(s2[i]);
-		i++;
+	i = j + 2;
+	while (input[j] == c)
+	{	
+		j++;
+		if (i == j)
+			return (1);
 	}
-	free(s2);
 	return (0);
 }
 
-static char	*put_word(char *word, int word_len, char const *s, int i)
+int	check_char(char c)
 {
-	int	t;
-
-	t = 0;
-	while (0 < word_len)
-	{
-		word[t] = s[i - word_len];
-		t++;
-		word_len--;
-	}
-	word[t] = '\0';
-	return (word);
+	if (c == 39 || c == '|' || c == '"' || c == '<' || c == '>')
+		return (0);
+	return (1);
 }
 
-static char	**split_words(char const *s, char c, char **s2, int words)
+size_t	handle_rest(char *input, size_t j)
 {
-	int	i;
-	int	count;
-	int	word_len;
+	size_t	i;
 
 	i = 0;
-	count = 0;
-	word_len = 0;
-	while (count < words)
+	while (input[i + j] && input[i + j] != ' ')
 	{
-		while (s[i] && s[i] == c)
-			i++;
-		while (s[i] && s[i] != c)
-		{
-			i++;
-			word_len++;
-		}
-		s2[count] = (char *)malloc(sizeof(char) * word_len + 1);
-		if (!s2[count])
-			return (ft_free(s2, count));
-		put_word(s2[count], word_len, s, i);
-		word_len = 0;
-		count++;
-	}
-	s2[count] = 0;
-	return (s2);
-}
-
-static int	word_count(char const *s, char c)
-{
-	int	i;
-
-	i = 0;
-	while (*s)
-	{
-		if (*s == c)
-			s++;
-		else
-		{
-			i++;
-			while (*s && *s != c)
-				s++;
-		}
+		if (!(check_char(input[i + j])))
+			return (i);
+		i++;
 	}
 	return (i);
 }
 
-char	**split_args(char const *s, char c)
-{
-	int		words;
-	char	**s2;
 
-	words = word_count(s, c);
-	s2 = (char **)malloc(sizeof(char *) * (words + 1));
-	if (!s2)
-		return (NULL);
-	s2 = split_words(s, c, s2, words);
-	return (s2);
+size_t	handle_quotes(char *input, size_t j, char c)
+{
+	size_t	i;
+
+	i = 1;
+	while (input[i + j] && input[i + j] != c)
+		i++;
+	i++;
+	return (i);
+}
+
+size_t	find_token(char *input, size_t j)
+{
+	size_t	i;
+
+	i = 0;
+	if (handle_redirect(input, j, '<') || handle_redirect(input, j, '>'))
+		return (2);
+	if (input[j] == '|' || input[j] == '>' || input[j] == '<')
+		return (1);
+	if  (input[j] == 39)
+	{
+		i = handle_quotes(input, j, 39);
+		return (i);
+	}
+	if  (input[j] == '"')
+	{
+		i = handle_quotes(input, j, '"');
+		return (i);
+	}
+	i = handle_rest(input, j);
+	return (i);
 }
