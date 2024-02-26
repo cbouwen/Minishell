@@ -34,7 +34,7 @@ int	check_syntax(t_token *tokens)
 {
 	while (*tokens)
 	{
-		if (!(check_logic(*tokens, (*token)->next)))
+		if (!(check_logic(*tokens, *(tokens)->next)))
 			return (0);
 		tokens = tokens->next;
 	}	
