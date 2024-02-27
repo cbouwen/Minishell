@@ -32,7 +32,11 @@ int	check_syntax(t_token *tokens)
 	i = 0;
 	while (tokens)
 	{
+<<<<<<< HEAD
 		if (!(check_logic(*tokens, i)))
+=======
+		if (!(check_logic(*tokens, *(tokens)->next)))
+>>>>>>> 487c18e3f1b205a06a4111ead2c88958af974b1d
 			return (0);
 		i = 1;
 		*tokens = *(tokens)->next;

@@ -15,12 +15,15 @@
 int	run_minishell(t_environment *env, char	*input)
 {
 	t_token	*tokens;
+	t_token	*head;
+	//t_syntax_token	syntax_tree;
 	(void)env;
 
 	tokens = NULL;
 	tokenizer(input, &tokens);
 	lexer(&tokens);
-	//parser(tokens);
+	//parser(&tokens, &head);
+	//expander(&tokens)
 	//executor(tokens, env);
 	//tester(env);
 	test_tokenizer(tokens);

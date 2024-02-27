@@ -33,8 +33,24 @@ typedef struct	s_token
 {
 	char			*str;
 	t_type			type;
+	int				input;
+	int				output;
+	struct s_token	*parent;
+	struct s_token	*left;
+	struct s_token	*right;
 	struct s_token	*next;
 }				t_token;
+
+/*typedef struct s_syntax_token
+{
+	struct s_syntax_token	*parent;
+	struct s_syntax_token	*left;
+	struct s_syntax_token	*right;
+	int						input;
+	int						output;
+	t_token					*token;
+}		t_syntax_token;*/
+
 
 
 
