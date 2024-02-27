@@ -6,29 +6,30 @@
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 15:39:17 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/02/27 15:39:21 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/02/27 17:29:19 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-void    parse_pipes(t_token *tmp, t_token **head)
+void    parse_pipes(t_token *token)
 {
-    t_token    *tmp_head;
+    t_token    *tmp;
 
-    *head = NULL;
-    tmp_head = NULL;
-    while (tmp)
+    tmp = NULL;
+    while (token)
     {
-        if (tmp->type == PIPE)
+        if (token->type == PIPE)
         {
-            if (tmp_head)
+            if (tmp)
             {
-                tmp->left = tmp_head;
-                tmp_head->parent = tmp;
+                token->left = tmp;
+                tmp->parent = token;
             }
-            tmp_head = tmp;
+            tmp = token;
         }
-        tmp = tmp->next;
+		if (token->next == NULL)
+			break;
+        token = token->next;
     }
 }

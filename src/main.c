@@ -6,7 +6,7 @@
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 16:16:53 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/02/27 15:17:51 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/02/27 16:31:45 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	run_minishell(t_environment *env, char	*input)
 	tokens = NULL;
 	tokenizer(input, &tokens);
 	lexer(&tokens);
-	//parser(&tokens, &head);
+	parser(&tokens);
 	//expander(&tokens)
 	//executor(tokens, env);
 	//tester(env);
