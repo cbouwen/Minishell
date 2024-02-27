@@ -6,7 +6,7 @@
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 14:56:08 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/02/20 18:35:46 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/02/27 13:35:40 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,5 @@ void	lexer(t_token **tokens)
 	tmp = *tokens;
 	if (!(check_syntax(tmp)))
 		ft_error("Syntax Error\n");
+//	tmp = *tokens;
 }

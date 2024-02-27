@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   starter.c                                          :+:      :+:    :+:   */
+/*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:42:12 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/02/08 17:42:13 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/02/27 13:04:51 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,6 @@ int parser(t_token **tokens, t_token **head)
     parse_commands(tmp, head);
     tmp = first_token;
     parse_arguments(tmp, head);
-    tmp = first_token,
+    tmp = first_token;
     return (1);
 }
