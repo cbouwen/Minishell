@@ -40,8 +40,6 @@ t_token redirect_left(t_token *tmp)
     token = tmp;
     while (tmp->left)
         tmp = tmp->left;
-    
-
 }
 
 void    parse_redirects(t_token *tmp, t_token **tmp_head, int pipes)
@@ -59,6 +57,4 @@ void    parse_redirects(t_token *tmp, t_token **tmp_head, int pipes)
             pipe_counter--;
         tmp = tmp->next;
     }
-
-
 }

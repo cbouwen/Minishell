@@ -6,7 +6,7 @@
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 17:46:17 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/02/27 15:03:38 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/02/27 16:21:00 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 int	check_logic(t_token tokens, int i)//care for syntax error when comparing to 'next' when looking at last token
 {
 	if (i == 0 && tokens.type == PIPE)
+		return (0);
+	if ((tokens.type == PIPE || tokens.type == REDIRECT) && tokens.next == NULL)
 		return (0);
 	if (tokens.next == NULL)
 		return (1);

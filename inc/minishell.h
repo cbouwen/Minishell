@@ -6,7 +6,7 @@
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:41:07 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/02/20 15:31:26 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/02/27 15:42:42 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include "tokenizer.h"
 # include "utils.h"
 # include "lexer.h"
+# include "parser.h"
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
