@@ -6,7 +6,7 @@
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 11:33:36 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/02/20 14:45:29 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/02/27 14:02:05 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	ft_addtoken_toback(t_token **token, t_token *new)
 	while (temp->next != NULL)
 		temp = temp->next;
 	temp->next = new;
+	new->prev = temp;
 }
 
 
@@ -39,7 +40,13 @@ t_token	*create_token(char *input)
 		return (NULL);
 	new->str = ft_strdup(input);
 	new->type = UNDEFINED;
+	new->input = 0;
+	new->output = 1;
+	new->parent = NULL;
+	new->left = NULL;
+	new->right = NULL;
 	new->next = NULL;
+	new->prev = NULL;
 	return (new);
 }
 

@@ -6,7 +6,7 @@
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 14:56:08 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/02/27 13:35:40 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/02/27 15:29:14 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,27 +36,30 @@ void	define_metas(t_token *token)
 		token->type = REDIRECT;
 }
 
-
 void	lexer(t_token **tokens)
 {
-	t_token	*tmp;
 	int	start;
 
 	start = 0;
-	tmp = *tokens;
-	while (tmp)
+	while (*tokens)
 	{
-		define_metas(tmp);
-		tmp = tmp->next;
+		define_metas(*tokens);
+		if ((*tokens)->next == NULL)
+			break;
+		*tokens = (*tokens)->next;
 	}
-	tmp = *tokens;
-	while (tmp)
+	reset_list(tokens);
+	while (*tokens)
 	{
-		start = define_cmd_arg(tmp, start);
-		tmp = tmp->next;
+		start = define_cmd_arg(*tokens, start);
+		if ((*tokens)->next == NULL)
+			break;
+		*tokens = (*tokens)->next;
 	}
-	tmp = *tokens;
-	if (!(check_syntax(tmp)))
-		ft_error("Syntax Error\n");
-//	tmp = *tokens;
+	reset_list(tokens);
+	if (!(check_syntax(*tokens)))
+	{
+		ft_error("Syntax Error\n");//implement something with the global variable so we can track exit statuses
+	}
+	reset_list(tokens);
 }

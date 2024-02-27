@@ -6,7 +6,7 @@
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 15:31:04 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/02/15 15:42:44 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/02/27 13:59:00 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct	s_token
 	struct s_token	*left;
 	struct s_token	*right;
 	struct s_token	*next;
+	struct s_token	*prev;
 }				t_token;
 
 /*typedef struct s_syntax_token

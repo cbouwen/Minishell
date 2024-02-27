@@ -6,7 +6,7 @@
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 17:46:17 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/02/27 13:23:51 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/02/27 15:03:38 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	check_syntax(t_token *tokens)
 		i = 1;
 		if (tokens->next == NULL)
 			break;
-		*tokens = *(tokens)->next;
+		tokens = tokens->next;
 	}	
 	return (1);
 }
