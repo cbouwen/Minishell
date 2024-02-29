@@ -6,7 +6,7 @@
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 16:47:47 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/02/29 15:19:44 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/02/29 18:14:08 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	test_syntax_tree(t_token *token, int pipes)
 	i = 0;
 	while (token->parent != NULL)
 		token = token->next;
-	printf("Parent contains this string: %s\nIts type is %u\n\n", token->str, token->type);
+	printf("Parent contains this string: %s\nIts type is %u\nIts next string is %s\n\n", token->str, token->type, token->next->str);
 	while (token->left != NULL)
 	{
 		if (token->left == NULL)
@@ -39,7 +39,13 @@ void	test_syntax_tree(t_token *token, int pipes)
 		printf("\nEnd of branch %i\n\n\n", i + 1);
 		while (token->type != PIPE)
 			token = token->parent;
-		printf("Parent contains this string: %s\nIts type is %u\nIts next string is %s\n\n", token->str, token->type, token->next->str);
+		if (i == 1)
+			token = token->parent;
+		if (i == 2)
+			token = token->parent;
+		if (i == 3)
+			token = token->parent;
+		printf("Parent contains this string: %s\nIts type is %u\nIts pointer address is %p\n\n", token->str, token->type, token);
 		while (token->right != NULL)
 		{
 			if (token->right == NULL)

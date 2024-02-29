@@ -6,7 +6,7 @@
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:42:12 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/02/29 16:04:12 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/02/29 18:17:00 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,19 +44,18 @@ void	redirect_right(t_token *token)
 	reset_list(&token);
 }
 
-int	redirect_others(t_token *token, int pipes, int current_pipe) //function which finds the correct parent and then executes the redirect_right function on it
+int	redirect_others(t_token *token, int current_pipe)
 {
-	(void)pipes;
 	int	i;
 
 	i = 1;
-	while (token) //find head parent
+	while (token)
 	{
 		if (token->parent == NULL && token->type == PIPE)
 			break;
 		token = token->next;
 	}
-	while (token->left->type == PIPE) //iterate through pipes on the left side
+	while (token->left->type == PIPE)
 	{
 		if (i == current_pipe)
 			break;
@@ -96,7 +95,7 @@ int parser(t_token **tokens)
 	{
 		first_redirect(*tokens);
 		while (current_pipe != 0)
-			current_pipe = redirect_others(*tokens, pipes, current_pipe); // ???
+			current_pipe = redirect_others(*tokens, current_pipe);
 	}
 	else
 		redirect_right(*tokens);
