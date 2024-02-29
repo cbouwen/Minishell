@@ -6,14 +6,17 @@
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 16:47:47 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/02/29 13:56:23 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/02/29 15:19:44 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-void	test_syntax_tree(t_token *token)
-{
+void	test_syntax_tree(t_token *token, int pipes)
+{	
+	int	i;
+
+	i = 0;
 	while (token->parent != NULL)
 		token = token->next;
 	printf("Parent contains this string: %s\nIts type is %u\n\n", token->str, token->type);
@@ -31,16 +34,22 @@ void	test_syntax_tree(t_token *token)
 		token = token->right;
 		printf("Token to the right contains this string: %s\nIts type is %u\n\n", token->str, token->type);
 	}
-	while (token->parent != NULL)
-		token = token->parent;
-	while (token->right != NULL)
+	while (pipes != i)
 	{
-		if (token->right == NULL)
-			break;
-		token = token->right;
-		printf("Token to the right contains this string: %s\nIts type is %u\n\n", token->str, token->type);
+		printf("\nEnd of branch %i\n\n\n", i + 1);
+		while (token->type != PIPE)
+			token = token->parent;
+		printf("Parent contains this string: %s\nIts type is %u\nIts next string is %s\n\n", token->str, token->type, token->next->str);
+		while (token->right != NULL)
+		{
+			if (token->right == NULL)
+				break;
+			token = token->right;
+			printf("Token to the right contains this string: %s\nIts type is %u\n\n", token->str, token->type);
+		}
+		i++;
 	}
-
+	printf("\nEnd of branch %i\n\n\n", i + 1);
 }
 
 

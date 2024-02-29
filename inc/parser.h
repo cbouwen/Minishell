@@ -6,7 +6,7 @@
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 15:37:58 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/02/29 13:27:00 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/02/29 14:36:23 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 
 int		parser(t_token **tokens);
 void	parse_pipes(t_token *token);
-void	redirect_pipes(t_token *token, int pipes);
-void	redirect_no_pipes(t_token *token);
+void	first_redirect(t_token *token);
+void	redirect_right(t_token *token);
+int		pipe_counter(t_token *tmp);
 
 #endif

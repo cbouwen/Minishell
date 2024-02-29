@@ -6,16 +6,15 @@
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:42:12 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/02/29 14:00:00 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/02/29 16:04:12 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-void	redirect_pipes(t_token *token, int pipes) //first redirect? We have a left here.
+void	first_redirect(t_token *token)
 {
 	t_token		*parent;
-	(void)pipes;
 
 	while (token->type != PIPE)
 		token = token->next;
@@ -24,10 +23,10 @@ void	redirect_pipes(t_token *token, int pipes) //first redirect? We have a left 
 	token->parent = parent;
 	parent->left = token;
 	parent = token;
-	redirect_no_pipes(token); //rethink name
+	redirect_right(token);
 }
 
-void	redirect_no_pipes(t_token *token) //rethink name
+void	redirect_right(t_token *token)
 {
 	t_token	*parent;
 
@@ -43,6 +42,29 @@ void	redirect_no_pipes(t_token *token) //rethink name
 		token->parent = parent;
 	}	
 	reset_list(&token);
+}
+
+int	redirect_others(t_token *token, int pipes, int current_pipe) //function which finds the correct parent and then executes the redirect_right function on it
+{
+	(void)pipes;
+	int	i;
+
+	i = 1;
+	while (token) //find head parent
+	{
+		if (token->parent == NULL && token->type == PIPE)
+			break;
+		token = token->next;
+	}
+	while (token->left->type == PIPE) //iterate through pipes on the left side
+	{
+		if (i == current_pipe)
+			break;
+		token = token->left;
+		i++;
+	}
+	redirect_right(token);
+	return (--current_pipe);
 }
 
 int     pipe_counter(t_token *tmp)
@@ -65,15 +87,18 @@ int     pipe_counter(t_token *tmp)
 int parser(t_token **tokens)
 {
 	int	pipes;
+	int	current_pipe;
 
 	pipes = pipe_counter(*tokens);
+	current_pipe = pipes;
 	parse_pipes(*tokens);
 	if (pipes)
 	{
-		redirect_pipes(*tokens, pipes);
-
+		first_redirect(*tokens);
+		while (current_pipe != 0)
+			current_pipe = redirect_others(*tokens, pipes, current_pipe); // ???
 	}
 	else
-		redirect_no_pipes(*tokens);
+		redirect_right(*tokens);
 	return (1);
 }
