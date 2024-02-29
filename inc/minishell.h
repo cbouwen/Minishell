@@ -6,7 +6,7 @@
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:41:07 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/02/27 15:42:42 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/02/29 13:07:52 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,6 @@ t_environment				*get_env_node(t_environment *head, char *name);
 //tester
 void						tester(t_environment *envp);
 void						test_tokenizer(t_token *tokens);
+void						test_syntax_tree(t_token *token);
 
 #endif
