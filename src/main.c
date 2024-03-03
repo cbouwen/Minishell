@@ -26,6 +26,7 @@ int	run_minishell(t_environment *env, char	*input)
 	//tester(env);
 //	test_tokenizer(tokens);
 //	test_syntax_tree(tokens, pipe_counter(tokens));
+	start(tokens);
 	free_tokens(tokens);
 	free(input);
 	return (0);

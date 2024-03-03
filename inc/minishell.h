@@ -19,6 +19,7 @@
 # include "utils.h"
 # include "lexer.h"
 # include "parser.h"
+# include "executor.h"
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
