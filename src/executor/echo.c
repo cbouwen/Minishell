@@ -21,7 +21,7 @@ void	echo(t_token *tokens)
 		{
 			output_fd = temp->output;
 			ft_putstr_fd(temp->str, output_fd);
-			if (temp->next && temp->next->type == ARG) {
+			if (temp->next && temp->next->type == ARG)
 				ft_putchar_fd(' ', output_fd);
 		}
 		temp = temp->next;
