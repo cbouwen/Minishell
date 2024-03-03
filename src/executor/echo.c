@@ -19,8 +19,10 @@ void	echo(t_token *tokens)
 	{
 		if (temp->type == ARG)
 		{
-			ft_putstr_fd(temp->str, temp->output);
 			output_fd = temp->output;
+			ft_putstr_fd(temp->str, output_fd);
+			if (temp->next && temp->next->type == ARG) {
+				ft_putchar_fd(' ', output_fd);
 		}
 		temp = temp->next;
 	}
