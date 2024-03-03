@@ -10,6 +10,7 @@ void	echo(t_token *tokens)
 
 	temp = tokens;
 	n_flag = 0;
+	output_fd = temp->output;
 	if (temp->type == ARG && ft_strcmp(temp->str, "-n") == 0)
 	{
 		n_flag = 1;
@@ -28,4 +29,12 @@ void	echo(t_token *tokens)
 	}
 	if (n_flag == 0)
 			ft_putchar_fd('\n', output_fd);
+}
+
+void	echo_no_arg(t_token *tokens)
+{
+	t_token	*temp;
+
+	temp = tokens;
+	ft_putchar_fd('\n', temp->output);
 }
