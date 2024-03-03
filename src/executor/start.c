@@ -6,7 +6,7 @@
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:41:42 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/02/08 17:41:44 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/03/03 18:16:59 by matisse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	start(t_token *tokens, t_environment *env)
 {
-	t_token	*temp;
+	t_token			*temp;
 	t_environment	*temp_env;
 
 	temp = tokens;

@@ -28,7 +28,7 @@ void	echo(t_token *tokens)
 		temp = temp->next;
 	}
 	if (n_flag == 0)
-			ft_putchar_fd('\n', output_fd);
+		ft_putchar_fd('\n', output_fd);
 }
 
 void	echo_no_arg(t_token *tokens)

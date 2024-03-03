@@ -4,7 +4,7 @@
 
 void	pwd(t_token *token)
 {
-    char	*cwd;
+	char	*cwd;
 
 	cwd = getcwd(NULL, 0);
 	if (!cwd)
