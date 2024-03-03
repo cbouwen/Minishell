@@ -6,6 +6,7 @@ void	echo(t_token *tokens)
 {
 	t_token	*temp;
 	int		n_flag;
+	int		output_fd;
 
 	temp = tokens;
 	n_flag = 0;
@@ -17,9 +18,12 @@ void	echo(t_token *tokens)
 	while (temp)
 	{
 		if (temp->type == ARG)
+		{
 			ft_putstr_fd(temp->str, temp->output);
+			output_fd = temp->output;
+		}
 		temp = temp->next;
 	}
 	if (n_flag == 0)
-			ft_putchar_fd('\n', temp->output);
+			ft_putchar_fd('\n', output_fd);
 }
