@@ -22,10 +22,12 @@ void	start(t_token *tokens)
 		if (temp->type == CMD)
 		{
 			if (ft_strcmp(temp->str, "echo") == 0)
+			{
 				if (temp->next && temp->next->type == ARG)
 					echo(temp->right);
 				else
 					echo_no_arg(temp);
+			}
 		}
 		temp = temp->next;
 	}
