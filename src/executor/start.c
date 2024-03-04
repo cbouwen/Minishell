@@ -19,7 +19,6 @@ void	start(t_token *tokens, t_environment *env)
 
 	temp = tokens;
 	temp_env = env;
-	(void)temp_env;
 	while (temp)
 	{
 		if (temp->type == CMD)

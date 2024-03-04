@@ -9,6 +9,12 @@ void	print_env(t_token *tokens, t_environment *env)
 
 	temp = tokens;
 	temp_env = env;
+	if (temp->next && temp->next->type == ARG)
+		if (!ft_strcmp(temp->next->str, "env"))
+			{
+				env_error_msg(temp->next);
+				return ;
+			}
 	while (temp_env)
 	{
 		ft_putstr_fd(temp_env->name, temp->output);
@@ -17,4 +23,14 @@ void	print_env(t_token *tokens, t_environment *env)
 		ft_putchar_fd('\n', temp->output);
 		temp_env = temp_env->next;
 	}
+}
+
+void	env_error_msg(t_token *tokens)
+{
+	t_token	*temp;
+
+	temp = tokens;
+	ft_putstr_fd("env: '", 2);
+	ft_putstr_fd(temp->str, 2);
+	ft_putstr_fd("': No such file or directory", 2);
 }
