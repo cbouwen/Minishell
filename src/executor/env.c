@@ -9,12 +9,12 @@ void	print_env(t_token *tokens, t_environment *env)
 
 	temp = tokens;
 	temp_env = env;
-	if (temp->next && temp->next->type == ARG &&
-		ft_strcmp(temp->next->str, "env") != 0)
-		{
-			env_error_msg(temp->next);
-			return ;
-		}
+	if (temp->next && temp->next->type == ARG
+		&& ft_strcmp(temp->next->str, "env") != 0)
+	{
+		env_error_msg(temp->next);
+		return ;
+	}
 	while (temp_env)
 	{
 		ft_putstr_fd(temp_env->name, temp->output);
