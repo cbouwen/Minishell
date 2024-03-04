@@ -33,7 +33,7 @@ void	start(t_token *tokens, t_environment *env)
 			}
 			else if (ft_strcmp(temp->str, "pwd") == 0)
 				pwd(temp);
-			else if (ft_strcmp(temp->str, "ENV") == 0)
+			else if (ft_strcmp(temp->str, "env") == 0)
 				print_env(temp, temp_env);
 		}
 		temp = temp->next;
