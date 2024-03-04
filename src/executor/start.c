@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   start.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:41:42 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/03/03 18:16:59 by matisse          ###   ########.fr       */
+/*   Updated: 2024/03/04 18:35:02 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ void	start(t_token *tokens, t_environment *env)
 			}
 			else if (ft_strcmp(temp->str, "pwd") == 0)
 				pwd(temp);
+			else if (ft_strcmp(temp->str, "ENV") == 0)
+				env(temp, temp_env);
 		}
 		temp = temp->next;
 	}

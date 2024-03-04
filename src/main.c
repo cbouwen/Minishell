@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 16:16:53 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/03/04 18:19:45 by mlegendr         ###   ########.fr       */
+/*   Updated: 2024/03/04 18:34:13 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int	run_minishell(t_environment *env, char	*input)
 {
 	t_token	*tokens;
-	(void)env;
 
 	tokens = NULL;
 	tokenizer(input, &tokens);
