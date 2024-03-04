@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 16:16:53 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/02/29 18:18:03 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/03/04 18:19:45 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ int	minishell_loop(char *envp[])
 			free(input);
 			continue;
 		}
+		if (ft_strcmp(input, "exit") == 0)
+			clean_exit(NULL, NULL);
 		add_history(input);
 		run_minishell(env, input);
 	}

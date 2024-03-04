@@ -1,19 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_msg.c                                        :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/13 13:23:58 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/03/04 18:06:56 by mlegendr         ###   ########.fr       */
+/*   Created: 2024/03/04 18:07:23 by mlegendr          #+#    #+#             */
+/*   Updated: 2024/03/04 18:14:26 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-int	ft_error(char *str)
+void	clean_exit(t_token *token, char *msg)
 {
-	printf("%s", str);
-	return (0);
+	if (msg)
+		ft_putstr_fd(msg, 2);
+	if (token)
+		free_tokens(token);
+	exit(0); //Als de error struct besta, kunnen we hier een deftige exit status meegeven. Nu is het gewoon exit succes.
 }
