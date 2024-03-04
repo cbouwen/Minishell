@@ -7,7 +7,7 @@ CFLAGS = -Wall -Werror -Wextra -g -lreadline -fsanitize=address
 #ALL SOURCE FILES
 
 SRC_DIR = ./src/
-SRC_MAIN = main.c env_parser.c env_utils.c tester.c
+SRC_MAIN = main.c env_parser.c env_utils.c
 SRC_FILES = $(addprefix $(SRC_DIR), $(SRC_MAIN))
 UTILS_SRC = $(addprefix $(SRC_DIR)utils/, error_msg.c free.c list_fts.c exit.c)
 TOKENIZER_SRC = $(addprefix $(SRC_DIR)tokenizer/, tokenizer.c token_splitter.c)
