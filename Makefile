@@ -13,7 +13,7 @@ UTILS_SRC = $(addprefix $(SRC_DIR)utils/, error_msg.c free.c list_fts.c exit.c)
 TOKENIZER_SRC = $(addprefix $(SRC_DIR)tokenizer/, tokenizer.c token_splitter.c)
 LEXER_SRC = $(addprefix $(SRC_DIR)lexer/, lexer.c syntax_check.c)
 PARSER_SRC = $(addprefix $(SRC_DIR)parser/, parser.c pipes.c)
-EXECUTOR_SRC = $(addprefix $(SRC_DIR)executor/, start.c echo.c pwd.c)
+EXECUTOR_SRC = $(addprefix $(SRC_DIR)executor/, start.c echo.c pwd.c env.c)
 
 SRC = $(SRC_FILES) $(UTILS_SRC) $(TOKENIZER_SRC) $(LEXER_SRC) $(PARSER_SRC) $(EXECUTOR_SRC)
 
