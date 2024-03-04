@@ -6,7 +6,7 @@
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:41:07 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/02/29 14:35:07 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/03/04 21:01:22 by matisse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,3 +39,5 @@ void						test_tokenizer(t_token *tokens);
 void						test_syntax_tree(t_token *token, int pipes);
 
 #endif
+
+//Quick test to see if I can merge now
