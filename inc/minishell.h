@@ -6,7 +6,7 @@
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:41:07 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/03/05 13:47:10 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/03/05 15:50:59 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include "utils.h"
 # include "lexer.h"
 # include "parser.h"
+# include "expander.h"
 # include "executor.h"
 # include <stdio.h>
 # include <stdlib.h>
