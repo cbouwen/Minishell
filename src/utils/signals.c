@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/15 15:16:09 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/03/05 13:56:53 by cbouwen          ###   ########.fr       */
+/*   Created: 2024/03/05 13:43:27 by cbouwen           #+#    #+#             */
+/*   Updated: 2024/03/05 14:33:00 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#include "../../inc/minishell.h"
 
-#include "minishell.h"
+void	sig_handler(int sig)
+{
+	(void)sig;
+	printf("\n");
+	exit_status = 130;
+	rl_replace_line("", 0);
+	rl_on_new_line();
+	rl_redisplay();
 
-void	reset_list(t_token **tokens);
-void	free_tokens(t_token *token);
-int		ft_error(char *str);
-void	clean_exit(t_token *token, char *msg);
-void	sig_handler(int sig);
+}
 
 
-# endif

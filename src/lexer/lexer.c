@@ -6,7 +6,7 @@
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 14:56:08 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/02/27 15:29:14 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/03/05 11:35:35 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	define_metas(t_token *token)
 		token->type = REDIRECT;
 }
 
-void	lexer(t_token **tokens)
+int	lexer(t_token **tokens)
 {
 	int	start;
 
@@ -57,9 +57,5 @@ void	lexer(t_token **tokens)
 		*tokens = (*tokens)->next;
 	}
 	reset_list(tokens);
-	if (!(check_syntax(*tokens)))
-	{
-		ft_error("Syntax Error\n");//implement something with the global variable so we can track exit statuses
-	}
-	reset_list(tokens);
+	return (check_syntax(*tokens));
 }

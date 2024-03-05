@@ -6,7 +6,7 @@
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:41:07 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/03/04 21:01:22 by matisse          ###   ########.fr       */
+/*   Updated: 2024/03/05 13:47:10 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,11 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <errno.h>
+# include <signal.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+
+extern int	exit_status;
 
 int							ft_error(char *str);
 t_environment				*env_parser(char *envp[]);

@@ -6,26 +6,32 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 16:16:53 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/03/04 18:34:13 by mlegendr         ###   ########.fr       */
+/*   Updated: 2024/03/05 15:07:02 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
+
+int	exit_status;
 
 int	run_minishell(t_environment *env, char	*input)
 {
 	t_token	*tokens;
 
 	tokens = NULL;
-	tokenizer(input, &tokens);
-	lexer(&tokens);
-	parser(&tokens);
-	//expander(&tokens)
-	//executor(tokens, env);
-	//tester(env);
-//	test_tokenizer(tokens);
-	//test_syntax_tree(tokens, pipe_counter(tokens));
-	start(tokens, env);
+	while (1)
+	{
+		tokenizer(input, &tokens);
+		if (!(lexer(&tokens)))
+			break;
+		parser(&tokens);
+		//expander(&tokens)
+		exit_status = executor(tokens, env);
+		//tester(env);
+		//test_tokenizer(tokens);
+		//test_syntax_tree(tokens, pipe_counter(tokens));
+		break;
+	}
 	free_tokens(tokens);
 	free(input);
 	return (0);
@@ -67,5 +73,9 @@ int	main(int argc, char **argv, char *envp[])
 {
 	(void)argc;
 	(void)argv;
+
+	exit_status = 0;
+	signal(SIGQUIT, SIG_IGN);
+	signal(SIGINT, sig_handler);
 	minishell_loop(envp);
 }

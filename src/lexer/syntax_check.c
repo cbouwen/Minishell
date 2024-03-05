@@ -6,7 +6,7 @@
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 17:46:17 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/02/29 18:20:22 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/03/05 11:42:57 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,17 @@ int	check_syntax(t_token *tokens)
 	while (tokens)
 	{
 		if (!(check_logic(*tokens, i)))
+		{
+			printf("Syntax error!\n");
+			exit_status = 2;
+			reset_list(&tokens);
 			return (0);
+		}
 		i = 1;
 		if (tokens->next == NULL)
 			break;
 		tokens = tokens->next;
-	}	
+	}
+	reset_list(&tokens);	
 	return (1);
 }

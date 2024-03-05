@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   start.c                                            :+:      :+:    :+:   */
+/*   exeutor.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:41:42 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/03/04 18:35:02 by mlegendr         ###   ########.fr       */
+/*   Updated: 2024/03/05 15:06:46 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-void	start(t_token *tokens, t_environment *env)
+int	executor(t_token *tokens, t_environment *env) //change name to executor? along with the .c file?
 {
 	t_token			*temp;
 	t_environment	*temp_env;
@@ -37,4 +37,5 @@ void	start(t_token *tokens, t_environment *env)
 		}
 		temp = temp->next;
 	}
+	return (0);
 }
