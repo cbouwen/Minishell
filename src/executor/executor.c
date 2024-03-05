@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exeutor.c                                          :+:      :+:    :+:   */
+/*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:41:42 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/03/05 15:06:46 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/03/05 17:12:06 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ int	executor(t_token *tokens, t_environment *env) //change name to executor? alo
 				pwd(temp);
 			else if (ft_strcmp(temp->str, "env") == 0)
 				print_env(temp, temp_env);
+			else if (ft_strcmp(temp->str, "export") == 0)
+				export_var(temp->next, temp_env);
 		}
 		temp = temp->next;
 	}
