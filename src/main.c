@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 16:16:53 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/03/05 17:07:31 by mlegendr         ###   ########.fr       */
+/*   Updated: 2024/03/05 17:37:48 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	run_minishell(t_environment *env, char	*input)
 		if (!(lexer(&tokens)))
 			break;
 		parser(&tokens);
-		//expander(&tokens)
+		expander(&tokens, env);
 		exit_status = executor(tokens, env);
 		//tester(env);
 		//test_tokenizer(tokens);

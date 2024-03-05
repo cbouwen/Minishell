@@ -14,8 +14,9 @@ TOKENIZER_SRC = $(addprefix $(SRC_DIR)tokenizer/, tokenizer.c token_splitter.c)
 LEXER_SRC = $(addprefix $(SRC_DIR)lexer/, lexer.c syntax_check.c)
 PARSER_SRC = $(addprefix $(SRC_DIR)parser/, parser.c pipes.c)
 EXECUTOR_SRC = $(addprefix $(SRC_DIR)executor/, executor.c echo.c pwd.c env.c export.c)
+EXPANDER_SRC = $(addprefix $(SRC_DIR)expander/, expander.c utils.c question_mark.c)
 
-SRC = $(SRC_FILES) $(UTILS_SRC) $(TOKENIZER_SRC) $(LEXER_SRC) $(PARSER_SRC) $(EXECUTOR_SRC)
+SRC = $(SRC_FILES) $(UTILS_SRC) $(TOKENIZER_SRC) $(LEXER_SRC) $(PARSER_SRC) $(EXPANDER_SRC) $(EXECUTOR_SRC)
 
 
 #LIBFT Files
@@ -42,5 +43,3 @@ fclean : clean
 re : fclean all
 
 .PHONY : all clean fclean re
-
-#quick test to see if I can merge now
