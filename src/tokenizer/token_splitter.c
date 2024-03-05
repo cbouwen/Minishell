@@ -6,7 +6,7 @@
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 11:23:28 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/02/20 14:40:41 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/03/05 15:35:10 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ size_t	handle_quotes(char *input, size_t j, char c)
 	i = 1;
 	while (input[i + j] && input[i + j] != c)
 		i++;
-	i++;
+	if (input[i + j])
+		i++;
 	return (i);
 }
 
