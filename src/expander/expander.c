@@ -6,13 +6,13 @@
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:41:53 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/03/05 16:59:57 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/03/06 15:15:00 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-void	remove_quotes(t_token **tokens)
+void	remove_quotes(t_token **tokens, char c)
 {
 	int		i;
 	int		j;
@@ -23,7 +23,7 @@ void	remove_quotes(t_token **tokens)
 	if (!newstr)
 		return ;
 	i = 1;
-	while ((*tokens)->str[i] && (*tokens)->str[i] != 39)
+	while ((*tokens)->str[i] && (*tokens)->str[i] != c)
 	{
 		newstr[i - 1] = (*tokens)->str[i];
 		i++;
@@ -33,13 +33,6 @@ void	remove_quotes(t_token **tokens)
 	(*tokens)->str = newstr;
 }
 
-void	expand_double_quote(t_token **tokens, t_environment *env)
-{
-	(void)env;
-
-	remove_quotes(tokens);
-}
-
 static void	handle_quotes(t_token **tokens, t_environment *env)
 {
 	while (*tokens)
@@ -47,9 +40,13 @@ static void	handle_quotes(t_token **tokens, t_environment *env)
 		if ((*tokens)->type == ARG)
 		{
 			if (!(find_quote(*tokens, 39)))
-				remove_quotes(tokens);
+				remove_quotes(tokens, 39);
 			if (!(find_quote(*tokens, '"')))
+			{
 				expand_double_quote(tokens, env);
+				//handle_question_mark(tokens); //?
+				remove_quotes(tokens, '"');
+			}
 		}
 		if ((*tokens)->next == NULL)
 			break;
