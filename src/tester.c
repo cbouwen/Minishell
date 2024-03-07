@@ -6,7 +6,7 @@
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 16:47:47 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/02/29 18:14:08 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/03/07 15:47:15 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	test_tokenizer(t_token *tokens)
 	i = 1;
 	while (tokens)
 	{
-		printf("Token %i contains this string: %s\nIts type is %u\n\n", i, tokens->str, tokens->type);
+		printf("Token %i contains this string: '%s'\nIts type is %u\n\n", i, tokens->str, tokens->type);
 		tokens = tokens->next;
 		i++;
 	}

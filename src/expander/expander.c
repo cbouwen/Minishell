@@ -6,7 +6,7 @@
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:41:53 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/03/06 15:15:00 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/03/07 16:23:34 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ static void	handle_quotes(t_token **tokens, t_environment *env)
 			if (!(find_quote(*tokens, '"')))
 			{
 				expand_double_quote(tokens, env);
-				//handle_question_mark(tokens); //?
 				remove_quotes(tokens, '"');
 			}
 		}
@@ -55,13 +54,25 @@ static void	handle_quotes(t_token **tokens, t_environment *env)
 	reset_list(tokens);
 }
 
+static void	handle_metas(t_token **tokens, t_environment *env)
+{
+	while (*tokens)
+	{
+		if ((*tokens)->type == ARG)
+		{
+			if ((*tokens)->str[0] == '$')
+				(*tokens)->str = find_env((*tokens)->str, env);
+		}
+		if ((*tokens)->next == NULL)
+			break;
+		(*tokens) = (*tokens)->next;
+	}
+	reset_list(tokens);
+}
 
 int	expander(t_token **tokens, t_environment *env)
 {
-
+	handle_metas(tokens, env);
 	handle_quotes(tokens, env);
-	handle_question_mark(tokens);
 	return (1);
 }
-
-

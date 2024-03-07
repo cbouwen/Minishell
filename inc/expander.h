@@ -6,7 +6,7 @@
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 15:49:50 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/03/06 16:09:04 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/03/07 16:21:26 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 #include "minishell.h"
 
+//char	*execute_question_mark();
+char	*find_env(char *str, t_environment *env);
 int	find_quote(t_token *token, char c);
 int	count_quotes(char *str);
 int	expander(t_token **tokens, t_environment *env);
