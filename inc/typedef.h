@@ -6,12 +6,15 @@
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 15:31:04 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/02/27 13:59:00 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/03/08 16:29:14 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TYPEDEF_H
 # define TYPEDEF_H
+
+#include "minishell.h"
+#include <stdbool.h>
 
 typedef struct	s_environment
 {
@@ -35,6 +38,7 @@ typedef struct	s_token
 	t_type			type;
 	int				input;
 	int				output;
+	bool			has_space;
 	struct s_token	*parent;
 	struct s_token	*left;
 	struct s_token	*right;
