@@ -26,7 +26,7 @@ int	export_var(t_token *tokens, t_environment *env)
 	var_value = NULL;
 	printf("export_var: tokens->str: %s\n", temp->str);
 	extract_name(temp->str, &var_name);
-	printf("export_var: tokens->str: %s\n", temp->str);
+	printf("export_var: tokens->str: %s\n", temp->next->str);
 	extract_value(temp->next->str, &var_value);
 	printf("var_name: %s\n", var_name);
 	printf("var_value: %s\n", var_value);
@@ -56,19 +56,7 @@ int	extract_name(char *token_str, char **var_name)
 
 int	extract_value(char *token_str, char **var_value)
 {
-	int		sign_loc;
-	char	*value;
-
-	sign_loc = 0;
-	value = NULL;
-	printf("extract_value: token_str: %s\n", token_str);
-	value = ft_strchr(token_str, '=');
-	if (!value)
-		return (1);
-	printf("extract_value: value: %s\n", value);
-	sign_loc = value - token_str;
-	printf("extract_value: sign_loc: %d\n", sign_loc);
-	*var_value = ft_substr(token_str, sign_loc + 1, ft_strlen(token_str) - sign_loc);
+	var_value = ft_strdup(token_str);
 	return (0);
 }
 
