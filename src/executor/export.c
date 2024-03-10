@@ -17,12 +17,14 @@ int	export_var(t_token *tokens, t_environment *env)
 	t_token			*temp;
 	t_environment	*temp_env;
 	char			*var_name;
+	char			*var_value;
 
 	temp = tokens;
 	temp_env = env;
 	var_name = NULL;
+	var_value = NULL;
 	extract_name(temp, &var_name);
-	extract_value(temp, &var_name);
+	extract_value(temp, &var_value);
 	if (check_env_val_exists(temp_env, var_name) == 1)
 		printf("var_name: %s\n", var_name);	
 	free(var_name);
