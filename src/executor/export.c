@@ -25,9 +25,9 @@ int	export_var(t_token *tokens, t_environment *env)
 	var_name = NULL;
 	var_value = NULL;
 	printf("export_var: tokens->str: %s\n", temp->str);
-	extract_name(temp, &var_name);
+	extract_name(temp->str, &var_name);
 	printf("export_var: tokens->str: %s\n", temp->str);
-	extract_value(temp, &var_value);
+	extract_value(temp->next->str, &var_value);
 	printf("var_name: %s\n", var_name);
 	printf("var_value: %s\n", var_value);
 	/*if (check_env_val_exists(temp_env, var_name) == 1)
@@ -39,46 +39,36 @@ int	export_var(t_token *tokens, t_environment *env)
 	return (0);	
 }
 
-int	extract_name(t_token *tokens, char **var_name)
+int	extract_name(char *token_str, char **var_name)
 {
 	int		sign_loc;
 	char	*value;
 
 	sign_loc = 0;
 	value = NULL;
-	if (tokens->type == ARG)
-	{
-		value = ft_strchr(tokens->str, '=');
-		if (!value)
-			return (1);
-	}
-	else
+	value = ft_strchr(token_str, '=');
+	if (!value)
 		return (1);
-	sign_loc = value - tokens->str;
-	*var_name = ft_substr(tokens->str, 0, sign_loc);
+	sign_loc = value - token_str;
+	*var_name = ft_substr(token_str, 0, sign_loc);
 	return (0);
 }
 
-int	extract_value(t_token *tokens, char **var_value)
+int	extract_value(char *token_str, char **var_value)
 {
 	int		sign_loc;
 	char	*value;
 
 	sign_loc = 0;
 	value = NULL;
-	printf("extract_value: tokens->str: %s\n", tokens->str);
-	if (tokens->type == ARG)
-	{
-		value = ft_strchr(tokens->str, '=');
-		if (!value)
-			return (1);
-	}
-	else
+	printf("extract_value: token_str: %s\n", token_str);
+	value = ft_strchr(token_str, '=');
+	if (!value)
 		return (1);
 	printf("extract_value: value: %s\n", value);
-	sign_loc = value - tokens->str;
+	sign_loc = value - token_str;
 	printf("extract_value: sign_loc: %d\n", sign_loc);
-	*var_value = ft_substr(tokens->str, sign_loc + 1, ft_strlen(tokens->str) - sign_loc);
+	*var_value = ft_substr(token_str, sign_loc + 1, ft_strlen(token_str) - sign_loc);
 	return (0);
 }
 
