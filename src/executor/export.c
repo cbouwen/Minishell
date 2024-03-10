@@ -56,7 +56,7 @@ int	extract_name(char *token_str, char **var_name)
 
 int	extract_value(char *token_str, char **var_value)
 {
-	var_value = ft_strdup(token_str);
+	*var_value = ft_strdup(token_str);
 	return (0);
 }
 
