@@ -75,7 +75,7 @@ int	check_env_val_exists(t_environment *env, char *var_name)
 {
 	while (env)
 	{
-		if (ft_strcmp(*var_name, env->name) == 0)
+		if (ft_strcmp(var_name, env->name) == 0)
 			return (1);
 		else
 			env = env->next;
