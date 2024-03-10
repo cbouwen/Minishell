@@ -51,7 +51,7 @@ int	extract_name(t_token *tokens, char **var_name)
 	return (0);
 }
 
-int	extract_value(t_token *tokens, char **var_name)
+int	extract_value(t_token *tokens, char **var_value)
 {
 	int		sign_loc;
 	char	*value;
@@ -67,7 +67,7 @@ int	extract_value(t_token *tokens, char **var_name)
 	else
 		return (1);
 	sign_loc = value - tokens->str;
-	*var_name = ft_substr(tokens->str, sign_loc + 1, ft_strlen(tokens->str) - sign_loc);
+	*var_value = ft_substr(tokens->str, sign_loc + 1, ft_strlen(tokens->str) - sign_loc);
 	return (0);
 }
 

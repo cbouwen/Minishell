@@ -14,6 +14,6 @@ void	env_error_msg(t_token *tokens);
 int		export_var(t_token *tokens, t_environment *env);
 int		check_env_val_exists(t_environment *env, char *var_name);
 int		extract_name(t_token *tokens, char **var_name);
-int		extract_value(t_token *tokens, char **var_name);
+int		extract_value(t_token *tokens, char **var_value);
 
 #endif
