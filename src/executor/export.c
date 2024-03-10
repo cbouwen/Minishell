@@ -72,7 +72,9 @@ int	extract_value(t_token *tokens, char **var_value)
 	}
 	else
 		return (1);
+	printf("extract_value: value: %s\n", value);
 	sign_loc = value - tokens->str;
+	printf("extract_value: sign_loc: %d\n", sign_loc);
 	*var_value = ft_substr(tokens->str, sign_loc + 1, ft_strlen(tokens->str) - sign_loc);
 	return (0);
 }
