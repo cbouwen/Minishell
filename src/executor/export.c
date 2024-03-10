@@ -33,3 +33,28 @@ int	export_var(t_token *tokens, t_environment *env)
 	free(var_value);
 	return (0);	
 }
+
+int	update_env_val(t_environment *env, char *var_name, char *var_value)
+{
+	while (env)
+	{
+		if (ft_strcmp(var_name, env->name) == 0)
+		{
+			free(env->value);
+			env->value = ft_strdup(var_value);
+			return (0);
+		}
+		else
+			env = env->next;
+	}
+	return (1);
+}
+
+int	add_env_val(t_environment *env, char *var_name, char *var_value)
+{
+	t_environment *new;
+
+	new = create_node(var_name, var_value);
+	ft_lstadd_back_ms(&env, new);
+	return (0);
+}
