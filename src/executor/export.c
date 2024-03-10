@@ -21,6 +21,7 @@ int	export_var(t_token *tokens, t_environment *env)
 
 	temp = tokens;
 	temp_env = env;
+	(void)temp_env;
 	var_name = NULL;
 	var_value = NULL;
 	extract_name(temp, &var_name);
@@ -32,6 +33,7 @@ int	export_var(t_token *tokens, t_environment *env)
 	else
 		add_env_val(temp_env, var_name, var_value);*/
 	free(var_name);
+	free(var_value);
 	return (0);	
 }
 
