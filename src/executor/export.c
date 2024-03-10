@@ -64,6 +64,7 @@ int	extract_value(t_token *tokens, char **var_value)
 
 	sign_loc = 0;
 	value = NULL;
+	printf("extract_value: tokens->str: %s\n", tokens->str);
 	if (tokens->type == ARG)
 	{
 		value = ft_strchr(tokens->str, '=');
