@@ -24,7 +24,9 @@ int	export_var(t_token *tokens, t_environment *env)
 	(void)temp_env;
 	var_name = NULL;
 	var_value = NULL;
+	printf("export_var: tokens->str: %s\n", temp->str);
 	extract_name(temp, &var_name);
+	printf("export_var: tokens->str: %s\n", temp->str);
 	extract_value(temp, &var_value);
 	printf("var_name: %s\n", var_name);
 	printf("var_value: %s\n", var_value);
