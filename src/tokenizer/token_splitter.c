@@ -6,7 +6,7 @@
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 11:23:28 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/03/05 15:35:10 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/03/07 15:45:35 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ size_t	handle_rest(char *input, size_t j)
 		if (!(check_char(input[i + j])))
 			return (i);
 		i++;
+		if (input[i + j] == '$')
+			return (i);
 	}
 	return (i);
 }
