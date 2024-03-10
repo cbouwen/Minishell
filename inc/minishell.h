@@ -37,6 +37,8 @@ t_environment				*env_parser(char *envp[]);
 void						free_env_node(t_environment *env);
 void						free_env(t_environment *env);
 t_environment				*get_env_node(t_environment *head, char *name);
+t_environment				*create_node(char *name, char *value)
+void						ft_lstadd_back_ms(t_environment **lst, t_environment *new);
 
 //tester
 void						tester(t_environment *envp);
