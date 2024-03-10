@@ -25,8 +25,12 @@ int	export_var(t_token *tokens, t_environment *env)
 	var_value = NULL;
 	extract_name(temp, &var_name);
 	extract_value(temp, &var_value);
-	if (check_env_val_exists(temp_env, var_name) == 1)
-		printf("var_name: %s\n", var_name);	
+	printf("var_name: %s\n", var_name);
+	printf("var_value: %s\n", var_value);
+	/*if (check_env_val_exists(temp_env, var_name) == 1)
+		update_env_val(temp_env, var_name, var_value);
+	else
+		add_env_val(temp_env, var_name, var_value);*/
 	free(var_name);
 	return (0);	
 }
