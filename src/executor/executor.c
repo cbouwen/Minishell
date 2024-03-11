@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:41:42 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/03/05 17:12:06 by mlegendr         ###   ########.fr       */
+/*   Updated: 2024/03/11 18:25:17 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ int	executor(t_token *tokens, t_environment *env) //change name to executor? alo
 				print_env(temp, temp_env);
 			else if (ft_strcmp(temp->str, "export") == 0)
 				export_var(temp->next, temp_env);
+			else if (ft_strcmp(temp->str, "unset") == 0)
+				unset_var(temp->next, temp_env);
 		}
 		temp = temp->next;
 	}
