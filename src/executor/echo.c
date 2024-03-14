@@ -22,7 +22,7 @@ void	echo(t_token *tokens)
 		{
 			output_fd = temp->output;
 			ft_putstr_fd(temp->str, output_fd);
-			if (temp->has_space == true)
+			if (temp->has_space)
 				ft_putchar_fd(' ', output_fd);
 		}
 		temp = temp->next;

@@ -1,4 +1,14 @@
-/*header pls*/
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   executor.h                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/14 17:33:00 by mlegendr          #+#    #+#             */
+/*   Updated: 2024/03/14 20:38:48 by mlegendr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef EXECUTOR_H
 # define EXECUTOR_H
@@ -20,5 +30,8 @@ int		add_env_val(t_environment *env, char *var_name, char *var_value);
 int		unset_var(t_token *tokens, t_environment *env);
 int		delete_var(t_environment *env, char *var_name);
 int		change_dir(t_token *tokens, t_environment *env);
+int		go_home(t_environment *env);
+int		go_oldpwd(t_token *tokens, t_environment *env);
+int		get_env_val(t_environment *env, char *var_name, char **var_value);
 
 #endif
