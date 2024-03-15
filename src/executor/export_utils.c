@@ -20,6 +20,8 @@ int	extract_name(char *token_str, char **var_name)
 int	extract_value(char *token_str, char **var_value)
 {
 	*var_value = ft_strdup(token_str);
+	if (!*var_value)
+		return (1);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 16:23:46 by mlegendr          #+#    #+#             */
-/*   Updated: 2024/03/14 20:44:02 by mlegendr         ###   ########.fr       */
+/*   Updated: 2024/03/15 19:20:40 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,34 +30,47 @@ int	change_dir(t_token *tokens, t_environment *env)
 		else if (ft_strcmp(temp->str, "~") == 0
 			|| ft_strcmp(temp->str, "--") == 0)
 			go_home(env);
-		else if (temp->type == ARG)
-			if (chdir(temp->str) == -1)
-				return (errno);
 		else
-			return (1);
+			go_dir(temp->str, env);
 	}
+	else
+		return (1);
+	return (0);
+}
+
+int	go_dir(char *path, t_environment *env)
+{
+	char	*current_pwd;
+
+	current_pwd = getcwd(NULL, 0);
+	if (!current_pwd)
+		return (1);
+	if (chdir(path) == -1)
+		return (1);
+	if (update_pwd(env, current_pwd) != 0)
+		return (1);
+	free(current_pwd);
 	return (0);
 }
 
 int	go_home(t_environment *env)
 {
 	char	*home_path;
-	char	*oldpwd;
-	char	*pwd;
+	char	*current_pwd;
 
+	current_pwd = getcwd(NULL, 0);
+	if (!current_pwd)
+		return (1);
 	if (get_env_val(env, "HOME", &home_path) == 1)
 		return (1);
-	oldpwd = getcwd(NULL, 0);
 	if (!home_path)
 		return (1);
 	if (chdir(home_path) == -1)
-		return (errno);
-	update_env_val(env, "OLDPWD", oldpwd);
-	pwd = getcwd(NULL, 0);
-	update_env_val(env, "PWD", pwd);
-	free(oldpwd);
-	free(pwd);
+		return (1);
+	if (update_pwd(env, current_pwd) != 0)
+		return (1);
 	free(home_path);
+	free(current_pwd);
 	return (0);
 }
 
@@ -67,15 +80,19 @@ int	go_oldpwd(t_token *tokens, t_environment *env)
 	char	*current_pwd;
 
 	current_pwd = getcwd(NULL, 0);
+	if (!current_pwd)
+		return (1);
 	if (get_env_val(env, "OLDPWD", &new_pwd) == 1)
 		return (1);
+	if (!new_pwd)
+		return (1);
 	if (chdir(new_pwd) == -1)
-		return (errno);
-	update_env_val(env, "PWD", new_pwd);
-	update_env_val(env, "OLDPWD", current_pwd);
+		return (1);
+	if (update_pwd(env, current_pwd) != 0)
+		return (1);
 	ft_putstr_fd(new_pwd, tokens->output);
 	ft_putstr_fd("\n", tokens->output);
-	free(current_pwd);
 	free(new_pwd);
+	free(current_pwd);
 	return (0);
 }

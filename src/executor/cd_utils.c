@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 17:32:35 by mlegendr          #+#    #+#             */
-/*   Updated: 2024/03/14 19:14:34 by mlegendr         ###   ########.fr       */
+/*   Updated: 2024/03/15 19:03:57 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,3 +29,15 @@ int get_env_val(t_environment *env, char *var_name, char **var_value)
 	return (1);
 }
 
+int	update_pwd(t_environment *env, char *path)
+{
+	char	*current_pwd;
+	
+	current_pwd = getcwd(NULL, 0);
+	if (!current_pwd)
+		return (1);
+	update_env_val(env, "OLDPWD", path, true);
+	update_env_val(env, "PWD", current_pwd, true);
+	free(current_pwd);
+	return (0);
+}

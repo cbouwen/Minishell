@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 15:50:48 by mlegendr          #+#    #+#             */
-/*   Updated: 2024/03/08 16:54:11 by mlegendr         ###   ########.fr       */
+/*   Updated: 2024/03/15 18:46:10 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	export_var(t_token *tokens, t_environment *env)
 	extract_name(temp->str, &var_name);
 	extract_value(temp->next->str, &var_value);
 	if (check_env_val_exists(temp_env, var_name) == 0)
-		update_env_val(temp_env, var_name, var_value);
+		update_env_val(temp_env, var_name, var_value, false);
 	else
 		add_env_val(temp_env, var_name, var_value);
 	free(var_name);
@@ -34,8 +34,12 @@ int	export_var(t_token *tokens, t_environment *env)
 	return (0);	
 }
 
-int	update_env_val(t_environment *env, char *var_name, char *var_value)
+int	update_env_val(t_environment *env, char *var_name, char *var_value, bool cd)
 {
+	if (cd && check_env_val_exists(env, var_name) == 1)
+	{
+		add_env_val(env, var_name, "temp");
+	}
 	while (env)
 	{
 		if (ft_strcmp(var_name, env->name) == 0)
