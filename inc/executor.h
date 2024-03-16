@@ -15,7 +15,7 @@
 
 # include "minishell.h"
 
-void	echo(t_token *tokens);
+int		echo(t_token *tokens);
 int		echo_no_arg(t_token *tokens);
 int		pwd(t_token *token);
 int		executor(t_token *tokens, t_environment *env);
