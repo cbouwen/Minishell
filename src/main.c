@@ -12,7 +12,7 @@
 
 #include "../inc/minishell.h"
 
-int	exit_status;
+t_err	g_err;
 
 int	run_minishell(t_environment *env, char	*input)
 {
@@ -75,6 +75,7 @@ int	main(int argc, char **argv, char *envp[])
 	(void)argv;
 
 	exit_status = 0;
+	init_err(&g_err);
 	signal(SIGQUIT, SIG_IGN);
 	signal(SIGINT, sig_handler);
 	minishell_loop(envp);

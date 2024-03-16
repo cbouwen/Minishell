@@ -32,6 +32,18 @@ typedef enum	e_type
 	CMD
 }		t_type;
 
+typedef enum	e_err_type
+{
+	CD,
+	EXPORT,
+	UNSET,
+	EXIT,
+	ENV,
+	ECHO,
+	PWD,
+	EXECVE
+}		t_err_type;
+
 typedef struct	s_token
 {
 	char			*str;
@@ -45,6 +57,13 @@ typedef struct	s_token
 	struct s_token	*next;
 	struct s_token	*prev;
 }				t_token;
+
+typedef struct s_err
+{
+	t_err_type	type;
+	int			err;
+}		t_err;
+
 
 /*typedef struct s_syntax_token
 {

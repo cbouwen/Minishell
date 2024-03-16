@@ -21,5 +21,6 @@ int		ft_error(char *str);
 void	clean_exit(t_token *token, char *msg);
 void	sig_handler(int sig);
 char	**ft_split_quotes(char const *s, char c);
+void	init_err(t_err *err);
 
 # endif
