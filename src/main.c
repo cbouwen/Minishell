@@ -26,7 +26,8 @@ int	run_minishell(t_environment *env, char	*input)
 			break;
 		parser(&tokens);
 		expander(&tokens, env);
-		exit_status = executor(tokens, env);
+		executor(tokens, env);
+		//exit_status = executor(tokens, env);
 		//tester(env);
 		//test_tokenizer(tokens);
 		//test_syntax_tree(tokens, pipe_counter(tokens));
@@ -74,7 +75,7 @@ int	main(int argc, char **argv, char *envp[])
 	(void)argc;
 	(void)argv;
 
-	exit_status = 0;
+	//exit_status = 0;
 	init_err(&g_err);
 	signal(SIGQUIT, SIG_IGN);
 	signal(SIGINT, sig_handler);
