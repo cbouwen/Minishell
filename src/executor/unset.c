@@ -14,6 +14,8 @@
 
 int	unset_var(t_token *tokens, t_environment *env)
 {
+	if (check_env_val_exists(tokens->str, env) == 1)
+		return (1);
 	delete_var(env, tokens->str);
 	return (0);
 }
