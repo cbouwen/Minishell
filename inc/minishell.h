@@ -30,7 +30,6 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 
-extern int	exit_status;
 
 int							ft_error(char *str);
 t_environment				*env_parser(char *envp[]);

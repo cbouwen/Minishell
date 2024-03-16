@@ -21,7 +21,6 @@ int	executor(t_token *tokens, t_environment *env) //change name to executor? alo
 
 	temp = tokens;
 	temp_env = env;
-	printf("error: %d\n", g_err.err);
 	while (temp)
 	{
 		if (temp->type == CMD)

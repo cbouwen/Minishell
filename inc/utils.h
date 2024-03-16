@@ -22,5 +22,6 @@ void	clean_exit(t_token *token, char *msg);
 void	sig_handler(int sig);
 char	**ft_split_quotes(char const *s, char c);
 void	init_err(t_err *err);
+int		assign_and_handle_error(t_err_type type, int err_no)
 
 # endif
