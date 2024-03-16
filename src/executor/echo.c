@@ -2,7 +2,7 @@
 
 #include "../../inc/minishell.h"
 
-void	echo(t_token *tokens)
+int	echo(t_token *tokens)
 {
 	t_token	*temp;
 	int		n_flag;
@@ -29,12 +29,14 @@ void	echo(t_token *tokens)
 	}
 	if (n_flag == 0)
 		ft_putchar_fd('\n', output_fd);
+	return (0);
 }
 
-void	echo_no_arg(t_token *tokens)
+int	echo_no_arg(t_token *tokens)
 {
 	t_token	*temp;
 
 	temp = tokens;
 	ft_putchar_fd('\n', temp->output);
+	return (0);
 }

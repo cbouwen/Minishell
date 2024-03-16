@@ -25,6 +25,8 @@ int	extract_value(char *token_str, char **var_value)
 	return (0);
 }
 
+/*0 if val exists
+  1 if val doesn't exist*/
 int	check_env_val_exists(t_environment *env, char *var_name)
 {
 	while (env)

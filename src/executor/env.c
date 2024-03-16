@@ -2,7 +2,7 @@
 
 #include "../../inc/minishell.h"
 
-void	print_env(t_token *tokens, t_environment *env)
+int	print_env(t_token *tokens, t_environment *env)
 {
 	t_token			*temp;
 	t_environment	*temp_env;
@@ -13,7 +13,7 @@ void	print_env(t_token *tokens, t_environment *env)
 		&& ft_strcmp(temp->next->str, "env") != 0)
 	{
 		env_error_msg(temp->next);
-		return ;
+		return (1);
 	}
 	while (temp_env)
 	{
@@ -23,6 +23,7 @@ void	print_env(t_token *tokens, t_environment *env)
 		ft_putchar_fd('\n', temp->output);
 		temp_env = temp_env->next;
 	}
+	return (0);
 }
 
 void	env_error_msg(t_token *tokens)

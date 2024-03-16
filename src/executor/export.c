@@ -37,9 +37,7 @@ int	export_var(t_token *tokens, t_environment *env)
 int	update_env_val(t_environment *env, char *var_name, char *var_value, bool cd)
 {
 	if (cd && check_env_val_exists(env, var_name) == 1)
-	{
 		add_env_val(env, var_name, "temp");
-	}
 	while (env)
 	{
 		if (ft_strcmp(var_name, env->name) == 0)
