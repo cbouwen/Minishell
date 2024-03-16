@@ -12,6 +12,8 @@
 
 #include "../../inc/minishell.h"
 
+extern t_err	g_err;
+
 char	*find_env(char *str, t_environment *env)
 {
 	t_environment *tmp;
@@ -21,7 +23,7 @@ char	*find_env(char *str, t_environment *env)
 	if (!(ft_strcmp(str, "$?")))
 	{
 		free(str);
-		return (ft_itoa(exit_status));
+		return (ft_itoa(g_err.err));
 	}
 	while (tmp)
 	{
