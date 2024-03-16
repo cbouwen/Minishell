@@ -12,6 +12,8 @@
 
 #include "../../inc/minishell.h"
 
+extern t_err	g_err;
+
 int	check_logic(t_token tokens, int i)
 {
 	if (i == 0 && tokens.type == PIPE)
@@ -39,7 +41,8 @@ int	check_syntax(t_token *tokens)
 		if (!(check_logic(*tokens, i)))
 		{
 			printf("Syntax error!\n");
-			exit_status = 2;
+			g_err.err = 2;
+			g_err.type = OTHER;
 			reset_list(&tokens);
 			return (0);
 		}

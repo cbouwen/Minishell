@@ -41,7 +41,8 @@ typedef enum	e_err_type
 	ENV,
 	ECHO,
 	PWD,
-	EXECVE
+	EXECVE,
+	OTHER
 }		t_err_type;
 
 typedef struct	s_token
