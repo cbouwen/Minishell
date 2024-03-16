@@ -5,5 +5,5 @@
 void	init_err(t_err *err)
 {
 	err->type = CD;
-	err->err = 0;
+	err->err = 123;
 }
