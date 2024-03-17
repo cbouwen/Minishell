@@ -46,7 +46,7 @@ int	go_dir(char *path, t_environment *env)
 	if (!current_pwd)
 		return (free_and_return(current_pwd, NULL, 12));
 	if (chdir(path) == -1)
-		return (free_and_return(current_pwd, NULL, 1));
+		return (free_and_return(current_pwd, NULL, 2));
 	if (update_pwd(env, current_pwd) != 0)
 		return (free_and_return(current_pwd, NULL, 1));
 	free(current_pwd);
@@ -66,7 +66,7 @@ int	go_home(t_environment *env)
 	if (!home_path)
 		return (free_and_return(current_pwd, NULL, 12));
 	if (chdir(home_path) == -1)
-		return (free_and_return(current_pwd, home_path, 1));
+		return (free_and_return(current_pwd, home_path, 2));
 	if (update_pwd(env, current_pwd) != 0)
 		return (free_and_return(current_pwd, home_path, 1));
 	free(home_path);
@@ -87,7 +87,7 @@ int	go_oldpwd(t_token *tokens, t_environment *env)
 	if (!new_pwd)
 		return (free_and_return(current_pwd, NULL, 12));
 	if (chdir(new_pwd) == -1)
-		return (free_and_return(current_pwd, new_pwd, 1));
+		return (free_and_return(current_pwd, new_pwd, 2));
 	if (update_pwd(env, current_pwd) != 0)
 		return (free_and_return(current_pwd, new_pwd, 1));
 	ft_putstr_fd(new_pwd, tokens->output);
