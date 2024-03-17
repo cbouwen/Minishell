@@ -27,7 +27,6 @@ int		pwd(t_token *token);
 
 /*env*/
 int		print_env(t_token *tokens, t_environment *env);
-void	env_error_msg(t_token *tokens);
 
 /*export*/
 int		export_var(t_token *tokens, t_environment *env);
