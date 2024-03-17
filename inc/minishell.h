@@ -31,7 +31,6 @@
 # include <readline/history.h>
 
 
-int							ft_error(char *str);
 t_environment				*env_parser(char *envp[]);
 void						free_env_node(t_environment *env);
 void						free_env(t_environment *env);
