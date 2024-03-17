@@ -12,7 +12,7 @@
 
 #include "../../inc/minishell.h"
 
-extern t_err	g_err;
+extern int	g_err;
 
 int	executor(t_token *tokens, t_environment *env) //change name to executor? along with the .c file?
 {

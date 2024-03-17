@@ -12,7 +12,7 @@
 
 #include "../../inc/minishell.h"
 
-extern t_err	g_err;
+extern int	g_err;
 
 char	*find_env(char *str, t_environment *env)
 {
@@ -23,7 +23,7 @@ char	*find_env(char *str, t_environment *env)
 	if (!(ft_strcmp(str, "$?")))
 	{
 		free(str);
-		return (ft_itoa(g_err.err));
+		return (ft_itoa(g_err));
 	}
 	while (tmp)
 	{

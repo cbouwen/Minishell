@@ -12,7 +12,7 @@
 
 #include "../../inc/minishell.h"
 
-extern t_err	g_err;
+extern int	g_err;
 
 int	check_logic(t_token tokens, int i)
 {
@@ -41,8 +41,7 @@ int	check_syntax(t_token *tokens)
 		if (!(check_logic(*tokens, i)))
 		{
 			printf("Syntax error!\n");
-			g_err.err = 2;
-			g_err.type = OTHER;
+			g_err = 2;
 			reset_list(&tokens);
 			return (0);
 		}

@@ -12,6 +12,8 @@
 
 #include "../../inc/minishell.h"
 
+extern int	g_err;
+
 void	clean_exit(t_token *token, char *msg)
 {
 	if (msg)
@@ -21,5 +23,5 @@ void	clean_exit(t_token *token, char *msg)
 	}
 	if (token)
 		free_tokens(token);
-	exit(0); //Als de error struct besta, kunnen we hier een deftige exit status meegeven. Nu is het gewoon exit succes.
+	exit(g_err); //Als de error struct besta, kunnen we hier een deftige exit status meegeven. Nu is het gewoon exit succes.
 }
