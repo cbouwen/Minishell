@@ -48,5 +48,6 @@ int		go_oldpwd(t_token *tokens, t_environment *env);
 int		get_env_val(t_environment *env, char *var_name, char **var_value);
 int		go_dir(char *path, t_environment *env);
 int		update_pwd(t_environment *env, char *path);
+int		free_and_return(char *str1, char *str2);
 
 #endif

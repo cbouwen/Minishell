@@ -41,3 +41,12 @@ int	update_pwd(t_environment *env, char *path)
 	free(current_pwd);
 	return (0);
 }
+
+int	free_and_return(char *str1, char *str2)
+{
+	if (str1)
+		free(str1);
+	if (str2)
+		free(str2);
+	return (assign_and_handle_error(CD, 1));
+}

@@ -44,11 +44,11 @@ int	go_dir(char *path, t_environment *env)
 
 	current_pwd = getcwd(NULL, 0);
 	if (!current_pwd)
-		return (assign_and_handle_error(CD, 1));
+		return (free_and_return(current_pwd, NULL));
 	if (chdir(path) == -1)
-		return (assign_and_handle_error(CD, 1));
+		return (free_and_return(current_pwd, NULL));
 	if (update_pwd(env, current_pwd) != 0)
-		return (assign_and_handle_error(CD, 1));
+		return (free_and_return(current_pwd, NULL));
 	free(current_pwd);
 	return (0);
 }
@@ -60,15 +60,15 @@ int	go_home(t_environment *env)
 
 	current_pwd = getcwd(NULL, 0);
 	if (!current_pwd)
-		return (assign_and_handle_error(CD, 1));
+		return (free_and_return(current_pwd, NULL));
 	if (get_env_val(env, "HOME", &home_path) == 1)
-		return (assign_and_handle_error(CD, 1));
+		return (free_and_return(current_pwd, NULL));
 	if (!home_path)
-		return (assign_and_handle_error(CD, 1));
+		return (free_and_return(current_pwd, NULL));
 	if (chdir(home_path) == -1)
-		return (assign_and_handle_error(CD, 1));
+		return (free_and_return(current_pwd, home_path));
 	if (update_pwd(env, current_pwd) != 0)
-		return (assign_and_handle_error(CD, 1));
+		return (free_and_return(current_pwd, home_path));
 	free(home_path);
 	free(current_pwd);
 	return (0);
@@ -79,18 +79,17 @@ int	go_oldpwd(t_token *tokens, t_environment *env)
 	char	*new_pwd;
 	char	*current_pwd;
 
-	//current_pwd = getcwd(NULL, 0);
-	current_pwd = NULL;
+	current_pwd = getcwd(NULL, 0);
 	if (!current_pwd)
-		return (assign_and_handle_error(CD, 1));
+		return (free_and_return(current_pwd, NULL));
 	if (get_env_val(env, "OLDPWD", &new_pwd) == 1)
-		return (assign_and_handle_error(CD, 1));
+		return (free_and_return(current_pwd, NULL));
 	if (!new_pwd)
-		return (assign_and_handle_error(CD, 1));
+		return (free_and_return(current_pwd, NULL));
 	if (chdir(new_pwd) == -1)
-		return (assign_and_handle_error(CD, 1));
+		return (free_and_return(current_pwd, new_pwd));
 	if (update_pwd(env, current_pwd) != 0)
-		return (assign_and_handle_error(CD, 1));
+		return (free_and_return(current_pwd, new_pwd);
 	ft_putstr_fd(new_pwd, tokens->output);
 	ft_putstr_fd("\n", tokens->output);
 	free(new_pwd);
