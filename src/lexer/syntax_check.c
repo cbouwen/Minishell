@@ -41,7 +41,7 @@ int	check_syntax(t_token *tokens)
 		if (!(check_logic(*tokens, i)))
 		{
 			printf("Syntax error!\n");
-			g_err = 2;
+			ft_error(NULL, 2);
 			reset_list(&tokens);
 			return (0);
 		}
