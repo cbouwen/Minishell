@@ -20,7 +20,7 @@ int	change_dir(t_token *tokens, t_environment *env)
 	if (!temp->next || temp->next->type != ARG)
 	{
 		go_home(env);
-		return (0);
+		return (ft_error(NULL, 0);
 	}
 	temp = temp->next;
 	if (temp->type == ARG)
@@ -35,7 +35,7 @@ int	change_dir(t_token *tokens, t_environment *env)
 	}
 	else
 		return (ft_error(NULL, 1));
-	return (0);
+	return (ft_error(NULL, 0));
 }
 
 int	go_dir(char *path, t_environment *env)
@@ -44,13 +44,13 @@ int	go_dir(char *path, t_environment *env)
 
 	current_pwd = getcwd(NULL, 0);
 	if (!current_pwd)
-		return (free_and_return(current_pwd, NULL, 1));
+		return (free_and_return(current_pwd, NULL, 12));
 	if (chdir(path) == -1)
 		return (free_and_return(current_pwd, NULL, 1));
 	if (update_pwd(env, current_pwd) != 0)
 		return (free_and_return(current_pwd, NULL, 1));
 	free(current_pwd);
-	return (0);
+	return (ft_error(NULL, 0));
 }
 
 int	go_home(t_environment *env)
@@ -64,14 +64,14 @@ int	go_home(t_environment *env)
 	if (get_env_val(env, "HOME", &home_path) == 1)
 		return (free_and_return(current_pwd, NULL, 1));
 	if (!home_path)
-		return (free_and_return(current_pwd, NULL, 1));
+		return (free_and_return(current_pwd, NULL, 12));
 	if (chdir(home_path) == -1)
 		return (free_and_return(current_pwd, home_path, 1));
 	if (update_pwd(env, current_pwd) != 0)
 		return (free_and_return(current_pwd, home_path, 1));
 	free(home_path);
 	free(current_pwd);
-	return (0);
+	return (ft_error(NULL, 0));
 }
 
 int	go_oldpwd(t_token *tokens, t_environment *env)
@@ -81,11 +81,11 @@ int	go_oldpwd(t_token *tokens, t_environment *env)
 
 	current_pwd = getcwd(NULL, 0);
 	if (!current_pwd)
-		return (free_and_return(current_pwd, NULL, 1));
+		return (free_and_return(current_pwd, NULL, 12));
 	if (get_env_val(env, "OLDPWD", &new_pwd) == 1)
 		return (free_and_return(current_pwd, NULL, 1));
 	if (!new_pwd)
-		return (free_and_return(current_pwd, NULL, 1));
+		return (free_and_return(current_pwd, NULL, 12));
 	if (chdir(new_pwd) == -1)
 		return (free_and_return(current_pwd, new_pwd, 1));
 	if (update_pwd(env, current_pwd) != 0)
@@ -94,5 +94,5 @@ int	go_oldpwd(t_token *tokens, t_environment *env)
 	ft_putstr_fd("\n", tokens->output);
 	free(new_pwd);
 	free(current_pwd);
-	return (0);
+	return (ft_error(NULL, 12));
 }
