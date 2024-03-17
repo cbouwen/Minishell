@@ -34,7 +34,7 @@ int	change_dir(t_token *tokens, t_environment *env)
 			go_dir(temp->str, env);
 	}
 	else
-		return (assign_and_handle_error(CD, 1, temp));
+		return (ft_error(NULL));
 	return (0);
 }
 
