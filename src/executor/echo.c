@@ -29,7 +29,7 @@ int	echo(t_token *tokens)
 	}
 	if (n_flag == 0)
 		ft_putchar_fd('\n', output_fd);
-	return (0);
+	return (ft_error(NULL, 0));
 }
 
 int	echo_no_arg(t_token *tokens)
@@ -38,5 +38,5 @@ int	echo_no_arg(t_token *tokens)
 
 	temp = tokens;
 	ft_putchar_fd('\n', temp->output);
-	return (0);
+	return (ft_error(NULL, 0));
 }

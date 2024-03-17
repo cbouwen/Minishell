@@ -31,7 +31,7 @@ int	export_var(t_token *tokens, t_environment *env)
 		add_env_val(temp_env, var_name, var_value);
 	free(var_name);
 	free(var_value);
-	return (0);	
+	return (ft_error(NULL, 0));	
 }
 
 int	update_env_val(t_environment *env, char *var_name, char *var_value, bool cd)
@@ -49,7 +49,7 @@ int	update_env_val(t_environment *env, char *var_name, char *var_value, bool cd)
 		else
 			env = env->next;
 	}
-	return (1);
+	return (ft_error(NULL, 1));
 }
 
 int	add_env_val(t_environment *env, char *var_name, char *var_value)
