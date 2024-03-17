@@ -42,7 +42,7 @@ int	update_pwd(t_environment *env, char *path)
 	return (0);
 }
 
-int	free_and_return(char *str1, char *str2)
+int	free_and_return(char *str1, char *str2, int errno)
 {
 	if (str1)
 		free(str1);

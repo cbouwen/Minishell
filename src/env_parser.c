@@ -35,7 +35,7 @@ t_environment	*create_node(char *name, char *value)
 
 	new = (t_environment *)malloc(sizeof(t_environment));
 	if (!new)
-		ft_error("Failure to malloc\n");
+		ft_error(NULL, 12);
 	new->name = ft_strdup(name);
 	new->value = ft_strdup(value);
 	new->next = NULL;
