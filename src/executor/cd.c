@@ -20,7 +20,7 @@ int	change_dir(t_token *tokens, t_environment *env)
 	if (!temp->next || temp->next->type != ARG)
 	{
 		go_home(env);
-		return (ft_error(NULL, 0);
+		return (ft_error(NULL, 0));
 	}
 	temp = temp->next;
 	if (temp->type == ARG)
