@@ -48,5 +48,5 @@ int	free_and_return(char *str1, char *str2)
 		free(str1);
 	if (str2)
 		free(str2);
-	return (assign_and_handle_error(CD, 1));
+	return (assign_and_handle_error(CD, 1, NULL));
 }
