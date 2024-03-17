@@ -13,7 +13,7 @@ int	print_env(t_token *tokens, t_environment *env)
 		&& ft_strcmp(temp->next->str, "env") != 0)
 	{
 		env_error_msg(temp->next);
-		return (ft_error(NULL, 2);
+		return (ft_error(NULL, 2));
 	}
 	while (temp_env)
 	{

@@ -15,7 +15,7 @@
 int	unset_var(t_token *tokens, t_environment *env)
 {
 	if (check_env_val_exists(env, tokens->str) == 1)
-		return (ft_error("unset", 1);
+		return (ft_error("unset", 1));
 	delete_var(env, tokens->str);
 	return (ft_error(NULL, 0));
 }
@@ -38,7 +38,7 @@ int	delete_var(t_environment *env, char *var_name)
 			free(current->name);
 			free(current->value);
 			free(current);
-			return (0);
+			return (ft_error(NULL, 0));
 		}
 		previous = current;
 		current = current->next;

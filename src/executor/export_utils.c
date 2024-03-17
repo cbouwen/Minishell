@@ -21,7 +21,7 @@ int	extract_value(char *token_str, char **var_value)
 {
 	*var_value = ft_strdup(token_str);
 	if (!*var_value)
-		return (ft_error(NULL, 12);
+		return (ft_error(NULL, 12));
 	return (0);
 }
 
