@@ -14,6 +14,17 @@
 
 extern int	g_err;
 
+/*
+	To Do:
+		- Fix exit status, it has to reflect the bash exit status
+			-- Maybe remove the strerror call for builtins?
+		- Add syntax management for the builtins
+		- Add EXECVE
+		- Add pipes
+		- Add redirections
+		- Test
+*/
+
 int	executor(t_token *tokens, t_environment *env) //change name to executor? along with the .c file?
 {
 	t_token			*temp;
