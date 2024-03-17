@@ -11,10 +11,7 @@ int	print_env(t_token *tokens, t_environment *env)
 	temp_env = env;
 	if (temp->next && temp->next->type == ARG
 		&& ft_strcmp(temp->next->str, "env") != 0)
-	{
-		env_error_msg(temp->next);
 		return (ft_error(NULL, 2));
-	}
 	while (temp_env)
 	{
 		ft_putstr_fd(temp_env->name, temp->output);
