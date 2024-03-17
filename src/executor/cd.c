@@ -35,7 +35,7 @@ int	change_dir(t_token *tokens, t_environment *env)
 	}
 	else
 		return (ft_error(NULL, 1));
-	return (ft_error(NULL, 0));
+	return (0);
 }
 
 int	go_dir(char *path, t_environment *env)
