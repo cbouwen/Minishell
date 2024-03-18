@@ -14,7 +14,7 @@ TOKENIZER_SRC = $(addprefix $(SRC_DIR)tokenizer/, tokenizer.c token_splitter.c)
 LEXER_SRC = $(addprefix $(SRC_DIR)lexer/, lexer.c syntax_check.c)
 PARSER_SRC = $(addprefix $(SRC_DIR)parser/, parser.c pipes.c)
 EXPANDER_SRC = $(addprefix $(SRC_DIR)expander/, expander.c double_quotes.c utils.c)
-EXECUTOR_SRC = $(addprefix $(SRC_DIR)executor/, executor.c echo.c pwd.c env.c export.c export_utils.c unset.c cd.c cd_utils.c)
+EXECUTOR_SRC = $(addprefix $(SRC_DIR)executor/, executor.c echo.c pwd.c env.c export.c export_utils.c unset.c cd.c cd_utils.c execve_utils.c)
 
 SRC = $(SRC_FILES) $(UTILS_SRC) $(TOKENIZER_SRC) $(LEXER_SRC) $(PARSER_SRC) $(EXPANDER_SRC) $(EXECUTOR_SRC)
 

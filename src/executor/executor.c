@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:41:42 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/03/14 16:36:37 by mlegendr         ###   ########.fr       */
+/*   Updated: 2024/03/18 19:05:16 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ extern int	g_err;
 		- Fix exit status, it has to reflect the bash exit status
 			-- Maybe remove the strerror call for builtins?
 		- Add syntax management for the builtins
+		- Add function that pushes tokens to string array
 		- Add EXECVE
 		- Add pipes
 		- Add redirections
