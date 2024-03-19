@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:41:42 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/03/19 19:50:20 by mlegendr         ###   ########.fr       */
+/*   Updated: 2024/03/19 19:52:30 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	executor(t_token *tokens, t_environment *env) //change name to executor? alo
 	return (0);
 }
 
-int _executor(t_token *tokens, t_environment *env)
+/*int _executor(t_token *tokens, t_environment *env)
 {
 	t_token			*temp;
 	t_environment	*temp_env;
@@ -95,4 +95,4 @@ int run_basic_cmd(t_token *tokens, t_environment *env)
 			status = redirect(temp, temp_env);
 	}
 	return (ft_error(NULL, status));
-}
+}*/
