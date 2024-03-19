@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 19:08:54 by mlegendr          #+#    #+#             */
-/*   Updated: 2024/03/19 19:49:50 by mlegendr         ###   ########.fr       */
+/*   Updated: 2024/03/19 19:51:50 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,6 @@ int	free_args(t_args *args)
 		free(args);
 	}
 	return (0);
-	return (status);
 }
 
 int	free_args(t_args *args)
