@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 15:31:04 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/03/08 16:29:14 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/03/19 18:37:20 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,12 @@ typedef struct	s_token
 	struct s_token	*next;
 	struct s_token	*prev;
 }				t_token;
+
+typedef struct	s_args
+{
+	char	**arg_array;
+	int		size;
+}				t_args;
 
 /*typedef struct s_syntax_token
 {
