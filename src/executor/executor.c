@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:41:42 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/03/19 19:45:39 by mlegendr         ###   ########.fr       */
+/*   Updated: 2024/03/19 19:50:20 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ extern int	g_err;
 			-- Maybe remove the strerror call for builtins?
 		- Add syntax management for the builtins
 		- Add function that pushes tokens to string array -- DONE
+		- Add function that pushes tokens to string array -- DONE
 		- Add EXECVE
 		- Add pipes
 		- Add redirections
@@ -30,6 +31,7 @@ int	executor(t_token *tokens, t_environment *env) //change name to executor? alo
 {
 	t_token			*temp;
 	t_environment	*temp_env;
+	//char 			**args;
 
 	temp = tokens;
 	temp_env = env;
