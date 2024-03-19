@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:41:42 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/03/19 18:55:10 by mlegendr         ###   ########.fr       */
+/*   Updated: 2024/03/19 19:45:39 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,10 @@ int	executor(t_token *tokens, t_environment *env) //change name to executor? alo
 {
 	t_token			*temp;
 	t_environment	*temp_env;
-	//char 			**args;
 
 	temp = tokens;
 	temp_env = env;
-	//print_args(token_to_string_array(temp));
-	//args = token_to_string_array(temp);
-	//run_execve(temp, args);
-	execve_prep(temp);
+	execve_executor(temp);
 	while (temp)
 	{
 		if (temp->type == CMD)
@@ -63,4 +59,38 @@ int	executor(t_token *tokens, t_environment *env) //change name to executor? alo
 		temp = temp->next;
 	}
 	return (0);
+}
+
+int _executor(t_token *tokens, t_environment *env)
+{
+	t_token			*temp;
+	t_environment	*temp_env;
+	int				status;
+
+	temp = tokens;
+	temp_env = env;
+	if (check_pipes(temp) == 1)
+		status = run_basic_cmd(temp, temp_env);
+	else
+		status = run_piped_cmd(temp, temp_env);
+	return (ft_error(NULL, status));
+}
+
+int run_basic_cmd(t_token *tokens, t_environment *env)
+{
+	t_token			*temp;
+	t_environment	*temp_env;
+	int				status;
+
+	temp = tokens;
+	temp_env = env;
+	status = exec_syntax_check(temp, temp_env);
+	if (status == 0)
+	{
+		if (check_redirects(temp) == 1)
+			status = exec_command(temp, temp_env);
+		else
+			status = redirect(temp, temp_env);
+	}
+	return (ft_error(NULL, status));
 }

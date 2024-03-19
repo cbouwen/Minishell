@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 17:33:00 by mlegendr          #+#    #+#             */
-/*   Updated: 2024/03/19 18:54:53 by mlegendr         ###   ########.fr       */
+/*   Updated: 2024/03/19 19:33:26 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 
 /*executor*/
 int			executor(t_token *tokens, t_environment *env);
+int			check_pipes(t_token *tokens);
+int			check_redirects(t_token *tokens);
 
 /*echo*/
 int			echo(t_token *tokens);
@@ -51,7 +53,7 @@ int			free_and_return(char *str1, char *str2, int err_no);
 
 /*execve*/
 size_t		count_tokens(t_token *tokens);
-int			execve_prep(t_token *tokens);
+int			execve_executor(t_token *tokens);
 int			fill_args(t_args *args, t_token *tokens);
 int			free_args(t_args *args);
 int			run_execve(t_args *args);

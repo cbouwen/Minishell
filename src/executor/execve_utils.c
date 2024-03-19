@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 19:08:54 by mlegendr          #+#    #+#             */
-/*   Updated: 2024/03/19 18:54:41 by mlegendr         ###   ########.fr       */
+/*   Updated: 2024/03/19 19:27:34 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ size_t	count_tokens(t_token *tokens)
 	return (i);
 }
 
-int	execve_prep(t_token *tokens)
+int	execve_executor(t_token *tokens)
 {
 	t_args	*args;
 	int		status;
@@ -47,8 +47,8 @@ int	execve_prep(t_token *tokens)
 int	fill_args(t_args *args, t_token *tokens)
 {
 	t_token	*temp;
-	size_t		i;
-	size_t		count;
+	size_t	i;
+	size_t	count;
 
 	temp = tokens;
 	args->arg_array = malloc(sizeof(char *) * (count_tokens(temp) + 1));
@@ -69,11 +69,11 @@ int	fill_args(t_args *args, t_token *tokens)
 	return (0);
 }
 
-int run_execve(t_args *args)
+int	run_execve(t_args *args)
 {
-	int	status;
+	int		status;
 	pid_t	pid;
-	
+
 	status = 0;
 	pid = fork();
 	if (pid == 0)
