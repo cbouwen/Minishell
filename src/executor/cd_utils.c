@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 17:32:35 by mlegendr          #+#    #+#             */
-/*   Updated: 2024/03/15 19:03:57 by mlegendr         ###   ########.fr       */
+/*   Updated: 2024/03/20 18:12:54 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,5 @@ int	free_and_return(char *str1, char *str2, int err_no)
 		free(str1);
 	if (str2)
 		free(str2);
-	return (ft_error(NULL, err_no));
+	return (err_no);
 }

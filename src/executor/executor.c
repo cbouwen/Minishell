@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:41:42 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/03/19 19:52:30 by mlegendr         ###   ########.fr       */
+/*   Updated: 2024/03/20 18:21:23 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,10 @@ extern int	g_err;
 		- Test
 */
 
-int	executor(t_token *tokens, t_environment *env) //change name to executor? along with the .c file?
+int	_executor(t_token *tokens, t_environment *env) //change name to executor? along with the .c file?
 {
 	t_token			*temp;
 	t_environment	*temp_env;
-	//char 			**args;
 
 	temp = tokens;
 	temp_env = env;
@@ -63,7 +62,7 @@ int	executor(t_token *tokens, t_environment *env) //change name to executor? alo
 	return (0);
 }
 
-/*int _executor(t_token *tokens, t_environment *env)
+int executor(t_token *tokens, t_environment *env)
 {
 	t_token			*temp;
 	t_environment	*temp_env;
@@ -71,10 +70,15 @@ int	executor(t_token *tokens, t_environment *env) //change name to executor? alo
 
 	temp = tokens;
 	temp_env = env;
+	status = 0;
 	if (check_pipes(temp) == 1)
+	{
+		printf("run_basic_cmd\n");
 		status = run_basic_cmd(temp, temp_env);
+	}
 	else
-		status = run_piped_cmd(temp, temp_env);
+		//status = run_piped_cmd(temp, temp_env);
+		printf("run_piped_cmd\n");
 	return (ft_error(NULL, status));
 }
 
@@ -86,13 +90,19 @@ int run_basic_cmd(t_token *tokens, t_environment *env)
 
 	temp = tokens;
 	temp_env = env;
+	status = 0;
+	int debug = determine_builtin(temp);
+	printf("determine_builtin: %d\n", debug);
 	status = exec_syntax_check(temp, temp_env);
+	printf("exec_syntax_check: %d\n", status);
 	if (status == 0)
 	{
 		if (check_redirects(temp) == 1)
-			status = exec_command(temp, temp_env);
+			//status = exec_command(temp, temp_env);
+			printf("exec_command\n");
 		else
-			status = redirect(temp, temp_env);
+			//status = redirect(temp, temp_env);
+			printf("redirect\n");
 	}
-	return (ft_error(NULL, status));
-}*/
+	return (status);
+}

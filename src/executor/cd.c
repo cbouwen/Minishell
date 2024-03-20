@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 16:23:46 by mlegendr          #+#    #+#             */
-/*   Updated: 2024/03/15 19:20:40 by mlegendr         ###   ########.fr       */
+/*   Updated: 2024/03/20 18:12:40 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	change_dir(t_token *tokens, t_environment *env)
 	if (!temp->next || temp->next->type != ARG)
 	{
 		go_home(env);
-		return (ft_error(NULL, 0));
+		return (0);
 	}
 	temp = temp->next;
 	if (temp->type == ARG)
@@ -34,7 +34,7 @@ int	change_dir(t_token *tokens, t_environment *env)
 			go_dir(temp->str, env);
 	}
 	else
-		return (ft_error(NULL, 1));
+		return (1);
 	return (0);
 }
 
@@ -50,7 +50,7 @@ int	go_dir(char *path, t_environment *env)
 	if (update_pwd(env, current_pwd) != 0)
 		return (free_and_return(current_pwd, NULL, 1));
 	free(current_pwd);
-	return (ft_error(NULL, 0));
+	return (0);
 }
 
 int	go_home(t_environment *env)
@@ -71,7 +71,7 @@ int	go_home(t_environment *env)
 		return (free_and_return(current_pwd, home_path, 1));
 	free(home_path);
 	free(current_pwd);
-	return (ft_error(NULL, 0));
+	return (0);
 }
 
 int	go_oldpwd(t_token *tokens, t_environment *env)
@@ -94,5 +94,5 @@ int	go_oldpwd(t_token *tokens, t_environment *env)
 	ft_putstr_fd("\n", tokens->output);
 	free(new_pwd);
 	free(current_pwd);
-	return (ft_error(NULL, 12));
+	return (12);
 }

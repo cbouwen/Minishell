@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 15:50:48 by mlegendr          #+#    #+#             */
-/*   Updated: 2024/03/15 18:46:10 by mlegendr         ###   ########.fr       */
+/*   Updated: 2024/03/20 18:11:07 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	export_var(t_token *tokens, t_environment *env)
 		add_env_val(temp_env, var_name, var_value);
 	free(var_name);
 	free(var_value);
-	return (ft_error(NULL, 0));	
+	return (0);	
 }
 
 int	update_env_val(t_environment *env, char *var_name, char *var_value, bool cd)
@@ -49,7 +49,7 @@ int	update_env_val(t_environment *env, char *var_name, char *var_value, bool cd)
 		else
 			env = env->next;
 	}
-	return (ft_error(NULL, 1));
+	return (1);
 }
 
 int	add_env_val(t_environment *env, char *var_name, char *var_value)

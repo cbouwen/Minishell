@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 17:33:00 by mlegendr          #+#    #+#             */
-/*   Updated: 2024/03/19 19:50:47 by mlegendr         ###   ########.fr       */
+/*   Updated: 2024/03/20 18:22:08 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,12 @@
 int			executor(t_token *tokens, t_environment *env);
 int			check_pipes(t_token *tokens);
 int			check_redirects(t_token *tokens);
+int			run_basic_cmd(t_token *tokens, t_environment *env);
+
+/*syntax checkers*/
+int			exec_syntax_check(t_token *tokens, t_environment *env);
+int			determine_builtin(t_token *tokens);
+int			check_env(t_token *tokens);
 
 /*echo*/
 int			echo(t_token *tokens);

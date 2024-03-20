@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 16:56:37 by mlegendr          #+#    #+#             */
-/*   Updated: 2024/03/11 18:47:03 by mlegendr         ###   ########.fr       */
+/*   Updated: 2024/03/20 18:10:46 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 int	unset_var(t_token *tokens, t_environment *env)
 {
 	if (check_env_val_exists(env, tokens->str) == 1)
-		return (ft_error("unset", 1));
+		return (1);
 	delete_var(env, tokens->str);
-	return (ft_error(NULL, 0));
+	return (0);
 }
 
 int	delete_var(t_environment *env, char *var_name)
@@ -38,10 +38,10 @@ int	delete_var(t_environment *env, char *var_name)
 			free(current->name);
 			free(current->value);
 			free(current);
-			return (ft_error(NULL, 0));
+			return (0);
 		}
 		previous = current;
 		current = current->next;
 	}
-	return (ft_error(NULL, 1));
+	return (1);
 }

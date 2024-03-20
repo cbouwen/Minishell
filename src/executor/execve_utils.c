@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 19:08:54 by mlegendr          #+#    #+#             */
-/*   Updated: 2024/03/19 19:53:08 by mlegendr         ###   ########.fr       */
+/*   Updated: 2024/03/20 18:11:40 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,11 @@ int	execve_executor(t_token *tokens)
 	if (status != 0)
 	{
 		free_args(args);
-		return (ft_error(NULL, status));
+		return (status);
 	}
 	status = run_execve(args);
 	free_args(args);
-	return (ft_error(NULL, status));
+	return (status);
 }
 
 int	fill_args(t_args *args, t_token *tokens)
@@ -53,7 +53,7 @@ int	fill_args(t_args *args, t_token *tokens)
 	temp = tokens;
 	args->arg_array = malloc(sizeof(char *) * (count_tokens(temp) + 1));
 	if (!args->arg_array)
-		return (ft_error(NULL, 12));
+		return (12);
 	i = 0;
 	temp = tokens;
 	count = count_tokens(temp);
@@ -61,7 +61,7 @@ int	fill_args(t_args *args, t_token *tokens)
 	{
 		args->arg_array[i] = ft_strdup(temp->str);
 		if (!args->arg_array[i])
-			return (ft_error(NULL, 12));
+			return (12);
 		i++;
 		temp = temp->next;
 	}

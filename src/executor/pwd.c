@@ -12,5 +12,5 @@ int	pwd(t_token *token)
 	ft_putstr_fd(cwd, token->output);
 	ft_putchar_fd('\n', token->output);
 	free(cwd);
-	return (ft_error(NULL, 0));
+	return (0);
 }
