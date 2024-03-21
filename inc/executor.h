@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 17:33:00 by mlegendr          #+#    #+#             */
-/*   Updated: 2024/03/21 18:44:26 by mlegendr         ###   ########.fr       */
+/*   Updated: 2024/03/21 20:50:27 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 int			executor(t_token *tokens, t_environment *env);
 int			check_pipes(t_token *tokens);
 int			check_redirects(t_token *tokens);
-int			run_basic_cmd(t_token *tokens, t_environment *env);
+int			run_basic_cmd(t_token *tokens, t_environment *env, t_args *args);
 
 /*syntax checkers*/
 int			exec_syntax_check(t_token *tokens, t_environment *env);
@@ -64,9 +64,15 @@ int			free_and_return(char *str1, char *str2, int err_no);
 
 /*execve*/
 size_t		count_tokens(t_token *tokens);
-int			execve_executor(t_token *tokens);
+int			execve_executor(t_token *tokens, t_args *args);
 int			fill_args(t_args *args, t_token *tokens);
 int			free_args(t_args *args);
 int			run_execve(t_args *args);
+size_t		count_env(t_environment *env);
+int			init_args(t_args *args);
+int			fill_env(t_args *args, t_environment *env);
+char		*ft_strjoin_free(char *s1, char *s2, bool free_str);
+
+void	printf_args_env(t_args *args);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 16:16:53 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/03/21 17:44:19 by mlegendr         ###   ########.fr       */
+/*   Updated: 2024/03/21 20:06:19 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	run_minishell(t_environment *env, char	*input)
 }
 
 
-int	minishell_loop(char *envp[])
+int	minishell_loop(char **envp)
 {
 	t_environment	*env;
 	char			*input;
@@ -71,7 +71,7 @@ int	minishell_loop(char *envp[])
 }
 
 
-int	main(int argc, char **argv, char *envp[])
+int	main(int argc, char **argv, char **envp)
 {
 	(void)argc;
 	(void)argv;
