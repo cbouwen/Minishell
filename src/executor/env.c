@@ -11,7 +11,7 @@ int	print_env(t_token *tokens, t_environment *env)
 	temp_env = env;
 	if (temp->next && temp->next->type == ARG
 		&& ft_strcmp(temp->next->str, "env") != 0)
-		return (2);
+		return (ft_error("env: too many arguments\n", 1));
 	while (temp_env)
 	{
 		ft_putstr_fd(temp_env->name, temp->output);
@@ -20,5 +20,5 @@ int	print_env(t_token *tokens, t_environment *env)
 		ft_putchar_fd('\n', temp->output);
 		temp_env = temp_env->next;
 	}
-	return (0);
+	return (ft_error(NULL, 0));
 }

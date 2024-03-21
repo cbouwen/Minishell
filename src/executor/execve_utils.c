@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 19:08:54 by mlegendr          #+#    #+#             */
-/*   Updated: 2024/03/20 18:11:40 by mlegendr         ###   ########.fr       */
+/*   Updated: 2024/03/21 17:59:37 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,11 +79,16 @@ int	run_execve(t_args *args)
 	if (pid == 0)
 	{
 		if (execve(args->arg_array[0], args->arg_array, NULL) == -1)
-		if (execve(args->arg_array[0], args->arg_array, NULL) == -1)
 			exit(1);
 	}
 	else
+	{
 		waitpid(pid, &status, 0);
+		if (WIFEXITED(status))
+            return (ft_error(NULL, WEXITSTATUS(status)));
+        else
+            return (0);
+	}
 	return (status);
 }
 

@@ -11,18 +11,18 @@ int	extract_name(char *token_str, char **var_name)
 	value = NULL;
 	value = ft_strchr(token_str, '=');
 	if (!value)
-		return (12);
+		return (ft_error("export: malloc error\n", 12));
 	sign_loc = value - token_str;
 	*var_name = ft_substr(token_str, 0, sign_loc);
-	return (0);
+	return (ft_error(NULL, 0));
 }
 
 int	extract_value(char *token_str, char **var_value)
 {
 	*var_value = ft_strdup(token_str);
 	if (!*var_value)
-		return (12);
-	return (0);
+		return (ft_error("export: malloc error\n", 12));
+	return (ft_error(NULL, 0));
 }
 
 /*0 if val exists

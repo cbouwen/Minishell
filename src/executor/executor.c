@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:41:42 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/03/20 18:21:23 by mlegendr         ###   ########.fr       */
+/*   Updated: 2024/03/21 18:00:49 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,25 +27,21 @@ extern int	g_err;
 		- Test
 */
 
-int	_executor(t_token *tokens, t_environment *env) //change name to executor? along with the .c file?
+int	executor(t_token *tokens, t_environment *env) //change name to executor? along with the .c file?
 {
 	t_token			*temp;
 	t_environment	*temp_env;
+	int				status;
 
 	temp = tokens;
 	temp_env = env;
-	execve_executor(temp);
+	status = execve_executor(temp);
 	while (temp)
 	{
 		if (temp->type == CMD)
 		{
 			if (ft_strcmp(temp->str, "echo") == 0)
-			{
-				if (temp->next && temp->next->type == ARG)
-					echo(temp->right);
-				else
-					echo_no_arg(temp);
-			}
+				determine_echo(temp);
 			else if (ft_strcmp(temp->str, "pwd") == 0)
 				pwd(temp);
 			else if (ft_strcmp(temp->str, "env") == 0)
@@ -59,27 +55,25 @@ int	_executor(t_token *tokens, t_environment *env) //change name to executor? al
 		}
 		temp = temp->next;
 	}
-	return (0);
+	return (status);
 }
 
-int executor(t_token *tokens, t_environment *env)
+int _executor(t_token *tokens, t_environment *env)
 {
 	t_token			*temp;
 	t_environment	*temp_env;
-	int				status;
 
 	temp = tokens;
 	temp_env = env;
-	status = 0;
 	if (check_pipes(temp) == 1)
 	{
 		printf("run_basic_cmd\n");
-		status = run_basic_cmd(temp, temp_env);
+		run_basic_cmd(temp, temp_env);
 	}
 	else
 		//status = run_piped_cmd(temp, temp_env);
 		printf("run_piped_cmd\n");
-	return (ft_error(NULL, status));
+	return (1);
 }
 
 int run_basic_cmd(t_token *tokens, t_environment *env)
@@ -104,5 +98,5 @@ int run_basic_cmd(t_token *tokens, t_environment *env)
 			//status = redirect(temp, temp_env);
 			printf("redirect\n");
 	}
-	return (status);
+	return (1);
 }

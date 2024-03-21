@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 17:24:56 by mlegendr          #+#    #+#             */
-/*   Updated: 2024/03/20 20:22:35 by mlegendr         ###   ########.fr       */
+/*   Updated: 2024/03/21 16:59:55 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int exec_syntax_check(t_token *tokens, t_environment *env)
 	else if (determine_builtin(temp) == 3)
 		return (check_env(temp));
 	else if (determine_builtin(temp) == 4)
-		check_export(temp, temp_env);
+		return (check_export(temp));
 	/*else if (determine_builtin(temp) == 5)
 		check_unset(temp, temp_env);
 	else if (determine_builtin(temp) == 6)
@@ -46,5 +46,20 @@ int	check_env(t_token *tokens)
 		else
 			return (0);
 	}
+	return (0);
+}
+
+int	check_export(t_token *tokens)
+{
+	t_token *temp;
+
+	temp = tokens;
+	if (check_last_char(temp->next->str) == 0)
+	{
+		printf("export: %d\n", check_last_char(temp->next->str));
+		return (134);
+	}
+	if (check_first_char(temp->next->str) == 1)
+		return (134);	
 	return (0);
 }

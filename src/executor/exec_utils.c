@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 19:31:53 by mlegendr          #+#    #+#             */
-/*   Updated: 2024/03/20 17:28:11 by mlegendr         ###   ########.fr       */
+/*   Updated: 2024/03/21 16:57:10 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,24 @@ int	determine_builtin(t_token *tokens)
 		return (5);
 	else if (ft_strcmp(temp->str, "cd") == 0)
 		return (6);
+	return (0);
+}
+
+int check_last_char(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	if (str[i - 1] == '=')
+		return (1);
+	return (0);
+}
+
+int	check_first_char(char *str)
+{
+	if (ft_isdigit(str[0]) == 1)
+		return (1);
 	return (0);
 }

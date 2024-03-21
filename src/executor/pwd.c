@@ -8,9 +8,9 @@ int	pwd(t_token *token)
 
 	cwd = getcwd(NULL, 0);
 	if (!cwd)
-		return (1);
+		return (ft_error("pwd: error retrieving current directory\n", 1));
 	ft_putstr_fd(cwd, token->output);
 	ft_putchar_fd('\n', token->output);
 	free(cwd);
-	return (0);
+	return (ft_error(NULL, 0));
 }

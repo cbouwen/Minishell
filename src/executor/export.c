@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 15:50:48 by mlegendr          #+#    #+#             */
-/*   Updated: 2024/03/20 18:11:07 by mlegendr         ###   ########.fr       */
+/*   Updated: 2024/03/21 18:10:29 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	export_var(t_token *tokens, t_environment *env)
 		add_env_val(temp_env, var_name, var_value);
 	free(var_name);
 	free(var_value);
-	return (0);	
+	return (ft_error(NULL, 0));	
 }
 
 int	update_env_val(t_environment *env, char *var_name, char *var_value, bool cd)
@@ -44,12 +44,12 @@ int	update_env_val(t_environment *env, char *var_name, char *var_value, bool cd)
 		{
 			free(env->value);
 			env->value = ft_strdup(var_value);
-			return (0);
+			return (ft_error(NULL, 0));
 		}
 		else
 			env = env->next;
 	}
-	return (1);
+	return (ft_error("export: unexpected error\n", 1));
 }
 
 int	add_env_val(t_environment *env, char *var_name, char *var_value)
@@ -58,5 +58,5 @@ int	add_env_val(t_environment *env, char *var_name, char *var_value)
 
 	new = create_node(var_name, var_value);
 	ft_lstadd_back_ms(&env, new);
-	return (0);
+	return (ft_error(NULL, 0));
 }

@@ -2,6 +2,24 @@
 
 #include "../../inc/minishell.h"
 
+int	determine_echo(t_token *tokens)
+{
+	t_token	*temp;
+
+	temp = tokens;
+	if (temp->next && temp->next->type == ARG)
+	{
+		echo(temp->right);
+		return (0);
+	}
+	else
+	{
+		echo_no_arg(temp);
+		return (0);
+	}
+	return (1);
+}
+
 int	echo(t_token *tokens)
 {
 	t_token	*temp;
@@ -29,7 +47,7 @@ int	echo(t_token *tokens)
 	}
 	if (n_flag == 0)
 		ft_putchar_fd('\n', output_fd);
-	return (0);
+	return (ft_error(NULL, 0));
 }
 
 int	echo_no_arg(t_token *tokens)
@@ -38,5 +56,5 @@ int	echo_no_arg(t_token *tokens)
 
 	temp = tokens;
 	ft_putchar_fd('\n', temp->output);
-	return (0);
+	return (ft_error(NULL, 0));
 }

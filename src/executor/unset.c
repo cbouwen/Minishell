@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 16:56:37 by mlegendr          #+#    #+#             */
-/*   Updated: 2024/03/20 18:10:46 by mlegendr         ###   ########.fr       */
+/*   Updated: 2024/03/21 18:16:04 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,17 @@
 
 int	unset_var(t_token *tokens, t_environment *env)
 {
-	if (check_env_val_exists(env, tokens->str) == 1)
-		return (1);
-	delete_var(env, tokens->str);
-	return (0);
+	while (tokens)
+	{
+		if (tokens->next && tokens->next->type == ARG)
+		{
+			if (check_env_val_exists(env, tokens->str) == 1)
+				continue;
+			delete_var(env, tokens->str);
+		}
+		tokens = tokens->next;
+	}
+	return (ft_error(NULL, 0));
 }
 
 int	delete_var(t_environment *env, char *var_name)
@@ -43,5 +50,5 @@ int	delete_var(t_environment *env, char *var_name)
 		previous = current;
 		current = current->next;
 	}
-	return (1);
+	return (ft_error("unset: unexpected error\n", 1));
 }
