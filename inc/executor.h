@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 17:33:00 by mlegendr          #+#    #+#             */
-/*   Updated: 2024/03/21 17:45:00 by mlegendr         ###   ########.fr       */
+/*   Updated: 2024/03/21 18:44:26 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int			exec_syntax_check(t_token *tokens, t_environment *env);
 int			determine_builtin(t_token *tokens);
 int			check_env(t_token *tokens);
 int			check_export(t_token *tokens);
+int			check_unset(t_token *tokens);
 int			check_last_char(char *str);
 int			check_first_char(char *str);
 

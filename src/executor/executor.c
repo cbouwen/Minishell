@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:41:42 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/03/21 18:00:49 by mlegendr         ###   ########.fr       */
+/*   Updated: 2024/03/21 18:35:51 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ extern int	g_err;
 		- Test
 */
 
-int	executor(t_token *tokens, t_environment *env) //change name to executor? along with the .c file?
+int	_executor(t_token *tokens, t_environment *env) //change name to executor? along with the .c file?
 {
 	t_token			*temp;
 	t_environment	*temp_env;
@@ -58,7 +58,7 @@ int	executor(t_token *tokens, t_environment *env) //change name to executor? alo
 	return (status);
 }
 
-int _executor(t_token *tokens, t_environment *env)
+int executor(t_token *tokens, t_environment *env)
 {
 	t_token			*temp;
 	t_environment	*temp_env;
