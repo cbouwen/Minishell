@@ -5,17 +5,19 @@
 int	determine_echo(t_token *tokens)
 {
 	t_token	*temp;
+	int		status;
 
 	temp = tokens;
+	status = 0;
 	if (temp->next && temp->next->type == ARG)
 	{
-		echo(temp->right);
-		return (0);
+		status = echo(temp->right);
+		return (status);
 	}
 	else
 	{
-		echo_no_arg(temp);
-		return (0);
+		status = echo_no_arg(temp);
+		return (status);
 	}
 	return (1);
 }

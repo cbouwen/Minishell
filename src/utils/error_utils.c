@@ -11,5 +11,5 @@ int	ft_error(char *str, int err_no)
 		return (0);
 	if (str)
 		printf("%s", str);
-	return (1);
+	return (err_no);
 }

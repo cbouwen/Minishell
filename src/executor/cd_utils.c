@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 17:32:35 by mlegendr          #+#    #+#             */
-/*   Updated: 2024/03/21 18:06:29 by mlegendr         ###   ########.fr       */
+/*   Updated: 2024/03/21 18:26:18 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,5 @@ int	free_and_return(char *str1, char *str2, int err_no)
 		return (ft_error("cd: no such file or directory\n", err_no));
 	else if (err_no == 1)
 		return (ft_error("cd: unexpected error\n", err_no));
-	return (1);
+	return (err_no);
 }

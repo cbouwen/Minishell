@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 16:23:46 by mlegendr          #+#    #+#             */
-/*   Updated: 2024/03/21 18:06:50 by mlegendr         ###   ########.fr       */
+/*   Updated: 2024/03/21 18:25:59 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,27 +15,29 @@
 int	change_dir(t_token *tokens, t_environment *env)
 {
 	t_token	*temp;
+	int		status;
 
 	temp = tokens;
+	status = 0;
 	if (!temp->next || temp->next->type != ARG)
 	{
-		go_home(env);
-		return (ft_error(NULL, 0));
+		status = go_home(env);
+		return (ft_error(NULL, status));
 	}
 	temp = temp->next;
 	if (temp->type == ARG)
 	{
 		if (ft_strcmp(temp->str, "-") == 0)
-			go_oldpwd(temp, env);
+			status = go_oldpwd(temp, env);
 		else if (ft_strcmp(temp->str, "~") == 0
 			|| ft_strcmp(temp->str, "--") == 0)
-			go_home(env);
+			status = go_home(env);
 		else
-			go_dir(temp->str, env);
+			status = go_dir(temp->str, env);
 	}
 	else
 		return (ft_error("cd: unexpected error\n", 1));
-	return (ft_error(NULL, 0));
+	return (ft_error(NULL, status));
 }
 
 int	go_dir(char *path, t_environment *env)
