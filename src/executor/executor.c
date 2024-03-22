@@ -102,15 +102,20 @@ int run_basic_cmd(t_token *tokens, t_environment *env, t_args *args)
 	temp_env = env;
 	(void)temp_env;
 	status = 0;
+
+	//do this or leaks
+	if (fill_args(args, temp) != 0)
+			return (ft_error(NULL, 1));
+	status = assemble_path(args);
+
 	if (determine_builtin(temp) != 0)
 		//run_builtin(temp, temp_env);
 		return (printf("run_builtin\n"));
 	else
 	{
-		if (fill_args(args, temp) != 0)
-			return (ft_error(NULL, 1));
+		
 
-		status = assemble_path(args);
+		//status = assemble_path(args);
 		printf("assemble_path: %s\n", args->arg_array[0]);
 
 		if (status != 2)
