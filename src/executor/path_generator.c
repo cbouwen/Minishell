@@ -19,6 +19,7 @@ int	check_absolute_path(char *path, t_args *args)
 
 	stat(path, &path_stat);
 	temp = path[0];
+	args->exec_path = ft_calloc(sizeof(char *), 1);
 	if (!args->exec_path)
 		return (ft_error("execve: calloc error\n", 12));
 	if (temp == '/' && access(path, X_OK) == 0 && S_ISREG(path_stat.st_mode))
