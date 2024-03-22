@@ -112,7 +112,7 @@ int run_basic_cmd(t_token *tokens, t_environment *env, t_args *args)
 	int debug = determine_builtin(temp);
 	printf("determine_builtin: %d\n", debug);
 	if (status != 2)
-		status = exec_syntax_check(temp, temp_env);
+		status = exec_syntax_check(temp);
 	printf("exec_syntax_check: %d\n", status);
 	if (status == 0)
 	{

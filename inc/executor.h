@@ -22,7 +22,7 @@ int			check_redirects(t_token *tokens);
 int			run_basic_cmd(t_token *tokens, t_environment *env, t_args *args);
 
 /*syntax checkers*/
-int			exec_syntax_check(t_token *tokens, t_environment *env);
+int			exec_syntax_check(t_token *tokens);
 int			determine_builtin(t_token *tokens);
 int			check_env(t_token *tokens);
 int			check_export(t_token *tokens);
