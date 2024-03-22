@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:41:07 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/03/18 19:10:26 by mlegendr         ###   ########.fr       */
+/*   Updated: 2024/03/22 18:33:58 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # include <readline/history.h>
 # include <sys/types.h>
 # include <sys/wait.h>
+# include <sys/stat.h>
 
 t_environment				*env_parser(char *envp[]);
 void						free_env_node(t_environment *env);

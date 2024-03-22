@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 15:31:04 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/03/21 20:53:28 by mlegendr         ###   ########.fr       */
+/*   Updated: 2024/03/22 17:46:42 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ typedef struct	s_args
 {
 	char	**arg_array;
 	char	**env_array;
+	char	**exec_path;
 }				t_args;
 
 /*typedef struct s_syntax_token

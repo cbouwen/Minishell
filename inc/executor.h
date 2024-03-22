@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 17:33:00 by mlegendr          #+#    #+#             */
-/*   Updated: 2024/03/21 20:50:27 by mlegendr         ###   ########.fr       */
+/*   Updated: 2024/03/22 20:30:14 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int			check_export(t_token *tokens);
 int			check_unset(t_token *tokens);
 int			check_last_char(char *str);
 int			check_first_char(char *str);
+int			check_absolute_path(char *path, t_args *args);
 
 /*echo*/
 int			determine_echo(t_token *tokens);
@@ -72,6 +73,11 @@ size_t		count_env(t_environment *env);
 int			init_args(t_args *args);
 int			fill_env(t_args *args, t_environment *env);
 char		*ft_strjoin_free(char *s1, char *s2, bool free_str);
+int			find_path(t_args *args);
+int			split_path(t_args *args);
+int			free_array(char **array);
+int			assemble_path(t_args *args);
+int			true_path_ass(char *path, t_args *args);
 
 void	printf_args_env(t_args *args);
 

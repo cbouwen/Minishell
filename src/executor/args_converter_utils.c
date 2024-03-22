@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 20:07:42 by mlegendr          #+#    #+#             */
-/*   Updated: 2024/03/21 20:53:36 by mlegendr         ###   ########.fr       */
+/*   Updated: 2024/03/22 20:20:31 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,10 @@ size_t	count_env(t_environment *env)
 }
 
 int init_args(t_args *args)
-{
+{	
 	args->arg_array = NULL;
 	args->env_array = NULL;
+	args->exec_path = NULL;
 	return (0);
 }
 
@@ -60,27 +61,16 @@ char	*ft_strjoin_free(char *s1, char *s2, bool free_str)
 	return (s1);
 }
 
-int	free_args(t_args *args)
+int free_array(char **array)
 {
 	int	i;
 
 	i = 0;
-	if (args)
+	while (array[i])
 	{
-		while (args->arg_array[i])
-		{
-			free(args->arg_array[i]);
-			i++;
-		}
-		i = 0;
-		while (args->env_array[i])
-		{
-			free(args->env_array[i]);
-			i++;
-		}
-		free(args->arg_array);
-		free(args->env_array);
-		free(args);
+		free(array[i]);
+		i++;
 	}
+	free(array);
 	return (0);
 }

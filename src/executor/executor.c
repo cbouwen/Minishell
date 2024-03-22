@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:41:42 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/03/21 20:52:22 by mlegendr         ###   ########.fr       */
+/*   Updated: 2024/03/22 20:47:55 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ extern int	g_err;
 		- Test
 */
 
-int	executor(t_token *tokens, t_environment *env) //change name to executor? along with the .c file?
+int	_executor(t_token *tokens, t_environment *env) //change name to executor? along with the .c file?
 {
 	t_token			*temp;
 	t_environment	*temp_env;
@@ -70,7 +70,7 @@ int	executor(t_token *tokens, t_environment *env) //change name to executor? alo
 	return (status);
 }
 
-int _executor(t_token *tokens, t_environment *env)
+int executor(t_token *tokens, t_environment *env)
 {
 	t_token			*temp;
 	t_environment	*temp_env;
@@ -84,10 +84,7 @@ int _executor(t_token *tokens, t_environment *env)
 	if (fill_env(args, temp_env) != 0)
 		return (ft_error("executor: fill_env error\n", 1));
 	if (check_pipes(temp) == 1)
-	{
-		printf("run_basic_cmd\n");
 		run_basic_cmd(temp, temp_env, args);
-	}
 	else
 		//status = run_piped_cmd(temp, temp_env);
 		printf("run_piped_cmd\n");
@@ -106,10 +103,16 @@ int run_basic_cmd(t_token *tokens, t_environment *env, t_args *args)
 	status = 0;
 	if (fill_args(args, temp) != 0)
 		return (ft_error("run_basic_cmd: fill_args error\n", 1));
-	printf_args_env(args);
+		
+	//printf("absolute check: %d\n", check_absolute_path(args->arg_array[0], args));
+	
+	status = assemble_path(args);
+	printf("assemble_path: %s\n", args->arg_array[0]);
+	
 	int debug = determine_builtin(temp);
 	printf("determine_builtin: %d\n", debug);
-	status = exec_syntax_check(temp, temp_env);
+	if (status != 2)
+		status = exec_syntax_check(temp, temp_env);
 	printf("exec_syntax_check: %d\n", status);
 	if (status == 0)
 	{
@@ -122,3 +125,5 @@ int run_basic_cmd(t_token *tokens, t_environment *env, t_args *args)
 	}
 	return (1);
 }
+
+

@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 17:24:56 by mlegendr          #+#    #+#             */
-/*   Updated: 2024/03/21 18:46:05 by mlegendr         ###   ########.fr       */
+/*   Updated: 2024/03/22 20:43:19 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int exec_syntax_check(t_token *tokens, t_environment *env)
 
 	temp = tokens;
 	temp_env = env;
-	status = 0;
+	status = -1;
 	if (determine_builtin(temp) == 1)
 		status = 0;
 	else if (determine_builtin(temp) == 2)
@@ -74,7 +74,13 @@ int	check_unset(t_token *tokens)
 	temp = tokens;
 	if (!temp->next)
 		return (ft_error("unset: no input\n", 1));
-	if (check_first_char(temp->next->str) == 1)
-		return (ft_error("unset: not a valid identifier\n", 1));
+	temp = temp->next;
+	while (temp)
+	{
+		if (temp->type == ARG)
+			if (check_first_char(temp->str) == 1)
+				return (ft_error("unset: not a valid identifier\n", 1));
+		temp = temp->next;	
+	}
 	return (ft_error(NULL, 0));
 }

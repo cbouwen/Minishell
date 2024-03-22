@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 20:00:59 by mlegendr          #+#    #+#             */
-/*   Updated: 2024/03/21 20:53:52 by mlegendr         ###   ########.fr       */
+/*   Updated: 2024/03/22 20:28:59 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,24 @@ int	fill_env(t_args *args, t_environment *env)
 	return (ft_error(NULL, 0));
 }
 
+int	free_args(t_args *args)
+{
+	int	i;
+
+	i = 0;
+	if (args)
+	{
+		if (args->arg_array)
+			free_array(args->arg_array);
+		if (args->env_array)
+			free_array(args->env_array);
+		if (args->exec_path)
+			free_array(args->exec_path);
+		free(args);
+	}
+	return (0);
+}
+
 void	printf_args_env(t_args *args)
 {
 	int	i;
@@ -84,4 +102,3 @@ void	printf_args_env(t_args *args)
 		i++;
 	}
 }
-
