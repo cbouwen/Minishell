@@ -104,6 +104,8 @@ int run_basic_cmd(t_token *tokens, t_environment *env, t_args *args)
 	status = 0;
 	if (fill_args(args, temp) != 0)
 		return (ft_error("run_basic_cmd: fill_args error\n", 1));
+	if (split_path(args) != 0)
+		return (ft_error(NULL, 1));
 		
 	//printf("absolute check: %d\n", check_absolute_path(args->arg_array[0], args));
 	
