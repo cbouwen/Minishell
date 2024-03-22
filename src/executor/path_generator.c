@@ -67,12 +67,8 @@ int split_path(t_args *args)
 int	assemble_path(t_args *args)
 {
 	int		i;
-	int		j;
-	int		len;
 
 	i = -1;
-	j = 0;
-	len = 0;
 	if (check_absolute_path(args->arg_array[0], args) == -1)
 		return (ft_error(NULL, 1));
 	if (check_absolute_path(args->arg_array[0], args) == 1)
@@ -84,7 +80,7 @@ int	assemble_path(t_args *args)
 		while (args->exec_path[++i])
 		{
 			if (true_path_ass(args->exec_path[i], args) == 0)
-				return (ft_error(NULL, 0));
+				return (ft_error(NULL, 2));
 			else if (true_path_ass(args->exec_path[i], args) == 12)
 				return (ft_error(NULL, 1));
 		}

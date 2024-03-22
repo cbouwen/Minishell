@@ -68,9 +68,6 @@ int	fill_env(t_args *args, t_environment *env)
 
 int	free_args(t_args *args)
 {
-	int	i;
-
-	i = 0;
 	if (args)
 	{
 		if (args->arg_array)

@@ -12,14 +12,12 @@
 
 #include "../../inc/minishell.h"
 
-int exec_syntax_check(t_token *tokens, t_environment *env)
+int exec_syntax_check(t_token *tokens)
 {
 	t_token			*temp;
-	t_environment	*temp_env;
 	int				status;
 
 	temp = tokens;
-	temp_env = env;
 	status = -1;
 	if (determine_builtin(temp) == 1)
 		status = 0;
