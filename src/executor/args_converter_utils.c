@@ -66,10 +66,13 @@ int free_array(char **array)
 	int	i;
 
 	i = 0;
-	while (array[i])
+	if (array != NULL)
 	{
-		free(array[i]);
-		i++;
+		while (array[i])
+		{
+			free(array[i]);
+			i++;
+		}
 	}
 	free(array);
 	return (0);
