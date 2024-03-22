@@ -77,8 +77,9 @@ int	assemble_path(t_args *args)
 		return (ft_error(NULL, 1));
 	if (check_absolute_path(args->arg_array[0], args) == 1)
 		return (ft_error(NULL, 2));
-	free(args->exec_path);
-	else if (check_absolute_path(args->arg_array[0], args) == 1)
+	if (args->exec_path[0] != NULL)
+		free_array(args->exec_path);
+	if (check_absolute_path(args->arg_array[0], args) == 1)
 	{
 		if (split_path(args) == 1)
 			return (ft_error(NULL, 1));
