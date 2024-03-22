@@ -70,7 +70,10 @@ int	assemble_path(t_args *args)
 
 	i = -1;
 	if (check_absolute_path(args->arg_array[0], args) == -1)
+	{
+		printf("absolute path\n");
 		return (ft_error(NULL, 1));
+	}
 	if (check_absolute_path(args->arg_array[0], args) == 1)
 		return (ft_error(NULL, 0));
 	else

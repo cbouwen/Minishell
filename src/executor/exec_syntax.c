@@ -31,6 +31,8 @@ int exec_syntax_check(t_token *tokens)
 		status = check_unset(temp);
 	else if (determine_builtin(temp) == 6)
 		status = 0;
+	else if (status == 2)
+		status = 0;
 	return (ft_error(NULL, status));
 }
 
