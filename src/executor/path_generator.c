@@ -75,6 +75,7 @@ int	assemble_path(t_args *args)
 		return (ft_error(NULL, 2));
 	else
 	{
+		free(args->exec_path);
 		if (split_path(args) == 1)
 			return (ft_error(NULL, 1));
 		while (args->exec_path[++i])
