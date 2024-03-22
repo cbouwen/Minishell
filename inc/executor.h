@@ -78,6 +78,8 @@ int			split_path(t_args *args);
 int			free_array(char **array);
 int			assemble_path(t_args *args);
 int			true_path_ass(char *path, t_args *args);
+int			handle_rel_path(t_args *args);
+int			create_exec_path(t_args *args);
 
 void	printf_args_env(t_args *args);
 
