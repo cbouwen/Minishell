@@ -79,7 +79,7 @@ int	assemble_path(t_args *args)
 	if (check_absolute_path(args->arg_array[0], args) == 1)
 		return (ft_error(NULL, 2));
 	if (check_absolute_path(args->arg_array[0], args) == 2)
-	{14
+	{
 		if (split_path(args) == 1)
 			return (ft_error(NULL, 1));
 		while (args->exec_path[++i])
