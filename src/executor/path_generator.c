@@ -69,13 +69,13 @@ int	assemble_path(t_args *args)
 	int		i;
 
 	i = -1;
+	free(args->exec_path);
 	if (check_absolute_path(args->arg_array[0], args) == -1)
 		return (ft_error(NULL, 1));
 	if (check_absolute_path(args->arg_array[0], args) == 1)
 		return (ft_error(NULL, 2));
 	else
 	{
-		free(args->exec_path);
 		if (split_path(args) == 1)
 			return (ft_error(NULL, 1));
 		while (args->exec_path[++i])
