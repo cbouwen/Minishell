@@ -102,25 +102,31 @@ int run_basic_cmd(t_token *tokens, t_environment *env, t_args *args)
 	temp_env = env;
 	(void)temp_env;
 	status = 0;
-	if (fill_args(args, temp) != 0)
-		return (ft_error(NULL, 1));
-
-	status = assemble_path(args);
-	printf("assemble_path: %s\n", args->arg_array[0]);
-
-	if (status != 2)
-		status = exec_syntax_check(temp);
-		
-	printf("exec_syntax_check: %d\n", status);
-
-	if (status == 0)
+	if (determine_builtin(temp) != 0)
+		//run_builtin(temp, temp_env);
+		return (printf("run_builtin\n"));
+	else
 	{
-		if (check_redirects(temp) == 1)
-			//status = exec_command(temp, temp_env);
-			printf("exec_command\n");
-		else
-			//status = redirect(temp, temp_env);
-			printf("redirect\n");
+		if (fill_args(args, temp) != 0)
+			return (ft_error(NULL, 1));
+
+		status = assemble_path(args);
+		printf("assemble_path: %s\n", args->arg_array[0]);
+
+		if (status != 2)
+			status = exec_syntax_check(temp);
+
+		printf("exec_syntax_check: %d\n", status);
+
+		if (status == 0)
+		{
+			if (check_redirects(temp) == 1)
+				//status = exec_command(temp, temp_env);
+				printf("exec_command\n");
+			else
+				//status = redirect(temp, temp_env);
+				printf("redirect\n");
+		}
 	}
 	return (1);
 }
