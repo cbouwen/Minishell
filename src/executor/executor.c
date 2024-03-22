@@ -100,6 +100,7 @@ int run_basic_cmd(t_token *tokens, t_environment *env, t_args *args)
 
 	temp = tokens;
 	temp_env = env;
+	(void)temp_env;
 	status = 0;
 	if (fill_args(args, temp) != 0)
 		return (ft_error("run_basic_cmd: fill_args error\n", 1));
