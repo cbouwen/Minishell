@@ -81,7 +81,7 @@ int split_path(t_args *args)
 ** @return 2: path created
 ** @return 0: unexpected error
 */
-int	assemble_path(t_args *args)
+/*int	assemble_path(t_args *args)
 {
 	int		i;
 	int		status;
@@ -108,7 +108,7 @@ int	assemble_path(t_args *args)
 		return(ft_error("execve: no executable found\n", 1));
 	}
 	return (ft_error(NULL, 0));
-}
+}*/
 
 int	true_path_ass(char *path, t_args *args)
 {
