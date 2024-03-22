@@ -1,7 +1,7 @@
 NAME = minishell
 
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -g -lreadline #-fsanitize=address
+CFLAGS = -Wall -Werror -Wextra -g #-lreadline #-fsanitize=address
 
 
 #ALL SOURCE FILES
@@ -28,7 +28,7 @@ LIBFT_INC = -I $(LIBFT_DIR)
 all : $(NAME)
 
 $(NAME) : $(LIBFT_LIB) $(SRC)
-	$(CC) $(CFLAGS) $(SRC) $(LIBFT_LIB) -o $(NAME)
+	$(CC) $(CFLAGS) $(SRC) $(LIBFT_LIB) -o $(NAME) -lreadline
 
 $(LIBFT_LIB):
 	make -C $(LIBFT_DIR)
