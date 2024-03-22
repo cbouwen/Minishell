@@ -20,6 +20,8 @@ int	check_absolute_path(char *path, t_args *args)
 	stat(path, &path_stat);
 	temp = path[0];
 	args->exec_path = ft_calloc(sizeof(char *), 1);
+	if (!args->exec_path)
+		return (ft_error("execve: calloc error\n", 12));
 	if (temp == '/' && access(path, X_OK) == 0 && S_ISREG(path_stat.st_mode))
 		return (1);
 	else if (temp == '/' && S_ISREG(path_stat.st_mode) == false)
@@ -69,10 +71,13 @@ int	assemble_path(t_args *args)
 	int		i;
 
 	i = -1;
+	if (check_absolute_path(args->arg_array[0], args) == 12)
+		return (ft_error(NULL, 1));
 	if (check_absolute_path(args->arg_array[0], args) == -1)
 		return (ft_error(NULL, 1));
 	if (check_absolute_path(args->arg_array[0], args) == 1)
 		return (ft_error(NULL, 2));
+	free(args->exec_path);
 	else
 	{
 		if (split_path(args) == 1)
