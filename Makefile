@@ -1,7 +1,7 @@
 NAME = minishell
 
 CC = cc
-CFLAGS = -Wall -Werror -Wextra -g -lreadline -fsanitize=address
+CFLAGS = -Wall -Werror -Wextra -g -lreadline #-fsanitize=address
 
 
 #ALL SOURCE FILES
