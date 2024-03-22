@@ -82,7 +82,7 @@ int executor(t_token *tokens, t_environment *env)
 	if (!args)
 		return (ft_error("executor: malloc error\n", 12));
 	if (fill_env(args, temp_env) != 0)
-		return (ft_error("executor: fill_env error\n", 1));
+		return (ft_error(NULL, 1));
 	if (check_pipes(temp) == 1)
 		run_basic_cmd(temp, temp_env, args);
 	else
@@ -103,18 +103,16 @@ int run_basic_cmd(t_token *tokens, t_environment *env, t_args *args)
 	(void)temp_env;
 	status = 0;
 	if (fill_args(args, temp) != 0)
-		return (ft_error("run_basic_cmd: fill_args error\n", 1));
-		
-	//printf("absolute check: %d\n", check_absolute_path(args->arg_array[0], args));
-	
+		return (ft_error(NULL, 1));
+
 	status = assemble_path(args);
 	printf("assemble_path: %s\n", args->arg_array[0]);
-	
-	int debug = determine_builtin(temp);
-	printf("determine_builtin: %d\n", debug);
+
 	if (status != 2)
 		status = exec_syntax_check(temp);
+		
 	printf("exec_syntax_check: %d\n", status);
+
 	if (status == 0)
 	{
 		if (check_redirects(temp) == 1)

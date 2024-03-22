@@ -26,8 +26,6 @@ int	check_absolute_path(char *path, t_args *args)
 		return (1);
 	else if (temp == '/' && S_ISREG(path_stat.st_mode) == false)
 		return (ft_error("execve: not an executable file\n", -1));
-	else if (temp == '/')
-		return (ft_error("execve: not a relative or absolute path\n", -1));
 	return (2);
 }
 
@@ -69,15 +67,17 @@ int split_path(t_args *args)
 int	assemble_path(t_args *args)
 {
 	int		i;
+	int		status;
 
 	i = -1;
-	if (check_absolute_path(args->arg_array[0], args) == 12)
+	status = check_absolute_path(args->arg_array[0], args);
+	if ( status== 12)
+		return (ft_error(NULL, 12));
+	if (status == -1)
 		return (ft_error(NULL, 1));
-	if (check_absolute_path(args->arg_array[0], args) == -1)
-		return (ft_error(NULL, 1));
-	if (check_absolute_path(args->arg_array[0], args) == 1)
+	if (status == 1)
 		return (ft_error(NULL, 2));
-	if (check_absolute_path(args->arg_array[0], args) == 2)
+	if (status == 2)
 	{
 		if (split_path(args) == 1)
 			return (ft_error(NULL, 1));
