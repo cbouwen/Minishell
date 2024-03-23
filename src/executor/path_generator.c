@@ -62,15 +62,15 @@ int	create_exec_path(t_args *args, char ***exec_path)
 	status = 0;
 	while (exec_path[++i])
 	{
-		status = true_path_ass(exec_path[i], args);
+		status = true_path_ass(*exec_path[i], args);
 		if (status == 0)
 		{
-			free_array(exec_path);
+			free_array(*exec_path);
 			return (2);
 		}
 		else if (status == 12)
 			return (12);
 	}
-	free_array(exec_path);
+	free_array(*exec_path);
 	return(4);
 }
