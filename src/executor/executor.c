@@ -90,11 +90,11 @@ int run_basic_cmd(t_token *tokens, t_environment *env, t_args *args)
 	builtin = determine_builtin(temp);
 	if (fill_args(args, temp) != 0)
 			return (ft_error(NULL, 1));
-	status = assemble_path(args);
 	if (builtin != 0)
 		status = run_builtin(temp, temp_env);
 	if (builtin == 0)
 	{
+		status = assemble_path(args);
 		status = path_error_handler(status);
 		if (status == 2)
 			status = run_execve(args);
