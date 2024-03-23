@@ -41,26 +41,30 @@ int	determine_file(t_token *tokens, t_args *args)
 		{
 			if (temp->next->type == ARG)
 			{
+				check_file_exists(args);
 				args->file = ft_strdup(temp->next->str);
 				return (0);
 			}
 		}
 		else if (temp->type == REDIRECT && temp_args->redirect == HERE_DOC)
+		{
+			check_file_exists(args);
 			temp_args->file = ft_strdup(temp->next->str);
+			return (0);
+		}
 		temp = temp->next;
 	}
-	check_file_exists(args);
 	return (1);
 }
 
 void	check_file_exists(t_args *args)
 {
-	/*if (args->file)
+	if (args->file)
 	{
 		if (access(args->file, F_OK) == 0)
 			args->file_exists = 1;
-	}*/
-	char *path = getenv("PWD");
+	}
+	/*char *path = getenv("PWD");
 	char *file_path = ft_strjoin(path, "/");
 	file_path = ft_strjoin_free(file_path, args->file, true);
 	args->file = ft_strdup(file_path);
@@ -71,7 +75,7 @@ void	check_file_exists(t_args *args)
 	else
 		args->file_exists = 1;
 	free(file_path);
-	free(path);
+	free(path);*/
 }
 
 /*int	heredoc_setup(t_token *token, t_args *args)
