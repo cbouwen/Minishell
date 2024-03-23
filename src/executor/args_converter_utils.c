@@ -46,7 +46,7 @@ int init_args(t_args *args)
 {	
 	args->arg_array = NULL;
 	args->env_array = NULL;
-	args->exec_path = NULL;
+	//args->exec_path = NULL;
 	return (0);
 }
 

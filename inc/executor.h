@@ -76,12 +76,12 @@ int			init_args(t_args *args);
 int			fill_env(t_args *args, t_environment *env);
 char		*ft_strjoin_free(char *s1, char *s2, bool free_str);
 int			find_path(t_args *args);
-int			split_path(t_args *args);
+int			split_path(t_args *args, char ***exec_path);
 int			free_array(char **array);
 int			assemble_path(t_args *args);
 int			true_path_ass(char *path, t_args *args);
 int			handle_rel_path(t_args *args);
-int			create_exec_path(t_args *args);
+int			create_exec_path(t_args *args, char ***exec_path);
 int			path_error_handler(int err_no);
 
 void	printf_args_env(t_args *args);

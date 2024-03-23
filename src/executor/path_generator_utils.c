@@ -18,8 +18,11 @@ int	check_absolute_path(char *path, t_args *args)
 	struct stat	path_stat;
 
 	stat(path, &path_stat);
-	temp = path[0];
-	args->exec_path = ft_calloc(sizeof(char *), 1);
+
+	(void)args;
+	/*temp = path[0];
+	args->exec_path = ft_calloc(sizeof(char *), 1);*/
+
 	if (!args->exec_path)
 		return (12);
 	if (temp == '/' && access(path, X_OK) == 0 && S_ISREG(path_stat.st_mode))
@@ -43,9 +46,9 @@ int	find_path(t_args *args)
 	return (-2);	
 }
 
-int split_path(t_args *args)
+int split_path(t_args *args, char ***exec_path)
 {
-	int		i;
+	/*int		i;
 	char	*path;
 	char	*path_start;
 
@@ -59,6 +62,24 @@ int split_path(t_args *args)
 	path_start++;
 	args->exec_path = ft_split(path_start, ':');
 	if (!args->exec_path)
+		return (3);
+	i = 0;
+	return (0);*/
+
+	int		i;
+	char	*path;
+	char	*path_start;
+
+	i = find_path(args);
+	if (i == -2)
+		return (-2);
+	path = args->env_array[i];
+	path_start = ft_strchr(path, '=');
+	if (!path_start)
+		return (3);
+	path_start++;
+	exec_path = ft_split(path_start, ':');
+	if (exec_path)
 		return (3);
 	i = 0;
 	return (0);

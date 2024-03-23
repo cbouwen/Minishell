@@ -50,7 +50,7 @@ typedef struct	s_args
 {
 	char	**arg_array;
 	char	**env_array;
-	char	**exec_path;
+	//char	**exec_path;
 }				t_args;
 
 /*typedef struct s_syntax_token

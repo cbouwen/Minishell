@@ -74,10 +74,10 @@ int	free_args(t_args *args)
 			free_array(args->arg_array);
 		if (args->env_array)
 			free_array(args->env_array);
-		if (args->exec_path == NULL)
+		/*if (args->exec_path == NULL)
 			free(args->exec_path);
 		if (args->exec_path)
-			free_array(args->exec_path);
+			free_array(args->exec_path);*/
 		free(args);
 	}
 	return (0);

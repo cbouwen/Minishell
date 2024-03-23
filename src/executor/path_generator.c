@@ -28,19 +28,20 @@ int	assemble_path(t_args *args)
 
 int	handle_rel_path(t_args *args)
 {
-	int	status;
+	int		status;
+	char	**exec_path;
 
-	status = split_path(args);
+	status = split_path(args, &exec_path);
 	if (status == 3)
 		return (3);
 	if (status == -2)
 		return (-2);
-	return (create_exec_path(args));
+	return (create_exec_path(args, &exec_path));
 }
 
-int	create_exec_path(t_args *args)
+int	create_exec_path(t_args *args, char ***exec_path)
 {
-	int	i;
+	/*int	i;
 	int	status;
 
 	i = 0;
@@ -53,5 +54,23 @@ int	create_exec_path(t_args *args)
 		else if (status == 12)
 			return (12);
 	}
+	return(4);*/
+	int	i;
+	int	status;
+
+	i = 0;
+	status = 0;
+	while (exec_path[++i])
+	{
+		status = true_path_ass(exec_path[i], args);
+		if (status == 0)
+		{
+			free_array(exec_path);
+			return (2);
+		}
+		else if (status == 12)
+			return (12);
+	}
+	free_array(exec_path);
 	return(4);
 }
