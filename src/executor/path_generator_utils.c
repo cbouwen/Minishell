@@ -40,7 +40,7 @@ int	find_path(t_args *args)
 			return (i);
 		i++;
 	}
-	return (-2));	
+	return (-2);	
 }
 
 int split_path(t_args *args)
