@@ -75,7 +75,6 @@ void	check_file_exists(t_args *args)
 	else
 		args->file_exists = 1;
 	free(file_path);
-	free(path);
 }
 
 /*int	heredoc_setup(t_token *token, t_args *args)
