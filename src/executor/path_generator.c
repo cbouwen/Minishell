@@ -14,7 +14,7 @@ int	assemble_path(t_args *args)
 {
 	int		status;
 
-	status = check_absolute_path(args->arg_array[0], args);
+	status = check_absolute_path(args->arg_array[0]);
 	if ( status== 12)
 		return (12);
 	if (status == -1)

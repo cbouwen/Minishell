@@ -14,13 +14,13 @@ int	determine_redirect(t_token *tokens, t_args *args)
 		if (temp->type == REDIRECT)
 		{
 			if (ft_strcmp(temp->str, ">") == 0)
-				args->redirect = OUTPUT;
+				temp_args->redirect = OUTPUT;
 			else if (ft_strcmp(temp->str, ">>") == 0)
-				args->redirect = APPEND;
+				temp_args->redirect = APPEND;
 			else if (ft_strcmp(temp->str, "<") == 0)
-				args->redirect = INPUT;
+				temp_args->redirect = INPUT;
 			else if (ft_strcmp(temp->str, "<<") == 0)
-				args->redirect = HERE_DOC;
+				temp_args->redirect = HERE_DOC;
 			return (0);
 		}
 		temp = temp->next;
@@ -88,4 +88,5 @@ int	heredoc_setup(t_token *token, t_args *args)
 		temp_args->file = ft_strdup("heredoc");
 	else
 		temp_args->file = ft_strdup(temp->next->str);
+	return (0);
 }
