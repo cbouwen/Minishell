@@ -60,7 +60,7 @@ void	check_file_exists(t_args *args)
 		if (access(args->file, F_OK) == 0)
 			args->file_exists = 1;
 	}*/
-	fd = open(args->file, O_RDWR | O_CREAT | O_TRUNC, 0644);
+	int fd = open(args->file, O_RDWR | O_CREAT | O_TRUNC, 0644);
 	if (fd < 0)
 		args->file_exists = 0;
 	else
