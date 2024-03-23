@@ -60,11 +60,11 @@ int	check_export(t_token *tokens)
 	temp = tokens;
 	if (!temp->next)
 		return (ft_error("export: no input\n", 1));
-	if (check_last_char(temp->next->str) == 0)
+	temp = temp->next;
+	if (temp->type == ARG)
+	if (check_first_char(temp->str) == 1)
 		return (ft_error("export: not a valid identifier\n", 1));
-	if (check_first_char(temp->next->str) == 1)
-		return (ft_error("export: not a valid identifier\n", 1));
-	if (!temp->next->next)
+	if (!temp->next)
 		return (ft_error("export: not enough arguments\n", 1));
 	return (ft_error(NULL, 0));
 }
