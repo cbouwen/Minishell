@@ -32,6 +32,7 @@
 # include <sys/types.h>
 # include <sys/wait.h>
 # include <sys/stat.h>
+# include <fcntl.h>
 
 t_environment				*env_parser(char *envp[]);
 void						free_env_node(t_environment *env);
