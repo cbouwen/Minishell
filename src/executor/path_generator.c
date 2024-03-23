@@ -36,10 +36,10 @@ int	handle_rel_path(t_args *args)
 		return (3);
 	if (status == -2)
 		return (-2);
-	return (create_exec_path(args, &exec_path));
+	return (create_exec_path(args, exec_path));
 }
 
-int	create_exec_path(t_args *args, char ***exec_path)
+int	create_exec_path(t_args *args, char **exec_path)
 {
 	/*int	i;
 	int	status;
@@ -60,18 +60,18 @@ int	create_exec_path(t_args *args, char ***exec_path)
 
 	i = 0;
 	status = 0;
-	while (*exec_path[i])
+	while (exec_path[i])
 	{
-		status = true_path_ass(*exec_path[i], args);
+		status = true_path_ass(exec_path[i], args);
 		if (status == 0)
 		{
-			free_array(*exec_path);
+			free_array(exec_path);
 			return (2);
 		}
 		else if (status == 12)
 			return (12);
 		i++;
 	}
-	free_array(*exec_path);
+	free_array(exec_path);
 	return(4);
 }
