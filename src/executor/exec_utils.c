@@ -60,14 +60,14 @@ int	determine_builtin(t_token *tokens)
 	return (0);
 }
 
-int check_last_char(char *str)
+int check_last_char(char *str, char c)
 {
 	int	i;
 
 	i = 0;
 	while (str[i])
 		i++;
-	if (str[i - 1] == '=')
+	if (str[i - 1] == c)
 		return (1);
 	return (0);
 }

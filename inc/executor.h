@@ -29,7 +29,7 @@ int			determine_builtin(t_token *tokens);
 int			check_env(t_token *tokens);
 int			check_export(t_token *tokens);
 int			check_unset(t_token *tokens);
-int			check_last_char(char *str);
+int			check_last_char(char *str, char c);
 int			check_first_char(char *str);
 int			check_absolute_path(char *path, t_args *args);
 
