@@ -59,12 +59,12 @@ int	determine_file(t_token *tokens, t_args *args)
 
 void	check_file_exists(t_args *args)
 {
-	if (args->file)
+	/*if (args->file)
 	{
 		if (access(args->file, F_OK) == 0)
 			args->file_exists = 1;
-	}
-	/*char *path = getenv("PWD");
+	}*/
+	char *path = getenv("PWD");
 	char *file_path = ft_strjoin(path, "/");
 	file_path = ft_strjoin_free(file_path, args->file, true);
 	args->file = ft_strdup(file_path);
@@ -75,7 +75,7 @@ void	check_file_exists(t_args *args)
 	else
 		args->file_exists = 1;
 	free(file_path);
-	free(path);*/
+	free(path);
 }
 
 /*int	heredoc_setup(t_token *token, t_args *args)
