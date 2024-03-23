@@ -93,10 +93,12 @@ int run_basic_cmd(t_token *tokens, t_environment *env, t_args *args)
 	status = assemble_path(args);
 	if (builtin != 0)
 		status = run_builtin(temp, temp_env);
-	else if (status != 2)
+	if (builtin == 0)
+	{
 		status = path_error_handler(status);
-	else if (status == 2)
-		status = run_execve(args);
+		if (status == 2)
+			status = run_execve(args);
+	}
 	return (status);
 }
 
