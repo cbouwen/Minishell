@@ -21,6 +21,7 @@ int			builtin_executor(t_token *tokens, t_environment *env);
 int			check_pipes(t_token *tokens);
 int			check_redirects(t_token *tokens);
 int			run_basic_cmd(t_token *tokens, t_environment *env, t_args *args);
+int			run_builtin(t_token *tokens, t_environment *env);
 
 /*syntax checkers*/
 int			exec_syntax_check(t_token *tokens);
