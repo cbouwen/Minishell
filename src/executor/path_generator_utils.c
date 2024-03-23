@@ -17,6 +17,8 @@ int	check_absolute_path(char *path, t_args *args)
 	char		temp;
 	struct stat	path_stat;
 
+	(void)args;
+
 	stat(path, &path_stat);
 	temp = path[0];
 	/*args->exec_path = ft_calloc(sizeof(char *), 1);
