@@ -16,14 +16,14 @@ int	assemble_path(t_args *args)
 
 	status = check_absolute_path(args->arg_array[0], args);
 	if ( status== 12)
-		return (ft_error(NULL, 12));
+		return (12);
 	if (status == -1)
-		return (ft_error(NULL, 1));
+		return (1);
 	if (status == 1)
-		return (ft_error(NULL, 2));
+		return (2);
 	if (status == 2)
-		return (ft_error(NULL, handle_rel_path(args)));
-	return (ft_error(NULL, 0));
+		return (handle_rel_path(args));
+	return (0);
 }
 
 int	handle_rel_path(t_args *args)
