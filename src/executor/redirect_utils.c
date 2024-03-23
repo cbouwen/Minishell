@@ -60,12 +60,18 @@ void	check_file_exists(t_args *args)
 		if (access(args->file, F_OK) == 0)
 			args->file_exists = 1;
 	}*/
+	char *path = getenv("PWD");
+	char *file_path = ft_strjoin(path, "/");
+	file_path = ft_strjoin_free(file_path, args->file, true);
+	args->file = file_path;
 	int fd = open(args->file, O_RDWR | O_CREAT | O_TRUNC, 0644);
 	args->fd = fd;
 	if (fd < 0)
 		args->file_exists = 0;
 	else
 		args->file_exists = 1;
+	free(file_path);
+	free(path);
 }
 
 /*int	heredoc_setup(t_token *token, t_args *args)
