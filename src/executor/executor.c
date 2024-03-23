@@ -38,17 +38,17 @@ int	builtin_executor(t_token *tokens, t_environment *env)
 	temp_env = env;
 	status = 0;
 	builtin = determine_builtin(temp);
-	if (builtin == 0)
+	if (builtin == 1)
 		status = determine_echo(temp);
-	else if (builtin == 0)
+	else if (builtin == 2)
 		status = pwd(temp);
-	else if (builtin == 0)
+	else if (builtin == 3)
 		status = print_env(temp, temp_env);
-	else if (builtin == 0)
+	else if (builtin == 4)
 		status = export_var(temp->next, temp_env);
-	else if (builtin == 0)
+	else if (builtin == 5)
 		status = unset_var(temp->next, temp_env);
-	else if (builtin == 0)
+	else if (builtin == 6)
 		status = change_dir(temp, temp_env);
 	else
 		return (ft_error("executor: unexpected error\n", 1));
@@ -82,17 +82,26 @@ int run_basic_cmd(t_token *tokens, t_environment *env, t_args *args)
 	t_token			*temp;
 	t_environment	*temp_env;
 	int				status;
+	int				builtin;
 
 	temp = tokens;
 	temp_env = env;
 	status = 0;
+	builtin = determine_builtin(temp);
 	if (fill_args(args, temp) != 0)
 			return (ft_error(NULL, 1));
-	status = assemble_path(args);
-	if (determine_builtin(temp) != 0)
+	args->exec_path = ft_calloc(sizeof(char *), 1);
+	if (!args->exec_path)
+		return (ft_error("execve: calloc error\n", 12));
+	//status = assemble_path(args);
+	if (builtin != 0)
 		status = run_builtin(temp, temp_env);
 	else
-		status = run_execve(args);
+	{
+		status = assemble_path(args);
+		if (status == 0)
+			status = run_execve(args);
+	}
 	return (status);
 }
 
