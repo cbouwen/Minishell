@@ -99,7 +99,7 @@ int run_basic_cmd(t_token *tokens, t_environment *env, t_args *args)
 	else
 	{
 		status = assemble_path(args);
-		if (status == 0)
+		if (status == 2)
 			status = run_execve(args);
 	}
 	return (status);
