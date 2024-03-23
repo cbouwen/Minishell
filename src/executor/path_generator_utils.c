@@ -79,7 +79,7 @@ int split_path(t_args *args, char ***exec_path)
 		return (3);
 	path_start++;
 	*exec_path = ft_split(path_start, ':');
-	if (exec_path)
+	if (!*exec_path)
 		return (3);
 	i = 0;
 	return (0);
