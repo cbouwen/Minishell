@@ -27,46 +27,31 @@ extern int	g_err;
 		- Test
 */
 
-int	_executor(t_token *tokens, t_environment *env) //change name to executor? along with the .c file?
+int	builtin_executor(t_token *tokens, t_environment *env)
 {
 	t_token			*temp;
 	t_environment	*temp_env;
 	int				status;
-	t_args			*args;
+	int				builtin;
 
 	temp = tokens;
 	temp_env = env;
 	status = 0;
-	args = malloc(sizeof(t_args));
-	if (!args)
-		return (ft_error("executor: malloc error\n", 12));
-	if (fill_env(args, temp_env) != 0)
-		return (ft_error("executor: fill_env error\n", 1));
-	while (temp)
-	{
-		if (temp->type == CMD)
-		{
-			if (fill_args(args, temp) != 0)
-				return (ft_error("executor: fill_args error\n", 1));
-			printf_args_env(args);
-			if (ft_strcmp(temp->str, "echo") == 0)
-				determine_echo(temp);
-			else if (ft_strcmp(temp->str, "pwd") == 0)
-				pwd(temp);
-			else if (ft_strcmp(temp->str, "env") == 0)
-				print_env(temp, temp_env);
-			else if (ft_strcmp(temp->str, "export") == 0)
-				export_var(temp->next, temp_env);
-			else if (ft_strcmp(temp->str, "unset") == 0)
-				unset_var(temp->next, temp_env);
-			else if (ft_strcmp(temp->str, "cd") == 0)
-				change_dir(temp, temp_env);
-			else
-				status = execve_executor(temp, args);
-		}
-		temp = temp->next;
-	}
-	free_args(args);
+	builtin = determine_builtin(temp);
+	if (builtin == 0)
+		status = determine_echo(temp);
+	else if (builtin == 0)
+		status = pwd(temp);
+	else if (builtin == 0)
+		status = print_env(temp, temp_env);
+	else if (builtin == 0)
+		status = export_var(temp->next, temp_env);
+	else if (builtin == 0)
+		status = unset_var(temp->next, temp_env);
+	else if (builtin == 0)
+		status = change_dir(temp, temp_env);
+	else
+		return (ft_error("executor: unexpected error\n", 1));
 	return (status);
 }
 
@@ -100,40 +85,27 @@ int run_basic_cmd(t_token *tokens, t_environment *env, t_args *args)
 
 	temp = tokens;
 	temp_env = env;
-	(void)temp_env;
 	status = 0;
-
-	//do this or leaks
 	if (fill_args(args, temp) != 0)
 			return (ft_error(NULL, 1));
 	status = assemble_path(args);
-
 	if (determine_builtin(temp) != 0)
-		//run_builtin(temp, temp_env);
-		return (printf("run_builtin\n"));
+		status = run_builtin(temp, temp_env);
 	else
-	{
-		
-
-		//status = assemble_path(args);
-		printf("assemble_path: %s\n", args->arg_array[0]);
-
-		if (status != 2)
-			status = exec_syntax_check(temp);
-
-		printf("exec_syntax_check: %d\n", status);
-
-		if (status == 0)
-		{
-			if (check_redirects(temp) == 1)
-				//status = exec_command(temp, temp_env);
-				printf("exec_command\n");
-			else
-				//status = redirect(temp, temp_env);
-				printf("redirect\n");
-		}
-	}
-	return (1);
+		status = run_execve(args);
+	return (status);
 }
 
+int run_builtin(t_token *tokens, t_environment *env)
+{
+	t_token			*temp;
+	t_environment	*temp_env;
+	int				status;
 
+	temp = tokens;
+	temp_env = env;
+	status = exec_syntax_check(temp);
+	if (status == 0)
+		status = builtin_executor(temp, temp_env);
+	return (ft_error(NULL, status));
+}

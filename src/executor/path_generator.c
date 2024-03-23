@@ -41,12 +41,12 @@ int	create_exec_path(t_args *args)
 	i = 0;
 	status = 0;
 	while (args->exec_path[++i])
-		{
-			status = true_path_ass(args->exec_path[i], args);
-			if (status == 0)
-				return (ft_error(NULL, 2));
-			else if (status == 12)
-				return (ft_error(NULL, 1));
-		}
-		return(ft_error("execve: no executable found\n", 1));
+	{
+		status = true_path_ass(args->exec_path[i], args);
+		if (status == 0)
+			return (ft_error(NULL, 2));
+		else if (status == 12)
+			return (ft_error(NULL, 1));
+	}
+	return(ft_error("execve: no executable found\n", 1));
 }

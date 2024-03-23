@@ -19,6 +19,8 @@ int exec_syntax_check(t_token *tokens)
 
 	temp = tokens;
 	status = -1;
+	if (tokens->type !=CMD)
+		return (ft_error("executor: syntax error\n", 1));
 	if (determine_builtin(temp) == 1)
 		status = 0;
 	else if (determine_builtin(temp) == 2)
