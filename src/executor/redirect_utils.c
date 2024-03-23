@@ -41,15 +41,15 @@ int	determine_file(t_token *tokens, t_args *args)
 		{
 			if (temp->next->type == ARG)
 			{
-				check_file_exists(args);
 				args->file = ft_strdup(temp->next->str);
+				check_file_exists(args);
 				return (0);
 			}
 		}
 		else if (temp->type == REDIRECT && temp_args->redirect == HERE_DOC)
 		{
-			check_file_exists(args);
 			temp_args->file = ft_strdup(temp->next->str);
+			check_file_exists(args);
 			return (0);
 		}
 		temp = temp->next;
