@@ -95,6 +95,7 @@ int run_basic_cmd(t_token *tokens, t_environment *env, t_args *args)
 		status = run_builtin(temp, temp_env);
 	if (builtin == 0)
 	{
+		printf("status: %d\n", status);
 		status = path_error_handler(status);
 		if (status == 2)
 			status = run_execve(args);
