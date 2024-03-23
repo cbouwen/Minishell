@@ -97,6 +97,8 @@ int	path_error_handler(int err_no)
 {
 	if (err_no == 12)
 		return (ft_error("execve: malloc error", 12));
+	else if (err_no == 1)
+		return (ft_error("execve: no executable file or directory", 12));
 	else if (err_no == -1)
 		return (ft_error("execve: no executable file or directory", 1));
 	else if (err_no == -2)
