@@ -82,6 +82,7 @@ int			assemble_path(t_args *args);
 int			true_path_ass(char *path, t_args *args);
 int			handle_rel_path(t_args *args);
 int			create_exec_path(t_args *args);
+int			path_error_handler(int err_no);
 
 void	printf_args_env(t_args *args);
 

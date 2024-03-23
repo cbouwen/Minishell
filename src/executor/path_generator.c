@@ -28,9 +28,14 @@ int	assemble_path(t_args *args)
 
 int	handle_rel_path(t_args *args)
 {
-	if (split_path(args) == 1)
-		return (ft_error(NULL, 1));
-	return (ft_error(NULL, create_exec_path(args)));
+	int	status;
+
+	status = split_path(args);
+	if (status == 3)
+		return (3);
+	if (status == -2)
+		return (-2);
+	return (create_exec_path(args));
 }
 
 int	create_exec_path(t_args *args)
@@ -44,9 +49,9 @@ int	create_exec_path(t_args *args)
 	{
 		status = true_path_ass(args->exec_path[i], args);
 		if (status == 0)
-			return (ft_error(NULL, 2));
+			return (2);
 		else if (status == 12)
-			return (ft_error(NULL, 1));
+			return (12);
 	}
-	return(ft_error("execve: no executable found\n", 1));
+	return(4);
 }

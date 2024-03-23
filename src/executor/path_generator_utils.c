@@ -17,17 +17,15 @@ int	check_absolute_path(char *path, t_args *args)
 	char		temp;
 	struct stat	path_stat;
 
-	(void)args;
-
 	stat(path, &path_stat);
 	temp = path[0];
-	/*args->exec_path = ft_calloc(sizeof(char *), 1);
+	args->exec_path = ft_calloc(sizeof(char *), 1);
 	if (!args->exec_path)
-		return (ft_error("execve: calloc error\n", 12));*/
+		return (12);
 	if (temp == '/' && access(path, X_OK) == 0 && S_ISREG(path_stat.st_mode))
 		return (1);
 	else if (temp == '/' && S_ISREG(path_stat.st_mode) == false)
-		return (ft_error("execve: not an executable file\n", -1));
+		return (-1);
 	return (2);
 }
 
@@ -42,7 +40,7 @@ int	find_path(t_args *args)
 			return (i);
 		i++;
 	}
-	return (ft_error("execve: no PATH variable\n", -1));	
+	return (-2));	
 }
 
 int split_path(t_args *args)
@@ -52,18 +50,18 @@ int split_path(t_args *args)
 	char	*path_start;
 
 	i = find_path(args);
-	if (i == -1)
-		return (ft_error(NULL, 1));
+	if (i == -2)
+		return (-2);
 	path = args->env_array[i];
 	path_start = ft_strchr(path, '=');
 	if (!path_start)
-		return (ft_error("execve: ft_strchr error\n", 1));
+		return (3);
 	path_start++;
 	args->exec_path = ft_split(path_start, ':');
 	if (!args->exec_path)
-		return (ft_error("execve: split error\n", 1));
+		return (3);
 	i = 0;
-	return (ft_error(NULL, 0));
+	return (0);
 }
 
 int	true_path_ass(char *path, t_args *args)
@@ -79,7 +77,7 @@ int	true_path_ass(char *path, t_args *args)
 	j = ft_strlen(path) + ft_strlen(command);
 	test_path = malloc(sizeof(char) * j + 2);
 	if (!test_path)
-		return (ft_error("execve: malloc error", 12));
+		return (12);
 	len = ft_strlen(path) + 1;
 	ft_strlcpy(test_path, path, len);
 	ft_strlcat(test_path, "/", len + 1);
@@ -93,4 +91,19 @@ int	true_path_ass(char *path, t_args *args)
 	}
 	free(test_path);
 	return (1);
+}
+
+int	path_error_handler(int err_no)
+{
+	if (err_no == 12)
+		return (ft_error("execve: malloc error", 12));
+	else if (err_no == -1)
+		return (ft_error("execve: no executable file or directory", 1));
+	else if (err_no == -2)
+		return (ft_error("execve: no PATH variable set", 1));
+	else if (err_no == 3)
+		return (ft_error("execve: split_path error", 1));
+	else if (err_no == 4)
+		return (ft_error("command not found", 127));
+	return (err_no);
 }

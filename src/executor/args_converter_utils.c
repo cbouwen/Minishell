@@ -46,9 +46,7 @@ int init_args(t_args *args)
 {	
 	args->arg_array = NULL;
 	args->env_array = NULL;
-	args->exec_path = ft_calloc(sizeof(char *), 1);
-	if (!args->exec_path)
-		return (ft_error("init_args: calloc error\n", 12));
+	args->exec_path = NULL;
 	return (0);
 }
 
