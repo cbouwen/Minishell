@@ -16,6 +16,15 @@
 #include "minishell.h"
 #include <stdbool.h>
 
+typedef enum	e_redirect
+{
+	INPUT,
+	APPEND,
+	OUTPUT,
+	HERE_DOC,
+	TEMP
+}				t_redirect;
+
 typedef struct	s_environment
 {
 	char					*name;
@@ -30,7 +39,7 @@ typedef enum	e_type
 	REDIRECT,
 	ARG,
 	CMD
-}		t_type;
+}				t_type;
 
 typedef struct	s_token
 {
@@ -48,9 +57,12 @@ typedef struct	s_token
 
 typedef struct	s_args
 {
-	char	**arg_array;
-	char	**env_array;
-	//char	**exec_path;
+	char		**arg_array;
+	char		**env_array;
+	t_redirect	redirect;
+	char		*file;
+	int			file_exists;
+	int			fd;
 }				t_args;
 
 /*typedef struct s_syntax_token

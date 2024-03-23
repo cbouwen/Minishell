@@ -64,6 +64,7 @@ int executor(t_token *tokens, t_environment *env)
 	temp = tokens;
 	temp_env = env;
 	args = malloc(sizeof(t_args));
+	init_args(args);
 	if (!args)
 		return (ft_error("executor: malloc error\n", 12));
 	if (fill_env(args, temp_env) != 0)
@@ -78,6 +79,35 @@ int executor(t_token *tokens, t_environment *env)
 }
 
 int run_basic_cmd(t_token *tokens, t_environment *env, t_args *args)
+{
+	t_token			*temp;
+	t_environment	*temp_env;
+	int				status;
+
+	temp = tokens;
+	temp_env = env;
+	status = 0;
+	if (check_redirects(temp) == 1)
+		status = prep_cmd(temp, temp_env, args);
+	else
+		status = run_redirects(temp, temp_env);
+}
+
+int run_builtin(t_token *tokens, t_environment *env)
+{
+	t_token			*temp;
+	t_environment	*temp_env;
+	int				status;
+
+	temp = tokens;
+	temp_env = env;
+	status = exec_syntax_check(temp);
+	if (status == 0)
+		status = builtin_executor(temp, temp_env);
+	return (ft_error(NULL, status));
+}
+
+int	prep_cmd(t_token *tokens, t_environment *env, t_args *args)
 {
 	t_token			*temp;
 	t_environment	*temp_env;
@@ -100,18 +130,4 @@ int run_basic_cmd(t_token *tokens, t_environment *env, t_args *args)
 			status = run_execve(args);
 	}
 	return (status);
-}
-
-int run_builtin(t_token *tokens, t_environment *env)
-{
-	t_token			*temp;
-	t_environment	*temp_env;
-	int				status;
-
-	temp = tokens;
-	temp_env = env;
-	status = exec_syntax_check(temp);
-	if (status == 0)
-		status = builtin_executor(temp, temp_env);
-	return (ft_error(NULL, status));
 }

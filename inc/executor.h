@@ -22,6 +22,13 @@ int			check_pipes(t_token *tokens);
 int			check_redirects(t_token *tokens);
 int			run_basic_cmd(t_token *tokens, t_environment *env, t_args *args);
 int			run_builtin(t_token *tokens, t_environment *env);
+int			prep_cmd(t_token *tokens, t_environment *env, t_args *args);
+
+/*redirects*/
+int			run_redirects(t_token *tokens, t_environment *env, t_args *args);
+int			determine_redirect(t_token *tokens, t_args *args);
+int			determine_file(t_token *tokens, t_args *args);
+int			heredoc_setup(t_token *tokens, t_args *args);
 
 /*syntax checkers*/
 int			exec_syntax_check(t_token *tokens);
@@ -31,7 +38,7 @@ int			check_export(t_token *tokens);
 int			check_unset(t_token *tokens);
 int			check_last_char(char *str, char c);
 int			check_first_char(char *str);
-int			check_absolute_path(char *path, t_args *args);
+int			check_absolute_path(char *path);
 
 /*echo*/
 int			determine_echo(t_token *tokens);

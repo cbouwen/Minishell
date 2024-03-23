@@ -41,20 +41,6 @@ int	handle_rel_path(t_args *args)
 
 int	create_exec_path(t_args *args, char **exec_path)
 {
-	/*int	i;
-	int	status;
-
-	i = 0;
-	status = 0;
-	while (args->exec_path[++i])
-	{
-		status = true_path_ass(args->exec_path[i], args);
-		if (status == 0)
-			return (2);
-		else if (status == 12)
-			return (12);
-	}
-	return(4);*/
 	int	i;
 	int	status;
 

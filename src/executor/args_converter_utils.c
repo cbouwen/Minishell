@@ -46,7 +46,10 @@ int init_args(t_args *args)
 {	
 	args->arg_array = NULL;
 	args->env_array = NULL;
-	//args->exec_path = NULL;
+	args->redirect = TEMP;
+	args->file = NULL;
+	args->file_exists = 0;
+	args->fd = 0;
 	return (0);
 }
 
