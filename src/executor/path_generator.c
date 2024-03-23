@@ -58,7 +58,7 @@ int	create_exec_path(t_args *args, char ***exec_path)
 	int	i;
 	int	status;
 
-	i = 0;
+	i = -1;
 	status = 0;
 	while (*exec_path[++i])
 	{
