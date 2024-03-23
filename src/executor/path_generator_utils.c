@@ -96,16 +96,16 @@ int	true_path_ass(char *path, t_args *args)
 int	path_error_handler(int err_no)
 {
 	if (err_no == 12)
-		return (ft_error("execve: malloc error", 12));
+		return (ft_error("execve: malloc error\n", 12));
 	else if (err_no == 1)
-		return (ft_error("execve: no executable file or directory", 12));
+		return (ft_error("execve: no executable file or directory\n", 12));
 	else if (err_no == -1)
-		return (ft_error("execve: no executable file or directory", 1));
+		return (ft_error("execve: no executable file or directory\n", 1));
 	else if (err_no == -2)
-		return (ft_error("execve: no PATH variable set", 1));
+		return (ft_error("execve: no PATH variable set\n", 1));
 	else if (err_no == 3)
-		return (ft_error("execve: split_path error", 1));
+		return (ft_error("execve: split_path error\n", 1));
 	else if (err_no == 4)
-		return (ft_error("command not found", 127));
+		return (ft_error("command not found\n", 127));
 	return (err_no);
 }
