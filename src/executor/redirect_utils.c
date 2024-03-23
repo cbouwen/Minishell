@@ -55,11 +55,16 @@ int	determine_file(t_token *tokens, t_args *args)
 
 void	check_file_exists(t_args *args)
 {
-	if (args->file)
+	/*if (args->file)
 	{
 		if (access(args->file, F_OK) == 0)
 			args->file_exists = 1;
-	}
+	}*/
+	fd = open(args->file, O_RDWR | O_CREAT | O_TRUNC, 0644);
+	if (fd < 0)
+		args->file_exists = 0;
+	else
+		args->file_exists = 1;
 }
 
 /*int	heredoc_setup(t_token *token, t_args *args)
