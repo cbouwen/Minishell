@@ -60,7 +60,7 @@ int	create_exec_path(t_args *args, char ***exec_path)
 
 	i = 0;
 	status = 0;
-	while (exec_path[++i])
+	while (*exec_path[++i])
 	{
 		status = true_path_ass(*exec_path[i], args);
 		if (status == 0)
