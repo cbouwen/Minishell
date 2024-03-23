@@ -84,11 +84,15 @@ int	heredoc_setup(t_token *token, t_args *args)
 
 	temp = token;
 	temp_args = args;
-	printf("heredoc_setup: 1\n");
 	if (!temp->next || temp->next->type != ARG)
+	{
+		printf("heredoc_setup: 1\n");
 		temp_args->file = ft_strdup("heredoc");
-	printf("heredoc_setup: 2\n");
+	}
 	else
+	{
+		printf("heredoc_setup: 2\n");
 		temp_args->file = ft_strdup(temp->next->str);
+	}
 	return (0);
 }
