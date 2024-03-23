@@ -35,12 +35,10 @@ int	determine_file(t_token *tokens, t_args *args)
 
 	temp = tokens;
 	temp_args = args;
-	while (temp->type != PIPE)
+	while (temp && temp->type != PIPE)
 	{
 		if (temp->type == REDIRECT && temp_args->redirect != HERE_DOC)
 		{
-			if (!temp->next)
-				return (3);
 			if (temp->next->type == ARG)
 			{
 				args->file = ft_strdup(temp->next->str);
