@@ -90,9 +90,6 @@ int run_basic_cmd(t_token *tokens, t_environment *env, t_args *args)
 	builtin = determine_builtin(temp);
 	if (fill_args(args, temp) != 0)
 			return (ft_error(NULL, 1));
-	args->exec_path = ft_calloc(sizeof(char *), 1);
-	if (!args->exec_path)
-		return (ft_error("execve: calloc error\n", 12));
 	//status = assemble_path(args);
 	if (builtin != 0)
 		status = run_builtin(temp, temp_env);
