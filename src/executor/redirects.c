@@ -18,5 +18,6 @@ int	run_redirects(t_token *tokens, t_environment *env, t_args *args)
 	status = determine_file(temp, temp_args);
 	printf("redirect: %d\n", temp_args->redirect);
 	printf("file: %s\n", temp_args->file);
+	printf("file_exists: %d\n", temp_args->file_exists);
 	return (ft_error(NULL, status));
 }

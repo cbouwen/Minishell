@@ -46,15 +46,25 @@ int	determine_file(t_token *tokens, t_args *args)
 			}
 		}
 		else if (temp->type == REDIRECT && temp_args->redirect == HERE_DOC)
-			heredoc_setup(temp, args);
+			temp_args->file = ft_strdup(temp->next->str);
 		temp = temp->next;
 	}
+	check_file_exists(args);
 	return (1);
 }
 
-int	heredoc_setup(t_token *token, t_args *args)
+void	check_file_exists(t_args *args)
 {
-	/*int		fd;
+	if (args->file)
+	{
+		if (access(args->file, F_OK) == 0)
+			args->file_exists = 1;
+	}
+}
+
+/*int	heredoc_setup(t_token *token, t_args *args)
+{
+	int		fd;
 	char	*line;
 
 	fd = open("heredoc", O_RDWR | O_CREAT | O_TRUNC, 0644);
@@ -76,21 +86,5 @@ int	heredoc_setup(t_token *token, t_args *args)
 	}
 	close(fd);
 	args->file = ft_strdup("heredoc");
-	return (0);*/
-	t_token	*temp;
-	t_args	*temp_args;
-
-	temp = token;
-	temp_args = args;
-	if (!temp->next || temp->next->type != ARG)
-	{
-		printf("heredoc_setup: 1\n");
-		temp_args->file = ft_strdup("heredoc");
-	}
-	else
-	{
-		printf("heredoc_setup: 2\n");
-		temp_args->file = ft_strdup(temp->next->str);
-	}
 	return (0);
-}
+}*/
