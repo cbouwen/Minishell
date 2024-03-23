@@ -21,10 +21,10 @@ int	check_absolute_path(char *path, t_args *args)
 
 	(void)args;
 	/*temp = path[0];
-	args->exec_path = ft_calloc(sizeof(char *), 1);*/
-
+	args->exec_path = ft_calloc(sizeof(char *), 1);
 	if (!args->exec_path)
-		return (12);
+		return (12);*/
+		
 	if (temp == '/' && access(path, X_OK) == 0 && S_ISREG(path_stat.st_mode))
 		return (1);
 	else if (temp == '/' && S_ISREG(path_stat.st_mode) == false)
