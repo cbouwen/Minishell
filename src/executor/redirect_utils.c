@@ -89,11 +89,11 @@ int open_file(t_args *args)
 		fd = open(args->file, O_RDWR);
 	else if (args->redirect == HERE_DOC)
 	{
-		if (args->heredoc_redirect == OUTPUT)
+		if (ft_strcmp(args->heredoc_redirect, ">") == 0
 			fd = open(args->file, O_RDWR | O_CREAT | O_TRUNC, 0644);
-		else if (args->heredoc_redirect == APPEND)
+		else if (ft_strcmp(args->heredoc_redirect, ">>") == 0
 			fd = open(args->file, O_RDWR | O_APPEND, 0644);
-		else if (args->heredoc_redirect == INPUT)
+		else if (ft_strcmp(args->heredoc_redirect, "<") == 0
 			fd = open(args->file, O_RDWR);
 	}
 	if (fd < 0)
