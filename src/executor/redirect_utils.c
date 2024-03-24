@@ -76,10 +76,10 @@ void	check_file_exists(t_token *tokens, t_args *args)
 		temp_args->file_exists = 0;
 	free(file_path);
 	free(path);
-	open_file(temp, temp_args);
+	open_file(temp_args);
 }
 
-int open_file(t_token *tokens, t_args *args)
+int open_file(t_args *args)
 {
 	int fd;
 
@@ -113,7 +113,7 @@ int setup_heredoc(t_token *tokens, t_args *args)
 	temp_args = args;
 	while (temp && temp->type != REDIRECT)
 		temp = temp->next;
-	if (!temp->next | temp->next->type != ARG)
+	if (!temp->next || temp->next->type != ARG)
 		return (ft_error("heredoc: syntax error\n", 3));
 	else
 		args->delimiter = ft_strdup(temp->next->str);
@@ -128,7 +128,7 @@ int setup_heredoc(t_token *tokens, t_args *args)
 		return (ft_error("heredoc: syntax error\n", 3));
 	else
 		args->file = ft_strdup(temp->next->str);
-	open_file(temp, temp_args);
+	open_file(temp_args);
 	return (0);
 }
 
