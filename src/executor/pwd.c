@@ -6,6 +6,7 @@ int	pwd(t_token *token)
 {
 	char	*cwd;
 
+	(void)token;
 	cwd = getcwd(NULL, 0);
 	if (!cwd)
 		return (ft_error("pwd: error retrieving current directory\n", 1));

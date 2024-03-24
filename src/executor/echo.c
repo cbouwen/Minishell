@@ -26,11 +26,9 @@ int	echo(t_token *tokens)
 {
 	t_token	*temp;
 	int		n_flag;
-	int		output_fd;
 
 	temp = tokens;
 	n_flag = 0;
-	output_fd = temp->output;
 	if (temp->type == ARG && ft_strcmp(temp->str, "-n") == 0)
 	{
 		n_flag = 1;
@@ -38,7 +36,6 @@ int	echo(t_token *tokens)
 	}
 	while (temp && temp->type == ARG)
 	{
-		output_fd = temp->output;
 		printf("%s", temp->str);
 		//ft_putstr_fd(temp->str, output_fd);
 		if (temp->has_space)
@@ -57,6 +54,7 @@ int	echo_no_arg(t_token *tokens)
 	t_token	*temp;
 
 	temp = tokens;
+	(void)temp;
 	printf("\n");
 	//ft_putchar_fd('\n', temp->output);
 	return (ft_error(NULL, 0));

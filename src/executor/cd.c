@@ -81,6 +81,7 @@ int	go_oldpwd(t_token *tokens, t_environment *env)
 	char	*new_pwd;
 	char	*current_pwd;
 
+	(void)tokens;
 	current_pwd = getcwd(NULL, 0);
 	if (!current_pwd)
 		return (free_and_return(current_pwd, NULL, 12));
