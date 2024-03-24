@@ -112,18 +112,18 @@ int setup_heredoc(t_token *tokens, t_args *args)
 	while (temp && temp->type != REDIRECT)
 		temp = temp->next;
 	if (!temp->next || temp->next->type != ARG)
-		return (ft_error("heredoc: syntax error\n", 3));
+		return (ft_error("heredoc: syntax error 1\n", 3));
 	else
 		args->delimiter = ft_strdup(temp->next->str);
 	temp = temp->next;
 	if (temp->next->type != REDIRECT)
-		return (ft_error("heredoc: syntax error\n", 3));
+		return (ft_error("heredoc: syntax error 2\n", 3));
 	if (temp_args->redirect == HERE_DOC)
-		return (ft_error("heredoc: syntax error\n", 3));
+		return (ft_error("heredoc: syntax error 3\n", 3));
 	else
 		temp_args->heredoc_redirect = temp_args->redirect;
 	if (!temp->next || temp->next->type != ARG)
-		return (ft_error("heredoc: syntax error\n", 3));
+		return (ft_error("heredoc: syntax error 4\n", 3));
 	else
 		args->file = ft_strdup(temp->next->str);
 	open_file(temp_args);
