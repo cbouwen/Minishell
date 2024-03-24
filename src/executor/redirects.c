@@ -12,12 +12,11 @@ int	run_redirects(t_token *tokens, t_environment *env, t_args *args)
 	temp = tokens;
 	temp_env = env;
 	temp_args = args;
-	(void)temp_env;
 	status = 0;
 	status = determine_redirect(temp, temp_args);
 	status = determine_file(temp, temp_args);
 	if (temp_args->redirect == INPUT)
-		status = redirect_input(temp_args);
+		status = redirect_input(temp, temp_env, temp_args);
 	/*else if (temp_args->redirect == APPEND)
 		status = redirect_append(temp_args);
 	else if (temp_args->redirect == INPUT)
