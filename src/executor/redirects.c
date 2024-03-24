@@ -33,12 +33,18 @@ int	run_redirects(t_token *tokens, t_environment *env, t_args *args)
 	return (ft_error(NULL, status));
 }
 
-int redirect_input(t_args *args)
+int redirect_input(t_token *tokens, t_environment *env, t_args *args)
 {
-	t_args	*temp_args;
+	t_token			*temp;
+	t_environment	*temp_env;
+	t_args			*temp_args;
 
+	temp = tokens;
+	temp_env = env;
 	temp_args = args;
-	if (dup2(temp_args->fd, 0) == -1)
+	if (dup2(temp_args->fd, STDIN_FILENO) == -1)
 		return (ft_error("redirect: dup2 error\n", 1));
-	return (ft_error(NULL, 0));
+	close(temp_args->fd);
+	int status = prep_cmd(temp, temp_env, temp_args);
+	return (ft_error(NULL, status));
 }
