@@ -34,7 +34,7 @@ int	run_execve(t_args *args)
 	if (pid == 0)
 	{
 		if (execve(args->arg_array[0], args->arg_array, args->env_array) == -1)
-			exit(1);
+			//exit(1);
 	}
 	else
 	{
