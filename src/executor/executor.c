@@ -90,7 +90,7 @@ int run_basic_cmd(t_token *tokens, t_environment *env, t_args *args)
 	
 	char *path = getcwd(NULL, 0);
 	printf("path: %s\n", path);
-	chdir("home");
+	chdir("/home/matisse/git");
 	path = getcwd(NULL, 0);
 	printf("path: %s\n", path);
 	free(path);
