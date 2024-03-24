@@ -8,6 +8,7 @@ int	run_redirects(t_token *tokens, t_environment *env, t_args *args)
 	t_environment	*temp_env;
 	t_args			*temp_args;
 	int				status;
+	pid_t			pid;
 
 	temp = tokens;
 	temp_env = env;
@@ -15,8 +16,20 @@ int	run_redirects(t_token *tokens, t_environment *env, t_args *args)
 	status = 0;
 	status = determine_redirect(temp, temp_args);
 	status = determine_file(temp, temp_args);
-	if (temp_args->redirect == INPUT)
+	pid = fork();
+	if (pid < 0)
+		return (ft_error("redirect: fork error\n", 1));
+	else if (pid == 0)
+	{
+		if (temp_args->redirect == INPUT)
 		status = redirect_input(temp, temp_env, temp_args);
+	}
+	else
+	{
+		waitpid(pid, &status, 0);
+		return (WEXITSTATUS(status));
+	}
+	
 	/*else if (temp_args->redirect == APPEND)
 		status = redirect_append(temp_args);
 	else if (temp_args->redirect == INPUT)
