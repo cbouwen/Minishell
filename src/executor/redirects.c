@@ -70,10 +70,10 @@ int redirect_output(t_token *tokens, t_environment *env, t_args *args)
 		return (ft_error("redirect: dup error\n", 1));
 	if (dup2(temp_args->fd, STDOUT_FILENO) == -1)
 		return (ft_error("redirect: dup2 error\n", 1));
-	close(temp_args->fd);
     status = prep_cmd(temp, temp_env, temp_args);
 	if (dup2(saved_stdout, STDOUT_FILENO) == -1)
         return (ft_error("redirect: dup2 error\n", 1));
+	close(temp_args->fd);
 	close(saved_stdout);
     return (ft_error(NULL, status));
 }
