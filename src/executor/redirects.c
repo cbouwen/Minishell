@@ -57,11 +57,12 @@ int redirect_input(t_token *tokens, t_environment *env, t_args *args)
 	temp = tokens;
 	temp_env = env;
 	temp_args = args;
+	int saved_stdin = dup(STDIN_FILENO);
 	if (dup2(temp_args->fd, STDIN_FILENO) == -1)
 		return (ft_error("redirect: dup2 error\n", 1));
 	close(temp_args->fd);
-
 	int status = prep_cmd(temp, temp_env, temp_args);
-	dup2(STDIN_FILENO, temp_args->fd);
+	dup2(saved_stdin, STDIN_FILENO);
+	close(saved_stdin);
 	return (ft_error(NULL, status));
 }
