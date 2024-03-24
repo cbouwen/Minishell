@@ -59,14 +59,14 @@ int redirect_output(t_token *tokens, t_environment *env, t_args *args)
 	t_token			*temp;
 	t_environment	*temp_env;
 	t_args			*temp_args;
-	int				saved_stdin;
+	int				saved_stdout;
 	int				status;
 
 	temp = tokens;
 	temp_env = env;
 	temp_args = args;
-	saved_stdin = dup(STDOUT_FILENO);
-	if (saved_stdin == -1)
+	saved_stdout = dup(STDOUT_FILENO);
+	if (saved_stdout == -1)
 		return (ft_error("redirect: dup error\n", 1));
 	if (dup2(temp_args->fd, STDOUT_FILENO) == -1)
 		return (ft_error("redirect: dup2 error\n", 1));
@@ -83,20 +83,20 @@ int redirect_append(t_token *tokens, t_environment *env, t_args *args)
 	t_token			*temp;
 	t_environment	*temp_env;
 	t_args			*temp_args;
-	int				saved_stdin;
+	int				saved_stdout;
 	int				status;
 
 	temp = tokens;
 	temp_env = env;
 	temp_args = args;
-	saved_stdin = dup(STDOUT_FILENO);
-	if (saved_stdin == -1)
+	saved_stdout = dup(STDOUT_FILENO);
+	if (saved_stdout == -1)
 		return (ft_error("redirect: dup error\n", 1));
 	if (dup2(args->fd, STDOUT_FILENO) == -1)
 		return (ft_error("redirect: dup2 error\n", 1));
 	write(args->fd, "\n", 1);
 	close(args->fd);
-	status = prep_cmd(temp, temp_env, args);
+	status = prep_cmd(temp, temp_env, temp_args);
 	if (dup2(saved_stdout, STDOUT_FILENO) == -1)
 		return (ft_error("redirect: dup2 error\n", 1));
 	close(saved_stdout);
