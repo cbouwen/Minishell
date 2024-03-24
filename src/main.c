@@ -26,7 +26,7 @@ int	run_minishell(t_environment *env, char	*input)
 			break;
 		parser(&tokens);
 		expander(&tokens, env);
-		test_tokenizer(tokens);
+		//test_tokenizer(tokens);
 		executor(tokens, env);
 		//exit_status = executor(tokens, env);
 		//tester(env);

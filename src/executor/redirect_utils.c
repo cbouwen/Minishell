@@ -42,27 +42,25 @@ int	determine_file(t_token *tokens, t_args *args)
 			if (temp->next->type == ARG)
 			{
 				args->file = ft_strdup(temp->next->str);
-				check_file_exists(temp_args);
-				return (0);
+				return (check_file_exists(temp_args));
 			}
 		}
 		else if (temp->type == REDIRECT && temp_args->redirect == HERE_DOC)
-		{
-			setup_heredoc(temp, temp_args);
-			return (0);
-		}
+			return(setup_heredoc(temp, temp_args));
 		temp = temp->next;
 	}
 	return (1);
 }
 
-void	check_file_exists(t_args *args)
+int	check_file_exists(t_args *args)
 {
 	char	*path;
 	char	*file_path;
 	t_args	*temp_args;
+	int		status;
 
 	temp_args = args;
+	status = 0;
 	path = getcwd(NULL, 0);
 	file_path = ft_strjoin(path, "/");
 	file_path = ft_strjoin_free(file_path, temp_args->file, true);
@@ -74,7 +72,8 @@ void	check_file_exists(t_args *args)
 		temp_args->file_exists = 0;
 	free(file_path);
 	free(path);
-	open_file(temp_args);
+	status = open_file(temp_args);
+	return (status);
 }
 
 int open_file(t_args *args)
@@ -116,9 +115,6 @@ int setup_heredoc(t_token *tokens, t_args *args)
 	else
 		args->delimiter = ft_strdup(temp->next->str);
 	temp = temp->next->next;
-
-	printf("temp->str: %s\n", temp->str);
-
 	if (temp->type != REDIRECT || ft_strcmp(temp->str, "<<") == 0)
 		return (ft_error("heredoc: syntax error 2\n", 3));
 	else
