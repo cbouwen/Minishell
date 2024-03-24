@@ -24,10 +24,6 @@ int	run_redirects(t_token *tokens, t_environment *env, t_args *args)
 	else if (temp_args->heredoc == 1)
 		status = heredoc(temp_args);*/
 
-	status = prep_cmd(temp, temp_env, temp_args);
-
-	close(temp_args->fd);
-
 	printf("redirect: %d\n", temp_args->redirect);
 	printf("file: %s\n", temp_args->file);
 	printf("file_exists: %d\n", temp_args->file_exists);

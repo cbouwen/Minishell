@@ -90,7 +90,12 @@ int run_basic_cmd(t_token *tokens, t_environment *env, t_args *args)
 	if (check_redirects(temp) == 1)
 		status = prep_cmd(temp, temp_env, args);
 	else
+	{
 		status = run_redirects(temp, temp_env, args);
+		if (status == 0)
+			status = prep_cmd(temp, temp_env, args);
+		close(args->fd);
+	}
 	return (status);
 }
 
