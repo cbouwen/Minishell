@@ -58,6 +58,7 @@ int redirect_input(t_token *tokens, t_environment *env, t_args *args)
 	temp_env = env;
 	temp_args = args;
 	int saved_stdin = dup(STDIN_FILENO);
+	printf("saved_stdin: %d\n", saved_stdin);
 	if (dup2(temp_args->fd, STDIN_FILENO) == -1)
 		return (ft_error("redirect: dup2 error\n", 1));
 	close(temp_args->fd);
