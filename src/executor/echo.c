@@ -39,13 +39,16 @@ int	echo(t_token *tokens)
 	while (temp && temp->type == ARG)
 	{
 		output_fd = temp->output;
-		ft_putstr_fd(temp->str, output_fd);
+		printf("%s", temp->str);
+		//ft_putstr_fd(temp->str, output_fd);
 		if (temp->has_space)
-			ft_putchar_fd(' ', output_fd);
+			//ft_putchar_fd(' ', output_fd);
+			printf(" ");
 		temp = temp->next;
 	}
 	if (n_flag == 0)
-		ft_putchar_fd('\n', output_fd);
+		printf("\n");
+		//ft_putchar_fd('\n', output_fd);
 	return (ft_error(NULL, 0));
 }
 
@@ -54,6 +57,7 @@ int	echo_no_arg(t_token *tokens)
 	t_token	*temp;
 
 	temp = tokens;
-	ft_putchar_fd('\n', temp->output);
+	printf("\n");
+	//ft_putchar_fd('\n', temp->output);
 	return (ft_error(NULL, 0));
 }

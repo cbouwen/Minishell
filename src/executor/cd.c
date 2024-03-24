@@ -92,8 +92,9 @@ int	go_oldpwd(t_token *tokens, t_environment *env)
 		return (free_and_return(current_pwd, new_pwd, 2));
 	if (update_pwd(env, current_pwd) != 0)
 		return (free_and_return(current_pwd, new_pwd, 1));
-	ft_putstr_fd(new_pwd, tokens->output);
-	ft_putstr_fd("\n", tokens->output);
+	printf("%s\n", new_pwd);
+	/*ft_putstr_fd(new_pwd, tokens->output);
+	ft_putstr_fd("\n", tokens->output);*/
 	free(new_pwd);
 	free(current_pwd);
 	return (ft_error(NULL, 0));
