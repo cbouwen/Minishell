@@ -127,7 +127,7 @@ int setup_heredoc(t_token *tokens, t_args *args)
 	if (temp->type != ARG)
 		return (ft_error("heredoc: syntax error 3\n", 3));
 	else
-		args->file = ft_strdup(temp->next->str);
+		args->file = ft_strdup(temp->str);
 	open_file(temp_args);
 	return (0);
 }
