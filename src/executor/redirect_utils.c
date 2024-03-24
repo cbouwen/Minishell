@@ -122,7 +122,7 @@ int setup_heredoc(t_token *tokens, t_args *args)
 	if (temp->type != REDIRECT || ft_strcmp(temp->str, "<<") == 0)
 		return (ft_error("heredoc: syntax error 2\n", 3));
 	else
-		temp_args->heredoc_redirect = temp->str;
+		temp_args->heredoc_redirect = ft_strdup(temp->str);
 	temp = temp->next;
 	if (temp->type != ARG)
 		return (ft_error("heredoc: syntax error 3\n", 3));
