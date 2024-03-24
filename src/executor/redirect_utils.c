@@ -42,7 +42,7 @@ int	determine_file(t_token *tokens, t_args *args)
 			if (temp->next->type == ARG)
 			{
 				args->file = ft_strdup(temp->next->str);
-				check_file_exists(temp, temp_args);
+				check_file_exists(temp_args);
 				return (0);
 			}
 		}
@@ -56,14 +56,12 @@ int	determine_file(t_token *tokens, t_args *args)
 	return (1);
 }
 
-void	check_file_exists(t_token *tokens, t_args *args)
+void	check_file_exists(t_args *args)
 {
 	char	*path;
 	char	*file_path;
-	t_token	*temp;
 	t_args	*temp_args;
 
-	temp = tokens;
 	temp_args = args;
 	path = getcwd(NULL, 0);
 	file_path = ft_strjoin(path, "/");
