@@ -15,8 +15,8 @@ int	run_redirects(t_token *tokens, t_environment *env, t_args *args)
 	status = 0;
 	status = determine_redirect(temp, temp_args);
 	status = determine_file(temp, temp_args);
-	/*if (temp_args->redirect == INPUT)
-		status = redirect_input(temp_args);*/
+	if (temp_args->redirect == INPUT)
+		status = redirect_input(temp_args);
 	/*else if (temp_args->redirect == APPEND)
 		status = redirect_append(temp_args);
 	else if (temp_args->redirect == INPUT)
