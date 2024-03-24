@@ -52,7 +52,6 @@ int init_args(t_args *args)
 	args->file_exists = 0;
 	args->fd = 0;
 	args->delimiter = NULL;
-	args->heredoc_redirect = NULL;
 	return (0);
 }
 

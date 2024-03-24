@@ -76,7 +76,6 @@ int	free_args(t_args *args)
 			free_array(args->env_array);
 		free(args->file);
 		free(args->delimiter);
-		free(args->heredoc_redirect);
 		free(args);
 	}
 	return (0);
