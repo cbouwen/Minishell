@@ -24,7 +24,7 @@ int	run_redirects(t_token *tokens, t_environment *env, t_args *args)
 	else if (temp_args->heredoc == 1)
 		status = heredoc(temp_args);*/
 
-	status = run_basic_cmd(temp, temp_env, temp_args);
+	status = prep_cmd(temp, temp_env, temp_args);
 
 	close(temp_args->fd);
 
