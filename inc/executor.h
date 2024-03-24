@@ -32,6 +32,7 @@ int			heredoc_setup(t_token *tokens, t_args *args);
 int			check_file_exists(t_args *args);
 int			open_file(t_args *args);
 int			setup_heredoc(t_token *tokens, t_args *args);
+int			redirect_input(t_args *args);
 
 /*syntax checkers*/
 int			exec_syntax_check(t_token *tokens);
