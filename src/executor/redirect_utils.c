@@ -42,7 +42,7 @@ int	determine_file(t_token *tokens, t_args *args)
 			if (temp->next->type == ARG)
 			{
 				args->file = ft_strdup(temp->next->str);
-				check_file_exists(args);
+				check_file_exists(temp, temp_args);
 				return (0);
 			}
 		}
@@ -103,6 +103,8 @@ int open_heredoc(t_token *tokens, t_args *args)
 	t_token	*temp;
 	int		fd;
 	
+	(void)args;
+	(void)fd;
 	temp = tokens;
 	while (temp && temp->type != REDIRECT)
 		temp = temp->next;
