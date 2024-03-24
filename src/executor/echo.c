@@ -36,15 +36,12 @@ int	echo(t_token *tokens)
 		n_flag = 1;
 		temp = temp->next;
 	}
-	while (temp)
+	while (temp && temp->type == ARG)
 	{
-		if (temp->type == ARG)
-		{
-			output_fd = temp->output;
-			ft_putstr_fd(temp->str, output_fd);
-			if (temp->has_space)
-				ft_putchar_fd(' ', output_fd);
-		}
+		output_fd = temp->output;
+		ft_putstr_fd(temp->str, output_fd);
+		if (temp->has_space)
+			ft_putchar_fd(' ', output_fd);
 		temp = temp->next;
 	}
 	if (n_flag == 0)

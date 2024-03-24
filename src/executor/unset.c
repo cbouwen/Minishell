@@ -17,7 +17,7 @@ int	unset_var(t_token *tokens, t_environment *env)
 	int	status;
 
 	status = 0;
-	while (tokens)
+	while (tokens && tokens->type == ARG)
 	{
 		if (tokens->type == ARG)
 			if (check_env_val_exists(env, tokens->str) == 0)
