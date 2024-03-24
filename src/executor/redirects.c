@@ -18,8 +18,8 @@ int	run_redirects(t_token *tokens, t_environment *env, t_args *args)
 		status = redirect_input(temp, temp_env, temp_args);
 	else if (temp_args->redirect == APPEND)
 		status = redirect_append(temp, temp_env, temp_args);
-	else if (temp_args->redirect == INPUT)
-		status = redirect_input(temp, temp_env, temp_args);
+	else if (temp_args->redirect == OUTPUT)
+		status = redirect_output(temp, temp_env, temp_args);
 	/*else if (temp_args->heredoc == 1)
 		status = heredoc(temp_args);*/
 	printf("redirect: %d\n", temp_args->redirect);
