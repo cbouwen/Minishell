@@ -20,7 +20,7 @@ int	determine_redirect(t_token *tokens, t_args *args)
 			else if (ft_strcmp(temp->str, "<") == 0)
 				temp_args->redirect = INPUT;
 			else if (ft_strcmp(temp->str, "<<") == 0)
-				temp_args->redirect = HERE_DOC;
+				temp_args->heredoc = 1;
 			return (0);
 		}
 		temp = temp->next;
@@ -37,7 +37,7 @@ int	determine_file(t_token *tokens, t_args *args)
 	temp_args = args;
 	while (temp && temp->type != PIPE)
 	{
-		if (temp->type == REDIRECT && temp_args->redirect != HERE_DOC)
+		if (temp->type == REDIRECT && temp_args->heredoc == 0)
 		{
 			if (temp->next->type == ARG)
 			{
@@ -45,7 +45,7 @@ int	determine_file(t_token *tokens, t_args *args)
 				return (check_file_exists(temp_args));
 			}
 		}
-		else if (temp->type == REDIRECT && temp_args->redirect == HERE_DOC)
+		else if (temp->type == REDIRECT && temp_args->heredoc == 1)
 			return(setup_heredoc(temp, temp_args));
 		temp = temp->next;
 	}
@@ -86,7 +86,7 @@ int open_file(t_args *args)
 		fd = open(args->file, O_RDWR | O_APPEND, 0644);
 	else if (args->redirect == INPUT)
 		fd = open(args->file, O_RDWR);
-	else if (args->redirect == HERE_DOC)
+	/*else if (args->redirect == HERE_DOC)
 	{
 		if (ft_strcmp(args->heredoc_redirect, ">") == 0)
 			fd = open(args->file, O_RDWR | O_CREAT | O_TRUNC, 0644);
@@ -94,7 +94,7 @@ int open_file(t_args *args)
 			fd = open(args->file, O_RDWR | O_APPEND, 0644);
 		else if (ft_strcmp(args->heredoc_redirect, "<") == 0)
 			fd = open(args->file, O_RDWR);
-	}
+	}*/
 	if (fd < 0)
 		return (ft_error("redirection: no such file or directory\n", 4));
 	args->fd = fd;
@@ -118,7 +118,7 @@ int setup_heredoc(t_token *tokens, t_args *args)
 	if (temp->type != REDIRECT || ft_strcmp(temp->str, "<<") == 0)
 		return (ft_error("heredoc: syntax error 2\n", 3));
 	else
-		temp_args->heredoc_redirect = ft_strdup(temp->str);
+		determine_redirect(temp, temp_args);
 	temp = temp->next;
 	if (temp->type != ARG)
 		return (ft_error("heredoc: syntax error 3\n", 3));

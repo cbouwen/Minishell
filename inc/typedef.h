@@ -21,7 +21,6 @@ typedef enum	e_redirect
 	INPUT,
 	APPEND,
 	OUTPUT,
-	HERE_DOC,
 	TEMP
 }				t_redirect;
 
@@ -60,6 +59,7 @@ typedef struct	s_args
 	char		**arg_array;
 	char		**env_array;
 	t_redirect	redirect;
+	int 		heredoc;
 	char		*file;
 	int			file_exists;
 	int			fd;
