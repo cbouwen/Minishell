@@ -12,6 +12,7 @@ int	run_redirects(t_token *tokens, t_environment *env, t_args *args)
 	temp = tokens;
 	temp_env = env;
 	temp_args = args;
+	(void)temp_env;
 	status = 0;
 	status = determine_redirect(temp, temp_args);
 	status = determine_file(temp, temp_args);
