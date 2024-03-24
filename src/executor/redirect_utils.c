@@ -116,6 +116,9 @@ int setup_heredoc(t_token *tokens, t_args *args)
 	else
 		args->delimiter = ft_strdup(temp->next->str);
 	temp = temp->next->next;
+
+	printf("temp->str: %s\n", temp->str);
+
 	if (temp->next->type != REDIRECT)
 		return (ft_error("heredoc: syntax error 2\n", 3));
 	if (temp_args->redirect == HERE_DOC)
