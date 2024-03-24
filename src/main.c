@@ -51,7 +51,7 @@ int	minishell_loop(char **envp)
 		input = readline("Minishell: ");
 		if (!input)
 		{
-			printf("exit\n");
+			printf("exit pipi kaka\n");
 			break;
 		}
 		if (ft_strcmp(input, "") == 0)
