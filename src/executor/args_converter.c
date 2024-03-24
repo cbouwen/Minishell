@@ -75,6 +75,7 @@ int	free_args(t_args *args)
 		if (args->env_array)
 			free_array(args->env_array);
 		free(args->file);
+		free(args->delimiter);
 		free(args);
 	}
 	return (0);

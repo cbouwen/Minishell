@@ -32,7 +32,7 @@ int			heredoc_setup(t_token *tokens, t_args *args);
 void		check_file_exists(t_token *tokens, t_args *args);
 void		check_file_exists(t_token *tokens, t_args *args);
 int			open_file(t_token *tokens, t_args *args);
-int			open_heredoc(t_token *tokens, t_args *args);
+int			setup_heredoc(t_token *tokens, t_args *args);
 
 /*syntax checkers*/
 int			exec_syntax_check(t_token *tokens);

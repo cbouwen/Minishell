@@ -63,6 +63,8 @@ typedef struct	s_args
 	char		*file;
 	int			file_exists;
 	int			fd;
+	char		*delimiter;
+	t_redirect	heredoc_redirect;
 }				t_args;
 
 /*typedef struct s_syntax_token
