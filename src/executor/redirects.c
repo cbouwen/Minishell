@@ -20,5 +20,6 @@ int	run_redirects(t_token *tokens, t_environment *env, t_args *args)
 	printf("file: %s\n", temp_args->file);
 	printf("file_exists: %d\n", temp_args->file_exists);
 	printf("fd: %d\n", temp_args->fd);
+	printf("delimiter: %s\n", temp_args->delimiter);
 	return (ft_error(NULL, status));
 }
