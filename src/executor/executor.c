@@ -87,14 +87,6 @@ int run_basic_cmd(t_token *tokens, t_environment *env, t_args *args)
 	temp = tokens;
 	temp_env = env;
 	status = 0;
-	
-	char *path = getcwd(NULL, 0);
-	printf("path: %s\n", path);
-	chdir("/home/matisse/git");
-	path = getcwd(NULL, 0);
-	printf("path: %s\n", path);
-	free(path);
-
 	if (check_redirects(temp) == 1)
 		status = prep_cmd(temp, temp_env, args);
 	else
