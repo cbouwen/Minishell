@@ -86,7 +86,7 @@ void execute_command_with_heredoc(t_token *tokens, t_args *args)
         dup2(args->fd, STDIN_FILENO);
         close(args->fd);
 
-        execve(command, argv, envp);
+        execve(args->arg_array[0], args->arg_array, args->env_array);
 
         perror("execve"); // execve returns only on error
         exit(EXIT_FAILURE);
