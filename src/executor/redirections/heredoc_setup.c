@@ -46,6 +46,7 @@ int	heredoc_no_redirect(t_token *tokens, t_args *args)
 	t_token	*temp;
 	t_args	*temp_args;
 	char	*path;
+	char	*line;
 
 	temp = tokens;
 	temp_args = args;
