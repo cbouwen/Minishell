@@ -21,6 +21,8 @@ int	setup_heredoc(t_token *tokens, t_args *args)
 	{
 		while (temp->next && temp->next->type == ARG)
 		{
+			if (temp->next->has_space)
+				temp->next->str = strjoin_free(temp->next->str, " ", 0);
 			if (args->delimiter)
 				args->delimiter = strjoin_free(args->delimiter, temp->next->str, 1);
 			else
