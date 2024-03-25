@@ -49,6 +49,10 @@ int	heredoc_no_redirect(t_token *tokens, t_args *args)
 
 	temp = tokens;
 	temp_args = args;
+
+	(void)temp;
+	(void)temp_args;
+
 	path = ft_strdup("/tmp/heredoc_dump");
 	if (!path)
 		return (ft_error("heredoc_no_redirect: malloc error\n", 12));
