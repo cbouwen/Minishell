@@ -73,6 +73,34 @@ int	heredoc_no_redirect(t_token *tokens, t_args *args)
 	return (0);
 }
 
+void execute_command_with_heredoc(t_token *tokens, t_args *args)
+{
+    pid_t pid;
+    int fd;
+
+    heredoc_no_redirect(delimiter);
+
+    pid = fork();
+    if (pid == 0)
+    {
+        dup2(args->fd, STDIN_FILENO);
+        close(args->fd);
+
+        execve(command, argv, envp);
+
+        perror("execve"); // execve returns only on error
+        exit(EXIT_FAILURE);
+    }
+    else if (pid < 0)
+    {
+        perror("fork failed");
+    }
+    else
+    {
+        wait(NULL); // wait for child to finish
+    }
+}
+
 int	heredoc_redirect(t_token *tokens, t_args *args)
 {
 	t_token	*temp;

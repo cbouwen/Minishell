@@ -31,6 +31,8 @@ int	run_redirects(t_token *tokens, t_environment *env, t_args *args)
 		status = redirect_append(temp, temp_env, temp_args);
 	else if (temp_args->redirect == OUTPUT)
 		status = redirect_output(temp, temp_env, temp_args);
+	else if (temp_args->heredoc == 1)
+		execute_command_with_heredoc(temp, temp_env, temp_args);
 	return (ft_error(NULL, status));
 }
 
