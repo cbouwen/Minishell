@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:41:07 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/03/25 15:54:17 by matisse          ###   ########.fr       */
+/*   Updated: 2024/03/25 16:00:41 by matisse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@
 
 extern int	g_exit_status;
 
-int				ft_error(char *str);
+//int				ft_error(char *str);
 t_environment	*env_parser(char *envp[]);
 void			free_env_node(t_environment *env);
 void			free_env(t_environment *env);
