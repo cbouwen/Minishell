@@ -1,6 +1,6 @@
 /*header pls*/
 
-#include "../../inc/minishell.h"
+#include "../../../inc/minishell.h"
 
 int	pwd(t_token *token)
 {

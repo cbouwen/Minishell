@@ -1,6 +1,6 @@
 /*header pls*/
 
-#include "../../inc/minishell.h"
+#include "../../../inc/minishell.h"
 
 int	extract_name(char *token_str, char **var_name)
 {

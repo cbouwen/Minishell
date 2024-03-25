@@ -1,6 +1,6 @@
 /*header pls*/
 
-#include "../../inc/minishell.h"
+#include "../../../inc/minishell.h"
 
 int	determine_echo(t_token *tokens)
 {
