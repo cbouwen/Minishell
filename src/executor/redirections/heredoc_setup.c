@@ -76,9 +76,8 @@ int	heredoc_no_redirect(t_token *tokens, t_args *args)
 void execute_command_with_heredoc(t_token *tokens, t_args *args)
 {
     pid_t pid;
-    int fd;
 
-    heredoc_no_redirect(delimiter);
+    heredoc_no_redirect(tokens, args);
 
     pid = fork();
     if (pid == 0)
