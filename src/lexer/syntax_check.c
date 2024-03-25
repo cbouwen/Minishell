@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 17:46:17 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/03/20 18:03:04 by mlegendr         ###   ########.fr       */
+/*   Updated: 2024/03/25 15:57:06 by matisse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,6 @@ int	check_logic(t_token tokens, int i)
 	return (1);
 }
 
-
-
 int	check_syntax(t_token *tokens)
 {
 	int	i;
@@ -47,9 +45,9 @@ int	check_syntax(t_token *tokens)
 		}
 		i = 1;
 		if (tokens->next == NULL)
-			break;
+			break ;
 		tokens = tokens->next;
 	}
-	reset_list(&tokens);	
+	reset_list(&tokens);
 	return (1);
 }

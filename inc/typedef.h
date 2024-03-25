@@ -6,15 +6,15 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 15:31:04 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/03/22 17:46:42 by mlegendr         ###   ########.fr       */
+/*   Updated: 2024/03/25 15:55:50 by matisse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TYPEDEF_H
 # define TYPEDEF_H
 
-#include "minishell.h"
-#include <stdbool.h>
+# include "minishell.h"
+# include <stdbool.h>
 
 typedef enum	e_redirect
 {
@@ -31,7 +31,7 @@ typedef struct	s_environment
 	struct s_environment	*next;
 }				t_environment;
 
-typedef enum	e_type
+typedef enum e_type
 {
 	UNDEFINED,
 	PIPE,
@@ -40,7 +40,7 @@ typedef enum	e_type
 	CMD
 }				t_type;
 
-typedef struct	s_token
+typedef struct s_token
 {
 	char			*str;
 	t_type			type;

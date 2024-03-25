@@ -45,7 +45,7 @@ int	lexer(t_token **tokens)
 	{
 		define_metas(*tokens);
 		if ((*tokens)->next == NULL)
-			break;
+			break ;
 		*tokens = (*tokens)->next;
 	}
 	reset_list(tokens);
@@ -53,7 +53,7 @@ int	lexer(t_token **tokens)
 	{
 		start = define_cmd_arg(*tokens, start);
 		if ((*tokens)->next == NULL)
-			break;
+			break ;
 		*tokens = (*tokens)->next;
 	}
 	reset_list(tokens);

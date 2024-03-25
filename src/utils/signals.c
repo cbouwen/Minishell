@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 13:43:27 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/03/20 18:03:34 by mlegendr         ###   ########.fr       */
+/*   Updated: 2024/03/25 15:59:05 by matisse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,4 @@ void	sig_handler(int sig)
 	rl_replace_line("", 0);
 	rl_on_new_line();
 	rl_redisplay();
-
 }
-
-

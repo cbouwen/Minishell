@@ -14,7 +14,7 @@
 
 void	first_redirect(t_token *token)
 {
-	t_token		*parent;
+	t_token	*parent;
 
 	while (token->type != PIPE)
 		token = token->next;
@@ -34,13 +34,13 @@ void	redirect_right(t_token *token)
 	{
 		parent = token;
 		if (token->next == NULL)
-			break;
+			break ;
 		token = token->next;
 		if (token->type == PIPE)
-			break;
+			break ;
 		parent->right = token;
 		token->parent = parent;
-	}	
+	}
 	reset_list(&token);
 }
 
@@ -52,13 +52,13 @@ int	redirect_others(t_token *token, int current_pipe)
 	while (token)
 	{
 		if (token->parent == NULL && token->type == PIPE)
-			break;
+			break ;
 		token = token->next;
 	}
 	while (token->left->type == PIPE)
 	{
 		if (i == current_pipe)
-			break;
+			break ;
 		token = token->left;
 		i++;
 	}
@@ -66,24 +66,24 @@ int	redirect_others(t_token *token, int current_pipe)
 	return (--current_pipe);
 }
 
-int     pipe_counter(t_token *tmp)
+int	pipe_counter(t_token *tmp)
 {
-    int pipes;
+	int	pipes;
 
-    pipes = 0;
-    while (tmp)
-    {
-        if (tmp->type == PIPE)
-            pipes++;
+	pipes = 0;
+	while (tmp)
+	{
+		if (tmp->type == PIPE)
+			pipes++;
 		if (tmp->next == NULL)
-			break;
-        tmp = tmp->next;
-    }
+			break ;
+		tmp = tmp->next;
+	}
 	reset_list(&tmp);
-    return (pipes);
+	return (pipes);
 }
 
-int parser(t_token **tokens)
+int	parser(t_token **tokens)
 {
 	int	pipes;
 	int	current_pipe;

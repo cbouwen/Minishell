@@ -18,7 +18,7 @@ int	handle_redirect(char *input, size_t j, char c)
 
 	i = j + 2;
 	while (input[j] == c)
-	{	
+	{
 		j++;
 		if (i == j)
 			return (1);
@@ -49,7 +49,6 @@ size_t	handle_rest(char *input, size_t j)
 	return (i);
 }
 
-
 size_t	handle_quotes(char *input, size_t j, char c)
 {
 	size_t	i;
@@ -71,12 +70,12 @@ size_t	find_token(char *input, size_t j)
 		return (2);
 	if (input[j] == '|' || input[j] == '>' || input[j] == '<')
 		return (1);
-	if  (input[j] == 39)
+	if (input[j] == 39)
 	{
 		i = handle_quotes(input, j, 39);
 		return (i);
 	}
-	if  (input[j] == '"')
+	if (input[j] == '"')
 	{
 		i = handle_quotes(input, j, '"');
 		return (i);

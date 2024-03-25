@@ -30,7 +30,6 @@ void	ft_addtoken_toback(t_token **token, t_token *new)
 	new->prev = temp;
 }
 
-
 t_token	*create_token(char *input)
 {
 	t_token	*new;
@@ -56,7 +55,7 @@ void	set_bool_to_true(t_token **tokens)
 	while (*tokens)
 	{
 		if ((*tokens)->next == NULL)
-			break;
+			break ;
 		(*tokens) = (*tokens)->next;
 	}
 	(*tokens)->has_space = true;
