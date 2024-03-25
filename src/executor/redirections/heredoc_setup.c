@@ -61,6 +61,7 @@ int	heredoc_no_redirect(t_token *tokens, t_args *args)
 	(void)temp;
 	(void)temp_args;
 	printf("heredoc_no_redirect\n");
+	printf("delimiter: %s\n", args->delimiter);
 	return (0);
 }
 
@@ -75,5 +76,6 @@ int	heredoc_redirect(t_token *tokens, t_args *args)
 	(void)temp;
 	(void)temp_args;
 	printf("heredoc_redirect\n");
+	printf("delimiter: %s\n", args->delimiter);
 	return (0);
 }
