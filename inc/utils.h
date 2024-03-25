@@ -6,14 +6,14 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 15:16:09 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/03/06 13:49:38 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/03/25 15:25:11 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef UTILS_H
 # define UTILS_H
 
-#include "minishell.h"
+# include "minishell.h"
 
 void	reset_list(t_token **tokens);
 void	free_tokens(t_token *token);
@@ -22,4 +22,4 @@ void	clean_exit(t_token *token, char *msg);
 void	sig_handler(int sig);
 char	**ft_split_quotes(char const *s, char c);
 
-# endif
+#endif

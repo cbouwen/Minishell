@@ -6,15 +6,15 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 16:16:53 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/03/07 15:54:37 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/03/25 15:31:24 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-int	exit_status;
+int	g_exit_status;
 
-int	run_minishell(t_environment *env, char	*input)
+int	run_minishell(t_environment *env, char *input)
 {
 	t_token	*tokens;
 
@@ -23,20 +23,19 @@ int	run_minishell(t_environment *env, char	*input)
 	{
 		tokenizer(input, &tokens);
 		if (!(lexer(&tokens)))
-			break;
+			break ;
 		parser(&tokens);
 		expander(&tokens, env);
-		exit_status = executor(tokens, env);
+		g_exit_status = executor(tokens, env);
 		//tester(env);
 		//test_tokenizer(tokens);
 		//test_syntax_tree(tokens, pipe_counter(tokens));
-		break;
+		break ;
 	}
 	free_tokens(tokens);
 	free(input);
 	return (0);
 }
-
 
 int	minishell_loop(char *envp[])
 {
@@ -50,31 +49,28 @@ int	minishell_loop(char *envp[])
 		if (!input)
 		{
 			printf("exit\n");
-			break;
+			break ;
 		}
 		if (ft_strcmp(input, "") == 0)
 		{
 			free(input);
-			continue;
+			continue ;
 		}
 		if (ft_strcmp(input, "exit") == 0)
 			clean_exit(NULL, NULL);
 		add_history(input);
 		run_minishell(env, input);
 	}
-
 	free_env(env);
 	rl_clear_history();
 	return (0);
 }
 
-
 int	main(int argc, char **argv, char *envp[])
 {
 	(void)argc;
 	(void)argv;
-
-	exit_status = 0;
+	g_exit_status = 0;
 	signal(SIGQUIT, SIG_IGN);
 	signal(SIGINT, sig_handler);
 	minishell_loop(envp);

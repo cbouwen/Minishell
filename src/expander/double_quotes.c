@@ -6,7 +6,7 @@
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 11:22:35 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/03/07 16:22:29 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/03/25 15:33:35 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*find_env(char *str, t_environment *env)
 	if (!(ft_strcmp(str, "$?")))
 	{
 		free(str);
-		return (ft_itoa(exit_status));
+		return (ft_itoa(g_exit_status));
 	}
 	while (tmp)
 	{

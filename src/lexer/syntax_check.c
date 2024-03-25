@@ -6,7 +6,7 @@
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 17:46:17 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/03/05 11:42:57 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/03/25 15:32:42 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	check_syntax(t_token *tokens)
 		if (!(check_logic(*tokens, i)))
 		{
 			printf("Syntax error!\n");
-			exit_status = 2;
+			g_exit_status = 2;
 			reset_list(&tokens);
 			return (0);
 		}
