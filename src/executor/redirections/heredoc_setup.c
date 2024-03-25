@@ -16,7 +16,7 @@ int	setup_heredoc(t_token *tokens, t_args *args)
 	else
 	{
 		if (temp->next && temp->next->type == ARG)
-			return (ft_error("heredoc: syntax error 1\n", 3));
+			return (ft_error("heredoc: syntax error 2\n", 3));
 		else
 			args->delimiter = ft_strdup(temp->next->str);
 	}
