@@ -20,7 +20,7 @@ int	setup_heredoc(t_token *tokens, t_args *args)
 			if (temp->next->has_space)
 				temp->next->str = strjoin_free(temp->next->str, " ", 0);
 			if (args->delimiter)
-				args->delimiter = strjoin_free(args->delimiter, temp->next->str, 1);
+				args->delimiter = strjoin_free(args->delimiter, temp->next->str, 0);
 			else
 				args->delimiter = ft_strdup(temp->next->str);
 			temp = temp->next;
