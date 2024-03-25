@@ -1,6 +1,6 @@
 /*header pls*/
 
-#include "../../inc/minishell.h"
+#include "../../../inc/minishell.h"
 
 int	determine_redirect(t_token *tokens, t_args *args)
 {
