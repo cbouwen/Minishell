@@ -12,7 +12,7 @@
 
 #include "../inc/minishell.h"
 
-void	test_syntax_tree(t_token *token, int pipes)
+/*void	test_syntax_tree(t_token *token, int pipes)
 {
 	int	i;
 
@@ -62,7 +62,7 @@ void	test_syntax_tree(t_token *token, int pipes)
 		i++;
 	}
 	printf("\nEnd of branch %i\n\n\n", i + 1);
-}
+}*/
 
 void	test_tokenizer(t_token *tokens)
 {
