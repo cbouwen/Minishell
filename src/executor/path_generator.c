@@ -1,4 +1,14 @@
-/*header pls*/
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   path_generator.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mlegendr <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/25 18:57:03 by mlegendr          #+#    #+#             */
+/*   Updated: 2024/03/25 18:58:11 by matisse          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
@@ -15,7 +25,7 @@ int	assemble_path(t_args *args)
 	int		status;
 
 	status = check_absolute_path(args->arg_array[0]);
-	if ( status== 12)
+	if (status == 12)
 		return (12);
 	if (status == -1)
 		return (1);
@@ -59,5 +69,5 @@ int	create_exec_path(t_args *args, char **exec_path)
 		i++;
 	}
 	free_array(exec_path);
-	return(4);
+	return (4);
 }

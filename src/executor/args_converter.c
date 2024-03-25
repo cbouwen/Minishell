@@ -6,12 +6,11 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 20:00:59 by mlegendr          #+#    #+#             */
-/*   Updated: 2024/03/22 20:28:59 by mlegendr         ###   ########.fr       */
+/*   Updated: 2024/03/25 19:00:46 by matisse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
-
 
 int	fill_args(t_args *args, t_token *tokens)
 {

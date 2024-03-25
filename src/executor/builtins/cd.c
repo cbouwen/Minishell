@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 16:23:46 by mlegendr          #+#    #+#             */
-/*   Updated: 2024/03/21 18:25:59 by mlegendr         ###   ########.fr       */
+/*   Updated: 2024/03/25 18:42:39 by matisse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,8 +94,6 @@ int	go_oldpwd(t_token *tokens, t_environment *env)
 	if (update_pwd(env, current_pwd) != 0)
 		return (free_and_return(current_pwd, new_pwd, 1));
 	printf("%s\n", new_pwd);
-	/*ft_putstr_fd(new_pwd, tokens->output);
-	ft_putstr_fd("\n", tokens->output);*/
 	free(new_pwd);
 	free(current_pwd);
 	return (ft_error(NULL, 0));

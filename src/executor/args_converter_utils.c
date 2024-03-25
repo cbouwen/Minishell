@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 20:07:42 by mlegendr          #+#    #+#             */
-/*   Updated: 2024/03/22 20:20:31 by mlegendr         ###   ########.fr       */
+/*   Updated: 2024/03/25 18:53:31 by matisse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ size_t	count_tokens(t_token *tokens)
 size_t	count_env(t_environment *env)
 {
 	t_environment	*temp;
-	size_t				i;
+	size_t			i;
 
 	temp = env;
 	i = 0;
@@ -42,8 +42,8 @@ size_t	count_env(t_environment *env)
 	return (i);
 }
 
-int init_args(t_args *args)
-{	
+int	init_args(t_args *args)
+{
 	args->arg_array = NULL;
 	args->env_array = NULL;
 	args->redirect = TEMP;
@@ -57,7 +57,7 @@ int init_args(t_args *args)
 
 char	*ft_strjoin_free(char *s1, char *s2, bool free_str)
 {
-	char *tmp;
+	char	*tmp;
 
 	tmp = s1;
 	s1 = ft_strjoin(s1, s2);
@@ -66,7 +66,7 @@ char	*ft_strjoin_free(char *s1, char *s2, bool free_str)
 	return (s1);
 }
 
-int free_array(char **array)
+int	free_array(char **array)
 {
 	int	i;
 

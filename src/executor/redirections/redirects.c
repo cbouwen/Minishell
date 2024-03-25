@@ -1,4 +1,14 @@
-/*header pls*/
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   redirects.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mlegendr <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/25 18:48:48 by mlegendr          #+#    #+#             */
+/*   Updated: 2024/03/25 18:50:37 by matisse          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../../../inc/minishell.h"
 
@@ -8,6 +18,7 @@ int	run_redirects(t_token *tokens, t_environment *env, t_args *args)
 	t_environment	*temp_env;
 	t_args			*temp_args;
 	int				status;
+
 	temp = tokens;
 	temp_env = env;
 	temp_args = args;
@@ -20,17 +31,10 @@ int	run_redirects(t_token *tokens, t_environment *env, t_args *args)
 		status = redirect_append(temp, temp_env, temp_args);
 	else if (temp_args->redirect == OUTPUT)
 		status = redirect_output(temp, temp_env, temp_args);
-	/*else if (temp_args->heredoc == 1)
-		status = heredoc(temp_args);*/
-	printf("redirect: %d\n", temp_args->redirect);
-	printf("file: %s\n", temp_args->file);
-	printf("file_exists: %d\n", temp_args->file_exists);
-	printf("fd: %d\n", temp_args->fd);
-	printf("delimiter: %s\n", temp_args->delimiter);
 	return (ft_error(NULL, status));
 }
 
-int redirect_input(t_token *tokens, t_environment *env, t_args *args)
+int	redirect_input(t_token *tokens, t_environment *env, t_args *args)
 {
 	t_token			*temp;
 	t_environment	*temp_env;
@@ -54,29 +58,8 @@ int redirect_input(t_token *tokens, t_environment *env, t_args *args)
 	return (ft_error(NULL, status));
 }
 
-int redirect_output(t_token *tokens, t_environment *env, t_args *args)
+int	redirect_output(t_token *tokens, t_environment *env, t_args *args)
 {
-	/*t_token			*temp;
-	t_environment	*temp_env;
-	t_args			*temp_args;
-	int				saved_stdout;
-	int				status;
-
-	temp = tokens;
-	temp_env = env;
-	temp_args = args;
-	saved_stdout = dup(STDOUT_FILENO);
-	if (saved_stdout == -1)
-		return (ft_error("redirect: dup error\n", 1));
-	if (dup2(temp_args->fd, STDOUT_FILENO) == -1)
-		return (ft_error("redirect: dup2 error\n", 1));
-    status = prep_cmd(temp, temp_env, temp_args);
-	if (dup2(saved_stdout, STDOUT_FILENO) == -1)
-        return (ft_error("redirect: dup2 error\n", 1));
-	close(temp_args->fd);
-	close(saved_stdout);
-    return (ft_error(NULL, status));*/
-
 	t_token			*temp;
 	t_environment	*temp_env;
 	t_args			*temp_args;
@@ -99,7 +82,7 @@ int redirect_output(t_token *tokens, t_environment *env, t_args *args)
 	return (ft_error(NULL, status));
 }
 
-int redirect_append(t_token *tokens, t_environment *env, t_args *args)
+int	redirect_append(t_token *tokens, t_environment *env, t_args *args)
 {
 	t_token			*temp;
 	t_environment	*temp_env;

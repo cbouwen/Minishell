@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/19 19:31:53 by mlegendr          #+#    #+#             */
-/*   Updated: 2024/03/21 16:57:10 by mlegendr         ###   ########.fr       */
+/*   Updated: 2024/03/25 18:52:39 by matisse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	check_pipes(t_token *tokens)
 	return (1);
 }
 
-int check_redirects(t_token *tokens)
+int	check_redirects(t_token *tokens)
 {
 	t_token	*temp;
 
@@ -60,7 +60,7 @@ int	determine_builtin(t_token *tokens)
 	return (0);
 }
 
-int check_last_char(char *str, char c)
+int	check_last_char(char *str, char c)
 {
 	int	i;
 

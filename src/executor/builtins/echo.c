@@ -1,4 +1,14 @@
-/*header pls*/
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   echo.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mlegendr <marvin@42.fr>                     +#+  +:+       +#+       */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/25 18:43:07 by mlegendr          #+#    #+#             */
+/*   Updated: 2024/03/25 18:43:47 by matisse          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../../../inc/minishell.h"
 
@@ -37,15 +47,12 @@ int	echo(t_token *tokens)
 	while (temp && temp->type == ARG)
 	{
 		printf("%s", temp->str);
-		//ft_putstr_fd(temp->str, output_fd);
 		if (temp->has_space)
-			//ft_putchar_fd(' ', output_fd);
 			printf(" ");
 		temp = temp->next;
 	}
 	if (n_flag == 0)
 		printf("\n");
-		//ft_putchar_fd('\n', output_fd);
 	return (ft_error(NULL, 0));
 }
 
@@ -56,6 +63,5 @@ int	echo_no_arg(t_token *tokens)
 	temp = tokens;
 	(void)temp;
 	printf("\n");
-	//ft_putchar_fd('\n', temp->output);
 	return (ft_error(NULL, 0));
 }

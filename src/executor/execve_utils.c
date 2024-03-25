@@ -6,21 +6,19 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 19:08:54 by mlegendr          #+#    #+#             */
-/*   Updated: 2024/03/22 16:37:58 by mlegendr         ###   ########.fr       */
+/*   Updated: 2024/03/25 18:52:12 by matisse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-
 int	execve_executor(t_token *tokens, t_args *args)
 {
 	int	status;
-	
+
 	(void)tokens;
 	status = 0;
 	status = run_execve(args);
-	//free_args(args);
 	return (status);
 }
 
@@ -40,9 +38,9 @@ int	run_execve(t_args *args)
 	{
 		waitpid(pid, &status, 0);
 		if (WIFEXITED(status))
-            return (ft_error(NULL, WEXITSTATUS(status)));
-        else
-            return (0);
+			return (ft_error(NULL, WEXITSTATUS(status)));
+		else
+			return (0);
 	}
 	return (status);
 }

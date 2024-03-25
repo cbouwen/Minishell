@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   path_generator.c                                   :+:      :+:    :+:   */
+/*   path_generator_utils.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 17:40:15 by mlegendr          #+#    #+#             */
-/*   Updated: 2024/03/22 20:50:33 by mlegendr         ###   ########.fr       */
+/*   Updated: 2024/03/25 18:59:00 by matisse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@ int	find_path(t_args *args)
 			return (i);
 		i++;
 	}
-	return (-2);	
+	return (-2);
 }
 
-int split_path(t_args *args, char ***exec_path)
+int	split_path(t_args *args, char ***exec_path)
 {
 	int		i;
 	char	*path;
@@ -67,7 +67,7 @@ int	true_path_ass(char *path, t_args *args)
 	char	*command;
 	int		j;
 	int		len;
-	
+
 	j = 0;
 	len = 0;
 	command = args->arg_array[0];

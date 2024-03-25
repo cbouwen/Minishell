@@ -1,4 +1,14 @@
-/*header pls*/
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   redirect_utils.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mlegendr <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/25 18:47:09 by mlegendr          #+#    #+#             */
+/*   Updated: 2024/03/25 18:48:19 by matisse          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../../../inc/minishell.h"
 
@@ -46,7 +56,7 @@ int	determine_file(t_token *tokens, t_args *args)
 			}
 		}
 		else if (temp->type == REDIRECT && temp_args->heredoc == 1)
-			return(setup_heredoc(temp, temp_args));
+			return (setup_heredoc(temp, temp_args));
 		temp = temp->next;
 	}
 	return (1);
@@ -76,9 +86,9 @@ int	check_file_exists(t_args *args)
 	return (status);
 }
 
-int open_file(t_args *args)
+int	open_file(t_args *args)
 {
-	int fd;
+	int	fd;
 
 	if (args->redirect == OUTPUT)
 		fd = open(args->file, O_WRONLY | O_CREAT | O_TRUNC, 0644);
@@ -92,7 +102,7 @@ int open_file(t_args *args)
 	return (ft_error(NULL, 0));
 }
 
-int setup_heredoc(t_token *tokens, t_args *args)
+int	setup_heredoc(t_token *tokens, t_args *args)
 {
 	t_token	*temp;
 	t_args	*temp_args;

@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 15:50:48 by mlegendr          #+#    #+#             */
-/*   Updated: 2024/03/21 18:30:49 by mlegendr         ###   ########.fr       */
+/*   Updated: 2024/03/25 18:40:47 by matisse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@ int	export_var(t_token *tokens, t_environment *env)
 	status = extract_name(temp->str, &var_name);
 	status = extract_value(temp->next->str, &var_value);
 	if (check_env_val_exists(temp_env, var_name) == 0)
-		status =update_env_val(temp_env, var_name, var_value, false);
+		status = update_env_val(temp_env, var_name, var_value, false);
 	else
 		status = add_env_val(temp_env, var_name, var_value);
 	free(var_name);
 	free(var_value);
-	return (ft_error(NULL, status));	
+	return (ft_error(NULL, status));
 }
 
 int	update_env_val(t_environment *env, char *var_name, char *var_value, bool cd)
@@ -56,7 +56,7 @@ int	update_env_val(t_environment *env, char *var_name, char *var_value, bool cd)
 
 int	add_env_val(t_environment *env, char *var_name, char *var_value)
 {
-	t_environment *new;
+	t_environment	*new;
 
 	new = create_node(var_name, var_value);
 	ft_lstadd_back_ms(&env, new);

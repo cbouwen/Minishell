@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:41:42 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/03/22 20:47:55 by mlegendr         ###   ########.fr       */
+/*   Updated: 2024/03/25 18:56:43 by matisse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@ extern int	g_err;
 
 /*
 	To Do:
-		- Fix exit status, it has to reflect the bash exit status
-			-- Maybe remove the strerror call for builtins?
-		- Add syntax management for the builtins
-		- Add function that pushes tokens to string array -- DONE
-		- Add function that pushes tokens to string array -- DONE
-		- Add EXECVE
+		- Fix exit status, it has to reflect the bash exit status	--DONE
+		- Add syntax management for the builtins					--DONE
+		- Add function that pushes tokens to string array 			--DONE
+		- Add function that pushes tokens to string array			--DONE
+		- Add EXECVE												--DONE
 		- Add pipes
-		- Add redirections
+		- Add redirections 											--ALMOST DONE
+		- Add export support for test=value
 		- Test
 */
 
@@ -55,7 +55,7 @@ int	builtin_executor(t_token *tokens, t_environment *env)
 	return (status);
 }
 
-int executor(t_token *tokens, t_environment *env)
+int	executor(t_token *tokens, t_environment *env)
 {
 	t_token			*temp;
 	t_environment	*temp_env;
@@ -72,13 +72,12 @@ int executor(t_token *tokens, t_environment *env)
 	if (check_pipes(temp) == 1)
 		run_basic_cmd(temp, temp_env, args);
 	else
-		//status = run_piped_cmd(temp, temp_env);
 		printf("run_piped_cmd\n");
 	free_args(args);
 	return (1);
 }
 
-int run_basic_cmd(t_token *tokens, t_environment *env, t_args *args)
+int	run_basic_cmd(t_token *tokens, t_environment *env, t_args *args)
 {
 	t_token			*temp;
 	t_environment	*temp_env;
@@ -90,16 +89,11 @@ int run_basic_cmd(t_token *tokens, t_environment *env, t_args *args)
 	if (check_redirects(temp) == 1)
 		status = prep_cmd(temp, temp_env, args);
 	else
-	{
 		status = run_redirects(temp, temp_env, args);
-		/*if (status == 0)
-			status = prep_cmd(temp, temp_env, args);
-		close(args->fd);*/
-	}
 	return (status);
 }
 
-int run_builtin(t_token *tokens, t_environment *env)
+int	run_builtin(t_token *tokens, t_environment *env)
 {
 	t_token			*temp;
 	t_environment	*temp_env;
@@ -125,7 +119,7 @@ int	prep_cmd(t_token *tokens, t_environment *env, t_args *args)
 	status = 0;
 	builtin = determine_builtin(temp);
 	if (fill_args(args, temp) != 0)
-			return (ft_error(NULL, 1));
+		return (ft_error(NULL, 1));
 	if (builtin != 0)
 		status = run_builtin(temp, temp_env);
 	if (builtin == 0)
