@@ -73,7 +73,7 @@ int	check_file_exists(t_args *args)
 	status = 0;
 	path = getcwd(NULL, 0);
 	file_path = ft_strjoin(path, "/");
-	file_path = ft_strjoin_free(file_path, temp_args->file, true);
+	file_path = strjoin_free(file_path, temp_args->file, 1);
 	free(temp_args->file);
 	temp_args->file = ft_strdup(file_path);
 	if (access(file_path, F_OK) == 0)

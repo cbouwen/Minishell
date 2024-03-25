@@ -87,7 +87,7 @@ int			run_execve(t_args *args);
 size_t		count_env(t_environment *env);
 int			init_args(t_args *args);
 int			fill_env(t_args *args, t_environment *env);
-char		*ft_strjoin_free(char *s1, char *s2, bool free_str);
+char		*strjoin_free(char *s1, char *s2, int free_str);
 int			find_path(t_args *args);
 int			split_path(t_args *args, char ***exec_path);
 int			free_array(char **array);
