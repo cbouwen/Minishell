@@ -107,6 +107,7 @@ int	setup_heredoc(t_token *tokens, t_args *args)
 	(void)tokens;
 	(void)args;
 	printf("heredoc\n");
+	return (0);
 	/*t_token	*temp;
 	t_args	*temp_args;
 
