@@ -19,22 +19,12 @@ int	setup_heredoc(t_token *tokens, t_args *args)
 			return (ft_error("heredoc: syntax error 2\n", 3));
 		else
 			args->delimiter = ft_strdup(temp->next->str);
-		/*while (temp->next && temp->next->type == ARG)
-		{
-			if (temp->next->has_space)
-				temp->next->str = strjoin_free(temp->next->str, " ", 0);
-			if (args->delimiter)
-				args->delimiter = strjoin_free(args->delimiter, temp->next->str, 1);
-			else
-				args->delimiter = ft_strdup(temp->next->str);
-			temp = temp->next;
-		}*/
 	}
+	temp = temp->next;
 	if (!temp->next || temp->next->type != REDIRECT)
 		return (heredoc_no_redirect(temp, temp_args));
 	else
 		return (heredoc_redirect(temp, temp_args));
-	//return (0);
 }
 
 /*jump to next token*/
