@@ -104,7 +104,10 @@ int	open_file(t_args *args)
 
 int	setup_heredoc(t_token *tokens, t_args *args)
 {
-	t_token	*temp;
+	(void)tokens;
+	(void)args;
+	printf("heredoc\n");
+	/*t_token	*temp;
 	t_args	*temp_args;
 
 	temp = tokens;
@@ -126,7 +129,7 @@ int	setup_heredoc(t_token *tokens, t_args *args)
 	else
 		args->file = ft_strdup(temp->str);
 	check_file_exists(temp_args);
-	return (0);
+	return (0);*/
 }
 
 /*int	heredoc_setup(t_token *token, t_args *args)
