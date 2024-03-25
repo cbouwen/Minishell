@@ -14,8 +14,8 @@
 
 char	*find_env(char *str, t_environment *env)
 {
-	t_environment *tmp;
-	char	*substr;
+	t_environment	*tmp;
+	char			*substr;
 
 	tmp = env;
 	if (!(ft_strcmp(str, "$?")))
@@ -29,7 +29,7 @@ char	*find_env(char *str, t_environment *env)
 		{
 			substr = ft_strdup(tmp->value);
 			if (!substr)
-				break;
+				break ;
 			free(str);
 			return (substr);
 		}
@@ -52,19 +52,19 @@ char	*find_new_str(char *str, t_environment *env, int *i)
 	s2 = ft_strndup(str + *i, j - *i);
 	s2 = find_env(s2, env);
 	if (!s2)
-		return (NULL);	
+		return (NULL);
 	s1 = ft_strndup(str, *i);
 	*i = ft_strlen(s2);
 	s3 = ft_strjoin_quotes(s1, s2);
 	s1 = ft_strdup(str + j);
 	s2 = ft_strjoin_quotes(s3, s1);
-	free (str);
+	free(str);
 	return (s2);
 }
 
 int	expand_double_quote(t_token **tokens, t_environment *env)
 {
-	int	i;
+	int		i;
 	char	*newstr;
 
 	i = 0;

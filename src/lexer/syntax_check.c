@@ -27,8 +27,6 @@ int	check_logic(t_token tokens, int i)
 	return (1);
 }
 
-
-
 int	check_syntax(t_token *tokens)
 {
 	int	i;
@@ -45,9 +43,9 @@ int	check_syntax(t_token *tokens)
 		}
 		i = 1;
 		if (tokens->next == NULL)
-			break;
+			break ;
 		tokens = tokens->next;
 	}
-	reset_list(&tokens);	
+	reset_list(&tokens);
 	return (1);
 }

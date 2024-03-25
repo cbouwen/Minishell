@@ -48,7 +48,7 @@ static void	handle_quotes(t_token **tokens, t_environment *env)
 			}
 		}
 		if ((*tokens)->next == NULL)
-			break;
+			break ;
 		(*tokens) = (*tokens)->next;
 	}
 	reset_list(tokens);
@@ -64,7 +64,7 @@ static void	handle_metas(t_token **tokens, t_environment *env)
 				(*tokens)->str = find_env((*tokens)->str, env);
 		}
 		if ((*tokens)->next == NULL)
-			break;
+			break ;
 		(*tokens) = (*tokens)->next;
 	}
 	reset_list(tokens);

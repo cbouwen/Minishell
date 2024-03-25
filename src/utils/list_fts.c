@@ -12,9 +12,8 @@
 
 #include "../../inc/minishell.h"
 
-void reset_list(t_token **tokens)
+void	reset_list(t_token **tokens)
 {
-    while ((*tokens)->prev != NULL)
-        *tokens = (*tokens)->prev;
+	while ((*tokens)->prev != NULL)
+		*tokens = (*tokens)->prev;
 }
-
