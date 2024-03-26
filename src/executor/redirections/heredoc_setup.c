@@ -46,31 +46,25 @@ return (0);*/
 
 int	heredoc_no_redirect(t_token *tokens, t_args *args)
 {
-	char	*line;
+	char    *line;
 
 	(void)tokens;
 
-	line = NULL;
-	args->fd = open("/tmp/heredoc_dump", O_RDWR | O_CREAT | O_TRUNC, 0644);
-	if (args->fd == -1)
-		return (ft_error("heredoc_no_redirect: open error\n", 3));
-	while ((line = readline("heredoc> ")) != NULL)
-	{
-		if (ft_strcmp(line, args->delimiter) == 0)
-		{
-			free(line);
-			line = NULL;
-			break ;
-		}
-		else
-		{
-			write(args->fd, line, ft_strlen(line));
-			write(args->fd, "\n", 1);
-			free(line);
-		}
-	}
-	//close(args->fd);
-	return (0);
+    args->fd = open("/tmp/heredoc_dump", O_RDWR | O_CREAT | O_TRUNC, 0644);
+    if (args->fd == -1)
+        return (ft_error("heredoc_no_redirect: open error\n", 3));
+    line = readline("heredoc> ");
+    while (ft_strcmp(line, args->delimiter) != 0)
+    {
+        write(args->fd, line, ft_strlen(line));
+        write(args->fd, "\n", 1);
+        free(line);
+        line = NULL;
+        line = readline("heredoc> ");
+    }
+    if (line)
+        free(line);
+    return (0);
 }
 
 void execute_command_with_heredoc(t_token *tokens, t_environment *env, t_args *args)
