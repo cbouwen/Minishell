@@ -25,7 +25,7 @@ int	setup_heredoc(t_token *tokens, t_environment *env, t_args *args)
 	}
 	temp = temp->next;
 	if (!temp->next || temp->next->type != REDIRECT)
-		return (ft_error(NULL, heredoc_no_redirect(temp, temp_args)));
+		return (ft_error(NULL, heredoc_no_redirect(temp_args)));
 	else
 		return (ft_error(NULL, heredoc_redirect(temp, temp_args)));
 }
@@ -44,14 +44,11 @@ else
 check_file_exists(temp_args);
 return (0);*/
 
-int	heredoc_no_redirect(t_token *tokens, t_args *args)
+int	heredoc_no_redirect(t_args *args)
 {
 	char	*line;
 
-	(void)tokens;
 	args->file = ft_strdup("/tmp/heredoc_dump");
-	/*if (update_args(args, path) != 0)
-		return (ft_error("heredoc_no_redirect: update_args error\n", 3));*/
     args->fd = open(args->file, O_RDWR | O_CREAT | O_TRUNC, 0644);
     if (args->fd == -1)
         return (ft_error("heredoc_no_redirect: open error\n", 3));
@@ -109,36 +106,47 @@ int execute_heredoc(t_token *tokens, t_environment *env, t_args *args)
 	return (ft_error(NULL, 0));
 }
 
-int	heredoc_redirect(t_token *tokens, t_args *args)
+int	heredoc_redirect(t_token *tokens, t_environment *env, t_args *args)
 {
-	(void)tokens;
-	(void)args;
-	printf("heredoc_redirect\n");
-	printf("args->delimiter: %s\n", args->delimiter);
-	printf("args->file: %s\n", args->file);
-	/*char	*line;
-	char	*path;
 
-	(void)tokens;
-	path = ft_strdup("/tmp/heredoc_dump");
-	if (!path)
-		return (ft_error("heredoc_no_redirect: strdup error\n", 3));
-	if (update_args(args, path) != 0)
-		return (ft_error("heredoc_no_redirect: update_args error\n", 3));
-    args->fd = open("/tmp/heredoc_dump", O_RDWR | O_CREAT | O_TRUNC, 0644);
-    if (args->fd == -1)
-        return (ft_error("heredoc_no_redirect: open error\n", 3));
-    line = readline("heredoc> ");
-    while (ft_strcmp(line, args->delimiter) != 0)
-    {
-        write(args->fd, line, ft_strlen(line));
-        write(args->fd, "\n", 1);
-        free(line);
-        line = NULL;
-        line = readline("heredoc> ");
-    }
-	free(path);
-    if (line)
-        free(line);*/
     return (0);
 }
+
+/*int				saved_stdin;
+	t_token			*temp;
+	t_environment	*temp_env;
+	t_args			*temp_args;
+
+	temp = tokens;
+	temp_env = env;
+	temp_args = args;
+	saved_stdin = dup(STDIN_FILENO);
+	if (saved_stdin == -1)
+		return ;
+	if (dup2(temp_args->fd, STDIN_FILENO) == -1)
+		return ;
+	close(temp_args->fd);
+	prep_cmd(temp, temp_env, temp_args);
+	if (dup2(saved_stdin, STDIN_FILENO) == -1)
+		return ;
+	close(saved_stdin);*/
+	/*t_token			*temp;
+	t_environment	*temp_env;
+	t_args			*temp_args;
+	int				saved_stdin;
+	//int				status;
+
+	temp = tokens;
+	temp_env = env;
+	temp_args = args;
+	saved_stdin = dup(STDIN_FILENO);
+	if (saved_stdin == -1)
+		return ;
+	if (dup2(temp_args->fd, STDIN_FILENO) == -1)
+		return ;
+	close(temp_args->fd);
+	prep_cmd(temp, temp_env, temp_args);
+	if (dup2(saved_stdin, STDIN_FILENO) == -1)
+		return ;
+	close(saved_stdin);
+	//return (ft_error(NULL, status));*/

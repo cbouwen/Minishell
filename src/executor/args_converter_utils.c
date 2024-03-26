@@ -48,6 +48,7 @@ int	init_args(t_args *args)
 	args->env_array = NULL;
 	args->redirect = TEMP;
 	args->heredoc = 0;
+	args->heredoc_file = NULL;
 	args->file = NULL;
 	args->file_exists = 0;
 	args->fd = 0;

@@ -67,6 +67,7 @@ typedef struct	s_args
 	char		**env_array;
 	t_redirect	redirect;
 	int 		heredoc;
+	char		*heredoc_file;
 	char		*file;
 	int			file_exists;
 	int			fd;
