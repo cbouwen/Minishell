@@ -47,7 +47,12 @@ int execute_heredoc(t_token *tokens, t_environment *env, t_args *args)
 	}
 	else
 	{
-		printf("stront pis kak\n");
+		printf("heredoc: %d\n", temp_args->heredoc_fd);
+		printf("heredoc: %s\n", temp_args->hd_file);
+		printf("heredoc: %s\n", temp_args->file);
+		printf("heredoc: %s\n", temp_args->delimiter);
+		printf("heredoc: %d\n", temp_args->fd);
+		printf("heredoc: %s\n", temp_args->redirect);
 		/*if (execute_heredoc_rd(temp, temp_env, temp_args) != 0)
 			return (ft_error("heredoc: execute_heredoc_nord error\n", 3));*/
 	}
