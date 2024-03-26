@@ -39,7 +39,7 @@ int			heredoc_no_redirect(t_args *args);
 int			redirect_input(t_token *tokens, t_environment *env, t_args *args);
 int			redirect_output(t_token *tokens, t_environment *env, t_args *args);
 int			redirect_append(t_token *tokens, t_environment *env, t_args *args);
-int			update_args(t_args *args, char *path);
+int			open_heredoc_re(t_args *args);
 
 /*syntax checkers*/
 int			exec_syntax_check(t_token *tokens);
@@ -103,6 +103,10 @@ int			handle_rel_path(t_args *args);
 int			create_exec_path(t_args *args, char **exec_path);
 int			path_error_handler(int err_no);
 
-void	printf_args_env(t_args *args);
+
+
+
+void printf_args_env(t_args *args);
+int update_args(t_args *args, char *path);
 
 #endif

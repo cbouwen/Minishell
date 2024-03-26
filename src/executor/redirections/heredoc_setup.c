@@ -52,7 +52,7 @@ int execute_heredoc(t_token *tokens, t_environment *env, t_args *args)
 		printf("heredoc: %s\n", temp_args->file);
 		printf("heredoc: %s\n", temp_args->delimiter);
 		printf("heredoc: %d\n", temp_args->fd);
-		printf("heredoc: %s\n", temp_args->redirect);
+		printf("heredoc: %d\n", temp_args->redirect);
 		/*if (execute_heredoc_rd(temp, temp_env, temp_args) != 0)
 			return (ft_error("heredoc: execute_heredoc_nord error\n", 3));*/
 	}
@@ -82,35 +82,6 @@ int	heredoc_no_redirect(t_args *args)
 	return (0);
 }
 
-int	update_args(t_args *args, char *path)
-{
-	int		len;
-	int		i;
-	char	**temp;
-
-	len = 0;
-	while (args->arg_array[len])
-		len++;
-	temp = malloc(sizeof(char *) * (len + 2));
-	if (!temp)
-		return (ft_error("update_args: malloc error\n", 12));
-	i = 0;
-	while (i < len)
-	{
-		temp[i] = ft_strdup(args->arg_array[i]);
-		if (!temp[i])
-			return (ft_error("update_args: strdup error\n", 12));
-		i++;
-	}
-	temp[i] = ft_strdup(path);
-	if (!temp[i])
-		return (ft_error("update_args: strdup error\n", 12));
-	temp[i + 1] = NULL;
-	free_array(args->arg_array);
-	args->arg_array = temp;
-	return (0);
-}
-
 int execute_heredoc_nord(t_token *tokens, t_environment *env, t_args *args)
 {
 	args->redirect = INPUT;
@@ -120,8 +91,6 @@ int execute_heredoc_nord(t_token *tokens, t_environment *env, t_args *args)
 		return (ft_error("execute_heredoc: redirect_input error\n", 3));
 	return (ft_error(NULL, 0));
 }
-
-int	open_heredoc_rd(t_args *args);
 
 int	heredoc_redirect(t_token *tokens, t_args *args)
 {
@@ -168,41 +137,33 @@ int	open_heredoc_rd(t_args *args)
 	return (0);
 }
 
-/*int				saved_stdin;
-	t_token			*temp;
-	t_environment	*temp_env;
-	t_args			*temp_args;
+//cat << EOF > file.txt
 
-	temp = tokens;
-	temp_env = env;
-	temp_args = args;
-	saved_stdin = dup(STDIN_FILENO);
-	if (saved_stdin == -1)
-		return ;
-	if (dup2(temp_args->fd, STDIN_FILENO) == -1)
-		return ;
-	close(temp_args->fd);
-	prep_cmd(temp, temp_env, temp_args);
-	if (dup2(saved_stdin, STDIN_FILENO) == -1)
-		return ;
-	close(saved_stdin);*/
-	/*t_token			*temp;
-	t_environment	*temp_env;
-	t_args			*temp_args;
-	int				saved_stdin;
-	//int				status;
+/*int	update_args(t_args *args, char *path)
+{
+	int		len;
+	int		i;
+	char	**temp;
 
-	temp = tokens;
-	temp_env = env;
-	temp_args = args;
-	saved_stdin = dup(STDIN_FILENO);
-	if (saved_stdin == -1)
-		return ;
-	if (dup2(temp_args->fd, STDIN_FILENO) == -1)
-		return ;
-	close(temp_args->fd);
-	prep_cmd(temp, temp_env, temp_args);
-	if (dup2(saved_stdin, STDIN_FILENO) == -1)
-		return ;
-	close(saved_stdin);
-	//return (ft_error(NULL, status));*/
+	len = 0;
+	while (args->arg_array[len])
+		len++;
+	temp = malloc(sizeof(char *) * (len + 2));
+	if (!temp)
+		return (ft_error("update_args: malloc error\n", 12));
+	i = 0;
+	while (i < len)
+	{
+		temp[i] = ft_strdup(args->arg_array[i]);
+		if (!temp[i])
+			return (ft_error("update_args: strdup error\n", 12));
+		i++;
+	}
+	temp[i] = ft_strdup(path);
+	if (!temp[i])
+		return (ft_error("update_args: strdup error\n", 12));
+	temp[i + 1] = NULL;
+	free_array(args->arg_array);
+	args->arg_array = temp;
+	return (0);
+}*/
