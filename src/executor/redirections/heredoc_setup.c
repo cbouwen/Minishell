@@ -46,8 +46,9 @@ int execute_heredoc(t_token *tokens, t_environment *env, t_args *args)
 	}
 	else
 	{
-		if (execute_heredoc_rd(temp, temp_env, temp_args) != 0)
-			return (ft_error("heredoc: execute_heredoc_nord error\n", 3));
+		printf("stront pis kak\n");
+		/*if (execute_heredoc_rd(temp, temp_env, temp_args) != 0)
+			return (ft_error("heredoc: execute_heredoc_nord error\n", 3));*/
 	}
 	return (ft_error(NULL, 0));
 }
