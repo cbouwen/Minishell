@@ -137,7 +137,7 @@ void execute_command_with_heredoc(t_token *tokens, t_environment *env, t_args *a
 	if (dup2(temp_args->fd, STDIN_FILENO) == -1)
 		return ;
 	close(temp_args->fd);
-	status = prep_cmd(temp, temp_env, temp_args);
+	prep_cmd(temp, temp_env, temp_args);
 	if (dup2(saved_stdin, STDIN_FILENO) == -1)
 		return ;
 	close(saved_stdin);
