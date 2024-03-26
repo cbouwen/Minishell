@@ -115,6 +115,8 @@ int execute_heredoc_nord(t_token *tokens, t_environment *env, t_args *args)
 	return (ft_error(NULL, 0));
 }
 
+int	open_heredoc_rd(t_args *args);
+
 int	heredoc_redirect(t_token *tokens, t_args *args)
 {
 	t_token			*temp;
