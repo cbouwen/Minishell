@@ -22,7 +22,7 @@ int	export_var(t_token *tokens, t_environment *env)
 	var_value = NULL;
 	status = 0;
 	if (count_tokens(tokens) == 2)
-		status = special_export(tokens->str, &var_name, &var_value);
+		status = special_export(tokens->next->str, &var_name, &var_value);
 	else
 	{
 		status = extract_name(tokens->next->str, &var_name);
