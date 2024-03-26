@@ -39,7 +39,7 @@ int			heredoc_no_redirect(t_args *args);
 int			redirect_input(t_token *tokens, t_environment *env, t_args *args);
 int			redirect_output(t_token *tokens, t_environment *env, t_args *args);
 int			redirect_append(t_token *tokens, t_environment *env, t_args *args);
-int			open_heredoc_re(t_args *args);
+int			open_heredoc_rd(t_args *args);
 
 /*syntax checkers*/
 int			exec_syntax_check(t_token *tokens);
