@@ -29,7 +29,9 @@ int	run_minishell(t_environment *env, char *input)
 		parser(&tokens);
 		expander(&tokens, env);
 		//test_tokenizer(tokens);
+		g_signal.in_cmd = true;
 		executor(tokens, env);
+		g_signal.in_cmd = false;
 		//exit_status = executor(tokens, env);
 		//tester(env);
 		//test_tokenizer(tokens);
