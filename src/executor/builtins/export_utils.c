@@ -54,6 +54,8 @@ int	special_export(char *token_str, char **var_name, char **var_value)
 	int	status;
 	int	sign_loc;
 
+	(void)var_value;
+
 	status = 0;
 	sign_loc = 0;
 	status = extract_name(token_str, var_name);
