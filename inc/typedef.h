@@ -75,6 +75,20 @@ typedef struct	s_args
 	char		*delimiter;
 }				t_args;
 
+typedef struct	s_redirect
+{
+	char				*filename;
+	t_redirect			redirect_type;
+	struct s_redirect	*next;
+}				t_redirect;
+
+typedef struct s_rd_collection
+{
+	t_redirect	*input;
+	t_redirect	*output;
+	t_redirect	*append;
+}				t_rd_collection;
+
 /*typedef struct s_syntax_token
 {
 	struct s_syntax_token	*parent;

@@ -104,7 +104,10 @@ int			create_exec_path(t_args *args, char **exec_path);
 int			path_error_handler(int err_no);
 
 
-
+/*new redirect stuff*/
+int	redirect_syntax_check(t_token *tokens);
+int init_redirect(t_token *tokens, t_redirect *redirect);
+int redirect_test(t_token *tokens);
 
 void printf_args_env(t_args *args);
 int update_args(t_args *args, char *path);
