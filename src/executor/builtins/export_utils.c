@@ -56,7 +56,7 @@ int	special_export(char *token_str, char **var_name, char **var_value)
 
 	status = 0;
 	sign_loc = 0;
-	status = extract_name(token_str, *var_name);
+	status = extract_name(token_str, var_name);
 	if (status != 0)
 		return (ft_error(NULL, status));
 	sign_loc = ft_strchr(token_str, '=') - token_str;
