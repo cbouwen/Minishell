@@ -55,7 +55,7 @@ int	special_export(char *token_str, char **var_name, char **var_value)
 	(void)var_name;
 	(void)var_value;
 	printf("special export\n");
-	return (0);
+	return (1);
 	/*int		sign_loc;
 	char	*value;
 
