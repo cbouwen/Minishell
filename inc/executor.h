@@ -27,7 +27,7 @@ int			prep_cmd(t_token *tokens, t_environment *env, t_args *args);
 /*redirects*/
 int			run_redirects(t_token *tokens, t_environment *env, t_args *args);
 int			determine_redirect(t_token *tokens, t_args *args);
-int			determine_file(t_token *tokens, t_args *args);
+int			determine_file(t_token *tokens, t_environment *env, t_args *args);
 int			heredoc_setup(t_token *tokens, t_args *args);
 int			heredoc_no_redirect(t_token *tokens, t_args *args);
 int			heredoc_redirect(t_token *tokens, t_args *args);

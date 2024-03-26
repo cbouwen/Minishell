@@ -38,13 +38,15 @@ int	determine_redirect(t_token *tokens, t_args *args)
 	return (1);
 }
 
-int	determine_file(t_token *tokens, t_args *args)
+int	determine_file(t_token *tokens, t_environment *env, t_args *args)
 {
 	t_token	*temp;
 	t_args	*temp_args;
+	t_environment	*temp_env;
 
 	temp = tokens;
 	temp_args = args;
+	temp_env = env;
 	while (temp && temp->type != PIPE)
 	{
 		if (temp->type == REDIRECT && temp_args->heredoc == 0)
@@ -56,7 +58,7 @@ int	determine_file(t_token *tokens, t_args *args)
 			}
 		}
 		else if (temp->type == REDIRECT && temp_args->heredoc == 1)
-			return (setup_heredoc(temp, temp_args));
+			return (setup_heredoc(temp, temp_env, temp_args));
 		temp = temp->next;
 	}
 	return (1);
