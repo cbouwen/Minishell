@@ -38,6 +38,7 @@ int			heredoc_no_redirect(t_token *tokens, t_args *args);
 int			redirect_input(t_token *tokens, t_environment *env, t_args *args);
 int			redirect_output(t_token *tokens, t_environment *env, t_args *args);
 int			redirect_append(t_token *tokens, t_environment *env, t_args *args);
+int			update_args(t_args *args, char *path);
 
 /*syntax checkers*/
 int			exec_syntax_check(t_token *tokens);

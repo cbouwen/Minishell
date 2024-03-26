@@ -53,7 +53,8 @@ int	heredoc_no_redirect(t_token *tokens, t_args *args)
 	path = ft_strdup("/tmp/heredoc_dump");
 	if (!path)
 		return (ft_error("heredoc_no_redirect: strdup error\n", 3));
-	args->arg_array[1] = path;
+	if (update_args(args, path) != 0)
+		return (ft_error("heredoc_no_redirect: update_args error\n", 3));
     args->fd = open("/tmp/heredoc_dump", O_RDWR | O_CREAT | O_TRUNC, 0644);
     if (args->fd == -1)
         return (ft_error("heredoc_no_redirect: open error\n", 3));
@@ -70,6 +71,36 @@ int	heredoc_no_redirect(t_token *tokens, t_args *args)
     if (line)
         free(line);
     return (0);
+}
+
+int	update_args(t_args *args, char *path)
+{
+	int		len;
+	int		i;
+	char	**temp;
+
+	len = 0;
+	while (args->arg_array[len])
+		len++;
+	temp = malloc(sizeof(char *) * (len + 2));
+	if (!temp)
+		return (ft_error("update_args: malloc error\n", 12));
+	i = 0;
+	while (i < len)
+	{
+		temp[i] = ft_strdup(args->arg_array[i]);
+		if (!temp[i])
+			return (ft_error("update_args: strdup error\n", 12));
+		i++;
+	}
+	temp[i + 1] = ft_strdup(path);
+	if (!temp[i])
+		return (ft_error("update_args: strdup error\n", 12));
+	temp[i + 2] = NULL;
+	free_array(args->arg_array);
+	args->arg_array = temp;
+	free_array(temp);
+	return (0);
 }
 
 void execute_command_with_heredoc(t_token *tokens, t_environment *env, t_args *args)
