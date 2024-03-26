@@ -60,16 +60,6 @@ int	check_export(t_token *tokens)
 
 	temp = tokens;
 	i = 0;
-	/*if (!temp->next)
-		return (ft_error("export: no input\n", 1));
-	temp = temp->next;
-	if (temp->has_space == 1)
-		return (ft_error("export: not a valid identifier\n", 1));
-	if (check_first_char(temp->str) == 1)
-		return (ft_error("export: not a valid identifier\n", 1));
-	if (!temp->next)
-		return (ft_error("export: not enough arguments\n", 1));
-	return (ft_error(NULL, 0));*/
 	while (temp && temp->type != PIPE && temp->type != REDIRECT)
 	{
 		i++;
@@ -84,23 +74,24 @@ int	check_export(t_token *tokens)
 	if (check_first_char(temp->str) == 1)
 		return (ft_error("export: not a valid identifier\n", 1));
 	if (i == 2)
-	{
 		if (check_last_char(temp->str, '=') == 1)
 			return (ft_error("export: not a valid identifier\n", 1));
-		else
-			return (ft_error(NULL, 0));
-	}
 	else
-	{
 		if (!temp->next)
 			return (ft_error("export: not enough arguments\n", 1));
-		else
-			return (ft_error(NULL, 0));
-	}
-	return (ft_error("export: undefined error", 1));
-
-
+	return (ft_error(NULL, 0));
 }
+
+/*if (!temp->next)
+		return (ft_error("export: no input\n", 1));
+	temp = temp->next;
+	if (temp->has_space == 1)
+		return (ft_error("export: not a valid identifier\n", 1));
+	if (check_first_char(temp->str) == 1)
+		return (ft_error("export: not a valid identifier\n", 1));
+	if (!temp->next)
+		return (ft_error("export: not enough arguments\n", 1));
+	return (ft_error(NULL, 0));*/
 
 int	check_unset(t_token *tokens)
 {
