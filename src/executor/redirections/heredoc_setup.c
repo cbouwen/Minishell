@@ -104,7 +104,7 @@ void execute_command_with_heredoc(t_token *tokens, t_environment *env, t_args *a
 {
 
 	open_file(args);
-	redirect_input(tokens, env, args);
+	redirect_output(tokens, env, args);
 	/*int				saved_stdin;
 	t_token			*temp;
 	t_environment	*temp_env;
