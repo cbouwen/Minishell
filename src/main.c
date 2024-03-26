@@ -59,7 +59,7 @@ int	minishell_loop(char **envp)
 			continue ;
 		}
 		if (ft_strcmp(input, "exit") == 0)
-			clean_exit(NULL, env);
+			clean_exit(NULL, env, NULL);
 		add_history(input);
 		run_minishell(env, input);
 	}
