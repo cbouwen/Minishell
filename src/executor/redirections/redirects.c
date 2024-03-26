@@ -27,11 +27,11 @@ int	run_redirects(t_token *tokens, t_environment *env, t_args *args)
 		return (ft_error(NULL, 1));
 	status = determine_redirect(temp, temp_args);
 	status = determine_file(temp, temp_env, temp_args);
-	if (temp_args->redirect == INPUT)
+	if (temp_args->redirect == INPUT && temp_args->heredoc == 0)
 		status = redirect_input(temp, temp_env, temp_args);
-	else if (temp_args->redirect == APPEND)
+	else if (temp_args->redirect == APPEND && temp_args->heredoc == 0)
 		status = redirect_append(temp, temp_env, temp_args);
-	else if (temp_args->redirect == OUTPUT)
+	else if (temp_args->redirect == OUTPUT && temp_args->heredoc == 0)
 		status = redirect_output(temp, temp_env, temp_args);
 	else if (temp_args->heredoc == 1)
 		status = execute_heredoc(temp, temp_env, temp_args);
