@@ -58,8 +58,7 @@ int	heredoc_no_redirect(t_token *tokens, t_args *args)
 		return (ft_error("heredoc_no_redirect: open error\n", 3));
 	while ((line = readline("heredoc> ")) != NULL)
 	{
-		line[strcspn(line, "\n")] = 0;
-		if (ft_strcmp(line, args->delimiter) == 0)
+		if (strcmp(line, args->delimiter) == 0)
 		{
 			free(line);
 			break ;
