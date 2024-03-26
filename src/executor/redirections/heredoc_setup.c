@@ -47,15 +47,15 @@ return (0);*/
 int	heredoc_no_redirect(t_token *tokens, t_args *args)
 {
 	char	*line;
-	char	*path;
 
 	(void)tokens;
-	path = ft_strdup("/tmp/heredoc_dump");
+	args->file = ft_strdup("/tmp/heredoc_dump");
+	args->redirect = INPUT;
 	if (!path)
 		return (ft_error("heredoc_no_redirect: strdup error\n", 3));
 	/*if (update_args(args, path) != 0)
 		return (ft_error("heredoc_no_redirect: update_args error\n", 3));*/
-    args->fd = open("/tmp/heredoc_dump", O_RDWR | O_CREAT | O_TRUNC, 0644);
+    args->fd = open(args->file, O_RDWR | O_CREAT | O_TRUNC, 0644);
     if (args->fd == -1)
         return (ft_error("heredoc_no_redirect: open error\n", 3));
     line = readline("heredoc> ");
@@ -67,7 +67,7 @@ int	heredoc_no_redirect(t_token *tokens, t_args *args)
         line = NULL;
         line = readline("heredoc> ");
     }
-	free(path);
+	close(args->fd);
     if (line)
         free(line);
     return (0);
@@ -103,7 +103,10 @@ int	update_args(t_args *args, char *path)
 }
 
 void execute_command_with_heredoc(t_token *tokens, t_environment *env, t_args *args)
-{
+{-
+
+	open_file(args);
+	redirect_input(tokens, env, args);
 	/*int				saved_stdin;
 	t_token			*temp;
 	t_environment	*temp_env;
@@ -122,7 +125,7 @@ void execute_command_with_heredoc(t_token *tokens, t_environment *env, t_args *a
 	if (dup2(saved_stdin, STDIN_FILENO) == -1)
 		return ;
 	close(saved_stdin);*/
-	t_token			*temp;
+	/*t_token			*temp;
 	t_environment	*temp_env;
 	t_args			*temp_args;
 	int				saved_stdin;
@@ -141,7 +144,7 @@ void execute_command_with_heredoc(t_token *tokens, t_environment *env, t_args *a
 	if (dup2(saved_stdin, STDIN_FILENO) == -1)
 		return ;
 	close(saved_stdin);
-	//return (ft_error(NULL, status));
+	//return (ft_error(NULL, status));*/
 }
 
 int	heredoc_redirect(t_token *tokens, t_args *args)
