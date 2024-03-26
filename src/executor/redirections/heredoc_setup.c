@@ -99,56 +99,14 @@ int	update_args(t_args *args, char *path)
 	return (0);
 }
 
-void execute_command_with_heredoc(t_token *tokens, t_environment *env, t_args *args)
+int execute_heredoc(t_token *tokens, t_environment *env, t_args *args)
 {
-	int status = 0;
 	args->redirect = INPUT;
-	printf("1\n");
-	status = open_file(args);
-	printf("status: %d\n", status);
-	printf("2\n");
-	printf("args->file: %s\n", args->file);
-	printf("args->fd: %d\n", args->fd);
-	printf("3\n");
-	redirect_input(tokens, env, args);
-	/*int				saved_stdin;
-	t_token			*temp;
-	t_environment	*temp_env;
-	t_args			*temp_args;
-
-	temp = tokens;
-	temp_env = env;
-	temp_args = args;
-	saved_stdin = dup(STDIN_FILENO);
-	if (saved_stdin == -1)
-		return ;
-	if (dup2(temp_args->fd, STDIN_FILENO) == -1)
-		return ;
-	close(temp_args->fd);
-	prep_cmd(temp, temp_env, temp_args);
-	if (dup2(saved_stdin, STDIN_FILENO) == -1)
-		return ;
-	close(saved_stdin);*/
-	/*t_token			*temp;
-	t_environment	*temp_env;
-	t_args			*temp_args;
-	int				saved_stdin;
-	//int				status;
-
-	temp = tokens;
-	temp_env = env;
-	temp_args = args;
-	saved_stdin = dup(STDIN_FILENO);
-	if (saved_stdin == -1)
-		return ;
-	if (dup2(temp_args->fd, STDIN_FILENO) == -1)
-		return ;
-	close(temp_args->fd);
-	prep_cmd(temp, temp_env, temp_args);
-	if (dup2(saved_stdin, STDIN_FILENO) == -1)
-		return ;
-	close(saved_stdin);
-	//return (ft_error(NULL, status));*/
+	if (open_file(args) != 0)
+		return (ft_error("execute_heredoc: open_file error\n", 3));
+	if (redirect_input(tokens, env, args) != 0)
+		return (ft_error("execute_heredoc: redirect_input error\n", 3));
+	return (ft_error(NULL, 0));
 }
 
 int	heredoc_redirect(t_token *tokens, t_args *args)

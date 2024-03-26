@@ -34,6 +34,7 @@ int			heredoc_redirect(t_token *tokens, t_args *args);
 int			check_file_exists(t_args *args);
 int			open_file(t_args *args);
 int			setup_heredoc(t_token *tokens, t_environment *env, t_args *args);
+int			execute_heredoc(t_token *tokens, t_environment *env, t_args *args);
 int			heredoc_no_redirect(t_token *tokens, t_args *args);
 int			redirect_input(t_token *tokens, t_environment *env, t_args *args);
 int			redirect_output(t_token *tokens, t_environment *env, t_args *args);
@@ -103,6 +104,5 @@ int			create_exec_path(t_args *args, char **exec_path);
 int			path_error_handler(int err_no);
 
 void	printf_args_env(t_args *args);
-void	execute_command_with_heredoc(t_token *tokens, t_environment *env, t_args *args);
 
 #endif
