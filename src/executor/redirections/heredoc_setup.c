@@ -126,7 +126,7 @@ void execute_command_with_heredoc(t_token *tokens, t_environment *env, t_args *a
 	t_environment	*temp_env;
 	t_args			*temp_args;
 	int				saved_stdin;
-	int				status;
+	//int				status;
 
 	temp = tokens;
 	temp_env = env;
