@@ -65,7 +65,6 @@ int	heredoc_no_redirect(t_token *tokens, t_args *args)
 		free(line);
 	}
 	//close(args->fd);
-	free(path);
 	return (0);
 }
 
