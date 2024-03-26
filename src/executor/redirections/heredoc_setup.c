@@ -133,13 +133,13 @@ void execute_command_with_heredoc(t_token *tokens, t_environment *env, t_args *a
 	temp_args = args;
 	saved_stdin = dup(STDIN_FILENO);
 	if (saved_stdin == -1)
-		return (ft_error("redirect: dup error\n", 1));
+		return ;
 	if (dup2(temp_args->fd, STDIN_FILENO) == -1)
-		return (ft_error("redirect: dup2 error\n", 1));
+		return ;
 	close(temp_args->fd);
 	status = prep_cmd(temp, temp_env, temp_args);
 	if (dup2(saved_stdin, STDIN_FILENO) == -1)
-		return (ft_error("redirect: dup2 error\n", 1));
+		return ;
 	close(saved_stdin);
 	return (ft_error(NULL, status));
 }
