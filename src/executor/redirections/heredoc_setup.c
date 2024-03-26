@@ -59,7 +59,10 @@ int	heredoc_no_redirect(t_token *tokens, t_args *args)
 	while ((line = readline("heredoc> ")) != NULL)
 	{
 		if (ft_strcmp(line, args->delimiter) == 0)
+		{
 			free(line);
+			break ;
+		}
 		else
 		{
 			write(args->fd, line, ft_strlen(line));
