@@ -50,10 +50,11 @@ int	heredoc_no_redirect(t_token *tokens, t_args *args)
 	char	*path;
 
 	(void)tokens;
-
 	path = ft_strdup("/tmp/heredoc_dump");
+	if (!path)
+		return (ft_error("heredoc_no_redirect: strdup error\n", 3));
 	args->arg_array[1] = path;
-    args->fd = open(path, O_RDWR | O_CREAT | O_TRUNC, 0644);
+    args->fd = open("/tmp/heredoc_dump", O_RDWR | O_CREAT | O_TRUNC, 0644);
     if (args->fd == -1)
         return (ft_error("heredoc_no_redirect: open error\n", 3));
     line = readline("heredoc> ");
