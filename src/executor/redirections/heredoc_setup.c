@@ -84,6 +84,7 @@ void execute_command_with_heredoc(t_token *tokens, t_environment *env, t_args *a
 		return ;
 	close(temp_args->fd);
 	prep_cmd(temp, temp_env, temp_args);
+	printf("args->args[0]: %s\n", temp_args->arg_array[0]);
 	if (dup2(saved_stdin, STDIN_FILENO) == -1)
 		return ;
 	close(saved_stdin);
