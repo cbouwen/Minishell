@@ -73,7 +73,7 @@ int	free_args(t_args *args)
 			free_array(args->arg_array);
 		if (args->env_array)
 			free_array(args->env_array);
-		free(args->heredoc_file);
+		free(args->hd_file);
 		free(args->file);
 		free(args->delimiter);
 		free(args);
