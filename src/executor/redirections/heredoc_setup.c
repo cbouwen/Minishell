@@ -111,7 +111,16 @@ int	heredoc_redirect(t_token *tokens, t_environment *env, t_args *args)
 	(void)tokens;
 	(void)env;
 	(void)args;
-	printf("tokens->str: %s\n", tokens->str);
+	if (determine_redirect(tokens, args) != 0)
+		return (ft_error("heredoc_redirect: determine_redirect error\n", 3));
+	printf("redirect: %d\n", args->redirect);
+	if (!temp->next || temp->next->type != ARG)
+		return (ft_error("heredoc: syntax error 3\n", 3));
+	temp = temp->next;
+	args->file = ft_strdup(temp->str);
+	if (!args->file)
+		return (ft_error("heredoc: strdup error\n", 12));
+	printf("file: %s\n", args->file);
     return (0);
 }
 
