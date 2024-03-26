@@ -27,8 +27,8 @@ int	export_var(t_token *tokens, t_environment *env)
 			status = special_export(tokens->str, &var_name, &var_value);
 		else
 		{
-			status = extract_name(tokens->str, &var_name);
-			status = extract_value(tokens->next->str, &var_value);
+			status = extract_name(tokens->next->str, &var_name);
+			status = extract_value(tokens->next->next->str, &var_value);
 		}
 		if (check_env_val_exists(env, var_name) == 0)
 			status = update_env_val(env, var_name, var_value, false);

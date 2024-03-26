@@ -45,7 +45,7 @@ int	builtin_executor(t_token *tokens, t_environment *env)
 	else if (builtin == 3)
 		status = print_env(temp, temp_env);
 	else if (builtin == 4)
-		status = export_var(temp->next, temp_env);
+		status = export_var(temp, temp_env);
 	else if (builtin == 5)
 		status = unset_var(temp->next, temp_env);
 	else if (builtin == 6)
