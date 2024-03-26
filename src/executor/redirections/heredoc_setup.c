@@ -141,7 +141,7 @@ void execute_command_with_heredoc(t_token *tokens, t_environment *env, t_args *a
 	if (dup2(saved_stdin, STDIN_FILENO) == -1)
 		return ;
 	close(saved_stdin);
-	return (ft_error(NULL, status));
+	//return (ft_error(NULL, status));
 }
 
 int	heredoc_redirect(t_token *tokens, t_args *args)
