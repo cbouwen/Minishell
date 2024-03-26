@@ -25,7 +25,6 @@ int	run_redirects(t_token *tokens, t_environment *env, t_args *args)
 	status = 0;
 	if (fill_args(args, temp) != 0)
 		return (ft_error(NULL, 1));
-	printf("args->arg_array[0] = %s\n", args->arg_array[0]);
 	status = determine_redirect(temp, temp_args);
 	status = determine_file(temp, temp_env, temp_args);
 	if (temp_args->redirect == INPUT)

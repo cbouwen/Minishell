@@ -98,12 +98,7 @@ int	update_args(t_args *args, char *path)
 		return (ft_error("update_args: strdup error\n", 12));
 	temp[i + 1] = NULL;
 	free_array(args->arg_array);
-	args->arg_array = temp;
-	//free_array(temp);
-
-	for (int i = 0; args->arg_array[i]; i++)
-		printf("args->arg_array[%d]: %s\n", i, args->arg_array[i]);
-
+	args->arg_array = temp;☺
 	return (0);
 }
 
@@ -124,15 +119,9 @@ void execute_command_with_heredoc(t_token *tokens, t_environment *env, t_args *a
 		return ;
 	close(temp_args->fd);
 	prep_cmd(temp, temp_env, temp_args);
-	printf("args->args[0]: %s\n", temp_args->arg_array[0]);
-	printf("args->args[1]: %s\n", temp_args->arg_array[1]);
 	if (dup2(saved_stdin, STDIN_FILENO) == -1)
 		return ;
 	close(saved_stdin);
-	/*saved_stdin = dup(STDIN_FILENO);
-    heredoc_no_redirect(tokens, args);
-
-	prep_cmd(tokens, env, args);*/
 }
 
 int	heredoc_redirect(t_token *tokens, t_args *args)
