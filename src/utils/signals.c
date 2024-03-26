@@ -14,10 +14,16 @@
 
 void	sig_handler(int sig)
 {
-	(void)sig;
+	//(void)sig;
+	if (sig == SIGINT)
+	{
+		ft_putstr_fd("\n", 1);
+		rl_replace_line("", 0);
+		rl_redisplay();
+	}
 	printf("\n");
 	ft_error(NULL, 130);
 	rl_replace_line("", 0);
-	//rl_on_new_line();
+	rl_on_new_line();
 	rl_redisplay();
 }
