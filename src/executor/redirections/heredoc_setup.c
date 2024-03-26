@@ -30,20 +30,6 @@ int	setup_heredoc(t_token *tokens, t_environment *env, t_args *args)
 		return (ft_error(NULL, heredoc_redirect(temp->next, temp_args)));
 }
 
-/*jump to next token*/
-/*temp = temp->next->next;
-if (temp->type != REDIRECT || ft_strcmp(temp->str, "<<") == 0)
-	return (ft_error("heredoc: syntax error 2\n", 3));
-else
-	determine_redirect(temp, temp_args);
-temp = temp->next;
-if (temp->type != ARG)
-	return (ft_error("heredoc: syntax error 3\n", 3));
-else
-	args->file = ft_strdup(temp->str);
-check_file_exists(temp_args);
-return (0);*/
-
 int execute_heredoc(t_token *tokens, t_environment *env, t_args *args)
 {
 	t_token			*temp;
@@ -169,6 +155,7 @@ int	open_heredoc_rd(t_args *args)
 	close(args->heredoc_fd);
 	if (line)
 		free(line);
+	printf("heredoc_fd: %d\n", args->heredoc_fd);
 	return (0);
 }
 
