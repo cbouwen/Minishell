@@ -67,6 +67,8 @@ int	check_export(t_token *tokens)
 		return (ft_error("export: not a valid identifier\n", 1));
 	if (check_first_char(temp->str) == 1)
 		return (ft_error("export: not a valid identifier\n", 1));
+	if (ft_strchr(temp->str, '=') == NULL)
+		return (ft_error("export: not a valid identifier\n", 1));
 	if (i == 2)
 	{
 		if (check_last_char(temp->str, '=') == 1)
