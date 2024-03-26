@@ -108,7 +108,10 @@ int execute_heredoc(t_token *tokens, t_environment *env, t_args *args)
 
 int	heredoc_redirect(t_token *tokens, t_environment *env, t_args *args)
 {
-
+	(void)env;
+	(void)tokens;
+	(void)args;
+	printf("heredoc_redirect\n");
     return (0);
 }
 
