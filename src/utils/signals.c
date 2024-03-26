@@ -15,10 +15,12 @@
 void	sig_handler(int sig)
 {
 	//(void)sig;
-	if (sig == SIGINT)
+	/*if (sig == SIGINT)
 	{
-		ft_putstr_fd("\n", 1);
+		printf("\n");
+		ft_error(NULL, 130);
 		rl_replace_line("", 0);
+		rl_on_new_line();
 		rl_redisplay();
 	}
 	else
@@ -28,5 +30,11 @@ void	sig_handler(int sig)
 		rl_replace_line("", 0);
 		rl_on_new_line();
 		rl_redisplay();
-	}
+	}*/
+	printf("\n");
+	ft_error(NULL, 130);
+	rl_replace_line("", 0);
+	if (sig != SIGINT)
+		rl_on_new_line();
+	rl_redisplay();
 }
