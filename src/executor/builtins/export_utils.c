@@ -62,8 +62,8 @@ int	special_export(char *token_str, char **var_name, char **var_value)
 	if (status != 0)
 		return (ft_error(NULL, status));
 	sign_loc = ft_strchr(token_str, '=') - token_str;
-	printf("sign_loc: %d\n", sign_loc);
-	return (1);
+	*var_value = ft_strdup(token_str + sign_loc + 1);
+	return (ft_error(NULL, 0));
 
 	/*int		sign_loc;
 	char	*value;

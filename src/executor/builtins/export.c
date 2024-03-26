@@ -29,6 +29,7 @@ int	export_var(t_token *tokens, t_environment *env)
 		status = extract_value(tokens->next->next->str, &var_value);
 	}
 	printf("var_name: %s\n", var_name);
+	printf("var_value: %s\n", var_value);
 	if (status != 0)
 		return (ft_error(NULL, status));
 	if (check_env_val_exists(env, var_name) == 0)
