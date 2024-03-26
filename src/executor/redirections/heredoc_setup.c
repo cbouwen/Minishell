@@ -2,13 +2,15 @@
 
 #include "../../../inc/minishell.h"
 
-int	setup_heredoc(t_token *tokens, t_args *args)
+int	setup_heredoc(t_token *tokens, t_environment *env, t_args *args)
 {
-	t_token	*temp;
-	t_args	*temp_args;
+	t_token			*temp;
+	t_args			*temp_args;
+	t_environment	*tem_env;
 
 	temp = tokens;
 	temp_args = args;
+	tem_env = env;
 	while (temp && temp->type != REDIRECT)
 		temp = temp->next;
 	if (!temp->next || temp->next->type != ARG)
@@ -22,7 +24,7 @@ int	setup_heredoc(t_token *tokens, t_args *args)
 	}
 	temp = temp->next;
 	if (!temp->next || temp->next->type != REDIRECT)
-		return (ft_error(NULL, heredoc_no_redirect(temp, temp_args)));
+		return (ft_error(NULL, heredoc_no_redirect(temp, tem_env, temp_args)));
 	else
 		return (ft_error(NULL, heredoc_redirect(temp, temp_args)));
 }
@@ -45,13 +47,11 @@ int	heredoc_no_redirect(t_token *tokens, t_args *args)
 {
 	t_token	*temp;
 	t_args	*temp_args;
+	t_environment	*temp_env;
 	char	*line;
 
 	temp = tokens;
 	temp_args = args;
-
-	(void)temp;
-	(void)temp_args;
 
 	args->fd = open("/tmp/heredoc_dump", O_RDWR | O_CREAT | O_TRUNC, 0644);
 	if (args->fd == -1)
@@ -75,12 +75,19 @@ int	heredoc_no_redirect(t_token *tokens, t_args *args)
 	return (0);
 }
 
-void execute_command_with_heredoc(t_token *tokens, t_args *args)
+void execute_command_with_heredoc(t_token *tokens, t_environment *env, t_args *args)
 {
     pid_t pid;
+	t_token	*temp;
+	t_args	*temp_args;
+	t_environment	*temp_env;
+
+	temp = tokens;
+	temp_args = args;
+	temp_env = env;
 
     heredoc_no_redirect(tokens, args);
-	status = prep_cmd(temp, temp_env, temp_args);
+	prep_cmd(temp, temp_env, temp_args);
 }
 
 int	heredoc_redirect(t_token *tokens, t_args *args)

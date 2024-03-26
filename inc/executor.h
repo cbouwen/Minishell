@@ -102,6 +102,6 @@ int			create_exec_path(t_args *args, char **exec_path);
 int			path_error_handler(int err_no);
 
 void	printf_args_env(t_args *args);
-void	execute_command_with_heredoc(t_token *tokens, t_args *args);
+void	execute_command_with_heredoc(t_token *tokens, t_environment *env, t_args *args);
 
 #endif
