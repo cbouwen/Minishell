@@ -46,14 +46,11 @@ return (0);*/
 
 int	heredoc_no_redirect(t_token *tokens, t_args *args)
 {
-	t_token	*temp;
-	t_args	*temp_args;
-	t_environment	*temp_env;
 	char	*line;
 
-	temp = tokens;
-	temp_args = args;
+	(void)tokens;
 
+	line = NULL;
 	args->fd = open("/tmp/heredoc_dump", O_RDWR | O_CREAT | O_TRUNC, 0644);
 	if (args->fd == -1)
 		return (ft_error("heredoc_no_redirect: open error\n", 3));
