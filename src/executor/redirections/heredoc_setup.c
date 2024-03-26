@@ -53,7 +53,7 @@ int execute_heredoc(t_token *tokens, t_environment *env, t_args *args)
 		printf("heredoc: %s\n", temp_args->delimiter);
 		printf("heredoc: %d\n", temp_args->fd);
 		printf("heredoc: %d\n", temp_args->redirect);
-		execute_heredoc_rd(temp, temp_env, temp_args);
+		execute_heredoc_nord(temp, temp_env, temp_args);
 		/*if (execute_heredoc_rd(temp, temp_env, temp_args) != 0)
 			return (ft_error("heredoc: execute_heredoc_nord error\n", 3));*/
 	}
