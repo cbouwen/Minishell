@@ -101,7 +101,7 @@ int	update_args(t_args *args, char *path)
 }
 
 void execute_command_with_heredoc(t_token *tokens, t_environment *env, t_args *args)
-{-
+{
 
 	open_file(args);
 	redirect_input(tokens, env, args);
