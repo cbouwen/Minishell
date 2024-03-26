@@ -45,7 +45,6 @@ int	heredoc_no_redirect(t_token *tokens, t_args *args)
 {
 	t_token	*temp;
 	t_args	*temp_args;
-	char	*path;
 	char	*line;
 
 	temp = tokens;
@@ -54,10 +53,7 @@ int	heredoc_no_redirect(t_token *tokens, t_args *args)
 	(void)temp;
 	(void)temp_args;
 
-	path = ft_strdup("/tmp/heredoc_dump");
-	if (!path)
-		return (ft_error("heredoc_no_redirect: malloc error\n", 12));
-	args->fd = open(path, O_RDWR | O_CREAT | O_TRUNC, 0644);
+	args->fd = open("/tmp/heredoc_dump", O_RDWR | O_CREAT | O_TRUNC, 0644);
 	if (args->fd == -1)
 		return (ft_error("heredoc_no_redirect: open error\n", 3));
 	while ((line = readline("heredoc> ")) != NULL)
@@ -68,7 +64,7 @@ int	heredoc_no_redirect(t_token *tokens, t_args *args)
 		write(args->fd, "\n", 1);
 		free(line);
 	}
-	close(args->fd);
+	//close(args->fd);
 	free(path);
 	return (0);
 }
