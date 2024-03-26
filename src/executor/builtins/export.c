@@ -14,25 +14,31 @@
 
 int	export_var(t_token *tokens, t_environment *env)
 {
-	t_token			*temp;
-	t_environment	*temp_env;
-	char			*var_name;
-	char			*var_value;
-	int				status;
+	char	*var_name;
+	char	*var_value;
+	int		status;
 
-	temp = tokens;
-	temp_env = env;
 	var_name = NULL;
 	var_value = NULL;
 	status = 0;
-	status = extract_name(temp->str, &var_name);
-	status = extract_value(temp->next->str, &var_value);
-	if (check_env_val_exists(temp_env, var_name) == 0)
-		status = update_env_val(temp_env, var_name, var_value, false);
-	else
-		status = add_env_val(temp_env, var_name, var_value);
-	free(var_name);
-	free(var_value);
+	while (status == 0)
+	{
+		if (count_tokens(tokens) == 2)
+			status = special_export(tokens->str, &var_name, &var_value);
+		else
+		{
+			status = extract_name(tokens->str, &var_name);
+			status = extract_value(tokens->next->str, &var_value);
+		}
+		if (check_env_val_exists(env, var_name) == 0)
+			status = update_env_val(env, var_name, var_value, false);
+		else
+			status = add_env_val(env, var_name, var_value);
+	}
+	if (var_name)
+		free(var_name);
+	if (var_value)
+		free(var_value);
 	return (ft_error(NULL, status));
 }
 

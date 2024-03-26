@@ -48,3 +48,25 @@ int	check_env_val_exists(t_environment *env, char *var_name)
 	}
 	return (1);
 }
+
+int	special_export(char *token_str, char **var_name, char **var_value)
+{
+	(void)token_str;
+	(void)var_name;
+	(void)var_value;
+	printf("special export\n");
+	/*int		sign_loc;
+	char	*value;
+
+	sign_loc = 0;
+	value = NULL;
+	value = ft_strchr(token_str, '=');
+	if (!value)
+		return (ft_error("export: malloc error\n", 12));
+	sign_loc = value - token_str;
+	*var_name = ft_substr(token_str, 0, sign_loc);
+	*var_value = ft_strdup(value + 1);
+	if (!*var_value)
+		return (ft_error("export: malloc error\n", 12));
+	return (ft_error(NULL, 0));*/
+}

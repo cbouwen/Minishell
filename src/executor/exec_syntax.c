@@ -56,7 +56,7 @@ int	check_env(t_token *tokens)
 int	check_export(t_token *tokens)
 {
 	t_token	*temp;
-	size_t		i;
+	size_t	i;
 
 	temp = tokens;
 	i = count_tokens(temp);
@@ -81,17 +81,6 @@ int	check_export(t_token *tokens)
 	}
 	return (ft_error(NULL, 0));
 }
-
-/*if (!temp->next)
-		return (ft_error("export: no input\n", 1));
-	temp = temp->next;
-	if (temp->has_space == 1)
-		return (ft_error("export: not a valid identifier\n", 1));
-	if (check_first_char(temp->str) == 1)
-		return (ft_error("export: not a valid identifier\n", 1));
-	if (!temp->next)
-		return (ft_error("export: not enough arguments\n", 1));
-	return (ft_error(NULL, 0));*/
 
 int	check_unset(t_token *tokens)
 {

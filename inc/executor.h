@@ -67,6 +67,7 @@ int			extract_name(char *token_str, char **var_name);
 int			extract_value(char *token_str, char **var_value);
 int			update_env_val(t_environment *env, char *var_name, char *var_value, bool cd);
 int			add_env_val(t_environment *env, char *var_name, char *var_value);
+int			special_export(char *token_str, char **var_name, char **var_value);
 
 /*unset*/
 int			unset_var(t_token *tokens, t_environment *env);
