@@ -39,6 +39,7 @@ int execute_heredoc(t_token *tokens, t_environment *env, t_args *args)
 	temp = tokens;
 	temp_env = env;
 	temp_args = args;
+	printf("heredoc: %d\n", temp_args->heredoc_fd);
 	if (temp_args->heredoc_fd == -1)
 	{
 		if (execute_heredoc_nord(temp, temp_env, temp_args) != 0)
