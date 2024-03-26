@@ -51,8 +51,6 @@ int	heredoc_no_redirect(t_token *tokens, t_args *args)
 	(void)tokens;
 	args->file = ft_strdup("/tmp/heredoc_dump");
 	args->redirect = INPUT;
-	if (!path)
-		return (ft_error("heredoc_no_redirect: strdup error\n", 3));
 	/*if (update_args(args, path) != 0)
 		return (ft_error("heredoc_no_redirect: update_args error\n", 3));*/
     args->fd = open(args->file, O_RDWR | O_CREAT | O_TRUNC, 0644);
