@@ -108,10 +108,12 @@ int execute_heredoc(t_token *tokens, t_environment *env, t_args *args)
 
 int	heredoc_redirect(t_token *tokens, t_environment *env, t_args *args)
 {
-	(void)tokens;
+	t_token	*temp;
+
+	temp = tokens;
 	(void)env;
 	(void)args;
-	if (determine_redirect(tokens, args) != 0)
+	if (determine_redirect(temp, args) != 0)
 		return (ft_error("heredoc_redirect: determine_redirect error\n", 3));
 	printf("redirect: %d\n", args->redirect);
 	if (!temp->next || temp->next->type != ARG)
