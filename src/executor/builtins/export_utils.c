@@ -20,10 +20,10 @@ int	extract_name(char *token_str, char **var_name)
 	sign_loc = 0;
 	value = NULL;
 	value = ft_strchr(token_str, '=');
-	if (!value)
-		return (ft_error("export: malloc error\n", 12));
 	sign_loc = value - token_str;
 	*var_name = ft_substr(token_str, 0, sign_loc);
+	if (!*var_name)
+		return (ft_error("export: malloc error\n", 12));
 	return (ft_error(NULL, 0));
 }
 
@@ -51,11 +51,18 @@ int	check_env_val_exists(t_environment *env, char *var_name)
 
 int	special_export(char *token_str, char **var_name, char **var_value)
 {
-	(void)token_str;
-	(void)var_name;
-	(void)var_value;
-	printf("special export\n");
+	int	status;
+	int	sign_loc;
+
+	status = 0;
+	sign_loc = 0;
+	status = extract_name(token_str, *var_name);
+	if (status != 0)
+		return (ft_error(NULL, status));
+	sign_loc = ft_strchr(token_str, '=') - token_str;
+	printf("sign_loc: %d\n", sign_loc);
 	return (1);
+
 	/*int		sign_loc;
 	char	*value;
 
