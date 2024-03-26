@@ -19,7 +19,7 @@ int	redirect_syntax_check(t_token *tokens)
 	return (0);
 }
 
-int init_redirect(t_token *tokens, t_redirect *redirect)
+/*int init_redirect(t_token *tokens, t_redirect *redirect)
 {
 	t_token	*temp;
 	t_redirect	*temp_redirect;
@@ -39,7 +39,7 @@ int init_redirect(t_token *tokens, t_redirect *redirect)
 		}
 		temp = temp->next;
 	}
-}
+}*/
 
 int redirect_test(t_token *tokens)
 {
