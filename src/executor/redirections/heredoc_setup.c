@@ -102,13 +102,13 @@ int	update_args(t_args *args, char *path)
 void execute_command_with_heredoc(t_token *tokens, t_environment *env, t_args *args)
 {
 	int status = 0;
-	printf("1");
+	printf("1\n");
 	status = open_file(args);
 	printf("status: %d\n", status);
-	printf("2");
+	printf("2\n");
 	printf("args->file: %s\n", args->file);
 	printf("args->fd: %d\n", args->fd);
-	printf("3");
+	printf("3\n");
 	redirect_input(tokens, env, args);
 	/*int				saved_stdin;
 	t_token			*temp;
