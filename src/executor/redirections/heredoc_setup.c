@@ -100,6 +100,10 @@ int	update_args(t_args *args, char *path)
 	free_array(args->arg_array);
 	args->arg_array = temp;
 	free_array(temp);
+
+	for (int i = 0; args->arg_array[i]; i++)
+		printf("args->arg_array[%d]: %s\n", i, args->arg_array[i]);
+
 	return (0);
 }
 
