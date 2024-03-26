@@ -118,7 +118,7 @@ int	prep_cmd(t_token *tokens, t_environment *env, t_args *args)
 	temp_env = env;
 	status = 0;
 	builtin = determine_builtin(temp);
-	if (arg->arg_array == NULL)
+	if (args->arg_array == NULL)
 	{
 		if (fill_args(args, temp) != 0)
 			return (ft_error(NULL, 1));
