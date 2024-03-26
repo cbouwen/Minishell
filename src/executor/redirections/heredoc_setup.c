@@ -60,9 +60,12 @@ int	heredoc_no_redirect(t_token *tokens, t_args *args)
 	{
 		if (ft_strcmp(line, args->delimiter) == 0)
 			free(line);
-		write(args->fd, line, ft_strlen(line));
-		write(args->fd, "\n", 1);
-		free(line);
+		else
+		{
+			write(args->fd, line, ft_strlen(line));
+			write(args->fd, "\n", 1);
+			free(line);
+		}
 	}
 	//close(args->fd);
 	return (0);
