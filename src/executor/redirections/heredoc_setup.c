@@ -27,7 +27,7 @@ int	setup_heredoc(t_token *tokens, t_environment *env, t_args *args)
 	if (!temp->next || temp->next->type != REDIRECT)
 		return (ft_error(NULL, heredoc_no_redirect(temp_args)));
 	else
-		return (ft_error(NULL, heredoc_redirect(temp, temp_args)));
+		return (ft_error(NULL, heredoc_redirect(temp, env, temp_args)));
 }
 
 /*jump to next token*/
