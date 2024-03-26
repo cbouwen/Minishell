@@ -71,7 +71,11 @@ int	check_export(t_token *tokens)
 		return (ft_error("export: not enough arguments\n", 1));
 	return (ft_error(NULL, 0));*/
 	while (temp && temp->type != PIPE && temp->type != REDIRECT)
+	{
 		i++;
+		temp = temp->next;
+	}
+	temp = tokens;
 	if (i == 1)
 		return (ft_error("export: no input\n", 1));
 	temp = temp->next;
