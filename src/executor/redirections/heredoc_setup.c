@@ -55,7 +55,7 @@ int execute_heredoc(t_token *tokens, t_environment *env, t_args *args)
 	temp_args = args;
 	if (temp_args->heredoc_fd == -1)
 	{
-		if (heredoc_no_redirect(temp_args) != 0)
+		if (execute_heredoc_nord(temp_args) != 0)
 			return (ft_error("heredoc: heredoc_no_redirect error\n", 3));
 	}
 	else
@@ -145,6 +145,29 @@ int	heredoc_redirect(t_token *tokens, t_environment *env, t_args *args)
 	if (!args->file)
 		return (ft_error("heredoc: strdup error\n", 12));
 	printf("file: %s\n", args->file);
+    return (0);
+}
+
+int	open_heredoc_rd(t_args *args)
+{
+	char	*line;
+
+	args->file = ft_strdup("/tmp/heredoc_dump");
+    args->fd = open(args->file, O_RDWR | O_CREAT | O_TRUNC, 0644);
+    if (args->fd == -1)
+        return (ft_error("heredoc_no_redirect: open error\n", 3));
+    line = readline("heredoc> ");
+    while (ft_strcmp(line, args->delimiter) != 0)
+    {
+        write(args->fd, line, ft_strlen(line));
+        write(args->fd, "\n", 1);
+        free(line);
+        line = NULL;
+        line = readline("heredoc> ");
+    }
+	close(args->fd);
+    if (line)
+        free(line);
     return (0);
 }
 
