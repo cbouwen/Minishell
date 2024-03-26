@@ -110,8 +110,9 @@ int	heredoc_redirect(t_token *tokens, t_environment *env, t_args *args)
 {
 	(void)env;
 	(void)tokens;
-	(void)args;
 	printf("heredoc_redirect\n");
+	printf("args->file: %s\n", args->file);
+	printf("args->delimiter: %s\n", args->delimiter);
     return (0);
 }
 
