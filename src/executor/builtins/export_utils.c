@@ -64,19 +64,4 @@ int	special_export(char *token_str, char **var_name, char **var_value)
 	sign_loc = ft_strchr(token_str, '=') - token_str;
 	*var_value = ft_strdup(token_str + sign_loc + 1);
 	return (ft_error(NULL, 0));
-
-	/*int		sign_loc;
-	char	*value;
-
-	sign_loc = 0;
-	value = NULL;
-	value = ft_strchr(token_str, '=');
-	if (!value)
-		return (ft_error("export: malloc error\n", 12));
-	sign_loc = value - token_str;
-	*var_name = ft_substr(token_str, 0, sign_loc);
-	*var_value = ft_strdup(value + 1);
-	if (!*var_value)
-		return (ft_error("export: malloc error\n", 12));
-	return (ft_error(NULL, 0));*/
 }
