@@ -11,6 +11,7 @@ int	setup_heredoc(t_token *tokens, t_environment *env, t_args *args)
 	temp = tokens;
 	temp_args = args;
 	tem_env = env;
+	(void)tem_env;
 	while (temp && temp->type != REDIRECT)
 		temp = temp->next;
 	if (!temp->next || temp->next->type != ARG)
@@ -24,7 +25,7 @@ int	setup_heredoc(t_token *tokens, t_environment *env, t_args *args)
 	}
 	temp = temp->next;
 	if (!temp->next || temp->next->type != REDIRECT)
-		return (ft_error(NULL, heredoc_no_redirect(temp, tem_env, temp_args)));
+		return (ft_error(NULL, heredoc_no_redirect(temp, temp_args)));
 	else
 		return (ft_error(NULL, heredoc_redirect(temp, temp_args)));
 }
