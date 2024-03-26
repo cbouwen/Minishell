@@ -18,7 +18,7 @@
 void	reset_list(t_token **tokens);
 void	free_tokens(t_token *token);
 int		ft_error(char *str, int errno);
-void	clean_exit(t_token *token, char *msg);
+void	clean_exit(t_token *token, t_environment *env, char *msg);
 void	sig_handler(int sig);
 char	**ft_split_quotes(char const *s, char c);
 
