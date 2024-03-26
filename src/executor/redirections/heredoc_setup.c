@@ -80,26 +80,7 @@ void execute_command_with_heredoc(t_token *tokens, t_args *args)
     pid_t pid;
 
     heredoc_no_redirect(tokens, args);
-
-    pid = fork();
-    if (pid == 0)
-    {
-        dup2(args->fd, STDIN_FILENO);
-        close(args->fd);
-
-        execve(args->arg_array[0], args->arg_array, args->env_array);
-
-        perror("execve"); // execve returns only on error
-        exit(EXIT_FAILURE);
-    }
-    else if (pid < 0)
-    {
-        perror("fork failed");
-    }
-    else
-    {
-        wait(NULL); // wait for child to finish
-    }
+	status = prep_cmd(temp, temp_env, temp_args);
 }
 
 int	heredoc_redirect(t_token *tokens, t_args *args)
