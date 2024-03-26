@@ -60,16 +60,10 @@ int	heredoc_no_redirect(t_token *tokens, t_args *args)
 	args->fd = open(path, O_RDWR | O_CREAT | O_TRUNC, 0644);
 	if (args->fd == -1)
 		return (ft_error("heredoc_no_redirect: open error\n", 3));
-	while (1)
+	while ((line = readline("heredoc> ")) != NULL)
 	{
-		line = readline("heredoc> ");
-		if (!line)
-			break;
 		if (ft_strcmp(line, args->delimiter) == 0)
-		{
 			free(line);
-			break;
-		}
 		write(args->fd, line, ft_strlen(line));
 		write(args->fd, "\n", 1);
 		free(line);
