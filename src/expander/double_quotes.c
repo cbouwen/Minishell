@@ -6,13 +6,13 @@
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 11:22:35 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/03/25 15:56:38 by matisse          ###   ########.fr       */
+/*   Updated: 2024/03/26 14:17:52 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-extern int	g_err;
+extern t_signal	g_signal;
 
 char	*find_env(char *str, t_environment *env)
 {
@@ -23,7 +23,7 @@ char	*find_env(char *str, t_environment *env)
 	if (!(ft_strcmp(str, "$?")))
 	{
 		free(str);
-		return (ft_itoa(g_err));
+		return (ft_itoa(g_signal.err_no));
 	}
 	while (tmp)
 	{

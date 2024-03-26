@@ -80,6 +80,7 @@ int open_file(t_args *args)
 {
 	int fd;
 
+	fd = 0;
 	if (args->redirect == OUTPUT)
 		fd = open(args->file, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	else if (args->redirect == APPEND)

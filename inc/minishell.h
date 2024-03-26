@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:41:07 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/03/25 16:00:41 by matisse          ###   ########.fr       */
+/*   Updated: 2024/03/26 14:05:09 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 
-extern int	g_exit_status;
+extern t_signal	g_signal;
 
 //int				ft_error(char *str);
 t_environment	*env_parser(char *envp[]);

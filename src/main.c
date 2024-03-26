@@ -6,13 +6,13 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 16:16:53 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/03/26 11:49:03 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/03/26 14:10:50 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-int	g_err;
+t_signal	g_signal;
 
 int	run_minishell(t_environment *env, char *input)
 {
@@ -75,8 +75,10 @@ int	main(int argc, char **argv, char **envp)
 	(void)argc;
 	(void)argv;
 
-	g_err = 0;
-	signal(SIGQUIT, SIG_IGN);
+	g_signal.err_no = 0;
+	g_signal.in_cmd = false;
+	g_signal.in_heredoc = false;
 	signal(SIGINT, sig_handler);
+	signal(SIGQUIT, SIG_IGN);
 	minishell_loop(envp);
 }
