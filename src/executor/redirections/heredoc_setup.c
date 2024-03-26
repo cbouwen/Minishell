@@ -98,7 +98,7 @@ int	update_args(t_args *args, char *path)
 		return (ft_error("update_args: strdup error\n", 12));
 	temp[i + 1] = NULL;
 	free_array(args->arg_array);
-	args->arg_array = temp;☺
+	args->arg_array = temp;
 	return (0);
 }
 
