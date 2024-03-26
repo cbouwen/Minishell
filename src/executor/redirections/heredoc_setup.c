@@ -55,12 +55,12 @@ int execute_heredoc(t_token *tokens, t_environment *env, t_args *args)
 	temp_args = args;
 	if (temp_args->heredoc_fd == -1)
 	{
-		if (execute_heredoc_nord(temp_args) != 0)
+		if (execute_heredoc_nord(temp, temp_env, temp_args) != 0)
 			return (ft_error("heredoc: heredoc_no_redirect error\n", 3));
 	}
 	else
 	{
-		if (execute_heredoc_nord(temp, temp_env, temp_args) != 0)
+		if (execute_heredoc(temp, temp_env, temp_args) != 0)
 			return (ft_error("heredoc: execute_heredoc_nord error\n", 3));
 	}
 	return (ft_error(NULL, 0));
