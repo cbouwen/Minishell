@@ -56,16 +56,10 @@ int	check_env(t_token *tokens)
 int	check_export(t_token *tokens)
 {
 	t_token	*temp;
-	int		i;
+	size_t		i;
 
 	temp = tokens;
-	i = 0;
-	while (temp && temp->type != PIPE && temp->type != REDIRECT)
-	{
-		i++;
-		temp = temp->next;
-	}
-	temp = tokens;
+	i = count_tokens(temp);
 	if (i == 1)
 		return (ft_error("export: no input\n", 1));
 	temp = temp->next;
@@ -74,11 +68,15 @@ int	check_export(t_token *tokens)
 	if (check_first_char(temp->str) == 1)
 		return (ft_error("export: not a valid identifier\n", 1));
 	if (i == 2)
+	{
 		if (check_last_char(temp->str, '=') == 1)
 			return (ft_error("export: not a valid identifier\n", 1));
+	}
 	else
+	{
 		if (!temp->next)
 			return (ft_error("export: not enough arguments\n", 1));
+	}
 	return (ft_error(NULL, 0));
 }
 
