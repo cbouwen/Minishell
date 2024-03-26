@@ -102,6 +102,7 @@ int	update_args(t_args *args, char *path)
 void execute_command_with_heredoc(t_token *tokens, t_environment *env, t_args *args)
 {
 	int status = 0;
+	args->redirect = INPUT;
 	printf("1\n");
 	status = open_file(args);
 	printf("status: %d\n", status);
