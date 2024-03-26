@@ -46,7 +46,7 @@ return (0);*/
 
 int	heredoc_no_redirect(t_token *tokens, t_args *args)
 {
-	char    *line;
+	char	*line;
 	char	*path;
 
 	(void)tokens;
@@ -126,15 +126,34 @@ void execute_command_with_heredoc(t_token *tokens, t_environment *env, t_args *a
 
 int	heredoc_redirect(t_token *tokens, t_args *args)
 {
-	t_token	*temp;
-	t_args	*temp_args;
-
-	temp = tokens;
-	temp_args = args;
-
-	(void)temp;
-	(void)temp_args;
+	(void)tokens;
+	(void)args;
 	printf("heredoc_redirect\n");
-	printf("delimiter: %s\n", args->delimiter);
-	return (0);
+	printf("args->delimiter: %s\n", args->delimiter);
+	printf("args->file: %s\n", args->file);
+	/*char	*line;
+	char	*path;
+
+	(void)tokens;
+	path = ft_strdup("/tmp/heredoc_dump");
+	if (!path)
+		return (ft_error("heredoc_no_redirect: strdup error\n", 3));
+	if (update_args(args, path) != 0)
+		return (ft_error("heredoc_no_redirect: update_args error\n", 3));
+    args->fd = open("/tmp/heredoc_dump", O_RDWR | O_CREAT | O_TRUNC, 0644);
+    if (args->fd == -1)
+        return (ft_error("heredoc_no_redirect: open error\n", 3));
+    line = readline("heredoc> ");
+    while (ft_strcmp(line, args->delimiter) != 0)
+    {
+        write(args->fd, line, ft_strlen(line));
+        write(args->fd, "\n", 1);
+        free(line);
+        line = NULL;
+        line = readline("heredoc> ");
+    }
+	free(path);
+    if (line)
+        free(line);*/
+    return (0);
 }
