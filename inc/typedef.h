@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 15:31:04 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/03/25 15:55:50 by matisse          ###   ########.fr       */
+/*   Updated: 2024/03/26 14:08:00 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,13 @@
 
 # include "minishell.h"
 # include <stdbool.h>
+
+typedef struct	s_signal
+{
+	int		err_no;
+	bool	in_cmd;
+	bool	in_heredoc;
+}				t_signal;
 
 typedef enum	e_redirect
 {
