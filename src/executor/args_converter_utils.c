@@ -52,6 +52,7 @@ int	init_args(t_args *args)
 	args->file = NULL;
 	args->file_exists = 0;
 	args->fd = 0;
+	args->heredoc_fd = -1;
 	args->delimiter = NULL;
 	return (0);
 }

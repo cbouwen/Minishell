@@ -44,6 +44,28 @@ else
 check_file_exists(temp_args);
 return (0);*/
 
+int execute_heredoc(t_token *tokens, t_environment *env, t_args *args)
+{
+	t_token			*temp;
+	t_environment	*temp_env;
+	t_args			*temp_args;
+
+	temp = tokens;
+	temp_env = env;
+	temp_args = args;
+	if (temp_args->heredoc_fd == -1)
+	{
+		if (heredoc_no_redirect(temp_args) != 0)
+			return (ft_error("heredoc: heredoc_no_redirect error\n", 3));
+	}
+	else
+	{
+		if (execute_heredoc_nord(temp, temp_env, temp_args) != 0)
+			return (ft_error("heredoc: execute_heredoc_nord error\n", 3));
+	}
+	return (ft_error(NULL, 0));
+}
+
 int	heredoc_no_redirect(t_args *args)
 {
 	char	*line;
@@ -96,7 +118,7 @@ int	update_args(t_args *args, char *path)
 	return (0);
 }
 
-int execute_heredoc(t_token *tokens, t_environment *env, t_args *args)
+int execute_heredoc_nord(t_token *tokens, t_environment *env, t_args *args)
 {
 	args->redirect = INPUT;
 	if (open_file(args) != 0)

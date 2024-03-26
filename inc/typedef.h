@@ -71,6 +71,7 @@ typedef struct	s_args
 	char		*file;
 	int			file_exists;
 	int			fd;
+	int			heredoc_fd;
 	char		*delimiter;
 }				t_args;
 
