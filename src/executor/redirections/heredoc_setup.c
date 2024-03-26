@@ -65,9 +65,9 @@ int	heredoc_no_redirect(t_token *tokens, t_args *args)
         line = NULL;
         line = readline("heredoc> ");
     }
+	free(path);
     if (line)
         free(line);
-	free(path);
     return (0);
 }
 
