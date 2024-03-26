@@ -99,7 +99,7 @@ int	update_args(t_args *args, char *path)
 	temp[i + 1] = NULL;
 	free_array(args->arg_array);
 	args->arg_array = temp;
-	free_array(temp);
+	//free_array(temp);
 
 	for (int i = 0; args->arg_array[i]; i++)
 		printf("args->arg_array[%d]: %s\n", i, args->arg_array[i]);
