@@ -78,16 +78,8 @@ int	heredoc_no_redirect(t_token *tokens, t_args *args)
 
 void execute_command_with_heredoc(t_token *tokens, t_environment *env, t_args *args)
 {
-	t_token	*temp;
-	t_args	*temp_args;
-	t_environment	*temp_env;
-
-	temp = tokens;
-	temp_args = args;
-	temp_env = env;
-
     heredoc_no_redirect(tokens, args);
-	prep_cmd(temp, temp_env, temp_args);
+	prep_cmd(tokens, env, args);
 }
 
 int	heredoc_redirect(t_token *tokens, t_args *args)
