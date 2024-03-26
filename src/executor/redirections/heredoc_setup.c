@@ -101,8 +101,10 @@ int	update_args(t_args *args, char *path)
 
 void execute_command_with_heredoc(t_token *tokens, t_environment *env, t_args *args)
 {
+	int status = 0;
 	printf("1");
-	open_file(args);
+	status = open_file(args);
+	printf("status: %d\n", status);
 	printf("2");
 	printf("args->file: %s\n", args->file);
 	printf("args->fd: %d\n", args->fd);
