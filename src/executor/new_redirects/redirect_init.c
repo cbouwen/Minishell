@@ -86,7 +86,7 @@ int fill_input(t_token *tokens, t_rd_collection *rd, int i)
 		else if (ft_strcmp(temp->str, "<<") == 0)
 		{
 			input = ft_strdup("h-");
-			if (input)
+			if (!input)
 				return (12);
 			input = strjoin_free(input, temp->next->str, 0);
 			temp_rd->input[i] = input;
