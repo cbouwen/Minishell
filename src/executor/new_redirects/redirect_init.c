@@ -75,8 +75,7 @@ int	fill_heredoc(t_token *tokens, t_rd_collection *rd, int i)
 	t_token			*temp;
 	t_rd_collection	*temp_rd;
 	char			*input;
-	char	*input;
-	char	*temp_input;
+	char			*temp_input;
 
 	temp = tokens;
 	temp_rd = rd;
