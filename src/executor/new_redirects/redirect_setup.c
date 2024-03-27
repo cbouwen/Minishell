@@ -80,7 +80,7 @@ int redirect_test(t_token *tokens)
 		else
 			break;
 	}
-	if (access("/minishell/test", F_OK | R_OK | W_OK) == 0)
+	if (access("test", F_OK | R_OK | W_OK) == 0)
 		printf("file exists\n");
 	else
 		printf("file does not exist\n");
