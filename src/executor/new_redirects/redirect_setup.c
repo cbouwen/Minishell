@@ -49,6 +49,7 @@ int redirect_test(t_token *tokens)
 	t_rd_collection	rd;
 
 	int status = redirect_syntax_check(tokens);
+	init_redirect(&rd);
 	fill_redirect(tokens, &rd);
 	for (int i = 0; i < 10; i++)
 	{

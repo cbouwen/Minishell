@@ -2,6 +2,39 @@
 
 #include "../../../inc/minishell.h"
 
+size_t count_rd(t_token *tokens)
+{
+	t_token	*temp;
+	size_t	count;
+
+	temp = tokens;
+	count = 0;
+	while (temp && temp->type != PIPE)
+	{
+		if (temp->type == REDIRECT)
+			count++;
+		temp = temp->next;
+	}
+	return (count);
+}
+
+int	init_redirect(t_rd_collection *rd)
+{
+	t_rd_collection	*temp_rd;
+
+	temp_rd = rd;
+	temp_rd->input = malloc(sizeof(char *) * count_rd(temp_rd->tokens) + 1);
+	if (!temp_rd->input)
+		return (12);
+	temp_rd->output = malloc(sizeof(char *) * count_rd(temp_rd->tokens) + 1);
+	if (!temp_rd->output)
+		return (12);
+	temp_rd->append = malloc(sizeof(char *) * count_rd(temp_rd->tokens) + 1);
+	if (!temp_rd->append)
+		return (12);
+	return (0);
+}
+
 int fill_redirect(t_token *tokens, t_rd_collection *rd)
 {
 	t_token	*temp;
