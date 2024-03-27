@@ -68,20 +68,36 @@ int fill_input(t_token *tokens, t_rd_collection *rd, int i)
 		}
 		else if (ft_strcmp(temp->str, "<<") == 0)
 		{
-			input = ft_strdup("h_");
-			if (!input)
-				return (12);
-			temp_input = strjoin_free(input, temp->next->str, 0);
-			if (!temp_input)
-			{
-				free(input);
-				return (12);
-			}
-			free(input);
-			input = temp_input;
-			temp_rd->input[i] = input;
+			fill_heredoc(temp, temp_rd, i);
 		}
 	}
+	return (0);
+}
+
+int	fill_heredoc(t_token *tokens, t_rd_collection *rd, int i)
+{
+	t_token			*temp;
+	t_rd_collection	*temp_rd;
+	char			*input;
+	char	*input;
+	char	*temp_input;
+
+	temp = tokens;
+	temp_rd = rd;
+	input = NULL;
+	temp_input = NULL;
+	input = ft_strdup("h_");
+	if (!input)
+		return (12);
+	temp_input = strjoin_free(input, temp->next->str, 0);
+	if (!temp_input)
+	{
+		free(input);
+		return (12);
+	}
+	free(input);
+	input = temp_input;
+	temp_rd->input[i] = input;
 	return (0);
 }
 
