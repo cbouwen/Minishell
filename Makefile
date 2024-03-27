@@ -17,7 +17,7 @@ EXPANDER_SRC = $(addprefix $(SRC_DIR)expander/, expander.c double_quotes.c utils
 EXECUTOR_SRC = $(addprefix $(SRC_DIR)executor/, executor.c execve_utils.c exec_utils.c exec_syntax.c args_converter.c args_converter_utils.c path_generator.c path_generator_utils.c)
 REDIRECT_SRC = $(addprefix $(SRC_DIR)executor/redirections/, redirects.c redirect_utils.c heredoc_setup.c)
 BUILTIN_SRC = $(addprefix $(SRC_DIR)executor/builtins/, echo.c pwd.c env.c export.c export_utils.c unset.c cd.c cd_utils.c)
-NEW_RD_SRC = $(addprefix $(SRC_DIR)executor/new_redirects/, redirect_setup.c)
+NEW_RD_SRC = $(addprefix $(SRC_DIR)executor/new_redirects/, redirect_setup.c redirect_init.c)
 
 SRC = $(SRC_FILES) $(UTILS_SRC) $(TOKENIZER_SRC) $(LEXER_SRC) $(PARSER_SRC) $(EXPANDER_SRC) $(EXECUTOR_SRC) $(REDIRECT_SRC) $(BUILTIN_SRC) $(NEW_RD_SRC)
 
