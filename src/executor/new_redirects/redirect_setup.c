@@ -52,9 +52,6 @@ int	free_rd(t_rd_collection *rd)
 	return (0);
 }
 
-char *get_directory(const char *path);
-int is_path_viable(const char *path);
-
 int redirect_test(t_token *tokens)
 {
 	t_rd_collection	rd;
@@ -83,64 +80,6 @@ int redirect_test(t_token *tokens)
 		else
 			break;
 	}
-	printf("%d\n", is_path_viable(rd.input[0]));
-	int fd = open(rd.input[0], O_RDONLY | O_CREAT, 0644);
-	printf("%d\n", fd);
 	free_rd(&rd);
 	return (status);
-}
-
-char *get_directory(const char *path) 
-{
-    char *last_slash = ft_strrchr(path, '/');
-    if (last_slash == NULL) {
-        // No slashes in the path, so it's a relative path in the current directory
-        return strdup(".");
-    }
-
-    // Calculate the length of the directory part of the path
-    size_t dir_len = last_slash - path;
-
-    // Allocate memory for the directory string
-    char *dir = malloc(dir_len + 1);
-    if (dir == NULL) {
-        return NULL;  // Failed to allocate memory
-    }
-
-    // Copy the directory part of the path into the new string
-    strncpy(dir, path, dir_len);
-    dir[dir_len] = '\0';  // Null-terminate the string
-
-    return dir;
-}
-
-int is_path_viable(const char *path)
-{
-    // Duplicate the path because dirname can modify its argument
-    char *path_copy = ft_strdup(path);
-    if (path_copy == NULL) {
-        return 0;  // Failed to allocate memory
-    }
-
-    char *dir = get_directory(path_copy);
-
-    // Check if the directory exists
-    struct stat statbuf;
-    if (stat(dir, &statbuf) != 0) {
-        free(path_copy);
-        return 0;  // Directory does not exist
-    }
-
-    // Check if the directory is actually a directory
-    if (!S_ISDIR(statbuf.st_mode)) {
-        free(path_copy);
-        return 0;  // Not a directory
-    }
-
-    // Check if we have write access to the directory
-    int result = access(dir, W_OK);
-
-    free(path_copy);
-
-    return result == 0;
 }
