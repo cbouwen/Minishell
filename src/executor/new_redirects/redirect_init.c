@@ -74,6 +74,7 @@ int fill_input(t_token *tokens, t_rd_collection *rd, int i)
 
 	temp = tokens;
 	temp_rd = rd;
+	input = NULL;
 	if (temp->type == REDIRECT)
 	{
 		if (ft_strcmp(temp->str, "<") == 0)
@@ -98,7 +99,6 @@ int fill_output(t_token *tokens, t_rd_collection *rd, int i)
 {
 	t_token			*temp;
 	t_rd_collection	*temp_rd;
-	char			*input;
 
 	temp = tokens;
 	temp_rd = rd;
@@ -118,7 +118,6 @@ int fill_append(t_token *tokens, t_rd_collection *rd, int i)
 {
 	t_token			*temp;
 	t_rd_collection	*temp_rd;
-	char			*input;
 
 	temp = tokens;
 	temp_rd = rd;
