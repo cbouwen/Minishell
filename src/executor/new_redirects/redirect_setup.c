@@ -46,11 +46,9 @@ int	free_rd(t_rd_collection *rd)
 	t_rd_collection	*temp_rd;
 
 	temp_rd = rd;
-	free(temp_rd->input);
+	free_array(temp_rd->input);
 	free_array(temp_rd->output);
-	free(temp_rd->output);
 	free_array(temp_rd->append);
-	free(temp_rd->append);
 	return (0);
 }
 
