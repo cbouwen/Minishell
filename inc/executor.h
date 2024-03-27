@@ -110,6 +110,7 @@ int			init_redirect(t_token *tokens, t_redirect *redirect);
 int			redirect_test(t_token *tokens);
 int			fill_rd(t_token *tokens, t_rd_collection *rd);
 int			fill_input(t_token *temp, t_rd_collection *rd, int i);
+int			fill_out_app(t_token *tokens, t_rd_collection *rd, int i, char *rd_type);
 int			fill_output(t_token *tokens, t_rd_collection *rd, int i);
 int			fill_append(t_token *tokens, t_rd_collection *rd, int i);
 size_t		count_rd(t_token *tokens);

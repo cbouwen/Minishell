@@ -38,9 +38,9 @@ int fill_rd(t_token *tokens, t_rd_collection *rd)
 			if (ft_strcmp(temp->str, "<") == 0 || ft_strcmp(temp->str, "<<") == 0)
 				fill_input(temp, temp_rd, ++i);
 			else if (ft_strcmp(temp->str, ">") == 0)
-				fill_output(temp, temp_rd, ++j);
+				fill_out_app(temp, temp_rd, ++j, ">");
 			else if (ft_strcmp(temp->str, ">>") == 0)
-				fill_append(temp, temp_rd, ++k);
+				fill_out_app(temp, temp_rd, ++k, ">>");
 		}
 		temp = temp->next;
 	}
@@ -71,6 +71,32 @@ int fill_input(t_token *tokens, t_rd_collection *rd, int i)
 				return (12);
 			input = strjoin_free(input, temp->next->str, 0);
 			temp_rd->input[i] = ft_strdup(input);
+		}
+	}
+	return (0);
+}
+
+int fill_out_app(t_token *tokens, t_rd_collection *rd, int i, char *rd_type)
+{
+	t_token         *temp;
+	t_rd_collection *temp_rd;
+	char			**target;
+
+	temp = tokens;
+	temp_rd = rd;
+	if (temp->type == REDIRECT)
+	{
+		if (ft_strcmp(temp->str, redirect_type) == 0)
+		{
+			if (ft_strcmp(redirect_type, ">") == 0)
+				target = &(temp_rd->output[i]);
+			else if (ft_strcmp(redirect_type, ">>") == 0)
+				target = &(temp_rd->append[i]);
+			else
+				return (0);
+			*target = ft_strdup(temp->next->str);
+			if (!*target)
+				return (12);
 		}
 	}
 	return (0);
