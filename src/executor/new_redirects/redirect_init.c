@@ -68,7 +68,7 @@ int fill_input(t_token *tokens, t_rd_collection *rd, int i)
 		}
 		else if (ft_strcmp(temp->str, "<<") == 0)
 		{
-			fill_heredoc(temp, temp_rd, i);
+			return (fill_heredoc(temp, temp_rd, i));
 		}
 	}
 	return (0);
