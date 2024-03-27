@@ -86,11 +86,11 @@ int fill_out_app(t_token *tokens, t_rd_collection *rd, int i, char *rd_type)
 	temp_rd = rd;
 	if (temp->type == REDIRECT)
 	{
-		if (ft_strcmp(temp->str, redirect_type) == 0)
+		if (ft_strcmp(temp->str, rd_type) == 0)
 		{
-			if (ft_strcmp(redirect_type, ">") == 0)
+			if (ft_strcmp(rd_type, ">") == 0)
 				target = &(temp_rd->output[i]);
-			else if (ft_strcmp(redirect_type, ">>") == 0)
+			else if (ft_strcmp(rd_type, ">>") == 0)
 				target = &(temp_rd->append[i]);
 			else
 				return (0);
