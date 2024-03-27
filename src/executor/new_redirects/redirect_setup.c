@@ -47,17 +47,17 @@ int	free_rd(t_rd_collection *rd)
 
 	temp_rd = rd;
 	free(temp_rd->input);
-	while (temp_rd->output)
+	/*while (temp_rd->output)
 	{
 		free(temp_rd->output);
 		temp_rd->output++;
-	}
+	}*/
 	free(temp_rd->output);
-	while (temp_rd->append)
+	/*while (temp_rd->append)
 	{
 		free(temp_rd->append);
 		temp_rd->append++;
-	}
+	}*/
 	free(temp_rd->append);
 	return (0);
 }

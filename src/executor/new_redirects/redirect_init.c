@@ -99,6 +99,7 @@ int fill_out_app(t_token *tokens, t_rd_collection *rd, int i, char *rd_type)
 				return (12);
 		}
 	}
+	free(target);
 	return (0);
 }
 
