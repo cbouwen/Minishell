@@ -24,6 +24,7 @@ int	open_output(t_rd_collection *rd)
 	char	*temp;
 
 	i = 0;
+	temp = NULL;
 	while (i < rd->output_size)
 	{
 		if (rd->output[i][0] == '#')
@@ -45,3 +46,57 @@ int	open_output(t_rd_collection *rd)
 	}
 	return (rd_error_handler(0, NULL, rd));
 }
+
+int	open_input(t_rd_collection *rd)
+{
+	int		i;
+	char	*temp;
+
+	i = 0;
+	temp = NULL;
+	while (i < rd->input_size)
+	{
+		if (rd->input[i][0] == '#')
+		{
+			temp = ft_strdup(rd->input[i] + 1);
+			if (!temp)
+				return (12);
+			free(rd->input[i]);
+			rd->input[i] = temp;
+			rd->i_fd = open_heredoc(rd->input[i]);
+		}
+		else
+			rd->i_fd = open(rd->input[i], O_RDONLY, 0644);
+		if (rd->i_fd < 0)
+			return (rd_error_handler(2, rd->input[i], rd));
+		if (i < rd->input_size - 1)
+			close(rd->i_fd);
+		i++;
+	}
+	return (rd_error_handler(0, NULL, rd));
+}
+
+int	open_heredoc(char *input)
+{
+	int		heredoc_fd;
+	char	*line;
+
+	heredoc_fd = open("/tmp/heredoc_dump", O_RDWR | O_CREAT | O_TRUNC, 0644);
+	if (heredoc_fd == -1)
+		return (ft_error("heredoc_no_redirect: open error\n", 3));
+	line = readline("heredoc> ");
+	while (ft_strcmp(line, input) != 0)
+	{
+		write(heredoc_fd, line, ft_strlen(line));
+		write(heredoc_fd, "\n", 1);
+		free(line);
+		line = NULL;
+		line = readline("heredoc> ");
+	}
+	close(heredoc_fd);
+	if (line)
+		free(line);
+	return (heredoc_fd);
+}
+
+//rd->i_fd = open(rd->input[i], O_RDWR | O_CREAT | O_APPEND, 0644);

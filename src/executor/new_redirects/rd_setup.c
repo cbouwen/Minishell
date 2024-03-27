@@ -68,6 +68,7 @@ int redirect_test(t_token *tokens)
 	printf("input_size: %d\n", rd.input_size);
 	printf("output_size: %d\n", rd.output_size);
 	open_output(&rd);
+	open_input(&rd);
 	if (rd.coll_exists == true)
 		free_rd(&rd);
 	return (status);
