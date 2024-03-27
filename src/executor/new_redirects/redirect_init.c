@@ -25,7 +25,7 @@ int fill_redirect(t_token *tokens, t_rd_collection *rd)
 	return (0);
 }
 
-int fill_input(t_token *temp, t_rd_collection *rd)
+int fill_input(t_token *tokens, t_rd_collection *rd)
 {
 	t_token			*temp;
 	t_rd_collection	*temp_rd;
@@ -36,10 +36,7 @@ int fill_input(t_token *temp, t_rd_collection *rd)
 	if (temp->type == REDIRECT)
 	{
 		if (ft_strcmp(temp->str, "<") == 0)
-		{
 			temp_rd->input = ft_strdup(temp->next->str);
-			temp_rd->input_type = 1;
-		}
 		else if (ft_strcmp(temp->str, "<<") == 0)
 		{
 			input = ft_strdup("h-");
