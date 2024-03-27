@@ -25,13 +25,13 @@ int	init_redirect(t_token *tokens, t_rd_collection *rd)
 
 	temp = tokens;
 	temp_rd = rd;
-	temp_rd->input = ft_calloc(sizeof(char *), count_rd(temp->tokens) + 1);
+	temp_rd->input = ft_calloc(sizeof(char *), count_rd(temp) + 1);
 	if (!temp_rd->input)
 		return (12);
-	temp_rd->output = ft_calloc(sizeof(char *), count_rd(temp->tokens) + 1);
+	temp_rd->output = ft_calloc(sizeof(char *), count_rd(TEMP) + 1);
 	if (!temp_rd->output)
 		return (12);
-	temp_rd->append = ft_calloc(sizeof(char *), count_rd(temp->tokens) + 1);
+	temp_rd->append = ft_calloc(sizeof(char *), count_rd(temp) + 1);
 	if (!temp_rd->append)
 		return (12);
 	return (0);
