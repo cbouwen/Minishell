@@ -106,7 +106,7 @@ char *get_directory(const char *path)
     }
 
     // Copy the directory part of the path into the new string
-    ft_strncpy(dir, path, dir_len);
+    strncpy(dir, path, dir_len);
     dir[dir_len] = '\0';  // Null-terminate the string
 
     return dir;
