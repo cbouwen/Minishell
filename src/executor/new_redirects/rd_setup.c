@@ -19,7 +19,7 @@ int	redirect_syntax_check(t_token *tokens)
 		}
 		temp = temp->next;
 	}
-	return (0);
+	return (rd_error_handler(0, NULL, NULL));
 }
 
 int	init_rd(t_token *tokens, t_rd_collection *rd)
@@ -31,16 +31,16 @@ int	init_rd(t_token *tokens, t_rd_collection *rd)
 	temp_rd = rd;
 	temp_rd->input = ft_calloc(sizeof(char *), count_rd(temp) + 1);
 	if (!temp_rd->input)
-		return (12);
+		return (rd_error_handler(12, NULL, rd));
 	temp_rd->output = ft_calloc(sizeof(char *), count_rd(temp) + 1);
 	if (!temp_rd->output)
-		return (12);
+		return (rd_error_handler(12, NULL, rd));
 	temp_rd->input_size = 0;
 	temp_rd->output_size = 0;
 	temp_rd->i_fd = 0;
 	temp_rd->o_fd = 0;
 	temp_rd->file_exists = 0;
-	return (0);
+	return (rd_error_handler(0, NULL, rd));
 }
 
 int redirect_test(t_token *tokens)

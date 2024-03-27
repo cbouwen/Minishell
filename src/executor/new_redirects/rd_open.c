@@ -38,10 +38,10 @@ int	open_output(t_rd_collection *rd)
 		else
 			rd->o_fd = open(rd->output[i], O_RDWR | O_CREAT | O_TRUNC, 0644);
 		if (rd->o_fd < 0)
-			return (2);
+			return (rd_error_handler(2, rd->output[i], rd));
 		if (i < rd->output_size - 1)
 			close(rd->o_fd);
 		i++;
 	}
-	return (0);
+	return (rd_error_handler(0, NULL, rd));
 }

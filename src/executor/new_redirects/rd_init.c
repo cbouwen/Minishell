@@ -28,7 +28,7 @@ int fill_rd(t_token *tokens, t_rd_collection *rd)
 	}
 	rd->input_size = i + 1;
 	rd->output_size = j + 1;
-	return (0);
+	return (rd_error_handler(0, NULL, rd));
 }
 
 int fill_input(t_token *tokens, t_rd_collection *rd, int i)
@@ -44,14 +44,14 @@ int fill_input(t_token *tokens, t_rd_collection *rd, int i)
 		{
 			temp_rd->input[i] = ft_strdup(temp->next->str);
 			if (!temp_rd->input[i])
-				return (12);
+				return (rd_error_handler(12, NULL, rd));
 		}
 		else if (ft_strcmp(temp->str, "<<") == 0)
 		{
 			return (fill_heredoc(temp, temp_rd, i));
 		}
 	}
-	return (0);
+	return (rd_error_handler(0, NULL, rd));
 }
 
 int	fill_heredoc(t_token *tokens, t_rd_collection *rd, int i)
@@ -67,17 +67,17 @@ int	fill_heredoc(t_token *tokens, t_rd_collection *rd, int i)
 	temp_input = NULL;
 	input = ft_strdup("#");
 	if (!input)
-		return (12);
+		return (rd_error_handler(12, NULL, rd));
 	temp_input = strjoin_free(input, temp->next->str, 0);
 	if (!temp_input)
 	{
 		free(input);
-		return (12);
+		return (rd_error_handler(12, NULL, rd));
 	}
 	free(input);
 	input = temp_input;
 	temp_rd->input[i] = input;
-	return (0);
+	return (rd_error_handler(0, NULL, rd));
 }
 
 int fill_out(t_token *tokens, t_rd_collection *rd, int i, char *rd_type)
@@ -98,10 +98,10 @@ int fill_out(t_token *tokens, t_rd_collection *rd, int i, char *rd_type)
 				return (0);
 			*target = ft_strdup(temp->next->str);
 			if (!*target)
-				return (12);
+				return (rd_error_handler(12, NULL, rd));
 		}
 	}
-	return (0);
+	return (rd_error_handler(0, NULL, rd));
 }
 
 int	fill_app(t_token *tokens, t_rd_collection *rd, int i)
@@ -117,15 +117,15 @@ int	fill_app(t_token *tokens, t_rd_collection *rd, int i)
 	temp_input = NULL;
 	input = ft_strdup("#");
 	if (!input)
-		return (12);
+		return (rd_error_handler(12, NULL));
 	temp_input = strjoin_free(input, temp->next->str, 0);
 	if (!temp_input)
 	{
 		free(input);
-		return (12);
+		return (rd_error_handler(12, NULL));
 	}
 	free(input);
 	input = temp_input;
 	temp_rd->output[i] = input;
-	return (0);
+	return (rd_error_handler(0, NULL, rd));
 }

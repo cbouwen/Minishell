@@ -28,7 +28,7 @@ size_t count_rd(t_token *tokens)
 	return (count);
 }
 
-int	rd_error_handler(int err_no, char *str)
+int	rd_error_handler(int err_no, char *str, t_rd_collection *rd)
 {
 	if (err_no == 12)
 		ft_error("malloc failed\n", 12);
@@ -40,5 +40,7 @@ int	rd_error_handler(int err_no, char *str)
 		ft_error(str, 0);
 		ft_error(": No such file or directory\n", 1);
 	}
-	return (err_no);
+	if (rd && err_no != 0)
+		free_rd(rd);
+	return (ft_error(NULL, err_no));
 }
