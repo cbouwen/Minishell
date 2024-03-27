@@ -11,8 +11,11 @@ int	redirect_syntax_check(t_token *tokens)
 	{
 		if (temp->type == REDIRECT)
 		{
-			if (!temp->next || temp->next->type != ARG)
-				return (ft_error("syntax error\n", 2));
+			if (temp->next->type == ARG)
+			{
+				if (ft_isdigit(temp->next->str[0]) == 1)
+					return (ft_error("syntax error\n", 3));
+			}
 		}
 		temp = temp->next;
 	}
@@ -43,6 +46,9 @@ int	redirect_syntax_check(t_token *tokens)
 
 int redirect_test(t_token *tokens)
 {
+	t_rd_collection	*rd;
+
 	int status = redirect_syntax_check(tokens);
+	fill_redirect(tokens, &rd);
 	return (status);
 }

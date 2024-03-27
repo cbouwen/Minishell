@@ -105,9 +105,11 @@ int			path_error_handler(int err_no);
 
 
 /*new redirect stuff*/
-int	redirect_syntax_check(t_token *tokens);
-int init_redirect(t_token *tokens, t_redirect *redirect);
-int redirect_test(t_token *tokens);
+int			redirect_syntax_check(t_token *tokens);
+int			init_redirect(t_token *tokens, t_redirect *redirect);
+int			redirect_test(t_token *tokens);
+int			fill_redirect(t_token *tokens, t_redirect *redirect);
+int			fill_input(t_token *temp, t_rd_collection *rd);
 
 void printf_args_env(t_args *args);
 int update_args(t_args *args, char *path);
