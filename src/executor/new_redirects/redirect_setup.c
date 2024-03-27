@@ -50,5 +50,10 @@ int redirect_test(t_token *tokens)
 
 	int status = redirect_syntax_check(tokens);
 	fill_redirect(tokens, &rd);
+	for (int i = 0; i < ft_strlen(rd.input); i++)
+	{
+		if (rd.input[i] != NULL)
+			printf("input[%d]: %s\n", i, rd.input[i]);
+	}
 	return (status);
 }
