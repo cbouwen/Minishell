@@ -48,7 +48,8 @@ int redirect_test(t_token *tokens)
 {
 	t_rd_collection	*rd;
 
+	rd = malloc(sizeof(t_rd_collection));
 	int status = redirect_syntax_check(tokens);
-	fill_redirect(tokens, &rd);
+	fill_redirect(tokens, rd);
 	return (status);
 }
