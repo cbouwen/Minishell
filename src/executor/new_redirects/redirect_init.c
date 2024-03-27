@@ -42,6 +42,8 @@ int fill_rd(t_token *tokens, t_rd_collection *rd)
 		}
 		temp = temp->next;
 	}
+	rd->input_size = i + 1;
+	rd->output_size = j + 1;
 	return (0);
 }
 

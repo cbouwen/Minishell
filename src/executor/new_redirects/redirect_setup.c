@@ -69,6 +69,8 @@ int redirect_test(t_token *tokens)
 		else
 			break;
 	}
+	printf("input_size: %d\n", rd.input_size);
+	printf("output_size: %d\n", rd.output_size);
 	free_rd(&rd);
 	return (status);
 }

@@ -78,7 +78,9 @@ typedef struct	s_args
 typedef struct s_rd_collection
 {
 	char	**input;
+	int		input_size;
 	char	**output;
+	int		output_size;
 }				t_rd_collection;
 
 /*typedef struct s_syntax_token
