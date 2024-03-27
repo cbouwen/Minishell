@@ -69,13 +69,6 @@ int redirect_test(t_token *tokens)
 		else
 			break;
 	}
-	for (int i = 0; i < 10; i++)
-	{
-		if (rd.append[i] != NULL)
-			printf("append[%d]: %s\n", i, rd.append[i]);
-		else
-			break;
-	}
 	free_rd(&rd);
 	return (status);
 }
