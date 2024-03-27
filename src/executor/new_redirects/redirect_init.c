@@ -18,7 +18,7 @@ size_t count_rd(t_token *tokens)
 	return (count);
 }
 
-int	init_redirect(t_token *tokens, t_rd_collection *rd)
+int	init_rd(t_token *tokens, t_rd_collection *rd)
 {
 	t_token			*temp;
 	t_rd_collection	*temp_rd;
@@ -37,7 +37,7 @@ int	init_redirect(t_token *tokens, t_rd_collection *rd)
 	return (0);
 }
 
-int fill_redirect(t_token *tokens, t_rd_collection *rd)
+int fill_rd(t_token *tokens, t_rd_collection *rd)
 {
 	t_token	*temp;
 	t_rd_collection	*temp_rd;

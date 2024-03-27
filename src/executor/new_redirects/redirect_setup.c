@@ -49,8 +49,8 @@ int redirect_test(t_token *tokens)
 	t_rd_collection	rd;
 
 	int status = redirect_syntax_check(tokens);
-	init_redirect(tokens, &rd);
-	fill_redirect(tokens, &rd);
+	init_rd(tokens, &rd);
+	fill_rd(tokens, &rd);
 	for (int i = 0; i < 10; i++)
 	{
 		if (rd.input[i] != NULL)
