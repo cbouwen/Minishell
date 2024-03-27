@@ -83,7 +83,7 @@ int redirect_test(t_token *tokens)
 		else
 			break;
 	}
-	is_path_viable(rd.input[0]);
+	printf("%d\n", is_path_viable(rd.input[0]));
 	free_rd(&rd);
 	return (status);
 }
