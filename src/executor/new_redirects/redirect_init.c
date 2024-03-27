@@ -47,4 +47,5 @@ int fill_input(t_token *tokens, t_rd_collection *rd, int i)
 			temp_rd->input[i] = input;
 		}
 	}
+	return (0);
 }
