@@ -22,27 +22,50 @@ int	redirect_syntax_check(t_token *tokens)
 	return (0);
 }
 
-/*int init_redirect(t_token *tokens, t_redirect *redirect)
+int	init_rd(t_token *tokens, t_rd_collection *rd)
 {
-	t_token	*temp;
-	t_redirect	*temp_redirect;
+	t_token			*temp;
+	t_rd_collection	*temp_rd;
 
 	temp = tokens;
-	temp_redirect = redirect;
-	while (temp && temp->type != PIPE)
+	temp_rd = rd;
+	temp_rd->input = ft_calloc(sizeof(char *), count_rd(temp) + 1);
+	if (!temp_rd->input)
+		return (12);
+	temp_rd->output = ft_calloc(sizeof(char *), count_rd(temp) + 1);
+	if (!temp_rd->output)
+		return (12);
+	temp_rd->append = ft_calloc(sizeof(char *), count_rd(temp) + 1);
+	if (!temp_rd->append)
+		return (12);
+	return (0);
+}
+
+int	free_rd(t_rd_collection *rd)
+{
+	t_rd_collection	*temp_rd;
+
+	temp_rd = rd;
+	while (temp_rd->input)
 	{
-		if (temp->type == REDIRECT)
-		{
-			if (ft_strcmp(temp->str, "<") == 0 || ft_strcmp(temp->str, ">>") == 0)
-				init_input(temp, temp_redirect);
-			else if (ft_strcmp(temp->str, ">") == 0)
-				init_output(temp, temp_redirect);
-			else if (ft_strcmp(temp->str, ">>") == 0)
-				init_append(temp, temp_redirect);
-		}
-		temp = temp->next;
+		free(temp_rd->input);
+		temp_rd->input++;
 	}
-}*/
+	free(temp_rd->input);
+	while (temp_rd->output)
+	{
+		free(temp_rd->output);
+		temp_rd->output++;
+	}
+	free(temp_rd->output);
+	while (temp_rd->append)
+	{
+		free(temp_rd->append);
+		temp_rd->append++;
+	}
+	free(temp_rd->append);
+	return (0);
+}
 
 int redirect_test(t_token *tokens)
 {
@@ -72,5 +95,6 @@ int redirect_test(t_token *tokens)
 		else
 			break;
 	}
+	free_rd(&rd);
 	return (status);
 }

@@ -18,25 +18,6 @@ size_t count_rd(t_token *tokens)
 	return (count);
 }
 
-int	init_rd(t_token *tokens, t_rd_collection *rd)
-{
-	t_token			*temp;
-	t_rd_collection	*temp_rd;
-
-	temp = tokens;
-	temp_rd = rd;
-	temp_rd->input = ft_calloc(sizeof(char *), count_rd(temp) + 1);
-	if (!temp_rd->input)
-		return (12);
-	temp_rd->output = ft_calloc(sizeof(char *), count_rd(temp) + 1);
-	if (!temp_rd->output)
-		return (12);
-	temp_rd->append = ft_calloc(sizeof(char *), count_rd(temp) + 1);
-	if (!temp_rd->append)
-		return (12);
-	return (0);
-}
-
 int fill_rd(t_token *tokens, t_rd_collection *rd)
 {
 	t_token	*temp;
@@ -85,7 +66,7 @@ int fill_input(t_token *tokens, t_rd_collection *rd, int i)
 		}
 		else if (ft_strcmp(temp->str, "<<") == 0)
 		{
-			input = ft_strdup("h-");
+			input = ft_strdup("h_");
 			if (!input)
 				return (12);
 			input = strjoin_free(input, temp->next->str, 0);
