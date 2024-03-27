@@ -52,10 +52,12 @@ int fill_input(t_token *tokens, t_rd_collection *rd, int i)
 	t_token			*temp;
 	t_rd_collection	*temp_rd;
 	char			*input;
+	char			*temp_input;
 
 	temp = tokens;
 	temp_rd = rd;
 	input = NULL;
+	temp_input = NULL;
 	if (temp->type == REDIRECT)
 	{
 		if (ft_strcmp(temp->str, "<") == 0)
@@ -69,8 +71,15 @@ int fill_input(t_token *tokens, t_rd_collection *rd, int i)
 			input = ft_strdup("h_");
 			if (!input)
 				return (12);
-			input = strjoin_free(input, temp->next->str, 0);
-			temp_rd->input[i] = ft_strdup(input);
+			temp_input = strjoin_free(input, temp->next->str, 0);
+			if (!temp_input)
+			{
+				free(input);
+				return (12);
+			}
+			free(input);
+			input = temp_input;
+			temp_rd->input[i] = input;
 		}
 	}
 	return (0);
@@ -96,44 +105,6 @@ int fill_out_app(t_token *tokens, t_rd_collection *rd, int i, char *rd_type)
 				return (0);
 			*target = ft_strdup(temp->next->str);
 			if (!*target)
-				return (12);
-		}
-	}
-	return (0);
-}
-
-int fill_output(t_token *tokens, t_rd_collection *rd, int i)
-{
-	t_token			*temp;
-	t_rd_collection	*temp_rd;
-
-	temp = tokens;
-	temp_rd = rd;
-	if (temp->type == REDIRECT)
-	{
-		if (ft_strcmp(temp->str, ">") == 0)
-		{
-			temp_rd->output[i] = ft_strdup(temp->next->str);
-			if (!temp_rd->output[i])
-				return (12);
-		}
-	}
-	return (0);
-}
-
-int fill_append(t_token *tokens, t_rd_collection *rd, int i)
-{
-	t_token			*temp;
-	t_rd_collection	*temp_rd;
-
-	temp = tokens;
-	temp_rd = rd;
-	if (temp->type == REDIRECT)
-	{
-		if (ft_strcmp(temp->str, ">>") == 0)
-		{
-			temp_rd->append[i] = ft_strdup(temp->next->str);
-			if (!temp_rd->append[i])
 				return (12);
 		}
 	}
