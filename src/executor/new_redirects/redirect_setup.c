@@ -35,9 +35,6 @@ int	init_rd(t_token *tokens, t_rd_collection *rd)
 	temp_rd->output = ft_calloc(sizeof(char *), count_rd(temp) + 1);
 	if (!temp_rd->output)
 		return (12);
-	temp_rd->append = ft_calloc(sizeof(char *), count_rd(temp) + 1);
-	if (!temp_rd->append)
-		return (12);
 	return (0);
 }
 
@@ -48,7 +45,6 @@ int	free_rd(t_rd_collection *rd)
 	temp_rd = rd;
 	free_array(temp_rd->input);
 	free_array(temp_rd->output);
-	free_array(temp_rd->append);
 	return (0);
 }
 

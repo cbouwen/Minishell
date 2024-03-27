@@ -79,7 +79,6 @@ typedef struct s_rd_collection
 {
 	char	**input;
 	char	**output;
-	char	**append;
 }				t_rd_collection;
 
 /*typedef struct s_syntax_token
