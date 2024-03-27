@@ -117,6 +117,7 @@ size_t		count_rd(t_token *tokens);
 int			init_rd(t_token *tokens, t_rd_collection *rd);
 int			rd_error_handler(int err_no);
 int			open_output(t_rd_collection *rd);
+int			free_rd(t_rd_collection *rd);
 
 void printf_args_env(t_args *args);
 int update_args(t_args *args, char *path);
