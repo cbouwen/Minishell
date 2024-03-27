@@ -52,6 +52,8 @@ int	free_rd(t_rd_collection *rd)
 	return (0);
 }
 
+int test_path(char *path);
+
 int redirect_test(t_token *tokens)
 {
 	t_rd_collection	rd;
@@ -80,10 +82,38 @@ int redirect_test(t_token *tokens)
 		else
 			break;
 	}
-	if (access("test", F_OK | R_OK | W_OK) == 0)
-		printf("file exists\n");
-	else
-		printf("file does not exist\n");
+	test_path(&rd->input[0]);
 	free_rd(&rd);
 	return (status);
+}
+
+int test_path(char *path)
+{
+	char *dir;
+
+	char *last_slash = ft_strrchr(path, '/');
+    if (last_slash == NULL)
+	{
+		if (access(path, F_OK) == 0)
+			printf("file exists\n");
+		else
+			printf("file does not exist\n");
+		return (0);
+	}
+
+    // Calculate the length of the directory part of the path
+    size_t dir_len = last_slash - path;
+
+    // Allocate memory for the directory string
+    dir = malloc(dir_len + 1);
+    if (dir == NULL) {
+        return NULL;  // Failed to allocate memory
+    }
+
+    // Copy the directory part of the path into the new string
+    ft_strncpy(dir, path, dir_len);
+    dir[dir_len] = '\0';  // Null-terminate the string
+
+    printf("dir: %s\n", dir);
+	return (0);
 }
