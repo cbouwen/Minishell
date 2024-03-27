@@ -2,19 +2,19 @@
 
 #include "../../../inc/minishell.h"
 
-int fill_redirect(t_token *tokens, t_redirect *redirect)
+int fill_redirect(t_token *tokens, t_rd_collection *rd)
 {
 	t_token	*temp;
-	t_redirect	*temp_redirect;
+	t_rd_collection	*temp_rd;
 
 	temp = tokens;
-	temp_redirect = redirect;
+	temp_rd = rd;
 	while (temp && temp->type != PIPE)
 	{
 		if (temp->type == REDIRECT)
 		{
 			if (ft_strcmp(temp->str, "<") == 0 || ft_strcmp(temp->str, ">>") == 0)
-				fill_input(temp, temp_redirect);
+				fill_input(temp, temp_rd);
 			/*else if (ft_strcmp(temp->str, ">") == 0)
 				fill_output(temp, temp_redirect);
 			else if (ft_strcmp(temp->str, ">>") == 0)
