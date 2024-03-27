@@ -51,13 +51,9 @@ int fill_input(t_token *tokens, t_rd_collection *rd, int i)
 {
 	t_token			*temp;
 	t_rd_collection	*temp_rd;
-	char			*input;
-	char			*temp_input;
 
 	temp = tokens;
 	temp_rd = rd;
-	input = NULL;
-	temp_input = NULL;
 	if (temp->type == REDIRECT)
 	{
 		if (ft_strcmp(temp->str, "<") == 0)
