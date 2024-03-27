@@ -50,13 +50,14 @@ int fill_rd(t_token *tokens, t_rd_collection *rd)
 	{
 		if (temp->type == REDIRECT)
 		{
-			i++;
+			printf("i: %d\n", i);
 			if (ft_strcmp(temp->str, "<") == 0 || ft_strcmp(temp->str, ">>") == 0)
 				fill_input(temp, temp_rd, i);
 			/*else if (ft_strcmp(temp->str, ">") == 0)
 				fill_output(temp, temp_redirect);
 			else if (ft_strcmp(temp->str, ">>") == 0)
 				fill_append(temp, temp_redirect);*/
+			i++;
 		}
 		temp = temp->next;
 	}
