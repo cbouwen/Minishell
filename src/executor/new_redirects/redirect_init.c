@@ -70,7 +70,7 @@ int fill_input(t_token *tokens, t_rd_collection *rd, int i)
 			if (!input)
 				return (12);
 			input = strjoin_free(input, temp->next->str, 0);
-			temp_rd->input[i] = input;
+			temp_rd->input[i] = ft_strdup(input);
 		}
 	}
 	return (0);
