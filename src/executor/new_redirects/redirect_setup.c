@@ -84,7 +84,7 @@ int redirect_test(t_token *tokens)
 			break;
 	}
 	printf("%d\n", is_path_viable(rd.input[0]));
-	int fd = open(rd.input[0], O_RDONLY);
+	int fd = open(rd.input[0], O_RDONLY | O_CREAT, 0644);
 	printf("%d\n", fd);
 	free_rd(&rd);
 	return (status);
