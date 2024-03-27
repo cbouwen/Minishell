@@ -81,8 +81,8 @@ typedef struct s_rd_collection
 	int		input_size;
 	char	**output;
 	int		output_size;
-	int		input_fd;
-	int		output_fd;
+	int		i_fd;
+	int		o_fd;
 	int		file_exists;
 }				t_rd_collection;
 

@@ -37,8 +37,8 @@ int	init_rd(t_token *tokens, t_rd_collection *rd)
 		return (12);
 	temp_rd->input_size = 0;
 	temp_rd->output_size = 0;
-	temp_rd->input_fd = 0;
-	temp_rd->output_fd = 0;
+	temp_rd->i_fd = 0;
+	temp_rd->o_fd = 0;
 	temp_rd->file_exists = 0;
 	return (0);
 }

@@ -115,7 +115,7 @@ int			fill_out(t_token *tokens, t_rd_collection *rd, int i, char *rd_type);
 int			fill_app(t_token *tokens, t_rd_collection *rd, int i);
 size_t		count_rd(t_token *tokens);
 int			init_rd(t_token *tokens, t_rd_collection *rd);
-int			rd_error_handler(int err_no);
+int			rd_error_handler(int err_no, char *str);
 int			open_output(t_rd_collection *rd);
 int			free_rd(t_rd_collection *rd);
 
