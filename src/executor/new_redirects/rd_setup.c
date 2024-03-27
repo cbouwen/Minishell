@@ -40,6 +40,7 @@ int	init_rd(t_token *tokens, t_rd_collection *rd)
 	temp_rd->i_fd = 0;
 	temp_rd->o_fd = 0;
 	temp_rd->file_exists = 0;
+	temp_rd->coll_exists = true;
 	return (rd_error_handler(0, NULL, rd));
 }
 
@@ -67,6 +68,7 @@ int redirect_test(t_token *tokens)
 	printf("input_size: %d\n", rd.input_size);
 	printf("output_size: %d\n", rd.output_size);
 	open_output(&rd);
-	free_rd(&rd);
+	if (rd.coll_exists == true)
+		free_rd(&rd);
 	return (status);
 }

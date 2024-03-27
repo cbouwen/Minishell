@@ -9,6 +9,7 @@ int	free_rd(t_rd_collection *rd)
 	temp_rd = rd;
 	free_array(temp_rd->input);
 	free_array(temp_rd->output);
+	temp_rd->coll_exists = false;
 	return (0);
 }
 
@@ -36,8 +37,7 @@ int	rd_error_handler(int err_no, char *str, t_rd_collection *rd)
 		ft_error(NULL, 0);
 	else if (err_no == 2)
 	{
-		ft_error("bash:", 0);
-		ft_error(str, 0);
+		printf("bash: %s", str);
 		ft_error(": No such file or directory\n", 1);
 	}
 	if (rd && err_no != 0)

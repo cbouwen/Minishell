@@ -84,6 +84,7 @@ typedef struct s_rd_collection
 	int		i_fd;
 	int		o_fd;
 	int		file_exists;
+	bool	coll_exists;
 }				t_rd_collection;
 
 /*typedef struct s_syntax_token
