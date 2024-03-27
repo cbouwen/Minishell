@@ -40,7 +40,7 @@ int	open_output(t_rd_collection *rd)
 		if (rd->o_fd < 0)
 			return (2);
 		if (i < rd->output_size - 1)
-			close(rd->output_fd);
+			close(rd->o_fd);
 		i++;
 	}
 	return (0);
