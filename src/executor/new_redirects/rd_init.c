@@ -2,22 +2,6 @@
 
 #include "../../../inc/minishell.h"
 
-size_t count_rd(t_token *tokens)
-{
-	t_token	*temp;
-	size_t	count;
-
-	temp = tokens;
-	count = 0;
-	while (temp && temp->type != PIPE)
-	{
-		if (temp->type == REDIRECT)
-			count++;
-		temp = temp->next;
-	}
-	return (count);
-}
-
 int fill_rd(t_token *tokens, t_rd_collection *rd)
 {
 	t_token	*temp;
@@ -81,7 +65,7 @@ int	fill_heredoc(t_token *tokens, t_rd_collection *rd, int i)
 	temp_rd = rd;
 	input = NULL;
 	temp_input = NULL;
-	input = ft_strdup("h_");
+	input = ft_strdup("#");
 	if (!input)
 		return (12);
 	temp_input = strjoin_free(input, temp->next->str, 0);
@@ -131,7 +115,7 @@ int	fill_app(t_token *tokens, t_rd_collection *rd, int i)
 	temp_rd = rd;
 	input = NULL;
 	temp_input = NULL;
-	input = ft_strdup("a_");
+	input = ft_strdup("#");
 	if (!input)
 		return (12);
 	temp_input = strjoin_free(input, temp->next->str, 0);

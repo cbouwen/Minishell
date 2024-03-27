@@ -35,16 +35,11 @@ int	init_rd(t_token *tokens, t_rd_collection *rd)
 	temp_rd->output = ft_calloc(sizeof(char *), count_rd(temp) + 1);
 	if (!temp_rd->output)
 		return (12);
-	return (0);
-}
-
-int	free_rd(t_rd_collection *rd)
-{
-	t_rd_collection	*temp_rd;
-
-	temp_rd = rd;
-	free_array(temp_rd->input);
-	free_array(temp_rd->output);
+	temp_rd->input_size = 0;
+	temp_rd->output_size = 0;
+	temp_rd->input_fd = 0;
+	temp_rd->output_fd = 0;
+	temp_rd->file_exists = 0;
 	return (0);
 }
 
@@ -71,6 +66,7 @@ int redirect_test(t_token *tokens)
 	}
 	printf("input_size: %d\n", rd.input_size);
 	printf("output_size: %d\n", rd.output_size);
+	open_output(&rd);
 	free_rd(&rd);
 	return (status);
 }
