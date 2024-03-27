@@ -42,21 +42,24 @@ int fill_rd(t_token *tokens, t_rd_collection *rd)
 	t_token	*temp;
 	t_rd_collection	*temp_rd;
 	int i;
+	int j;
+	int k;
 
 	temp = tokens;
 	temp_rd = rd;
-	i = 0;
+	i = -1;
+	j = -1;
+	k = -1;
 	while (temp && temp->type != PIPE)
 	{
 		if (temp->type == REDIRECT)
 		{
 			if (ft_strcmp(temp->str, "<") == 0 || ft_strcmp(temp->str, "<<") == 0)
-				fill_input(temp, temp_rd, i);
+				fill_input(temp, temp_rd, ++i);
 			else if (ft_strcmp(temp->str, ">") == 0)
-				fill_output(temp, temp_rd, i);
+				fill_output(temp, temp_rd, ++j);
 			else if (ft_strcmp(temp->str, ">>") == 0)
-				fill_append(temp, temp_rd, i);
-			i++;
+				fill_append(temp, temp_rd, ++k);
 		}
 		temp = temp->next;
 	}
