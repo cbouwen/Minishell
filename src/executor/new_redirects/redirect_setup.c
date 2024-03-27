@@ -52,7 +52,8 @@ int	free_rd(t_rd_collection *rd)
 	return (0);
 }
 
-int test_path(char *path);
+char *get_directory(const char *path);
+int is_path_viable(const char *path);
 
 int redirect_test(t_token *tokens)
 {
@@ -82,30 +83,24 @@ int redirect_test(t_token *tokens)
 		else
 			break;
 	}
-	test_path(&rd->input[0]);
+	is_path_viable(&rd->input[0]);
 	free_rd(&rd);
 	return (status);
 }
 
-int test_path(char *path)
+char *get_directory(const char *path) 
 {
-	char *dir;
-
-	char *last_slash = ft_strrchr(path, '/');
-    if (last_slash == NULL)
-	{
-		if (access(path, F_OK) == 0)
-			printf("file exists\n");
-		else
-			printf("file does not exist\n");
-		return (0);
-	}
+    char *last_slash = ft_strrchr(path, '/');
+    if (last_slash == NULL) {
+        // No slashes in the path, so it's a relative path in the current directory
+        return strdup(".");
+    }
 
     // Calculate the length of the directory part of the path
     size_t dir_len = last_slash - path;
 
     // Allocate memory for the directory string
-    dir = malloc(dir_len + 1);
+    char *dir = malloc(dir_len + 1);
     if (dir == NULL) {
         return NULL;  // Failed to allocate memory
     }
@@ -114,6 +109,36 @@ int test_path(char *path)
     ft_strncpy(dir, path, dir_len);
     dir[dir_len] = '\0';  // Null-terminate the string
 
-    printf("dir: %s\n", dir);
-	return (0);
+    return dir;
+}
+
+int is_path_viable(const char *path)
+{
+    // Duplicate the path because dirname can modify its argument
+    char *path_copy = ft_strdup(path);
+    if (path_copy == NULL) {
+        return 0;  // Failed to allocate memory
+    }
+
+    char *dir = get_directory(path_copy);
+
+    // Check if the directory exists
+    struct stat statbuf;
+    if (stat(dir, &statbuf) != 0) {
+        free(path_copy);
+        return 0;  // Directory does not exist
+    }
+
+    // Check if the directory is actually a directory
+    if (!S_ISDIR(statbuf.st_mode)) {
+        free(path_copy);
+        return 0;  // Not a directory
+    }
+
+    // Check if we have write access to the directory
+    int result = access(dir, W_OK);
+
+    free(path_copy);
+
+    return result == 0;
 }
