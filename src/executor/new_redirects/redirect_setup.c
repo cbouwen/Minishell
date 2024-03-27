@@ -61,14 +61,14 @@ int redirect_test(t_token *tokens)
 	for (int i = 0; i < 10; i++)
 	{
 		if (rd.output[i] != NULL)
-			printf("input[%d]: %s\n", i, rd.output[i]);
+			printf("output[%d]: %s\n", i, rd.output[i]);
 		else
 			break;
 	}
 	for (int i = 0; i < 10; i++)
 	{
 		if (rd.append[i] != NULL)
-			printf("input[%d]: %s\n", i, rd.append[i]);
+			printf("append[%d]: %s\n", i, rd.append[i]);
 		else
 			break;
 	}
