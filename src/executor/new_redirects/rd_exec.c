@@ -48,6 +48,9 @@ int	input_rd(t_token *tok, t_environment *env, t_args *arg, t_rd_collection *rd)
 		return (rd_error_handler(4, NULL, temp_rd));
 	close(temp_rd->i_fd);
 	status = prep_cmd(temp, temp_env, temp_args);
+
+	printf("status: %d\n", status);
+
 	if (dup2(temp_rd->stdin, STDIN_FILENO) == -1)
 		return (rd_error_handler(4, NULL, temp_rd));
 	close(temp_rd->stdin);
@@ -76,6 +79,9 @@ int	output_rd(t_token *tok, t_environment *env, t_args *arg, t_rd_collection *rd
 		return (rd_error_handler(4, NULL, temp_rd));
 	close(temp_rd->o_fd);
 	status = prep_cmd(temp, temp_env, temp_args);
+
+	printf("status: %d\n", status);
+
 	if (dup2(temp_rd->stdout, STDOUT_FILENO) == -1)
 		return (rd_error_handler(4, NULL, temp_rd));
 	close(temp_rd->stdout);
