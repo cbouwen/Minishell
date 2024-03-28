@@ -9,6 +9,8 @@ int	free_rd(t_rd_collection *rd)
 	t_rd_collection	*temp_rd;
 
 	temp_rd = rd;
+	if (temp_rd->coll_exists == false)
+		return (0);
 	if (temp_rd->input != NULL)
 		free_array(temp_rd->input);
 	if (temp_rd->output != NULL)
