@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 15:31:04 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/03/26 14:08:00 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/03/28 17:49:04 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,6 @@ typedef struct	s_signal
 	bool	in_cmd;
 	bool	in_heredoc;
 }				t_signal;
-
-typedef enum	e_redirect
-{
-	INPUT,
-	APPEND,
-	OUTPUT,
-	TEMP
-}				t_redirect;
 
 typedef struct	s_environment
 {
@@ -65,17 +57,10 @@ typedef struct	s_args
 {
 	char		**arg_array;
 	char		**env_array;
-	t_redirect	redirect;
-	int 		heredoc;
-	char		*hd_file;
-	char		*file;
-	int			file_exists;
-	int			fd;
-	int			heredoc_fd;
-	char		*delimiter;
+	int			fd[2];
 }				t_args;
 
-typedef struct s_rd_collection
+typedef struct s_rd_col
 {
 	char	**input;
 	int		input_size;
@@ -85,9 +70,9 @@ typedef struct s_rd_collection
 	int		o_fd;
 	int		file_exists;
 	bool	coll_exists;
-	int		stdin;
-	int		stdout;
-}				t_rd_collection;
+	int		c_stdin;
+	int		c_stdout;
+}				t_rd_col;
 
 /*typedef struct s_syntax_token
 {

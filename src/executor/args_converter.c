@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 20:00:59 by mlegendr          #+#    #+#             */
-/*   Updated: 2024/03/25 19:00:46 by matisse          ###   ########.fr       */
+/*   Updated: 2024/03/28 17:30:25 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,6 @@ int	free_args(t_args *args)
 			free_array(args->arg_array);
 		if (args->env_array)
 			free_array(args->env_array);
-		free(args->hd_file);
-		free(args->file);
-		free(args->delimiter);
 		free(args);
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 20:07:42 by mlegendr          #+#    #+#             */
-/*   Updated: 2024/03/25 18:53:31 by matisse          ###   ########.fr       */
+/*   Updated: 2024/03/28 16:45:41 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,8 @@ int	init_args(t_args *args)
 {
 	args->arg_array = NULL;
 	args->env_array = NULL;
-	args->redirect = TEMP;
-	args->heredoc = 0;
-	args->hd_file = NULL;
-	args->file = NULL;
-	args->file_exists = 0;
-	args->fd = 0;
-	args->heredoc_fd = -1;
-	args->delimiter = NULL;
+	args->fd[0] = 0;
+	args->fd[1] = 0;
 	return (0);
 }
 

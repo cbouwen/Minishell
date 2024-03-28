@@ -20,7 +20,7 @@ extern t_signal	g_signal;
  * 7. return
 */
 
-int	open_output(t_rd_collection *rd)
+int	open_output(t_rd_col *rd)
 {
 	int		i;
 	char	*temp;
@@ -49,7 +49,7 @@ int	open_output(t_rd_collection *rd)
 	return (rd_error_handler(0, NULL, rd));
 }
 
-int	open_input(t_rd_collection *rd)
+int	open_input(t_rd_col *rd)
 {
 	int		i;
 
@@ -79,7 +79,7 @@ int	open_heredoc(char *input)
 	if (heredoc_fd == -1)
 		return (rd_error_handler(2, "/tmp/heredoc_dump", NULL));
 	line = readline("heredoc> ");
-	while (ft_strcmp(line, input) != 0)
+	while (line != NULL && ft_strcmp(line, input) != 0)
 	{
 		write(heredoc_fd, line, ft_strlen(line));
 		write(heredoc_fd, "\n", 1);

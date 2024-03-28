@@ -2,10 +2,10 @@
 
 #include "../../../inc/minishell.h"
 
-int fill_rd(t_token *tokens, t_rd_collection *rd)
+int fill_rd(t_token *tokens, t_rd_col *rd)
 {
 	t_token	*temp;
-	t_rd_collection	*temp_rd;
+	t_rd_col	*temp_rd;
 	int i;
 	int j;
 
@@ -31,10 +31,10 @@ int fill_rd(t_token *tokens, t_rd_collection *rd)
 	return (rd_error_handler(0, NULL, rd));
 }
 
-int fill_input(t_token *tokens, t_rd_collection *rd, int i)
+int fill_input(t_token *tokens, t_rd_col *rd, int i)
 {
 	t_token			*temp;
-	t_rd_collection	*temp_rd;
+	t_rd_col	*temp_rd;
 
 	temp = tokens;
 	temp_rd = rd;
@@ -54,10 +54,10 @@ int fill_input(t_token *tokens, t_rd_collection *rd, int i)
 	return (rd_error_handler(0, NULL, rd));
 }
 
-int	fill_heredoc(t_token *tokens, t_rd_collection *rd, int i)
+int	fill_heredoc(t_token *tokens, t_rd_col *rd, int i)
 {
 	t_token			*temp;
-	t_rd_collection	*temp_rd;
+	t_rd_col	*temp_rd;
 	char			*input;
 	char			*temp_input;
 
@@ -80,10 +80,10 @@ int	fill_heredoc(t_token *tokens, t_rd_collection *rd, int i)
 	return (rd_error_handler(0, NULL, rd));
 }
 
-int fill_out(t_token *tokens, t_rd_collection *rd, int i, char *rd_type)
+int fill_out(t_token *tokens, t_rd_col *rd, int i, char *rd_type)
 {
 	t_token         *temp;
-	t_rd_collection *temp_rd;
+	t_rd_col *temp_rd;
 	char			**target;
 
 	temp = tokens;
@@ -104,10 +104,10 @@ int fill_out(t_token *tokens, t_rd_collection *rd, int i, char *rd_type)
 	return (rd_error_handler(0, NULL, rd));
 }
 
-int	fill_app(t_token *tokens, t_rd_collection *rd, int i)
+int	fill_app(t_token *tokens, t_rd_col *rd, int i)
 {
 	t_token			*temp;
-	t_rd_collection	*temp_rd;
+	t_rd_col	*temp_rd;
 	char			*input;
 	char			*temp_input;
 

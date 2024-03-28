@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path_generator.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlegendr <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 18:57:03 by mlegendr          #+#    #+#             */
-/*   Updated: 2024/03/25 18:58:11 by matisse          ###   ########.fr       */
+/*   Updated: 2024/03/28 18:00:33 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,11 @@ int	create_exec_path(t_args *args, char **exec_path)
 
 	i = 0;
 	status = 0;
+	if (access(args->arg_array[0], X_OK) == 0)
+	{
+		free_array(exec_path);
+		return (2);
+	}
 	while (exec_path[i])
 	{
 		status = true_path_ass(exec_path[i], args);
@@ -69,5 +74,5 @@ int	create_exec_path(t_args *args, char **exec_path)
 		i++;
 	}
 	free_array(exec_path);
-	return (4);
+	return (status);
 }

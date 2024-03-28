@@ -4,9 +4,9 @@
 
 extern t_signal	g_signal;
 
-int	free_rd(t_rd_collection *rd)
+int	free_rd(t_rd_col *rd)
 {
-	t_rd_collection	*temp_rd;
+	t_rd_col	*temp_rd;
 
 	temp_rd = rd;
 	if (temp_rd->coll_exists == false)
@@ -35,7 +35,7 @@ size_t count_rd(t_token *tokens)
 	return (count);
 }
 
-int	rd_error_handler(int err_no, char *str, t_rd_collection *rd)
+int	rd_error_handler(int err_no, char *str, t_rd_col *rd)
 {
 	if (g_signal.in_heredoc == true)
 		g_signal.in_heredoc = false;

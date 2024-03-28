@@ -22,10 +22,10 @@ int	redirect_syntax_check(t_token *tokens)
 	return (rd_error_handler(0, NULL, NULL));
 }
 
-int	init_rd(t_token *tokens, t_rd_collection *rd)
+int	init_rd(t_token *tokens, t_rd_col *rd)
 {
 	t_token			*temp;
-	t_rd_collection	*temp_rd;
+	t_rd_col	*temp_rd;
 
 	temp = tokens;
 	temp_rd = rd;
@@ -41,42 +41,21 @@ int	init_rd(t_token *tokens, t_rd_collection *rd)
 	temp_rd->o_fd = 0;
 	temp_rd->file_exists = 0;
 	temp_rd->coll_exists = true;
-	temp_rd->stdout = dup(STDOUT_FILENO);
-	if (temp_rd->stdout == -1)
-		return (rd_error_handler(3, NULL, rd));
+	temp_rd->c_stdin = 0;
+	temp_rd->c_stdout = 0;
 	return (rd_error_handler(0, NULL, rd));
 }
 
 int redirect_test(t_token *tokens, t_environment *env, t_args *args)
 {
-	t_rd_collection	rd;
+	t_rd_col	rd;
 
 	int status = redirect_syntax_check(tokens);
 	init_rd(tokens, &rd);
 	fill_rd(tokens, &rd);
-	for (int i = 0; i < 10; i++)
-	{
-		if (rd.input[i] != NULL)
-			printf("input[%d]: %s\n", i, rd.input[i]);
-		else
-			break;
-	}
-	for (int i = 0; i < 10; i++)
-	{
-		if (rd.output[i] != NULL)
-			printf("output[%d]: %s\n", i, rd.output[i]);
-		else
-			break;
-	}
-	printf("input_size: %d\n", rd.input_size);
-	printf("output_size: %d\n", rd.output_size);
 	open_input(&rd);
-	printf("i_fd: %d\n", rd.i_fd);
 	open_output(&rd);
-	printf("o_fd: %d\n", rd.o_fd);
-
 	status = rd_exec_setup(tokens, env, args, &rd);
-
 	if (rd.coll_exists == true)
 		free_rd(&rd);
 	return (status);
