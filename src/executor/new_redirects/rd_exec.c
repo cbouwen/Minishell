@@ -14,13 +14,16 @@ int	rd_exec_setup(t_token *tok, t_environment *env, t_args *arg, t_rd_collection
 	temp_args = arg;
 	temp_rd = rd;
 	if (temp_rd->input_size > 0 && temp_rd->input_size == 0)
-		//input redirection
+		input_redirection(temp, temp_env, temp_args, temp_rd);
 	else if (temp_rd->output_size > 0 && temp_rd->output_size == 0)
 		//output redirection
+		printf("output redirection\n");
 	else if (temp_rd->output_size > 0 && temp_rd->output_size > 0)
 		//mega super cool redirection
+		printf("mega super cool redirection\n");
 	else
 		//error?
+		printf("error?\n");
 	return (1);
 }
 

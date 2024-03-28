@@ -83,7 +83,7 @@ int	open_heredoc(char *input)
 	int		heredoc_fd;
 	char	*line;
 
-	g_signal.heredoc = true;
+	g_signal.in_heredoc = true;
 	heredoc_fd = open("/tmp/heredoc_dump", O_RDWR | O_CREAT | O_TRUNC, 0644);
 	if (heredoc_fd == -1)
 		return (rd_error_handler(2, "/tmp/heredoc_dump", NULL));
@@ -98,7 +98,7 @@ int	open_heredoc(char *input)
 	}
 	if (line)
 		free(line);
-	g_signal.heredoc = false;
+	g_signal.in_heredoc = false;
 	return (heredoc_fd);
 }
 
