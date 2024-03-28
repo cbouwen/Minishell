@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   double_quotes.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 11:22:35 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/03/26 14:17:52 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/03/28 21:19:21 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 extern t_signal	g_signal;
 
-char	*find_env(char *str, t_environment *env)
+char	*find_env(char *str, t_env *env)
 {
-	t_environment	*tmp;
+	t_env	*tmp;
 	char			*substr;
 
 	tmp = env;
@@ -41,7 +41,7 @@ char	*find_env(char *str, t_environment *env)
 	return (ft_strdup(""));
 }
 
-char	*find_new_str(char *str, t_environment *env, int *i)
+char	*find_new_str(char *str, t_env *env, int *i)
 {
 	int		j;
 	char	*s1;
@@ -64,7 +64,7 @@ char	*find_new_str(char *str, t_environment *env, int *i)
 	return (s2);
 }
 
-int	expand_double_quote(t_token **tokens, t_environment *env)
+int	expand_double_quote(t_token **tokens, t_env *env)
 {
 	int		i;
 	char	*newstr;

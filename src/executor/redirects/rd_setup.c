@@ -46,15 +46,22 @@ int	init_rd(t_token *tokens, t_rd_col *rd)
 	return (rd_error_handler(0, NULL, rd));
 }
 
-int redirect_test(t_token *tokens, t_environment *env, t_args *args)
+int redirect_test(t_token *tokens, t_env *env, t_args *args)
 {
 	t_rd_col	rd;
+	int			status;
 
-	int status = redirect_syntax_check(tokens);
-	init_rd(tokens, &rd);
-	fill_rd(tokens, &rd);
-	open_input(&rd);
-	open_output(&rd);
+	status = 0;
+	if (redirect_syntax_check(tokens) != 0)
+		return (1);
+	if (init_rd(tokens, &rd) != 0)
+		return (1);
+	if (fill_rd(tokens, &rd) != 0)
+		return (1);
+	if (open_input(&rd) != 0)
+		return (1);
+	if (open_output(&rd) != 0)
+		return (1);
 	status = rd_exec_setup(tokens, env, args, &rd);
 	if (rd.coll_exists == true)
 		free_rd(&rd);

@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 16:16:53 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/03/26 14:10:50 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/03/28 21:19:21 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_signal	g_signal;
 
-int	run_minishell(t_environment *env, char *input)
+int	run_minishell(t_env *env, char *input)
 {
 	t_token	*tokens;
 
@@ -45,7 +45,7 @@ int	run_minishell(t_environment *env, char *input)
 
 int	minishell_loop(char **envp)
 {
-	t_environment	*env;
+	t_env	*env;
 	char			*input;
 
 	env = env_parser(envp);

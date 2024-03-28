@@ -2,10 +2,10 @@
 
 #include "../../../inc/minishell.h"
 
-int	rd_exec_setup(t_token *tok, t_environment *env, t_args *arg, t_rd_col *rd)
+int	rd_exec_setup(t_token *tok, t_env *env, t_args *arg, t_rd_col *rd)
 {
 	t_token			*temp;
-	t_environment	*temp_env;
+	t_env	*temp_env;
 	t_args			*temp_args;
 	t_rd_col	*temp_rd;
 	int				status;
@@ -27,10 +27,10 @@ int	rd_exec_setup(t_token *tok, t_environment *env, t_args *arg, t_rd_col *rd)
 	return (rd_error_handler(status, NULL, temp_rd));
 }
 
-int	input_rd(t_token *tok, t_environment *env, t_args *arg, t_rd_col *rd)
+int	input_rd(t_token *tok, t_env *env, t_args *arg, t_rd_col *rd)
 {
 	t_token			*temp;
-	t_environment	*temp_env;
+	t_env	*temp_env;
 	t_args			*temp_args;
 	t_rd_col	*temp_rd;
 	int				status;
@@ -55,10 +55,10 @@ int	input_rd(t_token *tok, t_environment *env, t_args *arg, t_rd_col *rd)
 	return (rd_error_handler(status, NULL, temp_rd));
 }
 
-int	output_rd(t_token *tok, t_environment *env, t_args *arg, t_rd_col *rd)
+int	output_rd(t_token *tok, t_env *env, t_args *arg, t_rd_col *rd)
 {
 	t_token			*temp;
-	t_environment	*temp_env;
+	t_env	*temp_env;
 	t_args			*temp_args;
 	t_rd_col	*temp_rd;
 	int				status;
@@ -83,10 +83,10 @@ int	output_rd(t_token *tok, t_environment *env, t_args *arg, t_rd_col *rd)
 	return (rd_error_handler(status, NULL, temp_rd));
 }
 
-int	super_redirect(t_token *tok, t_environment *env, t_args *arg, t_rd_col *rd)
+int	super_redirect(t_token *tok, t_env *env, t_args *arg, t_rd_col *rd)
 {
 	t_token			*temp;
-	t_environment	*temp_env;
+	t_env	*temp_env;
 	t_args			*temp_args;
 	t_rd_col	*temp_rd;
 	int				status;

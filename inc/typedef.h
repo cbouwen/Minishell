@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 15:31:04 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/03/28 17:49:04 by mlegendr         ###   ########.fr       */
+/*   Updated: 2024/03/28 21:19:21 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ typedef struct	s_signal
 	bool	in_heredoc;
 }				t_signal;
 
-typedef struct	s_environment
+typedef struct	s_env
 {
 	char					*name;
 	char					*value;
-	struct s_environment	*next;
-}				t_environment;
+	struct s_env	*next;
+}				t_env;
 
 typedef enum e_type
 {

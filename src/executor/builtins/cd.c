@@ -6,13 +6,13 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 16:23:46 by mlegendr          #+#    #+#             */
-/*   Updated: 2024/03/25 18:42:39 by matisse          ###   ########.fr       */
+/*   Updated: 2024/03/28 21:19:57 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../inc/minishell.h"
 
-int	change_dir(t_token *tokens, t_environment *env)
+int	change_dir(t_token *tokens, t_env *env)
 {
 	t_token	*temp;
 	int		status;
@@ -40,7 +40,7 @@ int	change_dir(t_token *tokens, t_environment *env)
 	return (ft_error(NULL, status));
 }
 
-int	go_dir(char *path, t_environment *env)
+int	go_dir(char *path, t_env *env)
 {
 	char	*current_pwd;
 
@@ -55,7 +55,7 @@ int	go_dir(char *path, t_environment *env)
 	return (ft_error(NULL, 0));
 }
 
-int	go_home(t_environment *env)
+int	go_home(t_env *env)
 {
 	char	*home_path;
 	char	*current_pwd;
@@ -76,7 +76,7 @@ int	go_home(t_environment *env)
 	return (ft_error(NULL, 0));
 }
 
-int	go_oldpwd(t_token *tokens, t_environment *env)
+int	go_oldpwd(t_token *tokens, t_env *env)
 {
 	char	*new_pwd;
 	char	*current_pwd;

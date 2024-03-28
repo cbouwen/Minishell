@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:41:07 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/03/26 14:05:09 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/03/28 21:22:13 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,15 @@
 extern t_signal	g_signal;
 
 //int				ft_error(char *str);
-t_environment	*env_parser(char *envp[]);
-void			free_env_node(t_environment *env);
-void			free_env(t_environment *env);
-t_environment	*get_env_node(t_environment *head, char *name);
-t_environment	*create_node(char *name, char *value);
-void			ft_lstadd_back_ms(t_environment **lst, t_environment *new);
+t_env	*env_parser(char *envp[]);
+void			free_env_node(t_env *env);
+void			free_env(t_env *env);
+t_env	*get_env_node(t_env *head, char *name);
+t_env	*create_node(char *name, char *value);
+void			ft_lstadd_back_ms(t_env **lst, t_env *new);
 
 //tester
-void			tester(t_environment *envp);
+void			tester(t_env *envp);
 void			test_tokenizer(t_token *tokens);
 void			test_syntax_tree(t_token *token, int pipes);
 

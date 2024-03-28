@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expander.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:41:53 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/03/07 16:23:34 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/03/28 21:19:21 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	remove_quotes(t_token **tokens, char c)
 	(*tokens)->str = newstr;
 }
 
-static void	handle_quotes(t_token **tokens, t_environment *env)
+static void	handle_quotes(t_token **tokens, t_env *env)
 {
 	while (*tokens)
 	{
@@ -54,7 +54,7 @@ static void	handle_quotes(t_token **tokens, t_environment *env)
 	reset_list(tokens);
 }
 
-static void	handle_metas(t_token **tokens, t_environment *env)
+static void	handle_metas(t_token **tokens, t_env *env)
 {
 	while (*tokens)
 	{
@@ -70,7 +70,7 @@ static void	handle_metas(t_token **tokens, t_environment *env)
 	reset_list(tokens);
 }
 
-int	expander(t_token **tokens, t_environment *env)
+int	expander(t_token **tokens, t_env *env)
 {
 	handle_metas(tokens, env);
 	handle_quotes(tokens, env);

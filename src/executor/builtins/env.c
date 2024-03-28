@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlegendr <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 18:45:38 by mlegendr          #+#    #+#             */
-/*   Updated: 2024/03/25 18:46:21 by matisse          ###   ########.fr       */
+/*   Updated: 2024/03/28 21:19:21 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../inc/minishell.h"
 
-int	print_env(t_token *tokens, t_environment *env)
+int	print_env(t_token *tokens, t_env *env)
 {
 	t_token			*temp;
-	t_environment	*temp_env;
+	t_env	*temp_env;
 
 	temp = tokens;
 	temp_env = env;

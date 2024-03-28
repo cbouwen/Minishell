@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlegendr <marvin@42.fr>                     +#+  +:+       +#+       */
+/*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 18:41:17 by mlegendr          #+#    #+#             */
-/*   Updated: 2024/03/25 18:41:56 by matisse          ###   ########.fr       */
+/*   Updated: 2024/03/28 21:19:21 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	extract_value(char *token_str, char **var_value)
 
 /*0 if val exists
   1 if val doesn't exist*/
-int	check_env_val_exists(t_environment *env, char *var_name)
+int	check_env_val_exists(t_env *env, char *var_name)
 {
 	while (env)
 	{

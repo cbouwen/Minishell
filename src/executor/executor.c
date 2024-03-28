@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:41:42 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/03/25 18:56:43 by matisse          ###   ########.fr       */
+/*   Updated: 2024/03/28 21:19:21 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ extern int	g_err;
 		- Test
 */
 
-int	builtin_executor(t_token *tokens, t_environment *env)
+int	builtin_executor(t_token *tokens, t_env *env)
 {
 	t_token			*temp;
-	t_environment	*temp_env;
+	t_env	*temp_env;
 	int				status;
 	int				builtin;
 
@@ -55,10 +55,10 @@ int	builtin_executor(t_token *tokens, t_environment *env)
 	return (status);
 }
 
-int	executor(t_token *tokens, t_environment *env)
+int	executor(t_token *tokens, t_env *env)
 {
 	t_token			*temp;
-	t_environment	*temp_env;
+	t_env	*temp_env;
 	t_args			*args;
 
 	temp = tokens;
@@ -77,10 +77,10 @@ int	executor(t_token *tokens, t_environment *env)
 	return (1);
 }
 
-int	run_basic_cmd(t_token *tokens, t_environment *env, t_args *args)
+int	run_basic_cmd(t_token *tokens, t_env *env, t_args *args)
 {
 	t_token			*temp;
-	t_environment	*temp_env;
+	t_env	*temp_env;
 	int				status;
 
 	temp = tokens;
@@ -93,10 +93,10 @@ int	run_basic_cmd(t_token *tokens, t_environment *env, t_args *args)
 	return (status);
 }
 
-int	run_builtin(t_token *tokens, t_environment *env)
+int	run_builtin(t_token *tokens, t_env *env)
 {
 	t_token			*temp;
-	t_environment	*temp_env;
+	t_env	*temp_env;
 	int				status;
 
 	temp = tokens;
@@ -107,10 +107,10 @@ int	run_builtin(t_token *tokens, t_environment *env)
 	return (ft_error(NULL, status));
 }
 
-int	prep_cmd(t_token *tokens, t_environment *env, t_args *args)
+int	prep_cmd(t_token *tokens, t_env *env, t_args *args)
 {
 	t_token			*temp;
-	t_environment	*temp_env;
+	t_env	*temp_env;
 	int				status;
 	int				builtin;
 

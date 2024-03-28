@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 15:18:10 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/02/13 15:50:45 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/03/28 21:19:21 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-void	free_env_node(t_environment *env)
+void	free_env_node(t_env *env)
 {
 	if (!env)
 		return ;
@@ -23,9 +23,9 @@ void	free_env_node(t_environment *env)
 	free(env);
 }
 
-void	free_env(t_environment *env)
+void	free_env(t_env *env)
 {
-	t_environment	*tmp;
+	t_env	*tmp;
 
 	while (env)
 	{
@@ -35,7 +35,7 @@ void	free_env(t_environment *env)
 	}
 }
 
-t_environment	*get_env_node(t_environment *head, char *name)
+t_env	*get_env_node(t_env *head, char *name)
 {
 	while (head && ft_strcmp(head->name, name))
 		head = head->next;

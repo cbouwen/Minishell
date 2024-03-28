@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 20:00:59 by mlegendr          #+#    #+#             */
-/*   Updated: 2024/03/28 17:30:25 by mlegendr         ###   ########.fr       */
+/*   Updated: 2024/03/28 21:19:21 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ int	fill_args(t_args *args, t_token *tokens)
 	return (ft_error(NULL, 0));
 }
 
-int	fill_env(t_args *args, t_environment *env)
+int	fill_env(t_args *args, t_env *env)
 {
-	t_environment	*temp;
+	t_env	*temp;
 	size_t			i;
 	size_t			count;
 

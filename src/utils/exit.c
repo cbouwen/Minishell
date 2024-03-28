@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 18:07:23 by mlegendr          #+#    #+#             */
-/*   Updated: 2024/03/26 14:33:29 by matisse          ###   ########.fr       */
+/*   Updated: 2024/03/28 21:19:21 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 extern t_signal g_signal;
 
-void	clean_exit(t_token *token, t_environment *env, char *msg)
+void	clean_exit(t_token *token, t_env *env, char *msg)
 {
 	if (msg)
 	{

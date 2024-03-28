@@ -6,13 +6,13 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 15:50:48 by mlegendr          #+#    #+#             */
-/*   Updated: 2024/03/25 18:40:47 by matisse          ###   ########.fr       */
+/*   Updated: 2024/03/28 21:19:21 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../inc/minishell.h"
 
-int	export_var(t_token *tokens, t_environment *env)
+int	export_var(t_token *tokens, t_env *env)
 {
 	char	*var_name;
 	char	*var_value;
@@ -41,7 +41,7 @@ int	export_var(t_token *tokens, t_environment *env)
 	return (ft_error(NULL, status));
 }
 
-int	update_env_val(t_environment *env, char *var_name, char *var_value, bool cd)
+int	update_env_val(t_env *env, char *var_name, char *var_value, bool cd)
 {
 	if (cd && check_env_val_exists(env, var_name) == 1)
 		add_env_val(env, var_name, "temp");
@@ -59,9 +59,9 @@ int	update_env_val(t_environment *env, char *var_name, char *var_value, bool cd)
 	return (ft_error("export: unexpected error\n", 1));
 }
 
-int	add_env_val(t_environment *env, char *var_name, char *var_value)
+int	add_env_val(t_env *env, char *var_name, char *var_value)
 {
-	t_environment	*new;
+	t_env	*new;
 
 	new = create_node(var_name, var_value);
 	ft_lstadd_back_ms(&env, new);

@@ -6,13 +6,13 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 17:32:35 by mlegendr          #+#    #+#             */
-/*   Updated: 2024/03/25 18:44:28 by matisse          ###   ########.fr       */
+/*   Updated: 2024/03/28 21:19:21 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../inc/minishell.h"
 
-int	get_env_val(t_environment *env, char *var_name, char **var_value)
+int	get_env_val(t_env *env, char *var_name, char **var_value)
 {
 	if (check_env_val_exists(env, var_name) == 1)
 		return (1);
@@ -29,7 +29,7 @@ int	get_env_val(t_environment *env, char *var_name, char **var_value)
 	return (1);
 }
 
-int	update_pwd(t_environment *env, char *path)
+int	update_pwd(t_env *env, char *path)
 {
 	char	*current_pwd;
 

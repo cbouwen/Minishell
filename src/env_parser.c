@@ -6,15 +6,15 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 11:27:38 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/03/20 18:03:38 by mlegendr         ###   ########.fr       */
+/*   Updated: 2024/03/28 21:19:21 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-void	ft_lstadd_back_ms(t_environment **lst, t_environment *new)
+void	ft_lstadd_back_ms(t_env **lst, t_env *new)
 {
-	t_environment	*temp;
+	t_env	*temp;
 
 	if (!lst || !new)
 		return ;
@@ -29,11 +29,11 @@ void	ft_lstadd_back_ms(t_environment **lst, t_environment *new)
 	temp->next = new;
 }
 
-t_environment	*create_node(char *name, char *value)
+t_env	*create_node(char *name, char *value)
 {
-	t_environment	*new;
+	t_env	*new;
 
-	new = (t_environment *)malloc(sizeof(t_environment));
+	new = (t_env *)malloc(sizeof(t_env));
 	if (!new)
 		ft_error(NULL, 12);
 	new->name = ft_strdup(name);
@@ -47,9 +47,9 @@ t_environment	*create_node(char *name, char *value)
 	return (new);
 }
 
-t_environment	*extract_data(char *envp)
+t_env	*extract_data(char *envp)
 {
-	t_environment	*new;
+	t_env	*new;
 	char			*name;
 	char			*value;
 	int				i;
@@ -65,10 +65,10 @@ t_environment	*extract_data(char *envp)
 	return (new);
 }
 
-t_environment	*env_parser(char *envp[])
+t_env	*env_parser(char *envp[])
 {
 	int				i;
-	t_environment	*environment;
+	t_env	*environment;
 
 	i = 0;
 	environment = NULL;
