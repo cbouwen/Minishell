@@ -9,8 +9,8 @@
  * Except for the last element, all other elements can be ingnored.
  * 
  * Order of business:
- * 1. Open the files
- * 2. Execute the heredoc
+ * 1. Open the files									--DONE
+ * 2. Execute the heredoc								--DONE
  * 3. execute the command
  * 4. pipe output of command to either stdin or file
  * 5. close the files
@@ -93,7 +93,6 @@ int	open_heredoc(char *input)
 		line = NULL;
 		line = readline("heredoc> ");
 	}
-	close(heredoc_fd);
 	if (line)
 		free(line);
 	return (heredoc_fd);

@@ -69,6 +69,10 @@ int redirect_test(t_token *tokens)
 	printf("output_size: %d\n", rd.output_size);
 	open_output(&rd);
 	open_input(&rd);
+
+	int stdin = dup(STDIN_FILENO);
+	printf("stdin: %d\n", stdin);
+	
 	if (rd.coll_exists == true)
 		free_rd(&rd);
 	return (status);
