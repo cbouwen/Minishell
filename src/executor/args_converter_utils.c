@@ -81,6 +81,7 @@ int	free_array(char **array)
 			i++;
 		}
 		free(array);
+		array = NULL;
 	}
 	return (0);
 }
