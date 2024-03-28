@@ -75,7 +75,7 @@ int redirect_test(t_token *tokens, t_environment *env, t_args *args)
 	open_output(&rd);
 	printf("o_fd: %d\n", rd.o_fd);
 
-	rd_exec_setup(tokens, env, args, &rd);
+	status = rd_exec_setup(tokens, env, args, &rd);
 
 	if (rd.coll_exists == true)
 		free_rd(&rd);
