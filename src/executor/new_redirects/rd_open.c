@@ -52,10 +52,8 @@ int	open_output(t_rd_collection *rd)
 int	open_input(t_rd_collection *rd)
 {
 	int		i;
-	char	*temp;
 
 	i = 0;
-	temp = NULL;
 	while (i < rd->input_size)
 	{
 		if (rd->input[i][0] == '#')
