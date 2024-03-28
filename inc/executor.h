@@ -107,7 +107,7 @@ int			path_error_handler(int err_no);
 /*new redirect stuff*/
 int			redirect_syntax_check(t_token *tokens);
 int			init_redirect(t_token *tokens, t_redirect *redirect);
-int			redirect_test(t_token *tokens);
+int			redirect_test(t_token *tokens, t_environment *env, t_args *args);
 int			fill_rd(t_token *tokens, t_rd_collection *rd);
 int			fill_input(t_token *temp, t_rd_collection *rd, int i);
 int			fill_heredoc(t_token *tokens, t_rd_collection *rd, int i);
