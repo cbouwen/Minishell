@@ -43,6 +43,8 @@ int	input_redirection(t_token *tok, t_environment *env, t_args *arg, t_rd_collec
 	temp_rd->stdin = dup(STDIN_FILENO);
 	if (temp_rd->stdin == -1)
 		return (rd_error_handler(3, NULL, rd));
+	if (rd->input[i][0] == '#')
+		rd->i_fd = open("/tmp/heredoc_dump", O_RDONLY);
 	if (dup2(temp_rd->i_fd, STDIN_FILENO) == -1)
 		return (rd_error_handler(4, NULL, temp_rd));
 	close(temp_rd->i_fd);

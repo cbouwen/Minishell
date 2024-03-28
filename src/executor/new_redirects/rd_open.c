@@ -59,14 +59,7 @@ int	open_input(t_rd_collection *rd)
 	while (i < rd->input_size)
 	{
 		if (rd->input[i][0] == '#')
-		{
-			temp = ft_strdup(rd->input[i] + 1);
-			if (!temp)
-				return (rd_error_handler(12, NULL, rd));
-			free(rd->input[i]);
-			rd->input[i] = temp;
-			rd->i_fd = open_heredoc(rd->input[i]);
-		}
+			rd->i_fd = open_heredoc(rd->input[i] + 1);
 		else
 			rd->i_fd = open(rd->input[i], O_RDONLY);
 		if (rd->i_fd < 0)
@@ -98,6 +91,7 @@ int	open_heredoc(char *input)
 	}
 	if (line)
 		free(line);
+	close(heredoc_fd);
 	g_signal.in_heredoc = false;
 	return (heredoc_fd);
 }
