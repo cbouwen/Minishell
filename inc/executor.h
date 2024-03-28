@@ -121,7 +121,7 @@ int			open_heredoc(char *input);
 int			free_rd(t_rd_collection *rd);
 int			rd_exec_setup(t_token *tok, t_environment *env, t_args *arg, t_rd_collection *rd);
 int			input_rd(t_token *tok, t_environment *env, t_args *arg, t_rd_collection *rd);
-int			output_rd(t_token *tok, t_environment *env, t_args *arg, t_rd_collection *rd)
+int			output_rd(t_token *tok, t_environment *env, t_args *arg, t_rd_collection *rd);
 
 void printf_args_env(t_args *args);
 int update_args(t_args *args, char *path);
