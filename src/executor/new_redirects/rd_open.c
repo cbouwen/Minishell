@@ -31,7 +31,7 @@ int	open_output(t_rd_collection *rd)
 		{
 			temp = ft_strdup(rd->output[i] + 1);
 			if (!temp)
-				return (12);
+				return (rd_error_handler(12, NULL, rd));
 			free(rd->output[i]);
 			rd->output[i] = temp;
 			rd->o_fd = open(rd->output[i], O_RDWR | O_CREAT | O_APPEND, 0644);
@@ -60,7 +60,7 @@ int	open_input(t_rd_collection *rd)
 		{
 			temp = ft_strdup(rd->input[i] + 1);
 			if (!temp)
-				return (12);
+				return (rd_error_handler(12, NULL, rd));
 			free(rd->input[i]);
 			rd->input[i] = temp;
 			rd->i_fd = open_heredoc(rd->input[i]);
@@ -83,7 +83,7 @@ int	open_heredoc(char *input)
 
 	heredoc_fd = open("/tmp/heredoc_dump", O_RDWR | O_CREAT | O_TRUNC, 0644);
 	if (heredoc_fd == -1)
-		return (ft_error("heredoc_no_redirect: open error\n", 3));
+		return (rd_error_handler(2, "/tmp/heredoc_dump", NULL));
 	line = readline("heredoc> ");
 	while (ft_strcmp(line, input) != 0)
 	{
