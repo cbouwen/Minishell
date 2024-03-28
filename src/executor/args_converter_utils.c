@@ -80,7 +80,7 @@ int	free_array(char **array)
 			free(array[i]);
 			i++;
 		}
+		free(array);
 	}
-	free(array);
 	return (0);
 }
