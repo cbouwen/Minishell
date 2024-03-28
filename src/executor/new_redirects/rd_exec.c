@@ -24,7 +24,7 @@ int	rd_exec_setup(t_token *tok, t_environment *env, t_args *arg, t_rd_collection
 	else
 		//error?
 		printf("error?\n");
-	return (1);
+	return (rd_error_handler(0, NULL, temp_rd);
 }
 
 int	input_redirection(t_token *tok, t_environment *env, t_args *arg, t_rd_collection *rd)
@@ -50,5 +50,5 @@ int	input_redirection(t_token *tok, t_environment *env, t_args *arg, t_rd_collec
 	if (dup2(temp_rd->stdin, STDIN_FILENO) == -1)
 		return (rd_error_handler(4, NULL, temp_rd));
 	close(temp_rd->stdin);
-	return (rd_error_handler(0, NULL, temp_rd));
+	return (rd_error_handler(status, NULL, temp_rd));
 }
