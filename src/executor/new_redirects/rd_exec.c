@@ -24,7 +24,7 @@ int	rd_exec_setup(t_token *tok, t_environment *env, t_args *arg, t_rd_collection
 	else
 		//error?
 		printf("error?\n");
-	return (rd_error_handler(0, NULL, temp_rd);
+	return (rd_error_handler(0, NULL, temp_rd));
 }
 
 int	input_redirection(t_token *tok, t_environment *env, t_args *arg, t_rd_collection *rd)
