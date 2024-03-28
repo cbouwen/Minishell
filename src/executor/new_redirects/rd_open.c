@@ -68,7 +68,7 @@ int	open_input(t_rd_collection *rd)
 			rd->i_fd = open_heredoc(rd->input[i]);
 		}
 		else
-			rd->i_fd = open(rd->input[i], O_RDONLY, 0644);
+			rd->i_fd = open(rd->input[i], O_RDONLY);
 		if (rd->i_fd < 0)
 			return (rd_error_handler(2, rd->input[i], rd));
 		if (i < rd->input_size - 1)
