@@ -41,10 +41,13 @@ int	init_rd(t_token *tokens, t_rd_collection *rd)
 	temp_rd->o_fd = 0;
 	temp_rd->file_exists = 0;
 	temp_rd->coll_exists = true;
+	temp_rd->stdout = dup(STDOUT_FILENO);
+	if (temp_rd->stdout == -1)
+		return (rd_error_handler(3, NULL, rd));
 	return (rd_error_handler(0, NULL, rd));
 }
 
-int redirect_test(t_token *tokens)
+int redirect_test(t_token *tokens, t_environment *env, t_args *args)
 {
 	t_rd_collection	rd;
 
@@ -67,12 +70,13 @@ int redirect_test(t_token *tokens)
 	}
 	printf("input_size: %d\n", rd.input_size);
 	printf("output_size: %d\n", rd.output_size);
-	open_output(&rd);
 	open_input(&rd);
+	printf("i_fd: %d\n", rd.i_fd);
+	open_output(&rd);
+	printf("o_fd: %d\n", rd.o_fd);
 
-	int stdin = dup(STDIN_FILENO);
-	printf("stdin: %d\n", stdin);
-	
+	rd_exec_setup(tokens, env, args, &rd);
+
 	if (rd.coll_exists == true)
 		free_rd(&rd);
 	return (status);

@@ -2,6 +2,8 @@
 
 #include "../../../inc/minishell.h"
 
+extern t_signal	g_signal;
+
 /* The plan is to create 2 loops
  * 1st loop will iterate throught the output array and open the files
  * Either in append or create mode, based on if there is a a_ at the start of the string
@@ -81,6 +83,7 @@ int	open_heredoc(char *input)
 	int		heredoc_fd;
 	char	*line;
 
+	g_signal.heredoc = true;
 	heredoc_fd = open("/tmp/heredoc_dump", O_RDWR | O_CREAT | O_TRUNC, 0644);
 	if (heredoc_fd == -1)
 		return (rd_error_handler(2, "/tmp/heredoc_dump", NULL));
@@ -95,6 +98,7 @@ int	open_heredoc(char *input)
 	}
 	if (line)
 		free(line);
+	g_signal.heredoc = false;
 	return (heredoc_fd);
 }
 

@@ -2,6 +2,8 @@
 
 #include "../../../inc/minishell.h"
 
+extern t_signal	g_signal;
+
 int	free_rd(t_rd_collection *rd)
 {
 	t_rd_collection	*temp_rd;
@@ -31,6 +33,8 @@ size_t count_rd(t_token *tokens)
 
 int	rd_error_handler(int err_no, char *str, t_rd_collection *rd)
 {
+	if (g_signal.heredoc == true)
+		g_signal.heredoc = false;
 	if (err_no == 12)
 		ft_error("malloc failed\n", 12);
 	else if (err_no == 0)

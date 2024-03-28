@@ -90,7 +90,7 @@ int	run_basic_cmd(t_token *tokens, t_environment *env, t_args *args)
 		status = prep_cmd(temp, temp_env, args);
 	else
 		//status = run_redirects(temp, temp_env, args);
-		printf("%d\n", redirect_test(temp));
+		printf("%d\n", redirect_test(temp, temp_env, args));
 	return (status);
 }
 
