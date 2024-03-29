@@ -40,14 +40,15 @@ int run_piped_cmd(t_token **tokens, t_env *env, t_args *args)
 			//status = run_piped_builtin(temp, temp_env, temp_args);
 			status = printf("run_piped_builtin\n");
 		else
-			status = run_piped_execve(temp, temp_env, temp_args);
+			//status = run_piped_execve(temp, temp_env, temp_args);
+			status = printf("run_piped_execve\n");
 		move_to_next(tokens);
 		pipe_count--;
 	}
 	return (status);
 }
 
-int run_piped_execve(t_token *tokens, t_env *env, t_args *args)
+/*int run_piped_execve(t_token *tokens, t_env *env, t_args *args)
 {
     t_token	*temp;
 	t_env	*temp_env;
@@ -80,7 +81,7 @@ int	prep_piped_execve(t_token *tokens, t_env *env, t_args *args)
 	temp_env = env;
 	status = 0;
 	
-}
+}*/
 
 /*int	run_piped_builtin(t_token *tokens, t_env *env, t_args *args)
 {
