@@ -2,6 +2,8 @@
 
 #include "../../../inc/minishell.h"
 
+extern t_signal	g_signal;
+
 int move_to_next(t_token **tokens)
 {
 	t_token *temp;
@@ -54,11 +56,16 @@ bool	count_consecutive_cats(t_token *tokens)
 	return (false);
 }
 
+int	pipe_error_handler(int err_no)
+{
+	return (ft_error(NULL, err_no));
+}
+
 void	print_args(t_token **tokens, t_args *args)
 {
-	int i = 0, j = count_pipes(*tokens);
+	int j = count_pipes(*tokens);
 	printf("%d\n", count_consecutive_cats(*tokens));
-	while (i <= j)
+	while (j > 0)
 	{
 		int k;
 
@@ -72,7 +79,7 @@ void	print_args(t_token **tokens, t_args *args)
 			k++;
 		}
 		move_to_next(tokens);
-		i++;
+		j--;
 	}
 	return ;
 }

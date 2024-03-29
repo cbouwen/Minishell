@@ -12,8 +12,6 @@
 
 #include "../../inc/minishell.h"
 
-extern int	g_err;
-
 /*
 	To Do:
 		- Fix exit status, it has to reflect the bash exit status	--DONE
@@ -57,9 +55,9 @@ int	builtin_executor(t_token *tokens, t_env *env)
 
 int	executor(t_token *tokens, t_env *env)
 {
-	t_token			*temp;
+	t_token	*temp;
 	t_env	*temp_env;
-	t_args			*args;
+	t_args	*args;
 
 	temp = tokens;
 	temp_env = env;
@@ -72,7 +70,7 @@ int	executor(t_token *tokens, t_env *env)
 	if (check_pipes(temp) == 1)
 		run_basic_cmd(temp, temp_env, args);
 	else
-		print_args(&temp, args);
+		print_args(&temp, args); //pipe
 	free_args(args);
 	return (1);
 }
