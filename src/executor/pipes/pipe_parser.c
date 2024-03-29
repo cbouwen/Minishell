@@ -18,7 +18,7 @@ int	pipe_decider(t_token **tokens, t_env *env, t_args *args)
 	return (pipe_error_handler(status));
 }
 
-int run_piped_cmd(t_token **tokens, t_env *env, t_args *args)
+/*int run_piped_cmd(t_token **tokens, t_env *env, t_args *args)
 {
 	t_token	*temp;
 	t_env	*temp_env;
@@ -43,77 +43,93 @@ int run_piped_cmd(t_token **tokens, t_env *env, t_args *args)
 		pipe_count--;
 	}
 	return (status);
-}
+}*/
 
-int run_piped_execve(t_token *tokens, t_env *env, t_args *args)
+int run_piped_cmd(t_token **tokens, t_env *env, t_args *args)
 {
     t_token	*temp;
     t_env	*temp_env;
     t_args	*temp_args;
     int		status;
-    int     pipefd[2];
-    pid_t   pid;
+    int		pipe_count;
+    int     fd[2];
+    int     in_fd = 0;
 
-    temp = tokens;
+    temp = *tokens;
     temp_env = env;
-    (void)temp_env;
     temp_args = args;
     status = 0;
-
-    if (pipe(pipefd) == -1)
+    pipe_count = count_pipes(temp);
+    while (pipe_count >= 0)
     {
-        perror("pipe");
-        return 1;
-    }
-
-    pid = fork();
-    if (pid == -1)
-    {
-        perror("fork");
-        return 1;
-    }
-
-    if (pid == 0)
-    {
-        // Child process
-        close(pipefd[0]);  // Close unused read end
-        if (dup2(pipefd[1], STDOUT_FILENO) == -1)
+        pipe(fd);
+        if (determine_builtin(temp) != 0)
         {
-            perror("dup2");
-            return 1;
+            //status = run_piped_builtin(temp, temp_env, temp_args);
+            status = printf("run_piped_builtin\n");
         }
-        close(pipefd[1]);  // Close write end after it's duplicated
-
-        status = fill_args(temp_args, temp);
-        status = assemble_path(temp_args);
-        path_error_handler(status);
-
-        if (check_redirects(temp) == 1) 
-        {
-            status = run_execve(args);
-        } 
         else
         {
-            status = printf("run_redirect\n");
+            pid_t pid = fork();
+            if (pid == 0)
+            {
+                // Child process
+                if (in_fd != 0)
+                {
+                    // Redirect standard input to the read end of the previous pipe
+                    dup2(in_fd, 0);
+                    close(in_fd);
+                }
+                if (pipe_count > 0)
+                {
+                    // Redirect standard output to the write end of the current pipe
+                    dup2(fd[1], 1);
+                }
+                close(fd[0]);
+                status = run_piped_execve(temp, temp_env, temp_args);
+                exit(status);
+            }
+            else if (pid < 0)
+            {
+                // Handle error
+                perror("fork");
+                return -1;
+            }
+            else
+            {
+                // Parent process
+                wait(NULL);
+                close(fd[1]);
+                if (in_fd != 0)
+                {
+                    close(in_fd);
+                }
+                in_fd = fd[0];
+            }
         }
-        exit(status);  // Exit child process
+        move_to_next(tokens);
+        pipe_count--;
     }
-    else
-	{
-		// Parent process
-		close(pipefd[1]);  // Close unused write end
-		if (dup2(pipefd[0], STDIN_FILENO) == -1)
-		{
-			perror("dup2");
-			return 1;
-		}
-		close(pipefd[0]);  // Close read end after it's duplicated
-
-		int child_status;
-		waitpid(pid, &child_status, 0);  // Wait for child process to finish
-	}
-
     return (status);
+}
+
+int run_piped_execve(t_token *tokens, t_env *env, t_args *args)
+{
+	t_token	*temp;
+	t_env	*temp_env;
+	t_args	*temp_args;
+	int		status;
+
+	temp = tokens;
+	temp_env = env;
+	temp_args = args;
+	status = 0;
+	status = fill_args(temp_args, temp);
+	status = assemble_path(temp_args);
+	status = path_error_handler(status);
+	if (status == 2)
+		status = run_execve(temp_args);
+	return (status);
 }
 
 /*int	run_piped_builtin(t_token *tokens, t_env *env, t_args *args)
