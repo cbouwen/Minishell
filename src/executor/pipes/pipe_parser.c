@@ -14,7 +14,7 @@ int	pipe_decider(t_token **tokens, t_env *env, t_args *args)
 	if (count_consecutive_cats(*tokens))
 		status = printf("special case\n");
 	else
-		status = run_piped_cmd(&tokens, temp_env, temp_args);
+		status = run_piped_cmd(tokens, temp_env, temp_args);
 	return (pipe_error_handler(status));
 }
 
@@ -41,7 +41,7 @@ int run_piped_cmd(t_token **tokens, t_env *env, t_args *args)
 			status = printf("run_piped_builtin\n");
 		else
 			status = run_piped_execve(temp, temp_env, temp_args);
-		move_to_next(&tokens);
+		move_to_next(tokens);
 		pipe_count--;
 	}
 	return (status);
@@ -59,6 +59,7 @@ int run_piped_execve(t_token *tokens, t_env *env, t_args *args)
     temp = tokens;
     temp_env = env;
     temp_args = args;
+	(void)temp_env;
     status = 0;
 
     if (pipe(pipefd) == -1) {
