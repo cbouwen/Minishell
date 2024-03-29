@@ -95,6 +95,7 @@ int	open_heredoc(char *input)
 		if (line)
 			free(line);
 		close(heredoc_fd);
+		exit(1);
 	}
 	if ((waitpid(pid, NULL, 0)) != -1)
 		g_signal.in_heredoc = true;
