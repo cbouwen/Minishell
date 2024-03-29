@@ -70,7 +70,7 @@ int	executor(t_token *tokens, t_env *env)
 	if (check_pipes(temp) == 1)
 		run_basic_cmd(temp, temp_env, args);
 	else
-		print_args(&temp, args); //pipe
+		status = pipe_decider(&tokens, temp_env, args); //pipe
 	free_args(args);
 	return (1);
 }
@@ -87,7 +87,7 @@ int	run_basic_cmd(t_token *tokens, t_env *env, t_args *args)
 	if (check_redirects(temp) == 1)
 		status = prep_cmd(temp, temp_env, args);
 	else
-		status = redirect_test(temp, temp_env, args);
+		status = run_redirect(temp, temp_env, args);
 	return (status);
 }
 

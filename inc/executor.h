@@ -104,6 +104,7 @@ int		rd_exec_setup(t_token *tok, t_env *env, t_args *arg, t_rd_col *rd);
 int		input_rd(t_token *tok, t_env *env, t_args *arg, t_rd_col *rd);
 int		output_rd(t_token *tok, t_env *env, t_args *arg, t_rd_col *rd);
 int		super_redirect(t_token *tok, t_env *env, t_args *arg, t_rd_col *rd);
+int		run_redirect(t_token *tokens, t_env *env, t_args *args);
 
 /*pipes*/
 /*pipe_utils*/
@@ -115,12 +116,13 @@ int		pipe_error_handler(int err_no);
 /*pipe_parser*/
 int		pipe_decider(t_token **tokens, t_env *env, t_args *args);
 
+int		run_piped_cmd(t_token **tokens, t_env *env, t_args *args);
+int		run_piped_execve(t_token *tokens, t_env *env, t_args *args);
 
 
 /*remove*/
 void	print_args(t_token **tokens, t_args *args);
 void printf_args_env(t_args *args);
 int update_args(t_args *args, char *path);
-int redirect_test(t_token *tokens, t_env *env, t_args *args);
 
 #endif

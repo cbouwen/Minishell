@@ -46,7 +46,7 @@ int	init_rd(t_token *tokens, t_rd_col *rd)
 	return (rd_error_handler(0, NULL, rd));
 }
 
-int redirect_test(t_token *tokens, t_env *env, t_args *args)
+int run_redirect(t_token *tokens, t_env *env, t_args *args)
 {
 	t_rd_col	rd;
 	int			status;
