@@ -31,9 +31,9 @@ int run_piped_cmd(t_token **tokens, t_env *env, t_args *args)
 	temp_args = args;
 	status = 0;
 	pipe_count = count_pipes(temp);
-	args->fd[0] = dup(STDOUT_FILENO);
-	if (args->fd[0] == -1)
-		return (2);
+	temp_args->fd[0] = dup(STDOUT_FILENO);
+	if (temp_args->fd[0] == -1)
+		return (rd_error_handler(3, NULL, rd));
 	while (pipe_count >= 0)
 	{
 		if (determine_builtin(temp) != 0)
@@ -49,54 +49,37 @@ int run_piped_cmd(t_token **tokens, t_env *env, t_args *args)
 
 int run_piped_execve(t_token *tokens, t_env *env, t_args *args)
 {
-    t_token *temp;
-    t_env *temp_env;
-    t_args *temp_args;
-    int status;
-    int pipefd[2];
-    pid_t pid;
-    int fd_in = 0;  // The input for the first command is STDIN
+    t_token	*temp;
+	t_env	*temp_env;
+	t_args	*temp_args;
+	int		status;
 
-    temp = tokens;
-    temp_env = env;
-    temp_args = args;
-    (void)temp_env;
-    status = 0;
+	temp = *tokens;
+	temp_env = env;
+	temp_args = args;
+	status = 0;
+	fill_args(temp, temp_args);
+	assemble_path(temp_args);
+	path_error_handler(temp_args->status);
+	if (check_redirects(temp) == 1)
+		status = prep_piped_execve(temp, temp_env, temp_args);
+	else
+		//status = run_redirect(temp, temp_env, temp_args);
+		status = printf("run_redirect\n");
+	return (status);
+}
 
-    while (temp != NULL) {
-        if (pipe(pipefd) == -1) {
-            perror("pipe");
-            return 1;
-        }
+int	prep_piped_execve(t_token *tokens, t_env *env, t_args *args)
+{
+	t_token	*temp;
+	t_env	*temp_env;
+	int		status;
+	int		builtin;
 
-        pid = fork();
-        if (pid == -1) {
-            perror("fork");
-            return 1;
-        }
-
-        fill_args(temp_args, temp);
-		assemble_path(temp_args);
-        printf("temp_args->arg_array[0]: %s\n", temp_args->arg_array[0]);
-
-        if (pid == 0) {
-            // Child process
-            dup2(fd_in, STDIN_FILENO);  // Change the input according to the old pipe
-            if (temp->next != NULL)  // If there is another command
-                dup2(pipefd[1], STDOUT_FILENO);  // Send the output to the pipe
-            close(pipefd[0]);  // Close the read end of the pipe
-            run_execve(args);
-            exit(EXIT_SUCCESS);
-        } else {
-            // Parent process
-            wait(NULL);  // Wait for child process to finish
-            close(pipefd[1]);  // Close the write end of the pipe
-            fd_in = pipefd[0];  // Save the input for the next command
-            temp = temp->next;  // Move to next command
-        }
-    }
-
-    return status;
+	temp = tokens;
+	temp_env = env;
+	status = 0;
+	
 }
 
 /*int	run_piped_builtin(t_token *tokens, t_env *env, t_args *args)
