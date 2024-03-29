@@ -33,7 +33,7 @@ int	count_pipes(t_token *tokens)
 void	print_args(t_token **tokens, t_args *args)
 {
 	int i = 0, j = count_pipes(*tokens);
-	while (i < j)
+	while (i <= j)
 	{
 		int k;
 
