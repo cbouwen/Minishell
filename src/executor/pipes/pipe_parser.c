@@ -59,7 +59,8 @@ int run_piped_execve(t_token *tokens, t_env *env, t_args *args)
     temp_args = args;
     status = 0;
 
-    if (pipe(pipefd) == -1) {
+    if (pipe(pipefd) == -1)
+	{
         perror("pipe");
         return 1;
     }
@@ -68,18 +69,21 @@ int run_piped_execve(t_token *tokens, t_env *env, t_args *args)
     status = assemble_path(temp_args);
     path_error_handler(status);
 
-    if (check_redirects(temp) == 1) {
+    if (check_redirects(temp) == 1) 
+	{
+		printf("1\n");
         dup2(pipefd[1], STDOUT_FILENO);
         close(pipefd[1]);
 
+		printf("2\n");
         status = run_execve(args);
 
+		printf("3\n");
         dup2(pipefd[0], STDIN_FILENO);
         close(pipefd[0]);
-    } else {
+    } 
+	else
         status = printf("run_redirect\n");
-    }
-
     return (status);
 }
 
