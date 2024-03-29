@@ -47,7 +47,7 @@ int	pipe_decider(t_token **tokens, t_env *env, t_args *args)
 
 int run_piped_cmd(t_token **tokens, t_env *env, t_args *args)
 {
-    t_token	*temp;
+    t_token	**temp;
     t_env	*temp_env;
     t_args	*temp_args;
     int		status;
@@ -55,7 +55,7 @@ int run_piped_cmd(t_token **tokens, t_env *env, t_args *args)
     int     fd[2];
     int     in_fd = 0;
 
-    temp = *tokens;
+    temp = **tokens;
     temp_env = env;
     temp_args = args;
     status = 0;
