@@ -39,7 +39,7 @@ void	print_args(t_token **tokens, t_args *args)
 
 		k = 0;
 		if (args->arg_array)
-			free(args->arg_array);
+			free_array(args->arg_array);
 		fill_args(args, *tokens);
 		while (args->arg_array[k])
 		{
