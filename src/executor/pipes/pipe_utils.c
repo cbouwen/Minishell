@@ -47,12 +47,13 @@ bool	count_consecutive_cats(t_token *tokens)
         }
         temp = temp->next;
     }
-    return false;
+    return (false);
 }
 
 void	print_args(t_token **tokens, t_args *args)
 {
 	int i = 0, j = count_pipes(*tokens);
+	printf("%d\n", count_consecutive_cats(*tokens));
 	while (i <= j)
 	{
 		int k;
@@ -69,6 +70,5 @@ void	print_args(t_token **tokens, t_args *args)
 		move_to_next(tokens);
 		i++;
 	}
-	printf("%d\n", count_consecutive_cats(*tokens));
 	return ;
 }
