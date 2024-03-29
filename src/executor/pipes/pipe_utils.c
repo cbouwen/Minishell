@@ -1,10 +1,20 @@
-/*header pls*/
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pipe_utils.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/29 19:25:13 by mlegendr          #+#    #+#             */
+/*   Updated: 2024/03/29 19:46:46 by mlegendr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../../../inc/minishell.h"
 
-extern t_signal	g_signal;
+//extern t_signal	g_signal;
 
-int move_to_next(t_token **tokens)
+int	move_to_next(t_token **tokens)
 {
 	t_token *temp;
 
@@ -35,12 +45,13 @@ int	count_pipes(t_token *tokens)
 bool	count_consecutive_cats(t_token *tokens)
 {
 	t_token	*temp;
-    char	*prev_cmd;
+	char	*prev_cmd;
 
 	temp = tokens;
 	prev_cmd = NULL;
-    while (temp) {
-        if (temp->type == CMD) 
+	while (temp)
+	{
+		if (temp->type == CMD)
 		{
 			if (prev_cmd && ft_strcmp(prev_cmd, "cat") == 0
 				&& ft_strcmp(temp->str, "cat") == 0)
@@ -63,7 +74,8 @@ int	pipe_error_handler(int err_no)
 
 void	print_args(t_token **tokens, t_args *args)
 {
-	int j = count_pipes(*tokens);
+	int j;
+	j = count_pipes(*tokens);
 	printf("%d\n", count_consecutive_cats(*tokens));
 	while (j >= 0)
 	{

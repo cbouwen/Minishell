@@ -1,4 +1,14 @@
-/*header pls*/
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   rd_utils.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mlegendr <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/29 19:51:56 by mlegendr          #+#    #+#             */
+/*   Updated: 2024/03/29 19:51:59 by mlegendr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../../../inc/minishell.h"
 
@@ -48,6 +58,8 @@ int	rd_error_handler(int err_no, char *str, t_rd_col *rd)
 		printf("bash: %s", str);
 		ft_error(": No such file or directory\n", 1);
 	}
+	else if (err_no == -1)
+		ft_error("Unexpected error\n", -1);
 	if (rd && err_no != 0)
 		free_rd(rd);
 	return (ft_error(NULL, err_no));

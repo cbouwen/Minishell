@@ -1,4 +1,14 @@
-/*header pls*/
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pipe_parser.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/29 19:25:13 by mlegendr          #+#    #+#             */
+/*   Updated: 2024/03/29 19:28:05 by mlegendr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../../../inc/minishell.h"
 
@@ -47,16 +57,15 @@ int	pipe_decider(t_token **tokens, t_env *env, t_args *args)
 
 int	run_piped_cmd(t_token **tokens, t_env *env, t_args *args)
 {
-	int		status;
 	int		in_fd[2];
+	pid_t	pid;
 
-	status = 0;
 	in_fd[0] = 0;
 	in_fd[1] = count_pipes(*tokens) + 1;
 	while (--in_fd[1] >= 0)
 	{
 		pipe(args->fd);
-		pid_t pid = fork();
+		pid = fork();
 		if (pid == 0)
 			exit(real_pipe(*tokens, env, args, in_fd));
 		else if (pid < 0)
@@ -71,7 +80,7 @@ int	run_piped_cmd(t_token **tokens, t_env *env, t_args *args)
 		}
 		move_to_next(tokens);
 	}
-	return (status);
+	return (0);
 }
 
 int	real_pipe(t_token *tokens, t_env *env, t_args *args, int *in_fd)
@@ -89,10 +98,9 @@ int	real_pipe(t_token *tokens, t_env *env, t_args *args, int *in_fd)
 	close(args->fd[0]);
 	status = run_piped_execve(tokens, env, args);
 	return (status);
-
 }
 
-int run_piped_execve(t_token *tokens, t_env *env, t_args *args)
+int	run_piped_execve(t_token *tokens, t_env *env, t_args *args)
 {
 	t_token	*temp;
 	t_env	*temp_env;

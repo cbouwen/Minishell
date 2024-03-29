@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:41:42 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/03/28 21:19:21 by mlegendr         ###   ########.fr       */
+/*   Updated: 2024/03/29 19:23:57 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@
 
 int	builtin_executor(t_token *tokens, t_env *env)
 {
-	t_token			*temp;
+	t_token	*temp;
 	t_env	*temp_env;
-	int				status;
-	int				builtin;
+	int		status;
+	int		builtin;
 
 	temp = tokens;
 	temp_env = env;
@@ -70,16 +70,16 @@ int	executor(t_token *tokens, t_env *env)
 	if (check_pipes(temp) == 1)
 		run_basic_cmd(temp, temp_env, args);
 	else
-		pipe_decider(&tokens, temp_env, args); //pipe
+		pipe_decider(&tokens, temp_env, args);
 	free_args(args);
 	return (1);
 }
 
 int	run_basic_cmd(t_token *tokens, t_env *env, t_args *args)
 {
-	t_token			*temp;
+	t_token	*temp;
 	t_env	*temp_env;
-	int				status;
+	int		status;
 
 	temp = tokens;
 	temp_env = env;
@@ -93,9 +93,9 @@ int	run_basic_cmd(t_token *tokens, t_env *env, t_args *args)
 
 int	run_builtin(t_token *tokens, t_env *env)
 {
-	t_token			*temp;
+	t_token	*temp;
 	t_env	*temp_env;
-	int				status;
+	int		status;
 
 	temp = tokens;
 	temp_env = env;
@@ -107,10 +107,10 @@ int	run_builtin(t_token *tokens, t_env *env)
 
 int	prep_cmd(t_token *tokens, t_env *env, t_args *args)
 {
-	t_token			*temp;
+	t_token	*temp;
 	t_env	*temp_env;
-	int				status;
-	int				builtin;
+	int		status;
+	int		builtin;
 
 	temp = tokens;
 	temp_env = env;

@@ -1,24 +1,18 @@
-/*header pls*/
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   rd_open.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mlegendr <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/29 19:55:01 by mlegendr          #+#    #+#             */
+/*   Updated: 2024/03/29 20:05:35 by mlegendr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../../../inc/minishell.h"
 
 extern t_signal	g_signal;
-
-/* The plan is to create 2 loops
- * 1st loop will iterate throught the output array and open the files
- * Either in append or create mode, based on if there is a a_ at the start of the string
- * 2nd loop will iterate through the input array and execute the heredoc function
- * Except for the last element, all other elements can be ingnored.
- * 
- * Order of business:
- * 1. Open the files									--DONE
- * 2. Execute the heredoc								--DONE
- * 3. execute the command
- * 4. pipe output of command to either stdin or file
- * 5. close the files
- * 6. free the arrays
- * 7. return
-*/
 
 int	open_output(t_rd_col *rd)
 {
@@ -64,6 +58,7 @@ int	open_input(t_rd_col *rd)
 			return (rd_error_handler(2, rd->input[i], rd));
 		if (i < rd->input_size - 1)
 			close(rd->i_fd);
+
 		i++;
 	}
 	return (rd_error_handler(0, NULL, rd));
@@ -90,9 +85,9 @@ static void	the_cool_readline(int hd_fd, char *input)
 int	open_heredoc(char *input)
 {
 	int		heredoc_fd;
-	//char	*line;
 	pid_t	pid;
 	int		status;
+	char	*file;
 
 	status = 0;
 	heredoc_fd = 0;
@@ -100,7 +95,8 @@ int	open_heredoc(char *input)
 	if (pid == 0)
 	{
 		signal(SIGINT, SIG_DFL);
-		heredoc_fd = open("/tmp/heredoc_dump", O_RDWR | O_CREAT | O_TRUNC, 0644);
+		file = "/tmp/heredoc_dump";
+		heredoc_fd = open(file, O_RDWR | O_CREAT | O_TRUNC, 0644);
 		if (heredoc_fd == -1)
 			return (rd_error_handler(2, "/tmp/heredoc_dump", NULL));
 		the_cool_readline(heredoc_fd, input);

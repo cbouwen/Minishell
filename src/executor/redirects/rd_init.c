@@ -1,4 +1,14 @@
-/*header pls*/
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   rd_init.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mlegendr <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/29 19:51:31 by mlegendr          #+#    #+#             */
+/*   Updated: 2024/03/29 20:01:01 by mlegendr         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../../../inc/minishell.h"
 
@@ -17,7 +27,7 @@ int fill_rd(t_token *tokens, t_rd_col *rd)
 	{
 		if (temp->type == REDIRECT)
 		{
-			if (ft_strcmp(temp->str, "<") == 0 || ft_strcmp(temp->str, "<<") == 0)
+			if (!ft_strcmp(temp->str, "<") || !ft_strcmp(temp->str, "<<"))
 				fill_input(temp, temp_rd, ++i);
 			else if (ft_strcmp(temp->str, ">") == 0)
 				fill_out(temp, temp_rd, ++j, ">");

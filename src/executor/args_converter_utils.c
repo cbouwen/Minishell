@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/21 20:07:42 by mlegendr          #+#    #+#             */
-/*   Updated: 2024/03/28 21:19:21 by mlegendr         ###   ########.fr       */
+/*   Updated: 2024/03/29 19:24:23 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ size_t	count_tokens(t_token *tokens)
 size_t	count_env(t_env *env)
 {
 	t_env	*temp;
-	size_t			i;
+	size_t	i;
 
 	temp = env;
 	i = 0;
