@@ -63,11 +63,11 @@ int run_piped_cmd(t_token **tokens, t_env *env, t_args *args)
     while (pipe_count >= 0)
     {
         pipe(fd);
-        if (determine_builtin(*tokens) != 0)
+        /*if (determine_builtin(*tokens) != 0)
         {
             //status = run_piped_builtin(temp, temp_env, temp_args);
             status = printf("run_piped_builtin\n");
-        }
+        }*/
         else
         {
             pid_t pid = fork();
