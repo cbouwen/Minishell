@@ -14,22 +14,37 @@ int move_to_next(t_token **tokens)
 	return (0);
 }
 
+int	count_pipes(t_token *tokens)
+{
+	t_token	*temp;
+	int		count;
+
+	count = 0;
+	temp = tokens;
+	while (temp)
+	{
+		if (temp->type == PIPE)
+			count++;
+		temp = temp->next;
+	}
+	return (count);
+}
+
 void	print_args(t_token **tokens, t_args *args)
 {
-	int i;
+	int i = 0, j = count_pipes(*tokens);
+	while (i < j)
+	{
+		int k;
 
-	i = 0;
-	fill_args(args, *tokens);
-	while (args->arg_array[i])
-	{
-		printf("arg_array[%d]: %s\n", i, args->arg_array[i]);
-		i++;
-	}
-	move_to_next(tokens);
-	i = 0;
-	while (args->arg_array[i])
-	{
-		printf("arg_array[%d]: %s\n", i, args->arg_array[i]);
+		k = 0;
+		fill_args(args, *tokens);
+		while (args->arg_array[k])
+		{
+			printf("arg_array[%d]: %s\n", k, args->arg_array[k]);
+			k++;
+		}
+		move_to_next(tokens);
 		i++;
 	}
 	return ;
