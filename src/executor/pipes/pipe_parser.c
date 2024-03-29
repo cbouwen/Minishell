@@ -107,7 +107,8 @@ int run_piped_cmd(t_token **tokens, t_env *env, t_args *args)
                 in_fd = fd[0];
             }
         }
-        move_to_next(tokens);
+
+        move_to_next(temp);
         pipe_count--;
     }
     return (status);
