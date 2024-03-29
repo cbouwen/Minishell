@@ -36,7 +36,7 @@ int run_piped_cmd(t_token **tokens, t_env *env, t_args *args)
 		return (2);
 	while (pipe_count >= 0)
 	{
-		if (determine_builtin(temp) == 0)
+		if (determine_builtin(temp) != 0)
 			//status = run_piped_builtin(temp, temp_env, temp_args);
 			status = printf("run_piped_builtin\n");
 		else
