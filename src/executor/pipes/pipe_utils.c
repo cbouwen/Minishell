@@ -40,14 +40,18 @@ bool	count_consecutive_cats(t_token *tokens)
     while (temp) {
         if (temp->type == CMD) 
 		{
-            if (prev_cmd && ft_strcmp(prev_cmd, "cat") == 0
+			if (prev_cmd && ft_strcmp(prev_cmd, "cat") == 0
 				&& ft_strcmp(temp->str, "cat") == 0)
-                return (true);
-            prev_cmd = temp->str;
-        }
-        temp = temp->next;
-    }
-    return (false);
+			{
+				if (temp->next && (temp->next->type == CMD
+					|| temp->next->type == PIPE))
+					return (true);
+			}
+			prev_cmd = temp->str;
+		}
+		temp = temp->next;
+	}
+	return (false);
 }
 
 void	print_args(t_token **tokens, t_args *args)
