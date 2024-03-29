@@ -51,52 +51,36 @@ int run_piped_execve(t_token *tokens, t_env *env, t_args *args)
     t_env	*temp_env;
     t_args	*temp_args;
     int		status;
-    int     pipefd[2];  // File descriptors for the pipe
+    int     pipefd[2];
 
-    temp = *tokens;
+    temp = tokens;
     temp_env = env;
     temp_args = args;
     status = 0;
 
-    // Create a pipe
     if (pipe(pipefd) == -1) {
         perror("pipe");
         return 1;
     }
 
-    fill_args(temp, temp_args);
-    assemble_path(temp_args);
-    path_error_handler(temp_args->status);
+    status = fill_args(temp_args, temp);
+    status = assemble_path(temp_args);
+    path_error_handler(status);
 
     if (check_redirects(temp) == 1) {
-        // Redirect the output of the current command to the input of the next command
         dup2(pipefd[1], STDOUT_FILENO);
-        close(pipefd[1]);  // Close write end of the pipe
+        close(pipefd[1]);
 
         status = run_execve(args);
 
-        // Redirect the input of the next command to the output of the current command
         dup2(pipefd[0], STDIN_FILENO);
-        close(pipefd[0]);  // Close read end of the pipe
+        close(pipefd[0]);
     } else {
         status = printf("run_redirect\n");
     }
 
     return (status);
 }
-
-int	prep_piped_execve(t_token *tokens, t_env *env, t_args *args)
-{
-	t_token	*temp;
-	t_env	*temp_env;
-	int		status;
-	int		builtin;
-
-	temp = tokens;
-	temp_env = env;
-	status = 0;
-	
-}*/
 
 /*int	run_piped_builtin(t_token *tokens, t_env *env, t_args *args)
 {
