@@ -30,7 +30,7 @@ int	count_pipes(t_token *tokens)
 	return (count);
 }
 
-int	count_consecutive_cats(t_token *tokens)
+bool	count_consecutive_cats(t_token *tokens)
 {
 	t_token	*temp;
     int		count;
@@ -46,16 +46,12 @@ int	count_consecutive_cats(t_token *tokens)
 		{
             if (prev_cmd && ft_strcmp(prev_cmd, "cat") == 0
 				&& ft_strcmp(temp->str, "cat") == 0)
-                count++;
-            else
-                count = 1;
-            if (count > max_count)
-                max_count = count;
+                return (true);
             prev_cmd = temp->str;
         }
         temp = temp->next;
     }
-    return (max_count);
+    return false;
 }
 
 void	print_args(t_token **tokens, t_args *args)
