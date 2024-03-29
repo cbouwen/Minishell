@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:41:07 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/03/29 14:40:19 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/03/29 16:12:34 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void			free_env(t_env *env);
 t_env	*get_env_node(t_env *head, char *name);
 t_env	*create_node(char *name, char *value);
 void			ft_lstadd_back_ms(t_env **lst, t_env *new);
-//void heredoc_signal(int sig);
+void heredoc_handler(int sig);
 
 //tester
 void			tester(t_env *envp);
