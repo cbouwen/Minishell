@@ -14,7 +14,7 @@ int move_to_next(t_token **tokens)
 	return (0);
 }
 
-void	print_args(t_args *args, t_token **tokens)
+void	print_args(t_token **tokens, t_args *args)
 {
 	int i;
 
