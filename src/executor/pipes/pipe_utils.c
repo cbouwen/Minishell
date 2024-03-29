@@ -38,6 +38,8 @@ void	print_args(t_token **tokens, t_args *args)
 		int k;
 
 		k = 0;
+		if (args->arg_array)
+			free(args->arg_array);
 		fill_args(args, *tokens);
 		while (args->arg_array[k])
 		{
