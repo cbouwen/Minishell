@@ -99,16 +99,19 @@ int run_piped_execve(t_token *tokens, t_env *env, t_args *args)
         exit(status);  // Exit child process
     }
     else
-    {
-        // Parent process
-        close(pipefd[1]);  // Close unused write end
-        if (dup2(pipefd[0], STDIN_FILENO) == -1)
-        {
-            perror("dup2");
-            return 1;
-        }
-        close(pipefd[0]);  // Close read end after it's duplicated
-    }
+	{
+		// Parent process
+		close(pipefd[1]);  // Close unused write end
+		if (dup2(pipefd[0], STDIN_FILENO) == -1)
+		{
+			perror("dup2");
+			return 1;
+		}
+		close(pipefd[0]);  // Close read end after it's duplicated
+
+		int child_status;
+		waitpid(pid, &child_status, 0);  // Wait for child process to finish
+	}
 
     return (status);
 }
