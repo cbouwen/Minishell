@@ -72,18 +72,21 @@ int run_piped_execve(t_token *tokens, t_env *env, t_args *args)
     if (check_redirects(temp) == 1) 
 	{
 		printf("1\n");
+		printf("pipefd[1]: %d\n", pipefd[1]);
         dup2(pipefd[1], STDOUT_FILENO);
-        close(pipefd[1]);
+        
 
 		printf("2\n");
         status = run_execve(args);
 
 		printf("3\n");
         dup2(pipefd[0], STDIN_FILENO);
-        close(pipefd[0]);
+        
     } 
 	else
         status = printf("run_redirect\n");
+	close(pipefd[1]);
+	close(pipefd[0]);
     return (status);
 }
 
