@@ -72,7 +72,7 @@ int	executor(t_token *tokens, t_env *env)
 	if (check_pipes(temp) == 1)
 		run_basic_cmd(temp, temp_env, args);
 	else
-		print_args(tokens, args);
+		print_args(&temp, args);
 	free_args(args);
 	return (1);
 }
