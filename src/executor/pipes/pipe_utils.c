@@ -65,7 +65,7 @@ void	print_args(t_token **tokens, t_args *args)
 {
 	int j = count_pipes(*tokens);
 	printf("%d\n", count_consecutive_cats(*tokens));
-	while (j > 0)
+	while (j >= 0)
 	{
 		int k;
 
