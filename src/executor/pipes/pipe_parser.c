@@ -63,50 +63,42 @@ int run_piped_cmd(t_token **tokens, t_env *env, t_args *args)
     while (pipe_count >= 0)
     {
         pipe(fd);
-        /*if (determine_builtin(*tokens) != 0)
-        {
-            //status = run_piped_builtin(temp, temp_env, temp_args);
-            status = printf("run_piped_builtin\n");
-        }*/
-        else
-        {
-            pid_t pid = fork();
-            if (pid == 0)
-            {
-                // Child process
-                if (in_fd != 0)
-                {
-                    // Redirect standard input to the read end of the previous pipe
-                    dup2(in_fd, 0);
-                    close(in_fd);
-                }
-                if (pipe_count > 0)
-                {
-                    // Redirect standard output to the write end of the current pipe
-                    dup2(fd[1], 1);
-                }
-                close(fd[0]);
-                status = run_piped_execve(*tokens, temp_env, temp_args);
-                exit(status);
-            }
-            else if (pid < 0)
-            {
-                // Handle error
-                perror("fork");
-                return -1;
-            }
-            else
-            {
-                // Parent process
-                wait(NULL);
-                close(fd[1]);
-                if (in_fd != 0)
-                {
-                    close(in_fd);
-                }
-                in_fd = fd[0];
-            }
-        }
+		pid_t pid = fork();
+		if (pid == 0)
+		{
+			// Child process
+			if (in_fd != 0)
+			{
+				// Redirect standard input to the read end of the previous pipe
+				dup2(in_fd, 0);
+				close(in_fd);
+			}
+			if (pipe_count > 0)
+			{
+				// Redirect standard output to the write end of the current pipe
+				dup2(fd[1], 1);
+			}
+			close(fd[0]);
+			status = run_piped_execve(*tokens, temp_env, temp_args);
+			exit(status);
+		}
+		else if (pid < 0)
+		{
+			// Handle error
+			perror("fork");
+			return -1;
+		}
+		else
+		{
+			// Parent process
+			wait(NULL);
+			close(fd[1]);
+			if (in_fd != 0)
+			{
+				close(in_fd);
+			}
+			in_fd = fd[0];
+		}
 
         move_to_next(tokens);
         pipe_count--;
