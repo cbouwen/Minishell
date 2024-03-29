@@ -37,8 +37,8 @@ size_t count_rd(t_token *tokens)
 
 int	rd_error_handler(int err_no, char *str, t_rd_col *rd)
 {
-	if (g_signal.in_heredoc == true)
-		g_signal.in_heredoc = false;
+//	if (g_signal.in_heredoc == true)
+//		g_signal.in_heredoc = false;
 	if (err_no == 12)
 		ft_error("malloc failed\n", 12);
 	else if (err_no == 0)
