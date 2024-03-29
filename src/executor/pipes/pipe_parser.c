@@ -76,6 +76,7 @@ int run_piped_execve(t_token *tokens, t_env *env, t_args *args)
         }
 
         fill_args(temp_args, temp);
+		assemble_path(temp_args);
         printf("temp_args->arg_array[0]: %s\n", temp_args->arg_array[0]);
 
         if (pid == 0) {
