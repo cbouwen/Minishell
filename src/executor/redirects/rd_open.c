@@ -92,7 +92,9 @@ int	open_heredoc(char *input)
 	int		heredoc_fd;
 	//char	*line;
 	pid_t	pid;
+	int		status;
 
+	status = 0;
 	heredoc_fd = 0;
 	pid = fork();
 	if (pid == 0)
@@ -105,7 +107,8 @@ int	open_heredoc(char *input)
 		close(heredoc_fd);
 		exit(0);
 	}
-	if ((waitpid(pid, NULL, 0)) != -1)
+	waitpid(pid, &status, 0);
+	if (status != 0)
 		g_signal.in_heredoc = true;
 	signal(SIGINT, sig_handler);
 	return (heredoc_fd);

@@ -15,7 +15,6 @@ int	rd_exec_setup(t_token *tok, t_env *env, t_args *arg, t_rd_col *rd)
 	temp_args = arg;
 	temp_rd = rd;
 	status = 0;
-//	printf("In heredoc signal is set to: %d\n\n", g_signal.in_heredoc);
 	if (g_signal.in_heredoc == false)
 	{
 		if (temp_rd->input_size > 0 && temp_rd->output_size == 0)
