@@ -55,41 +55,44 @@ int run_piped_execve(t_token *tokens, t_env *env, t_args *args)
     int status;
     int pipefd[2];
     pid_t pid;
+    int fd_in = 0;  // The input for the first command is STDIN
 
     temp = tokens;
     temp_env = env;
     temp_args = args;
-	(void)temp_env;
+    (void)temp_env;
     status = 0;
 
-    if (pipe(pipefd) == -1) {
-        perror("pipe");
-        return 1;
-    }
+    while (temp != NULL) {
+        if (pipe(pipefd) == -1) {
+            perror("pipe");
+            return 1;
+        }
 
-    pid = fork();
-    if (pid == -1) {
-        perror("fork");
-        return 1;
-    }
+        pid = fork();
+        if (pid == -1) {
+            perror("fork");
+            return 1;
+        }
 
-	fill_args(temp_args, temp);
-	printf("temp_args->arg_array[0]: %s\n", temp_args->arg_array[0]);
+        fill_args(temp_args, temp);
+        printf("temp_args->arg_array[0]: %s\n", temp_args->arg_array[0]);
 
-    if (pid == 0) {
-        // Child process
-        dup2(pipefd[1], STDOUT_FILENO);
-        close(pipefd[0]);
-        close(pipefd[1]);
-        run_execve(args);
-        exit(EXIT_SUCCESS);
-    } else {
-        // Parent process
-        dup2(pipefd[0], STDIN_FILENO);
-        close(pipefd[0]);
-        close(pipefd[1]);
-        wait(NULL);  // Wait for child process to finish
-        run_execve(args);
+        if (pid == 0) {
+            // Child process
+            dup2(fd_in, STDIN_FILENO);  // Change the input according to the old pipe
+            if (temp->next != NULL)  // If there is another command
+                dup2(pipefd[1], STDOUT_FILENO);  // Send the output to the pipe
+            close(pipefd[0]);  // Close the read end of the pipe
+            run_execve(args);
+            exit(EXIT_SUCCESS);
+        } else {
+            // Parent process
+            wait(NULL);  // Wait for child process to finish
+            close(pipefd[1]);  // Close the write end of the pipe
+            fd_in = pipefd[0];  // Save the input for the next command
+            temp = temp->next;  // Move to next command
+        }
     }
 
     return status;
