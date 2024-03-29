@@ -107,7 +107,7 @@ int		super_redirect(t_token *tok, t_env *env, t_args *arg, t_rd_col *rd);
 
 /*pipes*/
 int move_to_next(t_token **tokens);
-void	print_args(t_args *args, t_token **tokens);
+void	print_args(t_token **tokens, t_args *args);
 
 void printf_args_env(t_args *args);
 int update_args(t_args *args, char *path);

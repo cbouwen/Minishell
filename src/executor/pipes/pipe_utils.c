@@ -20,16 +20,16 @@ void	print_args(t_args *args, t_token **tokens)
 
 	i = 0;
 	fill_args(args, *tokens);
-	while (args->args[i])
+	while (args->arg_array[i])
 	{
-		printf("args[%d]: %s\n", i, args->args[i]);
+		printf("arg_array[%d]: %s\n", i, args->arg_array[i]);
 		i++;
 	}
 	move_to_next(tokens);
 	i = 0;
-	while (args->env[i])
+	while (args->arg_array[i])
 	{
-		printf("env[%d]: %s\n", i, args->env[i]);
+		printf("arg_array[%d]: %s\n", i, args->arg_array[i]);
 		i++;
 	}
 	return ;
