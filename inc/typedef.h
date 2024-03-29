@@ -58,6 +58,8 @@ typedef struct	s_args
 	char		**arg_array;
 	char		**env_array;
 	int			fd[2];
+	int			a_stdout;
+	int			a_stdin;
 }				t_args;
 
 typedef struct s_rd_col

@@ -48,6 +48,8 @@ int	init_args(t_args *args)
 	args->env_array = NULL;
 	args->fd[0] = 0;
 	args->fd[1] = 0;
+	args->a_stdin = 0;
+	args->a_stdout = 0;
 	return (0);
 }
 

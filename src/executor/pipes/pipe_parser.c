@@ -32,43 +32,57 @@ int run_piped_cmd(t_token **tokens, t_env *env, t_args *args)
 	temp_args = args;
 	status = 0;
 	pipe_count = count_pipes(temp);
-	temp_args->fd[0] = dup(STDOUT_FILENO);
-	if (temp_args->fd[0] == -1)
-		return (2);
 	while (pipe_count >= 0)
 	{
 		if (determine_builtin(temp) != 0)
 			//status = run_piped_builtin(temp, temp_env, temp_args);
 			status = printf("run_piped_builtin\n");
 		else
-			//status = run_piped_execve(temp, temp_env, temp_args);
-			status = printf("run_piped_execve\n");
+			status = run_piped_execve(temp, temp_env, temp_args);
 		move_to_next(tokens);
 		pipe_count--;
 	}
 	return (status);
 }
 
-/*int run_piped_execve(t_token *tokens, t_env *env, t_args *args)
+int run_piped_execve(t_token *tokens, t_env *env, t_args *args)
 {
     t_token	*temp;
-	t_env	*temp_env;
-	t_args	*temp_args;
-	int		status;
+    t_env	*temp_env;
+    t_args	*temp_args;
+    int		status;
+    int     pipefd[2];  // File descriptors for the pipe
 
-	temp = *tokens;
-	temp_env = env;
-	temp_args = args;
-	status = 0;
-	fill_args(temp, temp_args);
-	assemble_path(temp_args);
-	path_error_handler(temp_args->status);
-	if (check_redirects(temp) == 1)
-		status = prep_piped_execve(temp, temp_env, temp_args);
-	else
-		//status = run_redirect(temp, temp_env, temp_args);
-		status = printf("run_redirect\n");
-	return (status);
+    temp = *tokens;
+    temp_env = env;
+    temp_args = args;
+    status = 0;
+
+    // Create a pipe
+    if (pipe(pipefd) == -1) {
+        perror("pipe");
+        return 1;
+    }
+
+    fill_args(temp, temp_args);
+    assemble_path(temp_args);
+    path_error_handler(temp_args->status);
+
+    if (check_redirects(temp) == 1) {
+        // Redirect the output of the current command to the input of the next command
+        dup2(pipefd[1], STDOUT_FILENO);
+        close(pipefd[1]);  // Close write end of the pipe
+
+        status = run_execve(args);
+
+        // Redirect the input of the next command to the output of the current command
+        dup2(pipefd[0], STDIN_FILENO);
+        close(pipefd[0]);  // Close read end of the pipe
+    } else {
+        status = printf("run_redirect\n");
+    }
+
+    return (status);
 }
 
 int	prep_piped_execve(t_token *tokens, t_env *env, t_args *args)
