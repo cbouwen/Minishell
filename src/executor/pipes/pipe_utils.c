@@ -33,13 +33,9 @@ int	count_pipes(t_token *tokens)
 bool	count_consecutive_cats(t_token *tokens)
 {
 	t_token	*temp;
-    int		count;
-    int		max_count;
     char	*prev_cmd;
 
 	temp = tokens;
-	count = 0;
-	max_count = 0;
 	prev_cmd = NULL;
     while (temp) {
         if (temp->type == CMD) 
