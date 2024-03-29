@@ -28,12 +28,13 @@ int run_piped_cmd(t_token **tokens, t_env *env, t_args *args)
 
 	temp = *tokens;
 	temp_env = env;
+	(void)temp_env;
 	temp_args = args;
 	status = 0;
 	pipe_count = count_pipes(temp);
 	temp_args->fd[0] = dup(STDOUT_FILENO);
 	if (temp_args->fd[0] == -1)
-		return (rd_error_handler(3, NULL, rd));
+		return (2);
 	while (pipe_count >= 0)
 	{
 		if (determine_builtin(temp) != 0)
