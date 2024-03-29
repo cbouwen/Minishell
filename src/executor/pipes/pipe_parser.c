@@ -122,6 +122,7 @@ int run_piped_execve(t_token *tokens, t_env *env, t_args *args)
 
 	temp = tokens;
 	temp_env = env;
+	(void)temp_env;
 	temp_args = args;
 	status = 0;
 	status = fill_args(temp_args, temp);
