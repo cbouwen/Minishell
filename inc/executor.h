@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 17:33:00 by mlegendr          #+#    #+#             */
-/*   Updated: 2024/03/28 21:21:31 by mlegendr         ###   ########.fr       */
+/*   Updated: 2024/03/29 17:50:09 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,7 @@ int		run_redirect(t_token *tokens, t_env *env, t_args *args);
 int		move_to_next(t_token **tokens);
 int		count_pipes(t_token *tokens);
 bool	count_consecutive_cats(t_token *tokens);
+int		real_pipe(t_token *tokens, t_env *env, t_args *args, int *in_fd);
 int		pipe_error_handler(int err_no);
 
 /*pipe_parser*/

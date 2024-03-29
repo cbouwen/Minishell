@@ -69,10 +69,28 @@ int	open_input(t_rd_col *rd)
 	return (rd_error_handler(0, NULL, rd));
 }
 
+static void	the_cool_readline(int hd_fd, char *input)
+{
+	char	*line;
+
+	line = NULL;
+	line = readline("heredoc> ");
+	while (line != NULL && ft_strcmp(line, input) != 0)
+	{
+		write(hd_fd, line, ft_strlen(line));
+		write(hd_fd, "\n", 1);
+		free(line);
+		line = NULL;
+		line = readline("heredoc> ");
+	}
+	if (line)
+		free(line);
+}
+
 int	open_heredoc(char *input)
 {
 	int		heredoc_fd;
-	char	*line;
+	//char	*line;
 	pid_t	pid;
 
 	heredoc_fd = 0;
@@ -83,19 +101,9 @@ int	open_heredoc(char *input)
 		heredoc_fd = open("/tmp/heredoc_dump", O_RDWR | O_CREAT | O_TRUNC, 0644);
 		if (heredoc_fd == -1)
 			return (rd_error_handler(2, "/tmp/heredoc_dump", NULL));
-		line = readline("heredoc> ");
-		while (line != NULL && ft_strcmp(line, input) != 0)
-		{
-			write(heredoc_fd, line, ft_strlen(line));
-			write(heredoc_fd, "\n", 1);
-			free(line);
-			line = NULL;
-			line = readline("heredoc> ");
-		}
-		if (line)
-			free(line);
+		the_cool_readline(heredoc_fd, input);
 		close(heredoc_fd);
-		exit(1);
+		exit(0);
 	}
 	if ((waitpid(pid, NULL, 0)) != -1)
 		g_signal.in_heredoc = true;

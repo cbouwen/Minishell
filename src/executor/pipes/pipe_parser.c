@@ -47,58 +47,49 @@ int	pipe_decider(t_token **tokens, t_env *env, t_args *args)
 
 int	run_piped_cmd(t_token **tokens, t_env *env, t_args *args)
 {
-	//t_token	**temp;
-	t_env	*temp_env;
-	t_args	*temp_args;
 	int		status;
-	int		pipe_count;
-	//int		fd[2];
-	int		in_fd = 0;
+	int		in_fd[2];
 
-	//temp = **tokens;
-	temp_env = env;
-	temp_args = args;
 	status = 0;
-	pipe_count = count_pipes(*tokens);
-	while (pipe_count >= 0)
+	in_fd[0] = 0;
+	in_fd[1] = count_pipes(*tokens) + 1;
+	while (--in_fd[1] >= 0)
 	{
-		pipe(temp_args->fd);
+		pipe(args->fd);
 		pid_t pid = fork();
 		if (pid == 0)
-		{
-			if (in_fd != 0)
-			{
-				dup2(in_fd, 0);
-				close(in_fd);
-			}
-			if (pipe_count > 0)
-			{
-				dup2(temp_args->fd[1], 1);
-			}
-			close(temp_args->fd[0]);
-			status = run_piped_execve(*tokens, temp_env, temp_args);
-			exit(status);
-		}
+			exit(real_pipe(*tokens, env, args, in_fd));
 		else if (pid < 0)
-		{
-			perror("fork");
-			return -1;
-		}
+			return (3);
 		else
 		{
 			wait(NULL);
-			close(temp_args->fd[1]);
-			if (in_fd != 0)
-			{
-				close(in_fd);
-			}
-			in_fd = temp_args->fd[0];
+			close(args->fd[1]);
+			if (in_fd[0] != 0)
+				close(in_fd[0]);
+			in_fd[0] = args->fd[0];
 		}
-
 		move_to_next(tokens);
-		pipe_count--;
 	}
 	return (status);
+}
+
+int	real_pipe(t_token *tokens, t_env *env, t_args *args, int *in_fd)
+{
+	int	status;
+
+	status = 0;
+	if (in_fd[0] != 0)
+	{
+		dup2(in_fd[0], 0);
+		close(in_fd[0]);
+	}
+	if (in_fd[1] > 0)
+		dup2(args->fd[1], 1);
+	close(args->fd[0]);
+	status = run_piped_execve(tokens, env, args);
+	return (status);
+
 }
 
 int run_piped_execve(t_token *tokens, t_env *env, t_args *args)
