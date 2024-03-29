@@ -45,37 +45,34 @@ int	pipe_decider(t_token **tokens, t_env *env, t_args *args)
 	return (status);
 }*/
 
-int run_piped_cmd(t_token **tokens, t_env *env, t_args *args)
+int	run_piped_cmd(t_token **tokens, t_env *env, t_args *args)
 {
-    //t_token	**temp;
-    t_env	*temp_env;
-    t_args	*temp_args;
-    int		status;
-    int		pipe_count;
-    int     fd[2];
-    int     in_fd = 0;
+	//t_token	**temp;
+	t_env	*temp_env;
+	t_args	*temp_args;
+	int		status;
+	int		pipe_count;
+	int		fd[2];
+	int		in_fd = 0;
 
-    //temp = **tokens;
-    temp_env = env;
-    temp_args = args;
-    status = 0;
-    pipe_count = count_pipes(*tokens);
-    while (pipe_count >= 0)
-    {
-        pipe(fd);
+	//temp = **tokens;
+	temp_env = env;
+	temp_args = args;
+	status = 0;
+	pipe_count = count_pipes(*tokens);
+	while (pipe_count >= 0)
+	{
+		pipe(fd);
 		pid_t pid = fork();
 		if (pid == 0)
 		{
-			// Child process
 			if (in_fd != 0)
 			{
-				// Redirect standard input to the read end of the previous pipe
 				dup2(in_fd, 0);
 				close(in_fd);
 			}
 			if (pipe_count > 0)
 			{
-				// Redirect standard output to the write end of the current pipe
 				dup2(fd[1], 1);
 			}
 			close(fd[0]);
@@ -84,13 +81,11 @@ int run_piped_cmd(t_token **tokens, t_env *env, t_args *args)
 		}
 		else if (pid < 0)
 		{
-			// Handle error
 			perror("fork");
 			return -1;
 		}
 		else
 		{
-			// Parent process
 			wait(NULL);
 			close(fd[1]);
 			if (in_fd != 0)
@@ -100,10 +95,10 @@ int run_piped_cmd(t_token **tokens, t_env *env, t_args *args)
 			in_fd = fd[0];
 		}
 
-        move_to_next(tokens);
-        pipe_count--;
-    }
-    return (status);
+		move_to_next(tokens);
+		pipe_count--;
+	}
+	return (status);
 }
 
 int run_piped_execve(t_token *tokens, t_env *env, t_args *args)
