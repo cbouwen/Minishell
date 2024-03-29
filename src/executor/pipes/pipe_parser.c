@@ -123,7 +123,7 @@ int run_piped_execve(t_token *tokens, t_env *env, t_args *args)
 	status = path_error_handler(status);
 	if (status == 2)
 		status = run_execve(temp_args);*/
-	status = prep_cmd(temp, temp_env, temp_args);
+	status = run_basic_cmd(temp, temp_env, temp_args);
 	return (status);
 }
 
