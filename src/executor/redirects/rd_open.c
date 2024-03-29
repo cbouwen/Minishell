@@ -73,24 +73,32 @@ int	open_heredoc(char *input)
 {
 	int		heredoc_fd;
 	char	*line;
+	pid_t	pid;
 
-	g_signal.in_heredoc = true;
-	heredoc_fd = open("/tmp/heredoc_dump", O_RDWR | O_CREAT | O_TRUNC, 0644);
-	if (heredoc_fd == -1)
-		return (rd_error_handler(2, "/tmp/heredoc_dump", NULL));
-	line = readline("heredoc> ");
-	while (line != NULL && ft_strcmp(line, input) != 0)
+	heredoc_fd = 0;
+	pid = fork();
+	if (pid == 0)
 	{
-		write(heredoc_fd, line, ft_strlen(line));
-		write(heredoc_fd, "\n", 1);
-		free(line);
-		line = NULL;
+		signal(SIGINT, SIG_DFL);
+		heredoc_fd = open("/tmp/heredoc_dump", O_RDWR | O_CREAT | O_TRUNC, 0644);
+		if (heredoc_fd == -1)
+			return (rd_error_handler(2, "/tmp/heredoc_dump", NULL));
 		line = readline("heredoc> ");
+		while (line != NULL && ft_strcmp(line, input) != 0)
+		{
+			write(heredoc_fd, line, ft_strlen(line));
+			write(heredoc_fd, "\n", 1);
+			free(line);
+			line = NULL;
+			line = readline("heredoc> ");
+		}
+		if (line)
+			free(line);
+		close(heredoc_fd);
 	}
-	if (line)
-		free(line);
-	close(heredoc_fd);
-	g_signal.in_heredoc = false;
+	if ((waitpid(pid, NULL, 0)) != -1)
+		g_signal.in_heredoc = true;
+	signal(SIGINT, sig_handler);
 	return (heredoc_fd);
 }
 

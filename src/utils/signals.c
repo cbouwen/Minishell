@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 13:43:27 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/03/26 14:21:38 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/03/29 14:55:01 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,10 @@ void	sig_handler(int sig)
 	(void)sig;
 	printf("\n");
 	ft_error(NULL, 130);
-	rl_replace_line("", 0);
 	if (!g_signal.in_cmd && !g_signal.in_heredoc)
+	{
+		rl_replace_line("", 0);
 		rl_on_new_line();
-	rl_redisplay();
+		rl_redisplay();
+	}
 }
