@@ -117,7 +117,7 @@ int		pipe_error_handler(int err_no);
 int		pipe_decider(t_token **tokens, t_env *env, t_args *args);
 
 int		run_piped_cmd(t_token **tokens, t_env *env, t_args *args);
-int		run_piped_execve(t_token *tokens, t_env *env, t_args *args);
+int		run_piped_execve(t_token **tokens, t_env *env, t_args *args);
 
 
 /*remove*/

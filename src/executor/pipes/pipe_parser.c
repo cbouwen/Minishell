@@ -114,14 +114,14 @@ int run_piped_cmd(t_token **tokens, t_env *env, t_args *args)
     return (status);
 }
 
-int run_piped_execve(t_token *tokens, t_env *env, t_args *args)
+int run_piped_execve(t_token **tokens, t_env *env, t_args *args)
 {
 	t_token	*temp;
 	t_env	*temp_env;
 	t_args	*temp_args;
 	int		status;
 
-	temp = tokens;
+	temp = *tokens;
 	temp_env = env;
 	(void)temp_env;
 	temp_args = args;
