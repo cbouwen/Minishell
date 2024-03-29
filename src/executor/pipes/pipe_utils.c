@@ -30,6 +30,34 @@ int	count_pipes(t_token *tokens)
 	return (count);
 }
 
+int	count_consecutive_cats(t_token *tokens)
+{
+	t_token	*temp;
+    int		count;
+    int		max_count;
+    char	*prev_cmd;
+
+	temp = tokens;
+	count = 0;
+	max_count = 0;
+	prev_cmd = NULL
+    while (temp) {
+        if (temp->type == CMD) 
+		{
+            if (prev_cmd && ft_strcmp(prev_cmd, "cat") == 0
+				&& ft_strcmp(temp->str, "cat") == 0)
+                count++;
+            else
+                count = 1;
+            if (count > max_count)
+                max_count = count;
+            prev_cmd = temp->str;
+        }
+        temp = temp->next;
+    }
+    return (max_count);
+}
+
 void	print_args(t_token **tokens, t_args *args)
 {
 	int i = 0, j = count_pipes(*tokens);
@@ -49,5 +77,6 @@ void	print_args(t_token **tokens, t_args *args)
 		move_to_next(tokens);
 		i++;
 	}
+	printf("%d\n", count_consecutive_cats(*tokens));
 	return ;
 }

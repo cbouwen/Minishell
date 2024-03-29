@@ -106,9 +106,12 @@ int		output_rd(t_token *tok, t_env *env, t_args *arg, t_rd_col *rd);
 int		super_redirect(t_token *tok, t_env *env, t_args *arg, t_rd_col *rd);
 
 /*pipes*/
-int move_to_next(t_token **tokens);
+/*pipe_utils*/
+int		move_to_next(t_token **tokens);
+int		count_cats(t_token *tokens);
+int		count_pipes(t_token *tokens);
+/*remove*/
 void	print_args(t_token **tokens, t_args *args);
-
 void printf_args_env(t_args *args);
 int update_args(t_args *args, char *path);
 int redirect_test(t_token *tokens, t_env *env, t_args *args);
