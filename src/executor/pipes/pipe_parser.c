@@ -52,45 +52,64 @@ int run_piped_execve(t_token *tokens, t_env *env, t_args *args)
     t_args	*temp_args;
     int		status;
     int     pipefd[2];
+    pid_t   pid;
 
     temp = tokens;
     temp_env = env;
-	(void)temp_env;
+    (void)temp_env;
     temp_args = args;
     status = 0;
 
     if (pipe(pipefd) == -1)
-	{
+    {
         perror("pipe");
         return 1;
     }
 
-    status = fill_args(temp_args, temp);
-    status = assemble_path(temp_args);
-    path_error_handler(status);
+    pid = fork();
+    if (pid == -1)
+    {
+        perror("fork");
+        return 1;
+    }
 
-    if (check_redirects(temp) == 1) 
-	{
-		printf("1\n");
-		printf("pipefd[1]: %d\n", pipefd[1]);
+    if (pid == 0)
+    {
+        // Child process
+        close(pipefd[0]);  // Close unused read end
         if (dup2(pipefd[1], STDOUT_FILENO) == -1)
-		{
-			perror("dup2");
-			return 1;
-		}
-        
+        {
+            perror("dup2");
+            return 1;
+        }
+        close(pipefd[1]);  // Close write end after it's duplicated
 
-		printf("2\n");
-        status = run_execve(args);
+        status = fill_args(temp_args, temp);
+        status = assemble_path(temp_args);
+        path_error_handler(status);
 
-		printf("3\n");
-        dup2(pipefd[0], STDIN_FILENO);
-        
-    } 
-	else
-        status = printf("run_redirect\n");
-	close(pipefd[1]);
-	close(pipefd[0]);
+        if (check_redirects(temp) == 1) 
+        {
+            status = run_execve(args);
+        } 
+        else
+        {
+            status = printf("run_redirect\n");
+        }
+        exit(status);  // Exit child process
+    }
+    else
+    {
+        // Parent process
+        close(pipefd[1]);  // Close unused write end
+        if (dup2(pipefd[0], STDIN_FILENO) == -1)
+        {
+            perror("dup2");
+            return 1;
+        }
+        close(pipefd[0]);  // Close read end after it's duplicated
+    }
+
     return (status);
 }
 
