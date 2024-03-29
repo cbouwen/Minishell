@@ -73,7 +73,11 @@ int run_piped_execve(t_token *tokens, t_env *env, t_args *args)
 	{
 		printf("1\n");
 		printf("pipefd[1]: %d\n", pipefd[1]);
-        dup2(pipefd[1], STDOUT_FILENO);
+        if (dup2(pipefd[1], STDOUT_FILENO) == -1)
+		{
+			perror("dup2");
+			return 1;
+		}
         
 
 		printf("2\n");
