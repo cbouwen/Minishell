@@ -40,7 +40,7 @@ int	count_consecutive_cats(t_token *tokens)
 	temp = tokens;
 	count = 0;
 	max_count = 0;
-	prev_cmd = NULL
+	prev_cmd = NULL;
     while (temp) {
         if (temp->type == CMD) 
 		{
