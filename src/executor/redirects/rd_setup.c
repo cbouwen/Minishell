@@ -113,17 +113,17 @@ int run_redirect(t_token *tokens, t_env *env, t_args *args)
 	temp_args = args;
 	status = 0;
 	debug_tm(temp);
-	if (redirect_syntax_check(tokens) != 0)
+	if (redirect_syntax_check(temp) != 0)
 		return (1);
-	if (init_rd(tokens, &rd) != 0)
+	if (init_rd(temp, &rd) != 0)
 		return (1);
-	if (fill_rd(tokens, &rd) != 0)
+	if (fill_rd(temp, &rd) != 0)
 		return (1);
 	if (open_input(&rd) != 0)
 		return (1);
 	if (open_output(&rd) != 0)
 		return (1);
-	status = rd_exec_setup(tokens, env, args, &rd);
+	status = rd_exec_setup(temp, temp_env, temp_args, &rd);
 	if (rd.coll_exists == true)
 		free_rd(&rd);
 	return (status);
