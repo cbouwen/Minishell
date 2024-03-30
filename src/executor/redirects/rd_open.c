@@ -48,18 +48,21 @@ int	open_input(t_rd_col *rd)
 	int		i;
 
 	i = 0;
-	while (i < rd->input_size)
+	if (rd->input != NULL)
 	{
-		if (rd->input[i][0] == '#')
-			rd->i_fd = open_heredoc(rd->input[i] + 1);
-		else
-			rd->i_fd = open(rd->input[i], O_RDONLY);
-		if (rd->i_fd < 0)
-			return (rd_error_handler(2, rd->input[i], rd));
-		if (i < rd->input_size - 1)
-			close(rd->i_fd);
+		while (i < rd->input_size)
+		{
+			if (rd->input[i][0] == '#')
+				rd->i_fd = open_heredoc(rd->input[i] + 1);
+			else
+				rd->i_fd = open(rd->input[i], O_RDONLY);
+			if (rd->i_fd < 0)
+				return (rd_error_handler(2, rd->input[i], rd));
+			if (i < rd->input_size - 1)
+				close(rd->i_fd);
 
-		i++;
+			i++;
+		}
 	}
 	return (rd_error_handler(0, NULL, rd));
 }
