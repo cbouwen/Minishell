@@ -48,7 +48,6 @@ int fill_input(t_token *tokens, t_rd_col *rd, int i)
 
 	temp = tokens;
 	temp_rd = rd;
-	debug_tm(temp);
 	if (temp->type == REDIRECT)
 	{
 		if (ft_strcmp(temp->str, "<") == 0)
@@ -67,10 +66,10 @@ int fill_input(t_token *tokens, t_rd_col *rd, int i)
 
 int	fill_heredoc(t_token *tokens, t_rd_col *rd, int i)
 {
-	t_token			*temp;
+	t_token		*temp;
 	t_rd_col	*temp_rd;
-	char			*input;
-	char			*temp_input;
+	char		*input;
+	char		*temp_input;
 
 	temp = tokens;
 	temp_rd = rd;
@@ -93,12 +92,13 @@ int	fill_heredoc(t_token *tokens, t_rd_col *rd, int i)
 
 int fill_out(t_token *tokens, t_rd_col *rd, int i, char *rd_type)
 {
-	t_token         *temp;
-	t_rd_col *temp_rd;
-	char			**target;
+	t_token		*temp;
+	t_rd_col	*temp_rd;
+	char		**target;
 
 	temp = tokens;
 	temp_rd = rd;
+	debug_tm(temp);
 	if (temp->type == REDIRECT)
 	{
 		if (ft_strcmp(temp->str, rd_type) == 0)
