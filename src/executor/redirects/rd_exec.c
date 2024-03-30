@@ -25,7 +25,7 @@ int	rd_exec_setup(t_token *tok, t_env *env, t_args *arg, t_rd_col *rd)
 	temp_args = arg;
 	temp_rd = rd;
 	status = 0;
-	printf("rd->input_size: %d\n", temp_rd->input_size);
+	/*printf("rd->input_size: %d\n", temp_rd->input_size);
 	printf("rd->output_size: %d\n", temp_rd->output_size);
 	printf("rd->input[0]: %s\n", temp_rd->input[0]);
 	printf("rd->output[0]: %s\n", temp_rd->output[0]);
@@ -33,7 +33,7 @@ int	rd_exec_setup(t_token *tok, t_env *env, t_args *arg, t_rd_col *rd)
 	{
 		printf("temp->str: %s\n", temp->str);
 		temp = temp->next;
-	}
+	}*/
 	if (g_signal.in_heredoc == false)
 	{
 		if (temp_rd->input_size > 0 && temp_rd->output_size == 0)

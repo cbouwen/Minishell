@@ -62,6 +62,11 @@ int run_redirect(t_token *tokens, t_env *env, t_args *args)
 	int			status;
 
 	status = 0;
+	while (temp && temp->type != PIPE)
+	{
+		printf("temp->str: %s\n", temp->str);
+		temp = temp->next;
+	}
 	if (redirect_syntax_check(tokens) != 0)
 		return (1);
 	if (init_rd(tokens, &rd) != 0)
