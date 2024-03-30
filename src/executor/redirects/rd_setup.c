@@ -38,7 +38,6 @@ int	init_rd(t_token *tokens, t_rd_col *rd)
 	t_rd_col	*temp_rd;
 
 	temp = tokens;
-	debug_tm(temp);
 	temp_rd = rd;
 	temp_rd->input = ft_calloc(sizeof(char *), count_rd(temp) + 1);
 	if (!temp_rd->input)

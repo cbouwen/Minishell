@@ -23,6 +23,7 @@ int fill_rd(t_token *tokens, t_rd_col *rd)
 	temp_rd = rd;
 	i = -1;
 	j = -1;
+	debug_tm(temp);
 	while (temp && temp->type != PIPE)
 	{
 		if (temp->type == REDIRECT)
