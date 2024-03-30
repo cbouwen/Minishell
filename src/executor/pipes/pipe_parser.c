@@ -102,11 +102,11 @@ int	real_pipe(t_token *tokens, t_env *env, t_args *args)
 	if (temp_args->pipe_count > 0)
 		dup2(temp_args->fd[1], 1);
 	close(temp_args->fd[0]);
-	status = run_piped_cmd(temp, temp_env, temp_args);
+	status = run_cmd(temp, temp_env, temp_args);
 	return (status);
 }
 
-int	run_piped_cmd(t_token *tokens, t_env *env, t_args *args)
+int	run_cmd(t_token *tokens, t_env *env, t_args *args)
 {
 	t_token	*temp;
 	t_env	*temp_env;
