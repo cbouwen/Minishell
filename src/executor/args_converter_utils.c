@@ -46,8 +46,10 @@ int	init_args(t_args *args)
 {
 	args->arg_array = NULL;
 	args->env_array = NULL;
-	args->fd[0] = 0;
-	args->fd[1] = 0;
+	args->fd[0] = -1;
+	args->fd[1] = -1;
+	args->in_fd = -1;
+	args->pipe_count = 0;
 	args->a_stdin = 0;
 	args->a_stdout = 0;
 	return (0);

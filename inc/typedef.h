@@ -58,6 +58,8 @@ typedef struct	s_args
 	char		**arg_array;
 	char		**env_array;
 	int			fd[2];
+	int			in_fd;
+	int			pipe_count;
 	int			a_stdout;
 	int			a_stdin;
 }				t_args;

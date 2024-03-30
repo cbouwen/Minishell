@@ -111,7 +111,7 @@ int		run_redirect(t_token *tokens, t_env *env, t_args *args);
 int		move_to_next(t_token **tokens);
 int		count_pipes(t_token *tokens);
 bool	count_consecutive_cats(t_token *tokens);
-int		real_pipe(t_token *tokens, t_env *env, t_args *args, int *in_fd);
+int		real_pipe(t_token *tokens, t_env *env, t_args *args);
 int		pipe_error_handler(int err_no);
 
 /*pipe_parser*/
