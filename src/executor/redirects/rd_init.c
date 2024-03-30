@@ -43,7 +43,7 @@ int fill_rd(t_token *tokens, t_rd_col *rd)
 
 int fill_input(t_token *tokens, t_rd_col *rd, int i)
 {
-	t_token			*temp;
+	t_token		*temp;
 	t_rd_col	*temp_rd;
 
 	temp = tokens;
@@ -117,10 +117,10 @@ int fill_out(t_token *tokens, t_rd_col *rd, int i, char *rd_type)
 
 int	fill_app(t_token *tokens, t_rd_col *rd, int i)
 {
-	t_token			*temp;
+	t_token		*temp;
 	t_rd_col	*temp_rd;
-	char			*input;
-	char			*temp_input;
+	char		*input;
+	char		*temp_input;
 
 	temp = tokens;
 	temp_rd = rd;
