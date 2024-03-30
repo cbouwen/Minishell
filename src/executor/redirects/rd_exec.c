@@ -28,6 +28,12 @@ int	rd_exec_setup(t_token *tok, t_env *env, t_args *arg, t_rd_col *rd)
 	if (g_signal.in_heredoc == false)
 	{
 		debug_tm(temp);
+		printf("input_size: %d\n", temp_rd->input_size);
+		printf("output_size: %d\n", temp_rd->output_size);
+		for (int i = 0; i < temp_rd->input_size; i++)
+			printf("input[%d]: %s\n", i, temp_rd->input[i]);
+		for (int i = 0; i < temp_rd->output_size; i++)
+			printf("output[%d]: %s\n", i, temp_rd->output[i]);
 		if (temp_rd->input_size > 0 && temp_rd->output_size == 0)
 			status = input_rd(temp, temp_env, temp_args, temp_rd);
 		else if (temp_rd->output_size > 0 && temp_rd->input_size == 0)
