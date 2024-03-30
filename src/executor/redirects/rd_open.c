@@ -81,24 +81,44 @@ static void	the_cool_readline(int hd_fd, char *input)
 	if (line)
 		free(line);*/
 	char	*line;
-	int		tty_fd;
+    int		tty_fd;
+    int		stdout_fd;
 
-	tty_fd = open("/dev/tty", O_RDWR);
-	if (tty_fd == -1)
-		return ;
-	line = NULL;
-	line = readline("heredoc> ");
-	while (line != NULL && ft_strcmp(line, input) != 0)
-	{
-		write(hd_fd, line, ft_strlen(line));
-		write(hd_fd, "\n", 1);
-		free(line);
-		line = NULL;
-		line = readline("heredoc> ");
-	}
-	if (line)
-		free(line);
-	close(tty_fd);
+    tty_fd = open("/dev/tty", O_RDWR);
+    if (tty_fd == -1)
+        return ;
+
+    stdout_fd = dup(STDOUT_FILENO);
+    if (stdout_fd == -1)
+    {
+        close(tty_fd);
+        return;
+    }
+
+    if (dup2(tty_fd, STDOUT_FILENO) == -1)
+    {
+        close(tty_fd);
+        close(stdout_fd);
+        return;
+    }
+
+    line = NULL;
+    line = readline("heredoc> ");
+    while (line != NULL && ft_strcmp(line, input) != 0)
+    {
+        write(hd_fd, line, ft_strlen(line));
+        write(hd_fd, "\n", 1);
+        free(line);
+        line = NULL;
+        line = readline("heredoc> ");
+    }
+    if (line)
+        free(line);
+
+    dup2(stdout_fd, STDOUT_FILENO);
+
+    close(stdout_fd);
+    close(tty_fd);
 }
 
 int	open_heredoc(char *input)
