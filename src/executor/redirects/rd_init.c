@@ -48,6 +48,7 @@ int fill_input(t_token *tokens, t_rd_col *rd, int i)
 
 	temp = tokens;
 	temp_rd = rd;
+	debug_tm(tokens);
 	if (temp->type == REDIRECT)
 	{
 		if (ft_strcmp(temp->str, "<") == 0)
@@ -98,7 +99,6 @@ int fill_out(t_token *tokens, t_rd_col *rd, int i, char *rd_type)
 
 	temp = tokens;
 	temp_rd = rd;
-	debug_tm(temp);
 	if (temp->type == REDIRECT)
 	{
 		if (ft_strcmp(temp->str, rd_type) == 0)

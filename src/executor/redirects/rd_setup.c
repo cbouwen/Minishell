@@ -122,7 +122,6 @@ int run_redirect(t_token *tokens, t_env *env, t_args *args)
 		return (1);
 	if (open_output(&rd) != 0)
 		return (1);
-	temp = tokens;
 	status = rd_exec_setup(temp, temp_env, temp_args, &rd);
 	if (rd.coll_exists == true)
 		free_rd(&rd);
