@@ -48,7 +48,7 @@ int	pipe_decider(t_token **tokens, t_env *env, t_args *args)
 			//status = run_piped_builtin(temp, temp_env, temp_args);
 			status = printf("run_piped_builtin\n");
 		else
-			status = run_piped_execve(temp, temp_env, temp_args);
+			status = run_piped_cmd(temp, temp_env, temp_args);
 		move_to_next(tokens);
 		pipe_count--;
 	}
@@ -86,23 +86,27 @@ int	run_piped_cmd(t_token **tokens, t_env *env, t_args *args)
 int	real_pipe(t_token *tokens, t_env *env, t_args *args)
 {
 	int	status;
+	t_token	*temp;
+	t_env	*temp_env;
+	t_args	*temp_args;
 
 	status = 0;
-	debug_tm(tokens);
-	if (args->in_fd != 0)
+	temp = tokens;
+	temp_env = env;
+	temp_args = args;
+	if (temp_args->in_fd != 0)
 	{
-		dup2(args->in_fd, 0);
-		close(args->in_fd);
+		dup2(temp_args->in_fd, 0);
+		close(temp_args->in_fd);
 	}
-	if (args->pipe_count > 0)
-		dup2(args->fd[1], 1);
-	close(args->fd[0]);
-	status = run_piped_execve(tokens, env, args);
-	ft_error(NULL, status);
+	if (temp_args->pipe_count > 0)
+		dup2(temp_args->fd[1], 1);
+	close(temp_args->fd[0]);
+	status = run_piped_cmd(temp, temp_env, temp_args);
 	return (status);
 }
 
-int	run_piped_execve(t_token *tokens, t_env *env, t_args *args)
+int	run_piped_cmd(t_token *tokens, t_env *env, t_args *args)
 {
 	t_token	*temp;
 	t_env	*temp_env;
