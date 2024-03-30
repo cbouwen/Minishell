@@ -102,13 +102,17 @@ void	debug_tm(t_token *tokens)
 
 int run_redirect(t_token *tokens, t_env *env, t_args *args)
 {
+	t_token		*temp;
+	t_env		*temp_env;
+	t_args		*temp_args;
 	t_rd_col	rd;
 	int			status;
 
-	//t_token *temp = tokens;
-
+	temp = tokens;
+	temp_env = env;
+	temp_args = args;
 	status = 0;
-	//debug_tm(temp);
+	debug_tm(temp);
 	if (redirect_syntax_check(tokens) != 0)
 		return (1);
 	if (init_rd(tokens, &rd) != 0)

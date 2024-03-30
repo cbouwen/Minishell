@@ -86,7 +86,6 @@ int	run_basic_cmd(t_token *tokens, t_env *env, t_args *args)
 	temp_env = env;
 	temp_args = args;
 	status = 0;
-	debug_tm(temp);
 	if (check_redirects(temp) == 1)
 		status = prep_cmd(temp, temp_env, temp_args);
 	else
