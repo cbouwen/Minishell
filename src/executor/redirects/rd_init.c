@@ -23,7 +23,6 @@ int fill_rd(t_token *tokens, t_rd_col *rd)
 	temp_rd = rd;
 	i = -1;
 	j = -1;
-	debug_tm(temp);
 	while (temp && temp->type != PIPE)
 	{
 		if (temp->type == REDIRECT)
@@ -49,6 +48,7 @@ int fill_input(t_token *tokens, t_rd_col *rd, int i)
 
 	temp = tokens;
 	temp_rd = rd;
+	debug_tm(temp);
 	if (temp->type == REDIRECT)
 	{
 		if (ft_strcmp(temp->str, "<") == 0)
