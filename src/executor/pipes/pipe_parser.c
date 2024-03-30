@@ -78,6 +78,7 @@ int	run_piped_cmd(t_token **tokens, t_env *env, t_args *args)
 			args->in_fd = args->fd[0];
 		}
 		args->call_count++;
+		printf("call_count: %d\n", args->call_count);
 		move_to_next(tokens);
 		args->pipe_count--;
 	}
