@@ -25,10 +25,9 @@ int	rd_exec_setup(t_token *tok, t_env *env, t_args *arg, t_rd_col *rd)
 	temp_args = arg;
 	temp_rd = rd;
 	status = 0;
-	debug_tm(tok);
-
 	if (g_signal.in_heredoc == false)
 	{
+		debug_tm(temp);
 		if (temp_rd->input_size > 0 && temp_rd->output_size == 0)
 			status = input_rd(temp, temp_env, temp_args, temp_rd);
 		else if (temp_rd->output_size > 0 && temp_rd->input_size == 0)
