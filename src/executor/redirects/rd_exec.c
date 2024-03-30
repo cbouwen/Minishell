@@ -34,7 +34,18 @@ int	rd_exec_setup(t_token *tok, t_env *env, t_args *arg, t_rd_col *rd)
 		else if (temp_rd->output_size > 0 && temp_rd->input_size > 0)
 			status = super_redirect(temp, temp_env, temp_args, temp_rd);
 		else
+		{
+			printf("rd->input_size: %d\n", temp_rd->input_size);
+			printf("rd->output_size: %d\n", temp_rd->output_size);
+			printf("rd->input[0]: %s\n", temp_rd->input[0]);
+			printf("rd->output[0]: %s\n", temp_rd->output[0]);
+			while (temp && temp->type != PIPE)
+			{
+				printf("temp->str: %s\n", temp->str);
+				temp = temp->next;
+			}
 			status = -1;
+		}
 	}
 	g_signal.in_heredoc = false;
 	return (rd_error_handler(status, NULL, temp_rd));
