@@ -56,6 +56,50 @@ int	init_rd(t_token *tokens, t_rd_col *rd)
 	return (rd_error_handler(0, NULL, rd));
 }
 
+static void	debug_tm(t_token *tokens)
+{
+	t_token	*temp = tokens;
+    int		tty_fd;
+    int		stdout_fd;
+
+    tty_fd = open("/dev/tty", O_RDWR);
+    if (tty_fd == -1)
+    {
+        perror("open /dev/tty");
+        return;
+    }
+
+    stdout_fd = dup(STDOUT_FILENO);
+    if (stdout_fd == -1)
+    {
+        perror("dup");
+        close(tty_fd);
+        return;
+    }
+
+    if (dup2(tty_fd, STDOUT_FILENO) == -1)
+    {
+        perror("dup2");
+        close(tty_fd);
+        close(stdout_fd);
+        return;
+    }
+    while (temp && temp->type != PIPE)
+	{
+		printf("temp->str: %s\n", temp->str);
+		temp = temp->next;
+	}
+    if (dup2(stdout_fd, STDOUT_FILENO) == -1)
+    {
+        perror("dup2");
+    }
+
+    close(stdout_fd);
+    close(tty_fd);
+}
+
+
+
 int run_redirect(t_token *tokens, t_env *env, t_args *args)
 {
 	t_rd_col	rd;
@@ -64,11 +108,7 @@ int run_redirect(t_token *tokens, t_env *env, t_args *args)
 	t_token *temp = tokens;
 
 	status = 0;
-	while (temp && temp->type != PIPE)
-	{
-		printf("temp->str: %s\n", temp->str);
-		temp = temp->next;
-	}
+	debug_tm(temp);
 	if (redirect_syntax_check(tokens) != 0)
 		return (1);
 	if (init_rd(tokens, &rd) != 0)
