@@ -56,7 +56,7 @@ int	init_rd(t_token *tokens, t_rd_col *rd)
 	return (rd_error_handler(0, NULL, rd));
 }
 
-static void	debug_tm(t_token *tokens)
+void	debug_tm(t_token *tokens)
 {
 	t_token	*temp = tokens;
     int		tty_fd;
@@ -105,7 +105,7 @@ int run_redirect(t_token *tokens, t_env *env, t_args *args)
 	t_rd_col	rd;
 	int			status;
 
-	t_token *temp = tokens;
+	//t_token *temp = tokens;
 
 	status = 0;
 	//debug_tm(temp);
