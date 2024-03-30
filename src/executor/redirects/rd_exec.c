@@ -90,7 +90,7 @@ static int	determine_output(t_args *args, t_rd_col *rd)
 
 int	output_rd(t_token *tok, t_env *env, t_args *arg, t_rd_col *rd)
 {
-	t_token		*temp;
+	/*t_token		*temp;
 	t_env		*temp_env;
 	t_args		*temp_args;
 	t_rd_col	*temp_rd;
@@ -111,7 +111,33 @@ int	output_rd(t_token *tok, t_env *env, t_args *arg, t_rd_col *rd)
 	if (dup2(temp_rd->c_stdout, STDOUT_FILENO) == -1)
 		return (rd_error_handler(4, NULL, temp_rd));
 	close(temp_rd->c_stdout);
-	return (rd_error_handler(status, NULL, temp_rd));
+	return (rd_error_handler(status, NULL, temp_rd));*/
+
+	t_token		*temp;
+    t_env		*temp_env;
+    t_args		*temp_args;
+    t_rd_col	*temp_rd;
+    int			status;
+    pid_t		pid;
+
+    temp = tok;
+    temp_env = env;
+    temp_args = arg;
+    temp_rd = rd;
+    status = 0;
+    temp_rd->c_stdout = dup(STDOUT_FILENO);
+    if (temp_rd->c_stdout == -1)
+        return (rd_error_handler(3, NULL, rd));
+    if (determine_output(temp_args, temp_rd) == 4)
+        return (rd_error_handler(4, NULL, temp_rd));
+    pid = prep_cmd(temp, temp_env, temp_args);
+    if (pid < 0)
+        return (rd_error_handler(4, NULL, temp_rd));
+    waitpid(pid, &status, 0);
+    if (dup2(temp_rd->c_stdout, STDOUT_FILENO) == -1)
+        return (rd_error_handler(4, NULL, temp_rd));
+    close(temp_rd->c_stdout);
+    return (rd_error_handler(status, NULL, temp_rd));
 }
 
 int	super_redirect(t_token *tok, t_env *env, t_args *arg, t_rd_col *rd)
