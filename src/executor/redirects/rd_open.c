@@ -64,9 +64,9 @@ int	open_input(t_rd_col *rd)
 	return (rd_error_handler(0, NULL, rd));
 }
 
-static void	the_cool_readline(int hd_fd, char *input)
+static void	the_real_readline(int hd_fd, char *input)
 {
-	/*char	*line;
+	char	*line;
 
 	line = NULL;
 	line = readline("heredoc> ");
@@ -79,46 +79,36 @@ static void	the_cool_readline(int hd_fd, char *input)
 		line = readline("heredoc> ");
 	}
 	if (line)
-		free(line);*/
+		free(line);
+}
+
+static int	dupe_readline(int hd_fd, char *input)
+{
 	char	*line;
     int		tty_fd;
     int		stdout_fd;
 
     tty_fd = open("/dev/tty", O_RDWR);
     if (tty_fd == -1)
-        return ;
-
+        return (rd_error_handler(3, NULL, NULL));
     stdout_fd = dup(STDOUT_FILENO);
     if (stdout_fd == -1)
     {
         close(tty_fd);
-        return;
+        return (rd_error_handler(3, NULL, NULL));
     }
-
     if (dup2(tty_fd, STDOUT_FILENO) == -1)
     {
         close(tty_fd);
         close(stdout_fd);
-        return;
+        return (rd_error_handler(3, NULL, NULL));
     }
-
-    line = NULL;
-    line = readline("heredoc> ");
-    while (line != NULL && ft_strcmp(line, input) != 0)
-    {
-        write(hd_fd, line, ft_strlen(line));
-        write(hd_fd, "\n", 1);
-        free(line);
-        line = NULL;
-        line = readline("heredoc> ");
-    }
-    if (line)
-        free(line);
-
-    dup2(stdout_fd, STDOUT_FILENO);
-
+	the_real_readline(hd_fd, input);
+    if (dup2(stdout_fd, STDOUT_FILENO) == -1)
+		return (rd_error_handler(3, NULL, NULL));
     close(stdout_fd);
     close(tty_fd);
+	return (rd_error_handler(0, NULL, NULL));
 }
 
 int	open_heredoc(char *input)
@@ -138,9 +128,9 @@ int	open_heredoc(char *input)
 		heredoc_fd = open(file, O_RDWR | O_CREAT | O_TRUNC, 0644);
 		if (heredoc_fd == -1)
 			return (rd_error_handler(2, "/tmp/heredoc_dump", NULL));
-		the_cool_readline(heredoc_fd, input);
+		status = dupe_readline(heredoc_fd, input);
 		close(heredoc_fd);
-		exit(0);
+		exit(status);
 	}
 	waitpid(pid, &status, 0);
 	if (status != 0)
