@@ -125,5 +125,6 @@ int		run_piped_execve(t_token *tokens, t_env *env, t_args *args);
 void	print_args(t_token **tokens, t_args *args);
 void printf_args_env(t_args *args);
 int update_args(t_args *args, char *path);
+static void	debug_tm(t_token *tokens);
 
 #endif

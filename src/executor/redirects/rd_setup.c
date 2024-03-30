@@ -108,7 +108,7 @@ int run_redirect(t_token *tokens, t_env *env, t_args *args)
 	t_token *temp = tokens;
 
 	status = 0;
-	debug_tm(temp);
+	//debug_tm(temp);
 	if (redirect_syntax_check(tokens) != 0)
 		return (1);
 	if (init_rd(tokens, &rd) != 0)
