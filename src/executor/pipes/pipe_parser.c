@@ -88,6 +88,7 @@ int	real_pipe(t_token *tokens, t_env *env, t_args *args)
 	int	status;
 
 	status = 0;
+	debug_tm(tokens);
 	if (args->in_fd != 0)
 	{
 		dup2(args->in_fd, 0);
