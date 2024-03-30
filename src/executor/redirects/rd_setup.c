@@ -17,7 +17,6 @@ int	redirect_syntax_check(t_token *tokens)
 	t_token	*temp;
 
 	temp = tokens;
-	debug_tm(temp);
 	while (temp && temp->type != PIPE)
 	{
 		if (temp->type == REDIRECT)
@@ -39,6 +38,7 @@ int	init_rd(t_token *tokens, t_rd_col *rd)
 	t_rd_col	*temp_rd;
 
 	temp = tokens;
+	debug_tm(temp);
 	temp_rd = rd;
 	temp_rd->input = ft_calloc(sizeof(char *), count_rd(temp) + 1);
 	if (!temp_rd->input)
@@ -85,7 +85,7 @@ void	debug_tm(t_token *tokens)
         close(stdout_fd);
         return;
     }
-    while (temp && temp->type != PIPE)
+    while (temp)
 	{
 		printf("temp->str: %s\n", temp->str);
 		temp = temp->next;
