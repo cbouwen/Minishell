@@ -59,7 +59,7 @@ int	rd_error_handler(int err_no, char *str, t_rd_col *rd)
 		ft_error(": No such file or directory\n", 1);
 	}
 	else if (err_no == -1)
-		ft_error("Unexpected error\n", -1);
+		ft_error("rd: Unexpected error\n", -1);
 	if (rd && err_no != 0)
 		free_rd(rd);
 	return (ft_error(NULL, err_no));
