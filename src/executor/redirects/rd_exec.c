@@ -82,7 +82,7 @@ static int	determine_output(t_args *args, t_rd_col *rd)
 
 	temp_args = args;
 	temp_rd = rd;
-	if (temp_args->pipe_count > 0)
+	if (temp_args->pipe_count >= 0)
 	{
 		if (dup2(temp_rd->o_fd, temp_args->fd[1]) == -1)
 			return (rd_error_handler(4, NULL, temp_rd));
