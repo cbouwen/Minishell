@@ -85,7 +85,7 @@ static void	the_cool_readline(int hd_fd, char *input)
 
 	tty_fd = open("/dev/tty", O_RDWR);
 	if (tty_fd == -1)
-		return (rd_error_handler(3, NULL, rd));
+		return ;
 	line = NULL;
 	line = readline("heredoc> ");
 	while (line != NULL && ft_strcmp(line, input) != 0)
