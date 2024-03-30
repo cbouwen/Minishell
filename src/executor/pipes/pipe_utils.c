@@ -19,7 +19,7 @@ int	move_to_next(t_token **tokens)
 	t_token *temp;
 
 	temp = *tokens;
-	while (temp && temp->type != PIPE)
+	while (temp && temp->type != PIPE && temp->next)
 		temp = temp->next;
 	if (temp)
 		*tokens = temp->next;
