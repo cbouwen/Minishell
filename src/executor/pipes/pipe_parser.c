@@ -95,7 +95,8 @@ int	real_pipe(t_token *tokens, t_env *env, t_args *args)
 	if (args->pipe_count > 0)
 		dup2(args->fd[1], 1);
 	close(args->fd[0]);
-	status = run_piped_execve(tokens, env, args);
+	status = run_piped_execve(tokens, env, args);.
+	ft_error(NULL, status);
 	return (status);
 }
 
