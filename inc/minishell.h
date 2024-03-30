@@ -34,6 +34,8 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 
+# define W_C_T (O_WRONLY | O_CREAT | O_TRUNC)
+
 extern t_signal	g_signal;
 
 //int				ft_error(char *str);

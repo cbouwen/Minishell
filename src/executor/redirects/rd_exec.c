@@ -68,6 +68,26 @@ int	input_rd(t_token *tok, t_env *env, t_args *arg, t_rd_col *rd)
 	return (rd_error_handler(status, NULL, temp_rd));
 }
 
+static int	determine_output(t_args *args, t_rd_col *rd)
+{
+	t_args		*temp_args;
+	t_rd_col	*temp_rd;
+
+	temp_args = args;
+	temp_rd = rd;
+	if (temp_args->pipe_count > 0)
+	{
+		if (dup2(temp_rd->o_fd, temp_args->fd[1]) == -1)
+			return (rd_error_handler(4, NULL, temp_rd));
+	}
+	else
+	{
+		if (dup2(temp_rd->o_fd, STDOUT_FILENO) == -1)
+			return (rd_error_handler(4, NULL, temp_rd));
+	}
+	return (0);
+}
+
 int	output_rd(t_token *tok, t_env *env, t_args *arg, t_rd_col *rd)
 {
 	t_token		*temp;
@@ -85,9 +105,8 @@ int	output_rd(t_token *tok, t_env *env, t_args *arg, t_rd_col *rd)
 	if (temp_rd->c_stdout == -1)
 		return (rd_error_handler(3, NULL, rd));
 	if (rd->output[rd->output_size - 1][0] == '#')
-		rd->o_fd = open("/tmp/heredoc_dump", O_WRONLY | O_CREAT | O_TRUNC,
-				0644);
-	if (dup2(temp_rd->o_fd, STDOUT_FILENO) == -1)
+		rd->o_fd = open("/tmp/heredoc_dump", W_C_T, 0644);
+	if (determine_output(temp_args, temp_rd) == 4)
 		return (rd_error_handler(4, NULL, temp_rd));
 	close(temp_rd->o_fd);
 	status = prep_cmd(temp, temp_env, temp_args);
