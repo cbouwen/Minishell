@@ -66,7 +66,7 @@ int	open_input(t_rd_col *rd)
 
 static void	the_cool_readline(int hd_fd, char *input)
 {
-	char	*line;
+	/*char	*line;
 
 	line = NULL;
 	line = readline("heredoc> ");
@@ -79,7 +79,26 @@ static void	the_cool_readline(int hd_fd, char *input)
 		line = readline("heredoc> ");
 	}
 	if (line)
+		free(line);*/
+	char	*line;
+	int		tty_fd;
+
+	tty_fd = open("/dev/tty", O_RDWR);
+	if (tty_fd == -1)
+		return (rd_error_handler(3, NULL, rd));
+	line = NULL;
+	line = readline("heredoc> ");
+	while (line != NULL && ft_strcmp(line, input) != 0)
+	{
+		write(hd_fd, line, ft_strlen(line));
+		write(hd_fd, "\n", 1);
 		free(line);
+		line = NULL;
+		line = readline("heredoc> ");
+	}
+	if (line)
+		free(line);
+	close(tty_fd);
 }
 
 int	open_heredoc(char *input)
