@@ -61,8 +61,10 @@ int	run_piped_cmd(t_token **tokens, t_env *env, t_args *args)
 
 	args->in_fd = 0;
 	args->pipe_count = count_pipes(*tokens) + 1;
+	printf("pipe_count pre: %d\n", args->pipe_count);
 	while (--args->pipe_count >= 0)
 	{
+		printf("pipe_count post: %d\n", args->pipe_count);
 		pipe(args->fd);
 		pid = fork();
 		if (pid == 0)
