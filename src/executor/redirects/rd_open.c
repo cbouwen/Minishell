@@ -48,21 +48,18 @@ int	open_input(t_rd_col *rd)
 	int		i;
 
 	i = 0;
-	if (rd->input != NULL)
+	while (i < rd->input_size)
 	{
-		while (i < rd->input_size)
-		{
-			if (rd->input[i][0] == '#')
-				rd->i_fd = open_heredoc(rd->input[i] + 1);
-			else
-				rd->i_fd = open(rd->input[i], O_RDONLY);
-			if (rd->i_fd < 0)
-				return (rd_error_handler(2, rd->input[i], rd));
-			if (i < rd->input_size - 1)
-				close(rd->i_fd);
+		if (rd->input[i][0] == '#')
+			rd->i_fd = open_heredoc(rd->input[i] + 1);
+		else
+			rd->i_fd = open(rd->input[i], O_RDONLY);
+		if (rd->i_fd < 0)
+			return (rd_error_handler(2, rd->input[i], rd));
+		if (i < rd->input_size - 1)
+			close(rd->i_fd);
 
-			i++;
-		}
+		i++;
 	}
 	return (rd_error_handler(0, NULL, rd));
 }
@@ -71,6 +68,7 @@ static void	the_real_readline(int hd_fd, char *input)
 {
 	char	*line;
 
+	g_signal.in_heredoc = true;
 	line = NULL;
 	line = readline("heredoc> ");
 	while (line != NULL && ft_strcmp(line, input) != 0)
@@ -81,6 +79,7 @@ static void	the_real_readline(int hd_fd, char *input)
 		line = NULL;
 		line = readline("heredoc> ");
 	}
+	g_signal.in_heredoc = false;
 	if (line)
 		free(line);
 }
