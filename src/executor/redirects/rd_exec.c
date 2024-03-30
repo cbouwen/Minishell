@@ -36,7 +36,7 @@ int	rd_exec_setup(t_token *tok, t_env *env, t_args *arg, t_rd_col *rd)
 		else
 		{
 			printf("rd_exec_setup: %s\n", temp->str);
-			debug_tm(temp);
+			//debug_tm(temp);
 			status = -1;
 		}
 	}
