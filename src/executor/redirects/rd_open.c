@@ -84,7 +84,6 @@ static void	the_real_readline(int hd_fd, char *input)
 
 static int	dupe_readline(int hd_fd, char *input)
 {
-	char	*line;
     int		tty_fd;
     int		stdout_fd;
 
