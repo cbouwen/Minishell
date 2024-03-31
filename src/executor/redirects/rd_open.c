@@ -122,7 +122,7 @@ int	open_heredoc(char *input, t_rd_col *rd)
 	{
 		g_signal.rd = rd;
 		signal(SIGINT, hd_sig);
-		heredoc_fd = open("/tmp/heredoc_dump", WR | CR | AP, 0644);
+		heredoc_fd = open("/tmp/heredoc_dump", WR | CR | TR, 0644);
 		if (heredoc_fd == -1)
 			return (rd_error_handler(2, "/tmp/heredoc_dump", NULL));
 		status = dupe_readline(heredoc_fd, input);
