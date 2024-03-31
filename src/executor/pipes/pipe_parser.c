@@ -21,7 +21,7 @@ int	pipe_decider(t_token **tokens, t_env *env, t_args *args)
 	status = 0;
 	temp_env = env;
 	temp_args = args;
-	if (check_cat(*tokens) >= 1)
+	if (check_cat(*tokens))
 		cool_cat(tokens, env, args);
 	else
 		status = run_piped_cmd(tokens, temp_env, temp_args);

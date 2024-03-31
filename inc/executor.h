@@ -121,7 +121,7 @@ int		run_piped_cmd(t_token **tokens, t_env *env, t_args *args);
 int		run_cmd(t_token *tokens, t_env *env, t_args *args);
 
 /*cool_cat*/
-int		check_cat(t_token *tokens);
+bool	check_cat(t_token *tokens);
 int		cool_cat(t_token **tokens, t_env *env, t_args *args);
 
 /*remove*/

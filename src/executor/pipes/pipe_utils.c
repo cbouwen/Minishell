@@ -42,13 +42,12 @@ int	count_pipes(t_token *tokens)
 	return (count);
 }
 
-int	check_cat(t_token *tokens)
+bool	check_cat(t_token *tokens)
 {
 	t_token	*temp;
-	int		count;
 
 	temp = tokens;
-	count = 0;
+	/*count = 0;
 	while (temp)
 	{
 		if (temp->type == CMD && ft_strcmp(temp->str, "cat") == 0)
@@ -68,8 +67,13 @@ int	check_cat(t_token *tokens)
 			}
 		}
 		temp = temp->next;
+	}*/
+	if (temp->type == CMD && ft_strcmp(temp->str, "cat") == 0)
+	{
+		if (temp->next->type == PIPE)
+			return (true);
 	}
-	return (count);
+	return (false);
 }
 
 int	pipe_error_handler(int err_no)
