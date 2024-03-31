@@ -17,7 +17,8 @@ int	check_absolute_path(char *path)
 	char		temp;
 	struct stat	path_stat;
 
-	stat(path, &path_stat);
+	if (stat(path, &path_stat) == -1)
+		return (-1);
 	temp = path[0];
 	if (temp == '/' && access(path, X_OK) == 0 && S_ISREG(path_stat.st_mode))
 		return (1);
