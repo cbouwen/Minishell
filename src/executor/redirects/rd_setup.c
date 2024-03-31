@@ -22,6 +22,7 @@ int	redirect_syntax_check(t_token *tokens)
 	{
 		if (temp->type == REDIRECT)
 		{
+			printf("temp->str: %s\n", temp->str);
 			if (temp->next->type == ARG)
 			{
 				if (ft_isdigit(temp->next->str[0]) == 1)
