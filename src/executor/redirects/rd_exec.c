@@ -34,16 +34,7 @@ int	rd_exec_setup(t_token *tok, t_env *env, t_args *arg, t_rd_col *rd)
 		else if (temp_rd->output_size > 0 && temp_rd->input_size > 0)
 			status = super_redirect(temp, temp_env, temp_args, temp_rd);
 		else
-		{
-			//debug_tm(temp);
-			printf("input_size: %d\n", temp_rd->input_size);
-			printf("output_size: %d\n", temp_rd->output_size);
-			for (int i = 0; i < temp_rd->input_size; i++)
-				printf("input[%d]: %s\n", i, temp_rd->input[i]);
-			for (int i = 0; i < temp_rd->output_size; i++)
-				printf("output[%d]: %s\n", i, temp_rd->output[i]);
 			status = -1;
-		}
 	}
 	g_signal.in_heredoc = false;
 	return (rd_error_handler(status, NULL, temp_rd));
@@ -84,7 +75,7 @@ static int	determine_output(t_args *args, t_rd_col *rd)
 
 	temp_args = args;
 	temp_rd = rd;
-	if (temp_args->pipe_count >= 0)
+	if (temp_args->pipe_count > 0)
 	{
 		if (dup2(temp_rd->o_fd, temp_args->fd[1]) == -1)
 			return (rd_error_handler(4, NULL, temp_rd));
