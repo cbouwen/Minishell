@@ -15,8 +15,6 @@ int	cool_cat(t_token **tokens, t_env *env, t_args *args)
 	temp = *tokens;
 	temp_env = env;
 	temp_args = args;
-	(void)temp_env;
-	(void)temp_args;
 	while (temp)
 	{
 		if (check_cat_no_args(temp))
@@ -26,7 +24,20 @@ int	cool_cat(t_token **tokens, t_env *env, t_args *args)
 		}
 		temp = temp->next;
 	}
-	run_piped_cmd(tokens, env, args);
-	printf("now come the cats\n");
+	status = run_piped_cmd(tokens, env, args);
+	run_fake_cat(count);
 	return (status);
+}
+
+int	run_fake_cat(int count)
+{
+	int		i;
+
+	i = 0;
+	while (i < count)
+	{
+		readline();
+		i++;
+	}
+	return (0);
 }
