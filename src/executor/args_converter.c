@@ -68,7 +68,6 @@ int	fill_env(t_args *args, t_env *env)
 
 int	free_args(t_args *args)
 {
-	printf("free_args\n");
 	if (args->arg_array)
 		free_array(args->arg_array);
 	if (args->env_array)
@@ -78,7 +77,6 @@ int	free_args(t_args *args)
 
 int	free_args_full(t_args *args, t_token *tokens, t_env *env)
 {
-	printf("free_args_full\n");
 	if (args->arg_array)
 		free_array(args->arg_array);
 	if (args->env_array)
