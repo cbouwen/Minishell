@@ -32,7 +32,9 @@ int	pipe_decider(t_token **tokens, t_env *env, t_args *args)
 		//cool_cat(tokens, env, args);
 	else
 		status = run_piped_cmd(tokens, temp_env, temp_args);
-	reset_tokens(tokens);
+	//reset_tokens(tokens);
+	while (*tokens)
+		printf("token: %s\n", (*tokens)->str);
 	return (pipe_error_handler(status));
 }
 
