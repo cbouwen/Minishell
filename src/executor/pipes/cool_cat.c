@@ -26,6 +26,7 @@ int	cool_cat(t_token **tokens, t_env *env, t_args *args)
 		}
 		temp = temp->next;
 	}
-	printf("count: %d\n", count);
+	run_piped_cmd(tokens, env, args);
+	printf("now come the cats\n");
 	return (status);
 }
