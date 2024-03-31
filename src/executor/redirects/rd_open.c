@@ -150,6 +150,7 @@ int	open_heredoc(char *input)
 		return (rd_error_handler(2, "/tmp/heredoc_dump", NULL));
 	status = dupe_readline(heredoc_fd, input);
 	close(heredoc_fd);
+	(void)status;
 	return (heredoc_fd);
 }
 
