@@ -35,6 +35,7 @@
 # include <fcntl.h>
 
 # define W_C_T (O_WRONLY | O_CREAT | O_TRUNC)
+# define WR_C_A (O_RDWR | O_CREAT | O_TRUNC)
 
 extern t_signal	g_signal;
 
