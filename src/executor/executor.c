@@ -36,6 +36,7 @@ int	builtin_executor(t_token *tokens, t_env *env, t_args *args)
 	temp_env = env;
 	status = 0;
 	builtin = determine_builtin(temp);
+	printf("builtin: %d\n", builtin);
 	if (builtin == 1)
 		status = determine_echo(temp);
 	else if (builtin == 2)
