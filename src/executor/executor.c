@@ -61,7 +61,6 @@ int	executor(t_token *tokens, t_env *env)
 
 	temp = tokens;
 	temp_env = env;
-	//args = malloc(sizeof(t_args));
 	init_args(&args);
 	if (fill_env(&args, temp_env) != 0)
 		return (ft_error(NULL, 1));

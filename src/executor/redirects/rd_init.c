@@ -78,7 +78,7 @@ int	fill_heredoc(t_token *tokens, t_rd_col *rd, int i)
 	input = ft_strdup("#");
 	if (!input)
 		return (rd_error_handler(12, NULL, rd));
-	temp_input = strjoin_free(input, temp->next->str, 0);
+	temp_input = strjoin_free(input, temp->next->str, 1);
 	if (!temp_input)
 	{
 		free(input);
@@ -128,7 +128,7 @@ int	fill_app(t_token *tokens, t_rd_col *rd, int i)
 	input = ft_strdup("#");
 	if (!input)
 		return (rd_error_handler(12, NULL, rd));
-	temp_input = strjoin_free(input, temp->next->str, 0);
+	temp_input = strjoin_free(input, temp->next->str, 1);
 	if (!temp_input)
 	{
 		free(input);
