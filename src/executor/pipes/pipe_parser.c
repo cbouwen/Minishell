@@ -67,6 +67,7 @@ int	run_piped_cmd(t_token **tokens, t_env *env, t_args *args)
 				close(args->in_fd);
 			args->in_fd = args->fd[0];
 		}
+		free(*tokens);
 		move_to_next(tokens);
 		args->pipe_count--;
 	}
@@ -109,6 +110,5 @@ int	run_cmd(t_token *tokens, t_env *env, t_args *args)
 	status = 0;
 	status = run_basic_cmd(temp, temp_env, temp_args);
 	free_args(temp_args);
-	free_tokens(temp);
 	return (status);
 }
