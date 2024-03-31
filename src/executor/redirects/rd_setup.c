@@ -17,6 +17,7 @@ int	redirect_syntax_check(t_token *tokens)
 	t_token	*temp;
 
 	temp = tokens;
+	debug_tm(tokens);
 	while (temp && temp->type != PIPE)
 	{
 		if (temp->type == REDIRECT)
