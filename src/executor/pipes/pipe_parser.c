@@ -64,7 +64,7 @@ int	run_piped_cmd(t_token **tokens, t_env *env, t_args *args)
 	while (args->pipe_count >= 0)
 	{
 		printf("call_count: %d\n", args->call_count);
-		debug_tm(*tokens);
+		//debug_tm(*tokens);
 		pipe(args->fd);
 		pid = fork();
 		if (pid == 0)
