@@ -31,7 +31,7 @@ int	check_redirects(t_token *tokens)
 	t_token	*temp;
 
 	temp = tokens;
-	while (temp)
+	while (temp && temp->type != PIPE)
 	{
 		if (temp->type == REDIRECT)
 			return (0);
