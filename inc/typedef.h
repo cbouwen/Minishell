@@ -77,7 +77,7 @@ typedef struct s_rd_col
 	int		c_stdin;
 	int		c_stdout;
 	t_args	*args;
-	t_token	*token;
+	t_token	*tokens;
 	t_env	*env;
 }				t_rd_col;
 

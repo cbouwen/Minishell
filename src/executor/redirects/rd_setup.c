@@ -34,10 +34,10 @@ int	redirect_syntax_check(t_token *tokens)
 
 int	init_rd(t_token *tokens, t_rd_col *rd, t_args *args, t_env *env)
 {
-	rd->input = ft_calloc(sizeof(char *), count_rd(temp) + 1);
+	rd->input = ft_calloc(sizeof(char *), count_rd(rd) + 1);
 	if (!rd->input)
 		return (rd_error_handler(12, NULL, rd));
-	rd->output = ft_calloc(sizeof(char *), count_rd(temp) + 1);
+	rd->output = ft_calloc(sizeof(char *), count_rd(rd) + 1);
 	if (!rd->output)
 		return (rd_error_handler(12, NULL, rd));
 	rd->input_size = 0;
@@ -112,7 +112,7 @@ int run_redirect(t_token *tokens, t_env *env, t_args *args)
 	status = 0;
 	if (redirect_syntax_check(temp) != 0)
 		return (1);
-	if (init_rd(temp, &rd) != 0)
+	if (init_rd(temp, &rd, temp_args, temp_env) != 0)
 		return (1);
 	if (fill_rd(temp, &rd) != 0)
 		return (1);
