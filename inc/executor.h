@@ -98,7 +98,7 @@ int		init_rd(t_token *tokens, t_rd_col *rd);
 int		rd_error_handler(int err_no, char *str, t_rd_col *rd);
 int		open_output(t_rd_col *rd);
 int		open_input(t_rd_col *rd);
-int		open_heredoc(char *input, t_rd_col *rd);
+int		open_heredoc(char *input);
 int		free_rd(t_rd_col *rd);
 int		rd_exec_setup(t_token *tok, t_env *env, t_args *arg, t_rd_col *rd);
 int		input_rd(t_token *tok, t_env *env, t_args *arg, t_rd_col *rd);

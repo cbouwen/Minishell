@@ -51,7 +51,7 @@ int	open_input(t_rd_col *rd)
 	while (i < rd->input_size)
 	{
 		if (rd->input[i][0] == '#')
-			rd->i_fd = open_heredoc(rd->input[i] + 1, rd);
+			rd->i_fd = open_heredoc(rd->input[i] + 1);
 		else
 			rd->i_fd = open(rd->input[i], O_RDONLY);
 		if (rd->i_fd < 0)
@@ -112,7 +112,7 @@ static int	dupe_readline(int hd_fd, char *input)
 	return (rd_error_handler(0, NULL, NULL));
 }
 
-int	open_heredoc(char *input, t_rd_col *rd)
+int	open_heredoc(char *input)
 {
 	int		heredoc_fd;
 	pid_t	pid;
@@ -131,7 +131,6 @@ int	open_heredoc(char *input, t_rd_col *rd)
 			return (rd_error_handler(2, "/tmp/heredoc_dump", NULL));
 		status = dupe_readline(heredoc_fd, input);
 		close(heredoc_fd);
-		free_rd(rd);
 		exit(status);
 	}
 	waitpid(pid, &status, 0);
