@@ -69,7 +69,7 @@ int	executor(t_token *tokens, t_env *env)
 		run_basic_cmd(temp, temp_env, &args);
 	else
 		pipe_decider(&tokens, temp_env, &args);
-	free_args(args);
+	free_args(&args);
 	return (1);
 }
 
