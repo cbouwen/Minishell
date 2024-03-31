@@ -39,10 +39,10 @@ int	init_rd(t_token *tokens, t_rd_col *rd)
 
 	temp = tokens;
 	temp_rd = rd;
-	temp_rd->input = malloc(sizeof(char *) * count_rd(temp) + 1);
+	temp_rd->input = ft_calloc(sizeof(char *), count_rd(temp) + 1);
 	if (!temp_rd->input)
 		return (rd_error_handler(12, NULL, rd));
-	temp_rd->output = malloc(sizeof(char *) * count_rd(temp) + 1);
+	temp_rd->output = ft_calloc(sizeof(char *), count_rd(temp) + 1);
 	if (!temp_rd->output)
 		return (rd_error_handler(12, NULL, rd));
 	temp_rd->input_size = 0;
