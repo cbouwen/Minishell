@@ -60,7 +60,10 @@ int	check_cat(t_token *tokens)
 				if (ft_strcmp(temp->next->next->str, "cat") == 0)
 					count++;
 				else
-					return (count++);
+				{
+					count = 1;
+					return (count);
+				}
 			}
 		}
 		temp = temp->next;
