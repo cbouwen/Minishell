@@ -123,7 +123,7 @@ int	open_heredoc(char *input, t_rd_col *rd)
 	pid = fork();
 	if (pid == 0)
 	{
-		signal(SIGINT, SIG_DFL);
+		signal(SIGINT, sig_handler);
 		heredoc_fd = open("/tmp/heredoc_dump", WR_C_A, 0644);
 		if (heredoc_fd == -1)
 			return (rd_error_handler(2, "/tmp/heredoc_dump", NULL));
