@@ -17,7 +17,7 @@ EXPANDER_SRC = $(addprefix $(SRC_DIR)expander/, expander.c double_quotes.c utils
 EXECUTOR_SRC = $(addprefix $(SRC_DIR)executor/, executor.c execve_utils.c exec_utils.c exec_syntax.c args_converter.c args_converter_utils.c path_generator.c path_generator_utils.c)
 BUILTIN_SRC = $(addprefix $(SRC_DIR)executor/builtins/, echo.c pwd.c env.c export.c export_utils.c unset.c cd.c cd_utils.c)
 RD_SRC = $(addprefix $(SRC_DIR)executor/redirects/, rd_setup.c rd_init.c rd_utils.c rd_open.c rd_exec.c)
-PIPES_SRC = $(addprefix $(SRC_DIR)executor/pipes/, pipe_utils.c pipe_parser.c cool_cat.c)
+PIPES_SRC = $(addprefix $(SRC_DIR)executor/pipes/, pipe_utils.c pipe_parser.c cool_cat.c cool_cat_utils.c)
 
 SRC = $(SRC_FILES) $(UTILS_SRC) $(TOKENIZER_SRC) $(LEXER_SRC) $(PARSER_SRC) $(EXPANDER_SRC) $(EXECUTOR_SRC) $(BUILTIN_SRC) $(RD_SRC) $(PIPES_SRC)
 

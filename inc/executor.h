@@ -123,6 +123,7 @@ int		run_cmd(t_token *tokens, t_env *env, t_args *args);
 /*cool_cat*/
 bool	check_cat(t_token *tokens);
 int		cool_cat(t_token **tokens, t_env *env, t_args *args);
+int		count_cat(t_token *tokens);
 
 /*remove*/
 void	print_args(t_token **tokens, t_args *args);

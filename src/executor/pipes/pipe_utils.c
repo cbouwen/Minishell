@@ -42,40 +42,6 @@ int	count_pipes(t_token *tokens)
 	return (count);
 }
 
-bool	check_cat(t_token *tokens)
-{
-	t_token	*temp;
-
-	temp = tokens;
-	/*count = 0;
-	while (temp)
-	{
-		if (temp->type == CMD && ft_strcmp(temp->str, "cat") == 0)
-		{
-			if (temp->next->type == PIPE && temp->next->next->type == CMD
-				&& ft_strcmp(temp->next->next->str, "cat") != 0)
-				return (1);
-			else
-			{
-				if (!temp->next || temp->next->type != PIPE)
-					break ;
-				else if (temp->next->type == PIPE && temp->next->next->type == CMD)
-				{
-					if (ft_strcmp(temp->next->next->str, "cat") == 0)
-						count++;
-				}
-			}
-		}
-		temp = temp->next;
-	}*/
-	if (temp->type == CMD && ft_strcmp(temp->str, "cat") == 0)
-	{
-		if (temp->next->type == PIPE)
-			return (true);
-	}
-	return (false);
-}
-
 int	pipe_error_handler(int err_no)
 {
 	if (err_no == 1)

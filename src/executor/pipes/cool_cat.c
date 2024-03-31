@@ -16,6 +16,6 @@ int	cool_cat(t_token **tokens, t_env *env, t_args *args)
 	(void)temp;
 	(void)temp_env;
 	(void)temp_args;
-	printf("cat count: %d\n", check_cat(*tokens));
+	printf("cat count: %d\n", count_cat(*tokens));
 	return (status);
 }
