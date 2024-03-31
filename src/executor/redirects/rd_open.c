@@ -109,15 +109,6 @@ static int	dupe_readline(int hd_fd, char *input)
 	return (rd_error_handler(0, NULL, NULL));
 }
 
-static void	hd_sig(int sig)
-{
-	(void)sig;
-	g_signal.in_heredoc = false;
-	free_rd_full(g_signal.rd);
-	ft_error(NULL, 130);
-	exit(130);
-}
-
 int	open_heredoc(char *input, t_rd_col *rd)
 {
 	int		heredoc_fd;

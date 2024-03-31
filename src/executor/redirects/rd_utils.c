@@ -68,3 +68,12 @@ int	rd_error_handler(int err_no, char *str, t_rd_col *rd)
 		free_rd(rd);
 	return (ft_error(NULL, err_no));
 }
+
+static void	hd_sig(int sig)
+{
+	(void)sig;
+	g_signal.in_heredoc = false;
+	free_rd_full(g_signal.rd);
+	ft_error(NULL, 130);
+	exit(130);
+}
