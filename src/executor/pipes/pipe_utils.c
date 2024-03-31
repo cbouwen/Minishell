@@ -61,6 +61,7 @@ int	check_cat(t_token *tokens)
 					count++;
 				else
 				{
+					printd("count: %d\n", count);
 					if (count == 0)
 						count++;
 					return (count);
