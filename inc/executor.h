@@ -75,7 +75,7 @@ int		free_args(t_args *args);
 int		free_args_full(t_args *args, t_token *tokens, t_env *env);
 int		run_execve(t_args *args);
 size_t	count_env(t_env *env);
-int		init_args(t_args *args, , t_token *tokens, t_env *env);
+int		init_args(t_args *args, t_token *tokens, t_env *env);
 int		fill_env(t_args *args, t_env *env);
 char	*strjoin_free(char *s1, char *s2, int free_str);
 int		find_path(t_args *args);
