@@ -70,14 +70,16 @@ int	real_pipe(t_token *tokens, t_env *env, t_args *args)
 	temp_args = args;
 	if (temp_args->in_fd != 0)
 	{
-		dup2(temp_args->in_fd, 0);
+		if (dup2(temp_args->in_fd, 0) < 0)
+			return (free_args_full(temp_args, 1));
 		close(temp_args->in_fd);
 	}
 	if (temp_args->pipe_count > 0)
-		dup2(temp_args->fd[1], 1);
+		if (dup2(temp_args->fd[1], 1) < 0)
+			return (free_args_full(temp_args, 1));
 	close(temp_args->fd[0]);
 	status = run_cmd(temp, temp_env, temp_args);
-	free_args_full(temp_args);
+	free_args_full(temp_args, 0);
 	return (status);
 }
 

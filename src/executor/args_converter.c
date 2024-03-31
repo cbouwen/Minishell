@@ -75,7 +75,7 @@ int	free_args(t_args *args)
 	return (0);
 }
 
-int	free_args_full(t_args *args)
+int	free_args_full(t_args *args, int err_no)
 {
 	if (args->arg_array)
 		free_array(args->arg_array);
@@ -83,7 +83,7 @@ int	free_args_full(t_args *args)
 		free_array(args->env_array);
 	free_tokens(args->tokens);
 	free_env(args->env);
-	return (0);
+	return (err_no);
 }
 
 void	printf_args_env(t_args *args)

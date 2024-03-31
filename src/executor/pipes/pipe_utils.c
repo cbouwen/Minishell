@@ -69,7 +69,9 @@ bool	count_consecutive_cats(t_token *tokens)
 
 int	pipe_error_handler(int err_no)
 {
-	if (err_no = 3)
+	if (err_no == 1)
+		return (ft_error("dup2 failed\n", 2));
+	if (err_no == 3)
 		return (ft_error("fork failed\n", 3));
 	return (ft_error(NULL, err_no));
 }
