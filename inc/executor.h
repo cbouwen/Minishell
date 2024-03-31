@@ -67,6 +67,9 @@ int		go_dir(char *path, t_env *env);
 int		update_pwd(t_env *env, char *path);
 int		free_and_return(char *str1, char *str2, int err_no);
 
+/*exit*/
+int		exit_shell(t_token *tokens, t_env *env, t_args *args);
+
 /*execve*/
 size_t	count_tokens(t_token *tokens);
 int		execve_executor(t_token *tokens, t_args *args);

@@ -57,6 +57,8 @@ int	determine_builtin(t_token *tokens)
 		return (5);
 	else if (ft_strcmp(temp->str, "cd") == 0)
 		return (6);
+	else if (ft_strcmp(temp->str, "exit") == 0)
+		return (7);
 	return (0);
 }
 

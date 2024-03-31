@@ -48,6 +48,8 @@ int	builtin_executor(t_token *tokens, t_env *env)
 		status = unset_var(temp->next, temp_env);
 	else if (builtin == 6)
 		status = change_dir(temp, temp_env);
+	else if (builtin == 7)
+		status = exit_shell(temp);
 	else
 		return (ft_error("executor: unexpected error\n", 1));
 	return (status);
