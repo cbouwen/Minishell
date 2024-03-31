@@ -38,7 +38,10 @@ int	pipe_decider(t_token **tokens, t_env *env, t_args *args)
 	reset_tokens(tokens);
 	printf("test\n");
 	while (*tokens)
+	{
 		printf("token: %s\n", (*tokens)->str);
+		*tokens = (*tokens)->next;
+	}
 	return (pipe_error_handler(status));
 }
 
