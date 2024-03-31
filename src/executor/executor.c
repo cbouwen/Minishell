@@ -61,16 +61,16 @@ int	executor(t_token *tokens, t_env *env)
 
 	temp = tokens;
 	temp_env = env;
-	args = malloc(sizeof(t_args));
-	init_args(args);
+	//args = malloc(sizeof(t_args));
+	init_args(&args);
 	if (!args)
 		return (ft_error("executor: malloc error\n", 12));
-	if (fill_env(args, temp_env) != 0)
+	if (fill_env(&args, temp_env) != 0)
 		return (ft_error(NULL, 1));
 	if (check_pipes(temp) == 1)
-		run_basic_cmd(temp, temp_env, args);
+		run_basic_cmd(temp, temp_env, &args);
 	else
-		pipe_decider(&tokens, temp_env, args);
+		pipe_decider(&tokens, temp_env, &args);
 	free_args(args);
 	return (1);
 }

@@ -68,14 +68,18 @@ int	fill_env(t_args *args, t_env *env)
 
 int	free_args(t_args *args)
 {
-	if (args)
+	/*if (args)
 	{
 		if (args->arg_array)
 			free_array(args->arg_array);
 		if (args->env_array)
 			free_array(args->env_array);
 		free(args);
-	}
+	}*/
+	if (args->arg_array)
+		free_array(args->arg_array);
+	if (args->env_array)
+		free_array(args->env_array);
 	return (0);
 }
 
