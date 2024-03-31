@@ -14,7 +14,7 @@
 
 static void	reset_tokens(t_token **tokens)
 {
-	while ((*tokens)->prev)
+	while (*tokens && (*tokens)->prev)
 		*tokens = (*tokens)->prev;
 }
 
@@ -23,15 +23,18 @@ int	pipe_decider(t_token **tokens, t_env *env, t_args *args)
 	t_env	*temp_env;
 	t_args	*temp_args;
 	int		status;
+	t_token	*first;
 
 	status = 0;
 	temp_env = env;
 	temp_args = args;
+	first = *tokens;
 	if (count_consecutive_cats(*tokens))
 		printf("cool_cat\n");
 		//cool_cat(tokens, env, args);
 	else
 		status = run_piped_cmd(tokens, temp_env, temp_args);
+	*tokens = first;
 	reset_tokens(tokens);
 	printf("test\n");
 	while (*tokens)
