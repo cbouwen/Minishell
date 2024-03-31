@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 19:25:13 by mlegendr          #+#    #+#             */
-/*   Updated: 2024/03/29 19:28:05 by mlegendr         ###   ########.fr       */
+/*   Updated: 2024/03/31 23:56:37 by matisse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	run_piped_cmd(t_token **tokens, t_env *env, t_args *args)
 
 int	real_pipe(t_token *tokens, t_env *env, t_args *args)
 {
-	int	status;
+	int		status;
 	t_token	*temp;
 	t_env	*temp_env;
 	t_args	*temp_args;

@@ -6,18 +6,16 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 11:22:35 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/03/28 21:19:21 by mlegendr         ###   ########.fr       */
+/*   Updated: 2024/04/01 00:03:30 by matisse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-extern t_signal	g_signal;
-
 char	*find_env(char *str, t_env *env)
 {
 	t_env	*tmp;
-	char			*substr;
+	char	*substr;
 
 	tmp = env;
 	if (!(ft_strcmp(str, "$?")))

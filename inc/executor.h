@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 17:33:00 by mlegendr          #+#    #+#             */
-/*   Updated: 2024/03/29 17:50:09 by mlegendr         ###   ########.fr       */
+/*   Updated: 2024/04/01 00:10:35 by matisse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,8 +129,8 @@ int		run_fake_cat(int count);
 
 /*remove*/
 void	print_args(t_token **tokens, t_args *args);
-void printf_args_env(t_args *args);
-int update_args(t_args *args, char *path);
+void	printf_args_env(t_args *args);
+int		update_args(t_args *args, char *path);
 void	debug_tm(t_token *tokens);
 
 #endif

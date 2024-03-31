@@ -6,17 +6,15 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 19:25:13 by mlegendr          #+#    #+#             */
-/*   Updated: 2024/03/29 19:46:46 by mlegendr         ###   ########.fr       */
+/*   Updated: 2024/03/31 23:57:36 by matisse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../inc/minishell.h"
 
-//extern t_signal	g_signal;
-
 int	move_to_next(t_token **tokens)
 {
-	t_token *temp;
+	t_token	*temp;
 
 	temp = *tokens;
 	while (temp && temp->type != PIPE && temp->next)
@@ -49,28 +47,4 @@ int	pipe_error_handler(int err_no)
 	if (err_no == 3)
 		return (ft_error("fork failed\n", 3));
 	return (ft_error(NULL, err_no));
-}
-
-void	print_args(t_token **tokens, t_args *args)
-{
-	int j;
-	j = count_pipes(*tokens);
-	printf("%d\n", check_cat(*tokens));
-	while (j >= 0)
-	{
-		int k;
-
-		k = 0;
-		if (args->arg_array)
-			free_array(args->arg_array);
-		fill_args(args, *tokens);
-		while (args->arg_array[k])
-		{
-			printf("arg_array[%d]: %s\n", k, args->arg_array[k]);
-			k++;
-		}
-		move_to_next(tokens);
-		j--;
-	}
-	return ;
 }

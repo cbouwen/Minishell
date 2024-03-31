@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 15:31:04 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/03/28 21:19:21 by mlegendr         ###   ########.fr       */
+/*   Updated: 2024/04/01 00:10:05 by matisse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@
 # include "minishell.h"
 # include <stdbool.h>
 
-typedef struct	s_env
+typedef struct s_env
 {
-	char					*name;
-	char					*value;
+	char			*name;
+	char			*value;
 	struct s_env	*next;
 }				t_env;
 
@@ -46,7 +46,7 @@ typedef struct s_token
 	struct s_token	*prev;
 }				t_token;
 
-typedef struct	s_args
+typedef struct s_args
 {
 	char	**arg_array;
 	char	**env_array;
@@ -76,22 +76,12 @@ typedef struct s_rd_col
 	t_env	*env;
 }				t_rd_col;
 
-typedef struct	s_signal
+typedef struct s_signal
 {
 	int			err_no;
 	bool		in_cmd;
 	bool		in_heredoc;
 	t_rd_col	*rd;
 }				t_signal;
-
-/*typedef struct s_syntax_token
-{
-	struct s_syntax_token	*parent;
-	struct s_syntax_token	*left;
-	struct s_syntax_token	*right;
-	int						input;
-	int						output;
-	t_token					*token;
-}		t_syntax_token;*/
 
 #endif

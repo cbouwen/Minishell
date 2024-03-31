@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 16:16:53 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/03/29 12:26:07 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/04/01 00:01:55 by matisse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	run_minishell(t_env *env, char *input)
 	{
 		tokenizer(input, &tokens);
 		if (!tokens)
-			break;
+			break ;
 		if (!(lexer(&tokens)))
 			break ;
 		parser(&tokens);
@@ -41,7 +41,7 @@ int	run_minishell(t_env *env, char *input)
 int	minishell_loop(char **envp)
 {
 	t_env	*env;
-	char			*input;
+	char	*input;
 
 	env = env_parser(envp);
 	while (1)
@@ -71,7 +71,6 @@ int	main(int argc, char **argv, char **envp)
 {
 	(void)argc;
 	(void)argv;
-
 	g_signal.err_no = 0;
 	g_signal.in_cmd = false;
 	g_signal.in_heredoc = false;

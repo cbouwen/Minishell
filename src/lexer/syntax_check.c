@@ -6,13 +6,11 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 17:46:17 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/03/25 15:57:06 by matisse          ###   ########.fr       */
+/*   Updated: 2024/04/01 00:02:51 by matisse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
-
-extern int	g_err;
 
 int	check_logic(t_token tokens, int i)
 {

@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:41:07 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/03/29 16:12:34 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/04/01 00:07:53 by matisse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,20 +39,17 @@
 
 extern t_signal	g_signal;
 
-//int				ft_error(char *str);
 t_env	*env_parser(char *envp[]);
-void			free_env_node(t_env *env);
-void			free_env(t_env *env);
+void	free_env_node(t_env *env);
+void	free_env(t_env *env);
 t_env	*get_env_node(t_env *head, char *name);
 t_env	*create_node(char *name, char *value);
-void			ft_lstadd_back_ms(t_env **lst, t_env *new);
-void heredoc_handler(int sig);
+void	ft_lstadd_back_ms(t_env **lst, t_env *new);
+void	heredoc_handler(int sig);
 
 //tester
-void			tester(t_env *envp);
-void			test_tokenizer(t_token *tokens);
-void			test_syntax_tree(t_token *token, int pipes);
+void	tester(t_env *envp);
+void	test_tokenizer(t_token *tokens);
+void	test_syntax_tree(t_token *token, int pipes);
 
 #endif
-
-//Quick test to see if I can merge now

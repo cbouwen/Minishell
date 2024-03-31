@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 18:41:17 by mlegendr          #+#    #+#             */
-/*   Updated: 2024/03/28 21:19:21 by mlegendr         ###   ########.fr       */
+/*   Updated: 2024/03/31 23:59:30 by matisse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,6 @@ int	extract_value(char *token_str, char **var_value)
 	return (ft_error(NULL, 0));
 }
 
-/*0 if val exists
-  1 if val doesn't exist*/
 int	check_env_val_exists(t_env *env, char *var_name)
 {
 	while (env)
@@ -55,7 +53,6 @@ int	special_export(char *token_str, char **var_name, char **var_value)
 	int	sign_loc;
 
 	(void)var_value;
-
 	status = 0;
 	sign_loc = 0;
 	status = extract_name(token_str, var_name);
