@@ -24,7 +24,7 @@ int	cool_cat(t_token **tokens, t_env *env, t_args *args)
 		}
 		temp = temp->next;
 	}
-	status = run_piped_cmd(tokens, env, args);
+	status = run_piped_cmd(tokens, temp_env, temp_args);
 	run_fake_cat(count);
 	return (status);
 }
@@ -36,7 +36,7 @@ int	run_fake_cat(int count)
 	i = 0;
 	while (i < count)
 	{
-		readline();
+		readline("");
 		i++;
 	}
 	return (0);
