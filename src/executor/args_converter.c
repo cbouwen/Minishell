@@ -57,7 +57,7 @@ int	fill_env(t_args *args, t_env *env)
 		if (!tmp)
 			return (ft_error("fill_env: malloc error\n", 12));
 		//args->env_array[i] = strjoin_free(tmp, temp->value, 1);
-		ft_strjoin(tmp, temp->value);
+		args->env_array[i] = ft_strjoin(tmp, temp->value);
 		free(tmp);
 		if (!args->env_array[i])
 			return (ft_error("fill_env: malloc error\n", 12));
