@@ -42,6 +42,7 @@ int	run_fake_cat(int count)
 		line = readline("");
 		if (line != NULL)
 		{
+			printf("%s\n", line);
 			free(line);
 			i++;
 		}
