@@ -53,12 +53,18 @@ int	check_cat(t_token *tokens)
 	{
 		if (temp->type == CMD && ft_strcmp(temp->str, "cat") == 0)
 		{
-			if (!temp->next || temp->next->type != PIPE)
-				break ;
-			else if (temp->next->type == PIPE && temp->next->next->type == CMD)
+			if (temp->next->type == PIPE && temp->next->next->type == CMD
+				&& ft_strcmp(temp->next->next->str, "cat") != 0)
+				return (1);
+			else
 			{
-				if (ft_strcmp(temp->next->next->str, "cat") == 0)
-					count++;
+				if (!temp->next || temp->next->type != PIPE)
+					break ;
+				else if (temp->next->type == PIPE && temp->next->next->type == CMD)
+				{
+					if (ft_strcmp(temp->next->next->str, "cat") == 0)
+						count++;
+				}
 			}
 		}
 		temp = temp->next;
