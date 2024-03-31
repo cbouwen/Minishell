@@ -52,8 +52,6 @@ int	init_args(t_args *args)
 	args->pipe_count = -1;
 	args->a_stdin = 0;
 	args->a_stdout = 0;
-
-	args->call_count = 0;
 	return (0);
 }
 

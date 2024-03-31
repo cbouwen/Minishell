@@ -62,7 +62,6 @@ typedef struct	s_args
 	int			pipe_count;
 	int			a_stdout;
 	int			a_stdin;
-	int			call_count;
 }				t_args;
 
 typedef struct s_rd_col
