@@ -69,7 +69,7 @@ int	rd_error_handler(int err_no, char *str, t_rd_col *rd)
 	return (ft_error(NULL, err_no));
 }
 
-static void	hd_sig(int sig)
+void	hd_sig(int sig)
 {
 	(void)sig;
 	g_signal.in_heredoc = false;

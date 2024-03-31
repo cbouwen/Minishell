@@ -107,6 +107,7 @@ int		output_rd(t_token *tok, t_env *env, t_args *arg, t_rd_col *rd);
 int		super_redirect(t_token *tok, t_env *env, t_args *arg, t_rd_col *rd);
 int		run_redirect(t_token *tokens, t_env *env, t_args *args);
 int		free_rd_full(t_rd_col *temp_rd);
+void	hd_sig(int sig);
 
 /*pipes*/
 /*pipe_utils*/
@@ -126,11 +127,5 @@ int		cool_cat(t_token **tokens, t_env *env, t_args *args);
 int		count_cat(t_token *tokens);
 bool	check_cat_no_args(t_token *tokens);
 int		run_fake_cat(int count);
-
-/*remove*/
-void	print_args(t_token **tokens, t_args *args);
-void	printf_args_env(t_args *args);
-int		update_args(t_args *args, char *path);
-void	debug_tm(t_token *tokens);
 
 #endif
