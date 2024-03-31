@@ -56,27 +56,6 @@ int	init_rd(t_token *tokens, t_rd_col *rd)
 	return (rd_error_handler(0, NULL, rd));
 }
 
-/*int	free_rd(t_rd_col *rd)
-{
-	int	i;
-
-	i = 0;
-	while (i < rd->input_size)
-	{
-		free(rd->input[i]);
-		i++;
-	}
-	i = 0;
-	while (i < rd->output_size)
-	{
-		free(rd->output[i]);
-		i++;
-	}
-	free(rd->input);
-	free(rd->output);
-	return (rd_error_handler(0, NULL, rd));
-}*/
-
 void	debug_tm(t_token *tokens)
 {
 	t_token	*temp = tokens;
