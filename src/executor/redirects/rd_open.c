@@ -112,6 +112,12 @@ static int	dupe_readline(int hd_fd, char *input)
 	return (rd_error_handler(0, NULL, NULL));
 }
 
+static void	heredoc_sig(int sig, t_rd_col *rd)
+{
+	free_rd(rd);
+	signal(sig, SIG_DFL);
+}
+
 int	open_heredoc(char *input)
 {
 	/*int		heredoc_fd;
@@ -145,7 +151,7 @@ int	open_heredoc(char *input)
     status = 0;
     heredoc_fd = 0;
 
-    signal(SIGINT, SIG_DFL);  // Set the signal handler for SIGINT to the default
+    signal(SIGINT, heredoc_sig);  // Set the signal handler for SIGINT to the default
     heredoc_fd = open("/tmp/heredoc_dump", WR_C_A, 0644);
     if (heredoc_fd == -1)
         return (rd_error_handler(2, "/tmp/heredoc_dump", NULL));
