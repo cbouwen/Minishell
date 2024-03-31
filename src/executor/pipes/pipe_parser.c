@@ -93,6 +93,5 @@ int	run_cmd(t_token *tokens, t_env *env, t_args *args)
 	temp_args = args;
 	status = 0;
 	status = run_basic_cmd(temp, temp_env, temp_args);
-	free_args(temp_args);
 	return (status);
 }
