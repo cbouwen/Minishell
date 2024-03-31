@@ -79,7 +79,7 @@ int	run_piped_cmd(t_token **tokens, t_env *env, t_args *args)
 			args->in_fd = args->fd[0];
 		}
 		args->call_count++;
-		//debug_tm(*tokens);
+		debug_tm(*tokens);
 		move_to_next(tokens);
 		args->pipe_count--;
 	}
