@@ -59,13 +59,6 @@ int	check_cat(t_token *tokens)
 			{
 				if (ft_strcmp(temp->next->next->str, "cat") == 0)
 					count++;
-				else
-				{
-					printf("count: %d\n", count);
-					if (count == 0)
-						count++;
-					return (count);
-				}
 			}
 		}
 		temp = temp->next;
