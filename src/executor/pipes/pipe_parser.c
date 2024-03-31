@@ -12,11 +12,11 @@
 
 #include "../../../inc/minishell.h"
 
-static void	reset_tokens(t_token **tokens)
+/*static void	reset_tokens(t_token **tokens)
 {
 	while (*tokens && (*tokens)->prev)
 		*tokens = (*tokens)->prev;
-}
+}*/
 
 int	pipe_decider(t_token **tokens, t_env *env, t_args *args)
 {
