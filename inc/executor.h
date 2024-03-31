@@ -72,7 +72,7 @@ size_t	count_tokens(t_token *tokens);
 int		execve_executor(t_token *tokens, t_args *args);
 int		fill_args(t_args *args, t_token *tokens);
 int		free_args(t_args *args);
-int		free_args_full(t_args *args, t_token *tokens, t_env *env);
+int		free_args_full(t_args *args);
 int		run_execve(t_args *args);
 size_t	count_env(t_env *env);
 int		init_args(t_args *args, t_token *tokens, t_env *env);

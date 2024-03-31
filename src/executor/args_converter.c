@@ -75,7 +75,7 @@ int	free_args(t_args *args)
 	return (0);
 }
 
-int	free_args_full(t_args *args, t_token *tokens, t_env *env)
+int	free_args_full(t_args *args)
 {
 	if (args->arg_array)
 		free_array(args->arg_array);

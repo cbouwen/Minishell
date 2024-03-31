@@ -77,7 +77,7 @@ int	real_pipe(t_token *tokens, t_env *env, t_args *args)
 		dup2(temp_args->fd[1], 1);
 	close(temp_args->fd[0]);
 	status = run_cmd(temp, temp_env, temp_args);
-	free_args_full(temp_args, tokens, env);
+	free_args_full(temp_args);
 	return (status);
 }
 
