@@ -77,6 +77,7 @@ int	fill_heredoc(t_token *tokens, t_rd_col *rd, int i)
 	if (!input)
 		return (rd_error_handler(12, NULL, rd));
 	temp_input = ft_strjoin(input, temp->next->str);
+	free(input);
 	if (!temp_input)
 	{
 		free(input);
