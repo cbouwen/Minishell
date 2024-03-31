@@ -22,38 +22,12 @@ int	pipe_decider(t_token **tokens, t_env *env, t_args *args)
 	temp_env = env;
 	temp_args = args;
 	if (count_consecutive_cats(*tokens))
-		status = printf("special case\n");
+		printf("cool_cat\n");
+		//cool_cat(tokens, env, args);
 	else
 		status = run_piped_cmd(tokens, temp_env, temp_args);
 	return (pipe_error_handler(status));
 }
-
-/*int run_piped_cmd(t_token **tokens, t_env *env, t_args *args)
-{
-	t_token	*temp;
-	t_env	*temp_env;
-	t_args	*temp_args;
-	int		status;
-	int		pipe_count;
-
-	temp = *tokens;
-	temp_env = env;
-	(void)temp_env;
-	temp_args = args;
-	status = 0;
-	pipe_count = count_pipes(temp);
-	while (pipe_count >= 0)
-	{
-		if (determine_builtin(temp) != 0)
-			//status = run_piped_builtin(temp, temp_env, temp_args);
-			status = printf("run_piped_builtin\n");
-		else
-			status = run_piped_cmd(temp, temp_env, temp_args);
-		move_to_next(tokens);
-		pipe_count--;
-	}
-	return (status);
-}*/
 
 int	run_piped_cmd(t_token **tokens, t_env *env, t_args *args)
 {

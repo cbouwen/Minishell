@@ -116,10 +116,11 @@ int		pipe_error_handler(int err_no);
 
 /*pipe_parser*/
 int		pipe_decider(t_token **tokens, t_env *env, t_args *args);
-
 int		run_piped_cmd(t_token **tokens, t_env *env, t_args *args);
 int		run_cmd(t_token *tokens, t_env *env, t_args *args);
 
+/*cool_cat*/
+int		cool_cat(t_token **tokens, t_env *env, t_args *args);
 
 /*remove*/
 void	print_args(t_token **tokens, t_args *args);
