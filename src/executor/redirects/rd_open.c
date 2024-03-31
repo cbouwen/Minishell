@@ -152,6 +152,7 @@ int	open_heredoc(char *input, t_rd_col *rd)
 	status = dupe_readline(heredoc_fd, input);
 	close(heredoc_fd);
 	free_rd_full(rd);
+	(void)status;
 	signal(SIGINT, sig_handler);
 	return (heredoc_fd);
 }
