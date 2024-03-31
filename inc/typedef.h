@@ -16,13 +16,6 @@
 # include "minishell.h"
 # include <stdbool.h>
 
-typedef struct	s_signal
-{
-	int		err_no;
-	bool	in_cmd;
-	bool	in_heredoc;
-}				t_signal;
-
 typedef struct	s_env
 {
 	char					*name;
@@ -82,6 +75,14 @@ typedef struct s_rd_col
 	t_token	*tokens;
 	t_env	*env;
 }				t_rd_col;
+
+typedef struct	s_signal
+{
+	int			err_no;
+	bool		in_cmd;
+	bool		in_heredoc;
+	t_rd_col	*rd;
+}				t_signal;
 
 /*typedef struct s_syntax_token
 {

@@ -112,9 +112,18 @@ static int	dupe_readline(int hd_fd, char *input)
 	return (rd_error_handler(0, NULL, NULL));
 }
 
+static void	hd_sig(int sig)
+{
+	(void)sig;
+	g_signal.in_heredoc = false;
+	free_rd_full(g_signal.rd);
+	ft_error(NULL, 130);
+	exit(130);
+}
+
 int	open_heredoc(char *input, t_rd_col *rd)
 {
-	/*int		heredoc_fd;
+	int		heredoc_fd;
 	pid_t	pid;
 	int		status;
 
@@ -123,7 +132,7 @@ int	open_heredoc(char *input, t_rd_col *rd)
 	pid = fork();
 	if (pid == 0)
 	{
-		signal(SIGINT, SIG_DFL);
+		signal(SIGINT, hd_sig);
 		heredoc_fd = open("/tmp/heredoc_dump", WR_C_A, 0644);
 		if (heredoc_fd == -1)
 			return (rd_error_handler(2, "/tmp/heredoc_dump", NULL));
@@ -138,21 +147,6 @@ int	open_heredoc(char *input, t_rd_col *rd)
 		if (status != 0)
 			g_signal.in_heredoc = true;
 	}
-	signal(SIGINT, sig_handler);
-	return (heredoc_fd);*/
-	int		heredoc_fd;
-	int		status;
-
-	status = 0;
-	heredoc_fd = 0;
-	signal(SIGINT, SIG_DFL);
-	heredoc_fd = open("/tmp/heredoc_dump", WR_C_A, 0644);
-	if (heredoc_fd == -1)
-		return (rd_error_handler(2, "/tmp/heredoc_dump", NULL));
-	status = dupe_readline(heredoc_fd, input);
-	close(heredoc_fd);
-	free_rd_full(rd);
-	(void)status;
 	signal(SIGINT, sig_handler);
 	return (heredoc_fd);
 }
