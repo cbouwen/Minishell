@@ -57,9 +57,7 @@ int fill_input(t_token *tokens, t_rd_col *rd, int i)
 				return (rd_error_handler(12, NULL, rd));
 		}
 		else if (ft_strcmp(temp->str, "<<") == 0)
-		{
 			return (fill_heredoc(temp, temp_rd, i));
-		}
 	}
 	return (rd_error_handler(0, NULL, rd));
 }
