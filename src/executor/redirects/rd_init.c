@@ -50,7 +50,6 @@ int fill_input(t_token *tokens, t_rd_col *rd, int i)
 	temp_rd = rd;
 	if (temp->type == REDIRECT)
 	{
-		free(temp_rd->input[i]);
 		if (ft_strcmp(temp->str, "<") == 0)
 		{
 			temp_rd->input[i] = ft_strdup(temp->next->str);
@@ -101,7 +100,6 @@ int fill_out(t_token *tokens, t_rd_col *rd, int i, char *rd_type)
 	temp_rd = rd;
 	if (temp->type == REDIRECT)
 	{
-		free(temp_rd->input[i]);
 		if (ft_strcmp(temp->str, rd_type) == 0)
 		{
 			if (ft_strcmp(rd_type, ">") == 0)
