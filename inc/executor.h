@@ -17,11 +17,11 @@
 
 /*executor*/
 int		executor(t_token *tokens, t_env *env);
-int		builtin_executor(t_token *tokens, t_env *env);
+int		builtin_executor(t_token *tokens, t_env *env, t_args *args);
 int		check_pipes(t_token *tokens);
 int		check_redirects(t_token *tokens);
 int		run_basic_cmd(t_token *tokens, t_env *env, t_args *args);
-int		run_builtin(t_token *tokens, t_env *env);
+int		run_builtin(t_token *tokens, t_env *env, t_args *args);
 int		prep_cmd(t_token *tokens, t_env *env, t_args *args);
 
 /*syntax checkers*/

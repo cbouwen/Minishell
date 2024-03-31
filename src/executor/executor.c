@@ -25,7 +25,7 @@
 		- Test
 */
 
-int	builtin_executor(t_token *tokens, t_env *env)
+int	builtin_executor(t_token *tokens, t_env *env, t_args *args)
 {
 	t_token	*temp;
 	t_env	*temp_env;
@@ -49,7 +49,7 @@ int	builtin_executor(t_token *tokens, t_env *env)
 	else if (builtin == 6)
 		status = change_dir(temp, temp_env);
 	else if (builtin == 7)
-		status = exit_shell(temp);
+		status = exit_shell(temp, temp_env, args);
 	else
 		return (ft_error("executor: unexpected error\n", 1));
 	return (status);
@@ -92,7 +92,7 @@ int	run_basic_cmd(t_token *tokens, t_env *env, t_args *args)
 	return (status);
 }
 
-int	run_builtin(t_token *tokens, t_env *env)
+int	run_builtin(t_token *tokens, t_env *env, t_args *args)
 {
 	t_token	*temp;
 	t_env	*temp_env;
@@ -102,7 +102,7 @@ int	run_builtin(t_token *tokens, t_env *env)
 	temp_env = env;
 	status = exec_syntax_check(temp);
 	if (status == 0)
-		status = builtin_executor(temp, temp_env);
+		status = builtin_executor(temp, temp_env, args);
 	return (ft_error(NULL, status));
 }
 
@@ -123,7 +123,7 @@ int	prep_cmd(t_token *tokens, t_env *env, t_args *args)
 			return (ft_error(NULL, 1));
 	}
 	if (builtin != 0)
-		status = run_builtin(temp, temp_env);
+		status = run_builtin(temp, temp_env, args);
 	if (builtin == 0)
 	{
 		status = assemble_path(args);
