@@ -35,7 +35,7 @@ int	rd_exec_setup(t_token *tok, t_env *env, t_args *arg, t_rd_col *rd)
 			status = super_redirect(temp, temp_env, temp_args, temp_rd);
 		else
 		{
-			debug_tm(temp);
+			//debug_tm(temp);
 			printf("input_size: %d\n", temp_rd->input_size);
 			printf("output_size: %d\n", temp_rd->output_size);
 			for (int i = 0; i < temp_rd->input_size; i++)
