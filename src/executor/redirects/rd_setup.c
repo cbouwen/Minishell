@@ -39,6 +39,7 @@ int	init_rd(t_token *tokens, t_rd_col *rd)
 
 	temp = tokens;
 	temp_rd = rd;
+	printf("count_rd: %zu\n", count_rd(temp));
 	temp_rd->input = ft_calloc(sizeof(char *), count_rd(temp) + 1);
 	if (!temp_rd->input)
 		return (rd_error_handler(12, NULL, rd));
