@@ -60,7 +60,7 @@ int	run_piped_cmd(t_token **tokens, t_env *env, t_args *args)
 	pid_t	pid;
 
 	args->in_fd = 0;
-	args->pipe_count = count_pipes(*tokens);
+	args->pipe_count = count_pipes(*tokens) + 1;
 	while (args->pipe_count >= 0)
 	{
 		pipe(args->fd);
