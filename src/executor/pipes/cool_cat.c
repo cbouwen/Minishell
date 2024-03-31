@@ -32,11 +32,14 @@ int	cool_cat(t_token **tokens, t_env *env, t_args *args)
 int	run_fake_cat(int count)
 {
 	int		i;
+	int		fd;
 
 	i = 0;
+	fd = dup(STDOUT_FILENO);
 	while (i < count)
 	{
 		readline("");
+		write(hd_fd, "\n", 1);
 		i++;
 	}
 	return (0);
