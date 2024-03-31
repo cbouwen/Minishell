@@ -13,9 +13,13 @@ int	cool_cat(t_token **tokens, t_env *env, t_args *args)
 	temp = *tokens;
 	temp_env = env;
 	temp_args = args;
-	(void)temp;
 	(void)temp_env;
 	(void)temp_args;
-	printf("cat count: %d\n", count_cat(*tokens));
+	while (temp)
+	{
+		if (check_cat_no_args(temp))
+			printf("cat no args\n");
+		temp = temp->next;
+	}
 	return (status);
 }
