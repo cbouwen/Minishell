@@ -32,27 +32,25 @@ int	redirect_syntax_check(t_token *tokens)
 	return (rd_error_handler(0, NULL, NULL));
 }
 
-int	init_rd(t_token *tokens, t_rd_col *rd)
+int	init_rd(t_token *tokens, t_rd_col *rd, t_args *args, t_env *env)
 {
-	t_token			*temp;
-	t_rd_col	*temp_rd;
-
-	temp = tokens;
-	temp_rd = rd;
-	temp_rd->input = ft_calloc(sizeof(char *), count_rd(temp) + 1);
-	if (!temp_rd->input)
+	rd->input = ft_calloc(sizeof(char *), count_rd(temp) + 1);
+	if (!rd->input)
 		return (rd_error_handler(12, NULL, rd));
-	temp_rd->output = ft_calloc(sizeof(char *), count_rd(temp) + 1);
-	if (!temp_rd->output)
+	rd->output = ft_calloc(sizeof(char *), count_rd(temp) + 1);
+	if (!rd->output)
 		return (rd_error_handler(12, NULL, rd));
-	temp_rd->input_size = 0;
-	temp_rd->output_size = 0;
-	temp_rd->i_fd = 0;
-	temp_rd->o_fd = 0;
-	temp_rd->file_exists = 0;
-	temp_rd->coll_exists = true;
-	temp_rd->c_stdin = 0;
-	temp_rd->c_stdout = 0;
+	rd->input_size = 0;
+	rd->output_size = 0;
+	rd->i_fd = 0;
+	rd->o_fd = 0;
+	rd->file_exists = 0;
+	rd->coll_exists = true;
+	rd->c_stdin = 0;
+	rd->c_stdout = 0;
+	rd->tokens = tokens;
+	rd->args = args;
+	rd->env = env;
 	return (rd_error_handler(0, NULL, rd));
 }
 

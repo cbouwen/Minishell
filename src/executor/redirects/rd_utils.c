@@ -16,14 +16,23 @@ extern t_signal	g_signal;
 
 int	free_rd(t_rd_col *temp_rd)
 {
-	//t_rd_col	*temp_rd;
-
-	printf("free_rd\n");
-	//temp_rd = rd;
 	if (temp_rd->coll_exists == false)
 		return (0);
 	free_array(temp_rd->input);
 	free_array(temp_rd->output);
+	temp_rd->coll_exists = false;
+	return (0);
+}
+
+int	free_rd_full(t_rd_col *temp_rd)
+{
+	if (temp_rd->coll_exists == false)
+		return (0);
+	free_array(temp_rd->input);
+	free_array(temp_rd->output);
+	free_tokens(temp_rd->tokens);
+	free_env(temp_rd->env);
+	free_args(temp_rd->args);
 	temp_rd->coll_exists = false;
 	return (0);
 }

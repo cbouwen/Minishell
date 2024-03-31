@@ -94,17 +94,18 @@ int		fill_heredoc(t_token *tokens, t_rd_col *rd, int i);
 int		fill_out(t_token *tokens, t_rd_col *rd, int i, char *rd_type);
 int		fill_app(t_token *tokens, t_rd_col *rd, int i);
 size_t	count_rd(t_token *tokens);
-int		init_rd(t_token *tokens, t_rd_col *rd);
+int		init_rd(t_token *tokens, t_rd_col *rd, t_args *args, t_env *env);
 int		rd_error_handler(int err_no, char *str, t_rd_col *rd);
 int		open_output(t_rd_col *rd);
 int		open_input(t_rd_col *rd);
-int		open_heredoc(char *input);
+int		open_heredoc(char *input, t_rd_col *rd);
 int		free_rd(t_rd_col *rd);
 int		rd_exec_setup(t_token *tok, t_env *env, t_args *arg, t_rd_col *rd);
 int		input_rd(t_token *tok, t_env *env, t_args *arg, t_rd_col *rd);
 int		output_rd(t_token *tok, t_env *env, t_args *arg, t_rd_col *rd);
 int		super_redirect(t_token *tok, t_env *env, t_args *arg, t_rd_col *rd);
 int		run_redirect(t_token *tokens, t_env *env, t_args *args);
+int		free_rd_full(t_rd_col *temp_rd);
 
 /*pipes*/
 /*pipe_utils*/

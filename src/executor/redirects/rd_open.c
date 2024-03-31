@@ -51,7 +51,7 @@ int	open_input(t_rd_col *rd)
 	while (i < rd->input_size)
 	{
 		if (rd->input[i][0] == '#')
-			rd->i_fd = open_heredoc(rd->input[i] + 1);
+			rd->i_fd = open_heredoc(rd->input[i] + 1, rd);
 		else
 			rd->i_fd = open(rd->input[i], O_RDONLY);
 		if (rd->i_fd < 0)
@@ -112,15 +112,9 @@ static int	dupe_readline(int hd_fd, char *input)
 	return (rd_error_handler(0, NULL, NULL));
 }
 
-static void	heredoc_sig(int sig, t_rd_col *rd)
+int	open_heredoc(char *input, t_rd_col *rd)
 {
-	free_rd(rd);
-	signal(sig, SIG_DFL);
-}
-
-int	open_heredoc(char *input)
-{
-	/*int		heredoc_fd;
+	int		heredoc_fd;
 	pid_t	pid;
 	int		status;
 
@@ -135,6 +129,7 @@ int	open_heredoc(char *input)
 			return (rd_error_handler(2, "/tmp/heredoc_dump", NULL));
 		status = dupe_readline(heredoc_fd, input);
 		close(heredoc_fd);
+		free_rd_full(rd);
 		exit(status);
 	}
 	else
@@ -144,26 +139,7 @@ int	open_heredoc(char *input)
 			g_signal.in_heredoc = true;
 	}
 	signal(SIGINT, sig_handler);
-	return (heredoc_fd);*/
-	int		heredoc_fd;
-    int		status;
-
-    status = 0;
-    heredoc_fd = 0;
-
-    signal(SIGINT, heredoc_sig);  // Set the signal handler for SIGINT to the default
-    heredoc_fd = open("/tmp/heredoc_dump", WR_C_A, 0644);
-    if (heredoc_fd == -1)
-        return (rd_error_handler(2, "/tmp/heredoc_dump", NULL));
-    status = dupe_readline(heredoc_fd, input);
-    close(heredoc_fd);
-
-    if (status != 0)
-        g_signal.in_heredoc = true;
-
-    signal(SIGINT, sig_handler);  // Restore your original signal handler
-
-    return (heredoc_fd);
+	return (heredoc_fd);
 }
 
 //rd->i_fd = open(rd->input[i], O_RDWR | O_CREAT | O_APPEND, 0644);

@@ -76,6 +76,9 @@ typedef struct s_rd_col
 	bool	coll_exists;
 	int		c_stdin;
 	int		c_stdout;
+	t_args	*args;
+	t_token	*token;
+	t_env	*env;
 }				t_rd_col;
 
 /*typedef struct s_syntax_token
