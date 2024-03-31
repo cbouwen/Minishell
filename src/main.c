@@ -28,14 +28,9 @@ int	run_minishell(t_env *env, char *input)
 			break ;
 		parser(&tokens);
 		expander(&tokens, env);
-		//test_tokenizer(tokens);
 		g_signal.in_cmd = true;
 		executor(tokens, env);
 		g_signal.in_cmd = false;
-		//exit_status = executor(tokens, env);
-		//tester(env);
-		//test_tokenizer(tokens);
-		//test_syntax_tree(tokens, pipe_counter(tokens));
 		break ;
 	}
 	free_tokens(tokens);

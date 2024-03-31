@@ -69,6 +69,8 @@ bool	count_consecutive_cats(t_token *tokens)
 
 int	pipe_error_handler(int err_no)
 {
+	if (err_no = 3)
+		return (ft_error("fork failed\n", 3));
 	return (ft_error(NULL, err_no));
 }
 
