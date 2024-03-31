@@ -35,7 +35,6 @@ size_t count_rd(t_token *tokens)
 	size_t	count;
 
 	temp = tokens;
-	debug_tm(temp);
 	count = 0;
 	while (temp && temp->type != PIPE)
 	{
