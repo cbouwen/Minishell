@@ -86,7 +86,6 @@ int	fill_heredoc(t_token *tokens, t_rd_col *rd, int i)
 	}
 	free(input);
 	input = temp_input;
-	free(temp_input);
 	temp_rd->input[i] = input;
 	return (rd_error_handler(0, NULL, rd));
 }
@@ -137,7 +136,6 @@ int	fill_app(t_token *tokens, t_rd_col *rd, int i)
 	}
 	free(input);
 	input = temp_input;
-	free(temp_input);
 	temp_rd->output[i] = input;
 	return (rd_error_handler(0, NULL, rd));
 }
