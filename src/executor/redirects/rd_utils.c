@@ -14,9 +14,9 @@
 
 extern t_signal	g_signal;
 
-int	free_rd(t_rd_col *rd)
+int	free_rd(t_rd_col *temp_rd)
 {
-	t_rd_col	*temp_rd;
+	//t_rd_col	*temp_rd;
 
 	printf("free_rd\n");
 	temp_rd = rd;
