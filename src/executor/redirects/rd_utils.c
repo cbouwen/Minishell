@@ -19,7 +19,7 @@ int	free_rd(t_rd_col *temp_rd)
 	//t_rd_col	*temp_rd;
 
 	printf("free_rd\n");
-	temp_rd = rd;
+	//temp_rd = rd;
 	if (temp_rd->coll_exists == false)
 		return (0);
 	free_array(temp_rd->input);
