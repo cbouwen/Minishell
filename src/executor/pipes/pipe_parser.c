@@ -26,7 +26,8 @@ int	pipe_decider(t_token **tokens, t_env *env, t_args *args)
 		//cool_cat(tokens, env, args);
 	else
 		status = run_piped_cmd(tokens, temp_env, temp_args);
-	printf("args: %s\n", args->arg_array[0]);
+	
+	printf("args: %s\n", temp_args->arg_array[0]);
 	return (pipe_error_handler(status));
 }
 
