@@ -132,6 +132,7 @@ int	open_heredoc(char *input, t_rd_col *rd)
 	pid = fork();
 	if (pid == 0)
 	{
+		g_signal.rd = rd;
 		signal(SIGINT, hd_sig);
 		heredoc_fd = open("/tmp/heredoc_dump", WR_C_A, 0644);
 		if (heredoc_fd == -1)
@@ -141,12 +142,9 @@ int	open_heredoc(char *input, t_rd_col *rd)
 		free_rd_full(rd);
 		exit(status);
 	}
-	else
-	{
-		waitpid(pid, &status, 0);
-		if (status != 0)
-			g_signal.in_heredoc = true;
-	}
+	waitpid(pid, &status, 0);
+	if (status != 0)
+		g_signal.in_heredoc = true;
 	signal(SIGINT, sig_handler);
 	return (heredoc_fd);
 }
