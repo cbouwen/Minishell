@@ -26,8 +26,6 @@ int	pipe_decider(t_token **tokens, t_env *env, t_args *args)
 		//cool_cat(tokens, env, args);
 	else
 		status = run_piped_cmd(tokens, temp_env, temp_args);
-	
-	printf("args: %s\n", temp_args->arg_array[0]);
 	return (pipe_error_handler(status));
 }
 
@@ -94,5 +92,6 @@ int	run_cmd(t_token *tokens, t_env *env, t_args *args)
 	temp_args = args;
 	status = 0;
 	status = run_basic_cmd(temp, temp_env, temp_args);
+	free(temp_args->arg_array[0]);
 	return (status);
 }
