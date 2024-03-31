@@ -12,30 +12,20 @@
 
 #include "../../../inc/minishell.h"
 
-/*static void	reset_tokens(t_token **tokens)
-{
-	while (*tokens && (*tokens)->prev)
-		*tokens = (*tokens)->prev;
-}*/
-
 int	pipe_decider(t_token **tokens, t_env *env, t_args *args)
 {
 	t_env	*temp_env;
 	t_args	*temp_args;
 	int		status;
-	//t_token	*first;
 
 	status = 0;
 	temp_env = env;
 	temp_args = args;
-	//first = *tokens;
 	if (count_consecutive_cats(*tokens))
 		printf("cool_cat\n");
 		//cool_cat(tokens, env, args);
 	else
 		status = run_piped_cmd(tokens, temp_env, temp_args);
-	/**tokens = first;
-	reset_tokens(tokens);*/
 	return (pipe_error_handler(status));
 }
 
@@ -87,6 +77,7 @@ int	real_pipe(t_token *tokens, t_env *env, t_args *args)
 		dup2(temp_args->fd[1], 1);
 	close(temp_args->fd[0]);
 	status = run_cmd(temp, temp_env, temp_args);
+	free_args_full(temp_args, tokens, env);
 	return (status);
 }
 

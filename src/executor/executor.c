@@ -61,7 +61,7 @@ int	executor(t_token *tokens, t_env *env)
 
 	temp = tokens;
 	temp_env = env;
-	init_args(&args);
+	init_args(&args, temp, temp_env);
 	if (fill_env(&args, temp_env) != 0)
 		return (ft_error(NULL, 1));
 	if (check_pipes(temp) == 1)

@@ -55,13 +55,15 @@ typedef struct s_token
 
 typedef struct	s_args
 {
-	char		**arg_array;
-	char		**env_array;
-	int			fd[2];
-	int			in_fd;
-	int			pipe_count;
-	int			a_stdout;
-	int			a_stdin;
+	char	**arg_array;
+	char	**env_array;
+	int		fd[2];
+	int		in_fd;
+	int		pipe_count;
+	int		a_stdout;
+	int		a_stdin;
+	t_token	*tokens;
+	t_env	*env;
 }				t_args;
 
 typedef struct s_rd_col

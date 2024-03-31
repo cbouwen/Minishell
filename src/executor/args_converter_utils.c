@@ -42,7 +42,7 @@ size_t	count_env(t_env *env)
 	return (i);
 }
 
-int	init_args(t_args *args)
+int	init_args(t_args *args, t_token *tokens, t_env *env)
 {
 	args->arg_array = NULL;
 	args->env_array = NULL;
@@ -52,6 +52,8 @@ int	init_args(t_args *args)
 	args->pipe_count = -1;
 	args->a_stdin = 0;
 	args->a_stdout = 0;
+	args->tokens = tokens;
+	args->env = env;
 	return (0);
 }
 
