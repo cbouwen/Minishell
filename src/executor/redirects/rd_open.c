@@ -28,10 +28,10 @@ int	open_output(t_rd_col *rd)
 				return (rd_error_handler(12, NULL, rd));
 			free(rd->output[i]);
 			rd->output[i] = temp;
-			rd->o_fd = open(rd->output[i], O_RDWR | O_CREAT | O_APPEND, 0644);
+			rd->o_fd = open(rd->output[i], RW | CR | AP, 0644);
 		}
 		else
-			rd->o_fd = open(rd->output[i], O_RDWR | O_CREAT | O_TRUNC, 0644);
+			rd->o_fd = open(rd->output[i], RW | CR | TR, 0644);
 		if (rd->o_fd < 0)
 			return (rd_error_handler(2, rd->output[i], rd));
 		if (i < rd->output_size - 1)
@@ -51,7 +51,7 @@ int	open_input(t_rd_col *rd)
 		if (rd->input[i][0] == '#')
 			rd->i_fd = open_heredoc(rd->input[i] + 1, rd);
 		else
-			rd->i_fd = open(rd->input[i], O_RDONLY);
+			rd->i_fd = open(rd->input[i], RD);
 		if (rd->i_fd < 0)
 			return (rd_error_handler(2, rd->input[i], rd));
 		if (i < rd->input_size - 1)
@@ -86,7 +86,7 @@ static int	dupe_readline(int hd_fd, char *input)
 	int	tty_fd;
 	int	stdout_fd;
 
-	tty_fd = open("/dev/tty", O_RDWR);
+	tty_fd = open("/dev/tty", RW);
 	if (tty_fd == -1)
 		return (rd_error_handler(3, NULL, NULL));
 	stdout_fd = dup(STDOUT_FILENO);
@@ -122,7 +122,7 @@ int	open_heredoc(char *input, t_rd_col *rd)
 	{
 		g_signal.rd = rd;
 		signal(SIGINT, hd_sig);
-		heredoc_fd = open("/tmp/heredoc_dump", WR_C_A, 0644);
+		heredoc_fd = open("/tmp/heredoc_dump", WR | CR | AP, 0644);
 		if (heredoc_fd == -1)
 			return (rd_error_handler(2, "/tmp/heredoc_dump", NULL));
 		status = dupe_readline(heredoc_fd, input);

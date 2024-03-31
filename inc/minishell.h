@@ -34,8 +34,12 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 
-# define W_C_T (O_WRONLY | O_CREAT | O_TRUNC)
-# define WR_C_A (O_RDWR | O_CREAT | O_TRUNC)
+# define WR O_WRONLY
+# define CR O_CREAT
+# define TR O_TRUNC
+# define RW O_RDWR
+# define AP O_APPEND
+# define RD O_RDONLY
 
 extern t_signal	g_signal;
 
