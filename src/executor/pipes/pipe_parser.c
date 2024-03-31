@@ -97,6 +97,8 @@ int	real_pipe(t_token *tokens, t_env *env, t_args *args)
 	temp = tokens;
 	temp_env = env;
 	temp_args = args;
+	int count = 0;
+	printf("count: %d\n", count++);
 	if (temp_args->in_fd != 0)
 	{
 		dup2(temp_args->in_fd, 0);
