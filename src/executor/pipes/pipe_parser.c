@@ -21,8 +21,8 @@ int	pipe_decider(t_token **tokens, t_env *env, t_args *args)
 	status = 0;
 	temp_env = env;
 	temp_args = args;
-	if (*tokens->type == CMD && ft_strcmp(*tokens->str, "cat") == 0
-		&& *tokens->next->type == PIPE)
+	if (tokens->type == CMD && ft_strcmp(tokens->str, "cat") == 0
+		&& tokens->next->type == PIPE)
 		cool_cat(tokens, env, args);
 	else
 		status = run_piped_cmd(tokens, temp_env, temp_args);
