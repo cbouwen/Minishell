@@ -6,7 +6,7 @@
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 11:23:28 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/02/20 14:40:41 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/03/07 15:45:35 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	handle_redirect(char *input, size_t j, char c)
 
 	i = j + 2;
 	while (input[j] == c)
-	{	
+	{
 		j++;
 		if (i == j)
 			return (1);
@@ -43,10 +43,11 @@ size_t	handle_rest(char *input, size_t j)
 		if (!(check_char(input[i + j])))
 			return (i);
 		i++;
+		if (input[i + j] == '$')
+			return (i);
 	}
 	return (i);
 }
-
 
 size_t	handle_quotes(char *input, size_t j, char c)
 {
@@ -55,7 +56,8 @@ size_t	handle_quotes(char *input, size_t j, char c)
 	i = 1;
 	while (input[i + j] && input[i + j] != c)
 		i++;
-	i++;
+	if (input[i + j])
+		i++;
 	return (i);
 }
 
@@ -68,12 +70,12 @@ size_t	find_token(char *input, size_t j)
 		return (2);
 	if (input[j] == '|' || input[j] == '>' || input[j] == '<')
 		return (1);
-	if  (input[j] == 39)
+	if (input[j] == 39)
 	{
 		i = handle_quotes(input, j, 39);
 		return (i);
 	}
-	if  (input[j] == '"')
+	if (input[j] == '"')
 	{
 		i = handle_quotes(input, j, '"');
 		return (i);

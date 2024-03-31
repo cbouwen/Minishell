@@ -1,21 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer.h                                            :+:      :+:    :+:   */
+/*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/20 15:29:56 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/03/25 15:29:54 by cbouwen          ###   ########.fr       */
+/*   Created: 2024/03/05 13:43:27 by cbouwen           #+#    #+#             */
+/*   Updated: 2024/03/29 18:47:13 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LEXER_H
-# define LEXER_H
+#include "../../inc/minishell.h"
 
-# include "minishell.h"
-
-int	check_syntax(t_token *tokens);
-int	lexer(t_token **tokens);
-
-#endif
+void	sig_handler(int sig)
+{
+	(void)sig;
+	printf("\n");
+	ft_error(NULL, 130);
+	if (!g_signal.in_cmd && !g_signal.in_heredoc)
+	{
+		rl_replace_line("", 0);
+		rl_on_new_line();
+		rl_redisplay();
+	}
+}

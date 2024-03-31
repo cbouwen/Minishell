@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/05 10:32:08 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/03/06 15:55:03 by cbouwen          ###   ########.fr       */
+/*   Created: 2024/03/05 16:28:48 by cbouwen           #+#    #+#             */
+/*   Updated: 2024/03/06 16:09:34 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../inc/minishell.h"
 
 static size_t	counter(char const *s)
 {
@@ -22,7 +22,7 @@ static size_t	counter(char const *s)
 	return (i);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin_quotes(char *s1, char *s2)
 {
 	char	*s3;
 	size_t	slen1;
@@ -42,5 +42,30 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	while (s2[++j])
 		s3[i + j] = s2[j];
 	s3[slen1 + slen2] = '\0';
+	free(s1);
+	free(s2);
 	return (s3);
+}
+
+int	find_quote(t_token *token, char c)
+{
+	if (token->str[0] == c)
+		return (0);
+	return (1);
+}
+
+int	count_quotes(char *str)
+{
+	int	i;
+	int	quotes;
+
+	i = 0;
+	quotes = 0;
+	while (str[i])
+	{
+		if (str[i] == 39)
+			quotes++;
+		i++;
+	}
+	return (quotes);
 }

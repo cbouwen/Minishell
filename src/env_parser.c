@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   env_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/13 11:27:38 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/02/13 16:25:25 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/04/01 00:01:03 by matisse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minishell.h"
 
-void	ft_lstadd_back_ms(t_environment **lst, t_environment *new)
+void	ft_lstadd_back_ms(t_env **lst, t_env *new)
 {
-	t_environment	*temp;
+	t_env	*temp;
 
 	if (!lst || !new)
 		return ;
@@ -29,13 +29,13 @@ void	ft_lstadd_back_ms(t_environment **lst, t_environment *new)
 	temp->next = new;
 }
 
-t_environment	*create_node(char *name, char *value)
+t_env	*create_node(char *name, char *value)
 {
-	t_environment	*new;
+	t_env	*new;
 
-	new = (t_environment *)malloc(sizeof(t_environment));
+	new = (t_env *)malloc(sizeof(t_env));
 	if (!new)
-		ft_error("Failure to malloc\n");
+		ft_error(NULL, 12);
 	new->name = ft_strdup(name);
 	new->value = ft_strdup(value);
 	new->next = NULL;
@@ -47,12 +47,12 @@ t_environment	*create_node(char *name, char *value)
 	return (new);
 }
 
-t_environment	*extract_data(char *envp)
+t_env	*extract_data(char *envp)
 {
-	t_environment	*new;
-	char			*name;
-	char			*value;
-	int				i;
+	t_env	*new;
+	char	*name;
+	char	*value;
+	int		i;
 
 	value = ft_strchr(envp, '=');
 	if (!value)
@@ -65,10 +65,10 @@ t_environment	*extract_data(char *envp)
 	return (new);
 }
 
-t_environment	*env_parser(char *envp[])
+t_env	*env_parser(char *envp[])
 {
-	int				i;
-	t_environment	*environment;
+	int		i;
+	t_env	*environment;
 
 	i = 0;
 	environment = NULL;

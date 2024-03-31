@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   expander.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/15 15:16:09 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/03/28 21:22:34 by mlegendr         ###   ########.fr       */
+/*   Created: 2024/03/05 15:49:50 by cbouwen           #+#    #+#             */
+/*   Updated: 2024/03/28 21:22:01 by mlegendr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#ifndef EXPANDER_H
+# define EXPANDER_H
 
 # include "minishell.h"
 
-void	reset_list(t_token **tokens);
-void	free_tokens(t_token *token);
-int		ft_error(char *str, int errno);
-void	clean_exit(t_token *token, t_env *env, char *msg);
-void	sig_handler(int sig);
-char	**ft_split_quotes(char const *s, char c);
+char	*find_env(char *str, t_env *env);
+int		find_quote(t_token *token, char c);
+int		count_quotes(char *str);
+int		expander(t_token **tokens, t_env *env);
+int		handle_question_mark(t_token **tokens);
+int		expand_double_quote(t_token **tokens, t_env *env);
+void	remove_quotes(t_token **tokens, char c);
+int		handle_question_mark(t_token **tokens);
+char	*ft_strjoin_quotes(char *s1, char *s2);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   syntax_check.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 17:46:17 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/02/29 18:20:22 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/04/01 00:02:51 by matisse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ int	check_logic(t_token tokens, int i)
 	return (1);
 }
 
-
-
 int	check_syntax(t_token *tokens)
 {
 	int	i;
@@ -37,11 +35,17 @@ int	check_syntax(t_token *tokens)
 	while (tokens)
 	{
 		if (!(check_logic(*tokens, i)))
+		{
+			printf("Syntax error!\n");
+			ft_error(NULL, 2);
+			reset_list(&tokens);
 			return (0);
+		}
 		i = 1;
 		if (tokens->next == NULL)
-			break;
+			break ;
 		tokens = tokens->next;
-	}	
+	}
+	reset_list(&tokens);
 	return (1);
 }

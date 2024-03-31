@@ -1,19 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_msg.c                                        :+:      :+:    :+:   */
+/*   error_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/13 13:23:58 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/03/04 18:06:56 by mlegendr         ###   ########.fr       */
+/*   Created: 2024/04/01 00:04:13 by cbouwen           #+#    #+#             */
+/*   Updated: 2024/04/01 00:04:39 by matisse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../inc/minishell.h"
 
-int	ft_error(char *str)
+int	ft_error(char *str, int err_no)
 {
-	printf("%s", str);
-	return (0);
+	g_signal.err_no = err_no;
+	if (g_signal.err_no == 0)
+		return (0);
+	if (str)
+		printf("%s", str);
+	return (err_no);
 }
