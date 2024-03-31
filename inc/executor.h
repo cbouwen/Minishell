@@ -112,7 +112,6 @@ int		free_rd_full(t_rd_col *temp_rd);
 /*pipe_utils*/
 int		move_to_next(t_token **tokens);
 int		count_pipes(t_token *tokens);
-bool	count_consecutive_cats(t_token *tokens);
 int		real_pipe(t_token *tokens, t_env *env, t_args *args);
 int		pipe_error_handler(int err_no);
 
@@ -122,8 +121,8 @@ int		run_piped_cmd(t_token **tokens, t_env *env, t_args *args);
 int		run_cmd(t_token *tokens, t_env *env, t_args *args);
 
 /*cool_cat*/
+int		check_cat(t_token *tokens);
 int		cool_cat(t_token **tokens, t_env *env, t_args *args);
-int		count_cats(t_token *tokens);
 
 /*remove*/
 void	print_args(t_token **tokens, t_args *args);

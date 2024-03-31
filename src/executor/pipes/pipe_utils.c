@@ -42,29 +42,30 @@ int	count_pipes(t_token *tokens)
 	return (count);
 }
 
-bool	count_consecutive_cats(t_token *tokens)
+int	check_cat(t_token *tokens)
 {
 	t_token	*temp;
-	char	*prev_cmd;
+	int		count;
 
 	temp = tokens;
-	prev_cmd = NULL;
+	count = 0;
 	while (temp)
 	{
-		if (temp->type == CMD)
+		if (temp->type == CMD && ft_strcmp(temp->str, "cat") == 0)
 		{
-			if (prev_cmd && ft_strcmp(prev_cmd, "cat") == 0
-				&& ft_strcmp(temp->str, "cat") == 0)
+			if (!temp->next || temp->next->type != PIPE)
+				break ;
+			else if (temp->next->type == PIPE && temp->next->next->type == CMD)
 			{
-				if (temp->next && (temp->next->type == CMD
-					|| temp->next->type == PIPE))
-					return (true);
+				if (ft_strcmp(temp->next->next->str, "cat") == 0)
+					count++;
+				else
+					return (count++);
 			}
-			prev_cmd = temp->str;
 		}
 		temp = temp->next;
 	}
-	return (false);
+	return (count);
 }
 
 int	pipe_error_handler(int err_no)
@@ -80,7 +81,7 @@ void	print_args(t_token **tokens, t_args *args)
 {
 	int j;
 	j = count_pipes(*tokens);
-	printf("%d\n", count_consecutive_cats(*tokens));
+	printf("%d\n", check_cat(*tokens));
 	while (j >= 0)
 	{
 		int k;
