@@ -60,7 +60,7 @@ char	*strjoin_free(char *s1, char *s2, int free_str)
 	char	*tmp;
 
 	tmp = s1;
-	s1 = ft_strjoin(s1, s2);
+	s1 = ft_strjoin(tmp, s2);
 	if (free_str == 1)
 		free(tmp);
 	return (s1);
