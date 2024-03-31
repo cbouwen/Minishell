@@ -39,7 +39,7 @@ int	run_fake_cat(int count)
 	while (i < count)
 	{
 		readline("");
-		write(hd_fd, "\n", 1);
+		write(fd, "\n", 1);
 		i++;
 	}
 	return (0);
