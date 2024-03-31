@@ -22,8 +22,7 @@ int	pipe_decider(t_token **tokens, t_env *env, t_args *args)
 	temp_env = env;
 	temp_args = args;
 	if (count_consecutive_cats(*tokens))
-		printf("cool_cat\n");
-		//cool_cat(tokens, env, args);
+		cool_cat(tokens, env, args);
 	else
 		status = run_piped_cmd(tokens, temp_env, temp_args);
 	return (pipe_error_handler(status));
