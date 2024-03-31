@@ -6,13 +6,11 @@
 /*   By: mlegendr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 19:51:56 by mlegendr          #+#    #+#             */
-/*   Updated: 2024/03/29 19:51:59 by mlegendr         ###   ########.fr       */
+/*   Updated: 2024/03/31 23:45:09 by matisse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../inc/minishell.h"
-
-extern t_signal	g_signal;
 
 int	free_rd(t_rd_col *temp_rd)
 {
@@ -37,7 +35,7 @@ int	free_rd_full(t_rd_col *temp_rd)
 	return (0);
 }
 
-size_t count_rd(t_token *tokens)
+size_t	count_rd(t_token *tokens)
 {
 	t_token	*temp;
 	size_t	count;
@@ -55,8 +53,6 @@ size_t count_rd(t_token *tokens)
 
 int	rd_error_handler(int err_no, char *str, t_rd_col *rd)
 {
-//	if (g_signal.in_heredoc == true)
-//		g_signal.in_heredoc = false;
 	if (err_no == 12)
 		ft_error("malloc failed\n", 12);
 	else if (err_no == 0)

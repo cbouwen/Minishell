@@ -6,13 +6,11 @@
 /*   By: mlegendr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 19:55:01 by mlegendr          #+#    #+#             */
-/*   Updated: 2024/03/29 20:05:35 by mlegendr         ###   ########.fr       */
+/*   Updated: 2024/03/31 23:52:27 by matisse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../inc/minishell.h"
-
-extern t_signal	g_signal;
 
 int	open_output(t_rd_col *rd)
 {
@@ -58,7 +56,6 @@ int	open_input(t_rd_col *rd)
 			return (rd_error_handler(2, rd->input[i], rd));
 		if (i < rd->input_size - 1)
 			close(rd->i_fd);
-
 		i++;
 	}
 	return (rd_error_handler(0, NULL, rd));
@@ -86,29 +83,29 @@ static void	the_real_readline(int hd_fd, char *input)
 
 static int	dupe_readline(int hd_fd, char *input)
 {
-    int		tty_fd;
-    int		stdout_fd;
+	int	tty_fd;
+	int	stdout_fd;
 
-    tty_fd = open("/dev/tty", O_RDWR);
-    if (tty_fd == -1)
-        return (rd_error_handler(3, NULL, NULL));
-    stdout_fd = dup(STDOUT_FILENO);
-    if (stdout_fd == -1)
-    {
-        close(tty_fd);
-        return (rd_error_handler(3, NULL, NULL));
-    }
-    if (dup2(tty_fd, STDOUT_FILENO) == -1)
-    {
-        close(tty_fd);
-        close(stdout_fd);
-        return (rd_error_handler(3, NULL, NULL));
-    }
-	the_real_readline(hd_fd, input);
-    if (dup2(stdout_fd, STDOUT_FILENO) == -1)
+	tty_fd = open("/dev/tty", O_RDWR);
+	if (tty_fd == -1)
 		return (rd_error_handler(3, NULL, NULL));
-    close(stdout_fd);
-    close(tty_fd);
+	stdout_fd = dup(STDOUT_FILENO);
+	if (stdout_fd == -1)
+	{
+		close(tty_fd);
+		return (rd_error_handler(3, NULL, NULL));
+	}
+	if (dup2(tty_fd, STDOUT_FILENO) == -1)
+	{
+		close(tty_fd);
+		close(stdout_fd);
+		return (rd_error_handler(3, NULL, NULL));
+	}
+	the_real_readline(hd_fd, input);
+	if (dup2(stdout_fd, STDOUT_FILENO) == -1)
+		return (rd_error_handler(3, NULL, NULL));
+	close(stdout_fd);
+	close(tty_fd);
 	return (rd_error_handler(0, NULL, NULL));
 }
 
@@ -148,5 +145,3 @@ int	open_heredoc(char *input, t_rd_col *rd)
 	signal(SIGINT, sig_handler);
 	return (heredoc_fd);
 }
-
-//rd->i_fd = open(rd->input[i], O_RDWR | O_CREAT | O_APPEND, 0644);

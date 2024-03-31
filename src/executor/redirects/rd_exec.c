@@ -6,7 +6,7 @@
 /*   By: mlegendr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 19:50:50 by mlegendr          #+#    #+#             */
-/*   Updated: 2024/03/29 19:51:04 by mlegendr         ###   ########.fr       */
+/*   Updated: 2024/03/31 23:49:10 by matisse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,19 +75,9 @@ static int	determine_output(t_args *args, t_rd_col *rd)
 
 	temp_args = args;
 	temp_rd = rd;
-	/*if (temp_args->pipe_count > 0)
-	{
-		if (dup2(temp_rd->o_fd, temp_args->fd[1]) == -1)
-			return (rd_error_handler(4, NULL, temp_rd));
-	}
-	else
-	{
-		if (dup2(temp_rd->o_fd, STDOUT_FILENO) == -1)
-			return (rd_error_handler(4, NULL, temp_rd));
-	}*/
 	(void)temp_args;
 	if (dup2(temp_rd->o_fd, STDOUT_FILENO) == -1)
-			return (rd_error_handler(4, NULL, temp_rd));
+		return (rd_error_handler(4, NULL, temp_rd));
 	return (0);
 }
 

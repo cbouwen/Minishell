@@ -6,7 +6,7 @@
 /*   By: mlegendr <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 19:54:38 by mlegendr          #+#    #+#             */
-/*   Updated: 2024/03/29 19:54:50 by mlegendr         ###   ########.fr       */
+/*   Updated: 2024/03/31 23:44:09 by matisse          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,51 +54,7 @@ int	init_rd(t_token *tokens, t_rd_col *rd, t_args *args, t_env *env)
 	return (rd_error_handler(0, NULL, rd));
 }
 
-void	debug_tm(t_token *tokens)
-{
-	t_token	*temp = tokens;
-    int		tty_fd;
-    int		stdout_fd;
-
-    tty_fd = open("/dev/tty", O_RDWR);
-    if (tty_fd == -1)
-    {
-        perror("open /dev/tty");
-        return;
-    }
-
-    stdout_fd = dup(STDOUT_FILENO);
-    if (stdout_fd == -1)
-    {
-        perror("dup");
-        close(tty_fd);
-        return;
-    }
-
-    if (dup2(tty_fd, STDOUT_FILENO) == -1)
-    {
-        perror("dup2");
-        close(tty_fd);
-        close(stdout_fd);
-        return;
-    }
-    while (temp)
-	{
-		printf("temp->str: %s\n", temp->str);
-		temp = temp->next;
-	}
-    if (dup2(stdout_fd, STDOUT_FILENO) == -1)
-    {
-        perror("dup2");
-    }
-
-    close(stdout_fd);
-    close(tty_fd);
-}
-
-
-
-int run_redirect(t_token *tokens, t_env *env, t_args *args)
+int	run_redirect(t_token *tokens, t_env *env, t_args *args)
 {
 	t_token		*temp;
 	t_env		*temp_env;
@@ -125,4 +81,3 @@ int run_redirect(t_token *tokens, t_env *env, t_args *args)
 		free_rd(&rd);
 	return (status);
 }
-
