@@ -34,7 +34,8 @@ int	run_fake_cat(int count)
 	int		i;
 
 	i = 0;
-	while (i < count)
+	readline("\n");
+	while (i < count - 1)
 	{
 		readline("\n");
 		i++;
