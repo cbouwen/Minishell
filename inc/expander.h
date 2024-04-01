@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 15:49:50 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/03/28 21:22:01 by mlegendr         ###   ########.fr       */
+/*   Updated: 2024/04/01 11:59:36 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 char	*find_env(char *str, t_env *env);
 int		find_quote(t_token *token, char c);
-int		count_quotes(char *str);
+int		count_quotes(char *str, char c);
 int		expander(t_token **tokens, t_env *env);
 int		handle_question_mark(t_token **tokens);
 int		expand_double_quote(t_token **tokens, t_env *env);

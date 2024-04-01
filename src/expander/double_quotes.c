@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 11:22:35 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/04/01 00:03:30 by matisse          ###   ########.fr       */
+/*   Updated: 2024/04/01 12:23:21 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ char	*find_new_str(char *str, t_env *env, int *i)
 	char	*s3;
 
 	j = *i + 1;
-	while (str[j] && str[j] != '$' && str[j] != ' ' && str[j] != '"')
+	while (str[j] && str[j] != '$' && str[j] != ' ' && str[j] != '"'
+		&& str[j] != 39)
 		j++;
 	s2 = ft_strndup(str + *i, j - *i);
 	s2 = find_env(s2, env);

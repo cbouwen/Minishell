@@ -6,7 +6,7 @@
 /*   By: mlegendr <mlegendr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 17:41:53 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/03/28 21:19:21 by mlegendr         ###   ########.fr       */
+/*   Updated: 2024/04/01 12:27:38 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	remove_quotes(t_token **tokens, char c)
 	int		j;
 	char	*newstr;
 
-	j = ft_strlen((*tokens)->str) - count_quotes((*tokens)->str);
+	j = ft_strlen((*tokens)->str) - count_quotes((*tokens)->str, c);
 	newstr = (char *)malloc(sizeof(char) * j + 1);
 	if (!newstr)
 		return ;
@@ -40,7 +40,10 @@ static void	handle_quotes(t_token **tokens, t_env *env)
 		if ((*tokens)->type == ARG)
 		{
 			if (!(find_quote(*tokens, 39)))
+			{
 				remove_quotes(tokens, 39);
+				break ;
+			}
 			if (!(find_quote(*tokens, '"')))
 			{
 				expand_double_quote(tokens, env);

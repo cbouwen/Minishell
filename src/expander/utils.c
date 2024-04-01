@@ -6,7 +6,7 @@
 /*   By: cbouwen <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 16:28:48 by cbouwen           #+#    #+#             */
-/*   Updated: 2024/03/06 16:09:34 by cbouwen          ###   ########.fr       */
+/*   Updated: 2024/04/01 12:23:36 by cbouwen          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,18 +54,17 @@ int	find_quote(t_token *token, char c)
 	return (1);
 }
 
-int	count_quotes(char *str)
+int	count_quotes(char *str, char c)
 {
 	int	i;
 	int	quotes;
 
 	i = 0;
-	quotes = 0;
+	quotes = 1;
 	while (str[i])
-	{
-		if (str[i] == 39)
-			quotes++;
 		i++;
-	}
+	i--;
+	if (str[i] == c)
+		quotes++;
 	return (quotes);
 }
